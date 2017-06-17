@@ -70,6 +70,12 @@ class EclairNode(object):
         self.rpc = EclairRpc(
             'http://localhost:{}'.format(self.daemon.rpc_port))
 
+    def peers(self):
+        return self.rpc.peers()
+
+    def id(self):
+        return "02"*33
+
 
 class EclairRpc(object):
 
@@ -78,19 +84,24 @@ class EclairRpc(object):
 
     def _call(self, method, params):
         headers = {'Content-type': 'application/json'}
-        reply = json.loads(requests.post(
-            self.url,
-            data=json.dumps({'method': method, 'params': params}),
-            headers=headers
-        ).text)
-        if 'error' in reply:
-            raise ValueError('Error calling {}: {}'.format(method,
-                                                           reply['error']))
+        data = json.dumps({'method': method, 'params': params})
+        reply = requests.post(self.url, data=data, headers=headers)
+
+        if reply.status_code != 200:
+            raise ValueError("Server returned an unknown error: {}".format(
+                reply.status_code))
+
+        if 'error' in reply.json():
+            raise ValueError('Error calling {}: {}'.format(
+                method, reply.json()['error']))
         else:
-            return reply['result']
+            return reply.json()['result']
 
     def peers(self):
         return self._call('peers', [])
 
     def help(self):
         return self._call('help', [])
+
+    def connect(self, host, port, node_id):
+        return self._call('connect', [host, port, node_id])

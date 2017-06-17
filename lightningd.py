@@ -51,44 +51,8 @@ class LightningNode(object):
         socket_path = os.path.join(lightning_dir, "lightning-rpc").format(node_id)
         self.rpc = LightningRpc(socket_path, self.executor)
 
-    def connect(self, remote_node, capacity, async=False):
-        # Collect necessary information
-        addr = self.rpc.newaddr()['address']
-        txid = self.bitcoin.rpc.sendtoaddress(addr, capacity)
-        tx = self.bitcoin.rpc.gettransaction(txid)
+    def peers(self):
+        return self.rpc.getpeers()['peers']
 
-        def call_connect():
-            try:
-                self.rpc.connect('127.0.0.1', remote_node.daemon.port, tx['hex'], async=False)
-            except:
-                pass
-        t = threading.Thread(target=call_connect)
-        t.daemon = True
-        t.start()
-        
-        def wait_connected():
-            # TODO(cdecker) Monitor the mempool to see if its time to generate yet.
-            time.sleep(5)
-        
-            # The sleep should have given bitcoind time to add the tx to its mempool
-            self.bitcoin.rpc.generate(1)
-
-            # Now wait for confirmation
-            self.daemon.wait_for_log("-> CHANNELD_NORMAL|STATE_NORMAL")
-            remote_node.daemon.wait_for_log("-> CHANNELD_NORMAL|STATE_NORMAL")
-
-        if async:
-            return self.executor.submit(wait_connected)
-        else:
-            return wait_connected()
-
-    def openchannel(self, remote_node, capacity):
-        addr = self.rpc.newaddr()['address']
-        txid = self.bitcoin.rpc.sendtoaddress(addr, capacity / 10**6)
-        tx = self.bitcoin.rpc.getrawtransaction(txid)
-        self.rpc.addfunds(tx)
-        self.rpc.fundchannel(remote_node.info['id'], capacity)
-        self.daemon.wait_for_log('sendrawtx exit 0, gave')
-        time.sleep(1)
-        self.bitcoin.rpc.generate(6)
-        self.daemon.wait_for_log('-> CHANNELD_NORMAL|STATE_NORMAL')
+    def id(self):
+        return self.rpc.getinfo()['id']
