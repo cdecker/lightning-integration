@@ -2,6 +2,7 @@ from eclair import EclairNode
 from itertools import product
 from lightningd import LightningNode
 from concurrent import futures
+from pprint import pprint
 from utils import BitcoinD
 
 import logging
@@ -14,6 +15,8 @@ import unittest
 
 TEST_DIR = tempfile.mkdtemp(prefix='lightning-')
 TEST_DEBUG = os.getenv("TEST_DEBUG", "0") == "1"
+impls = [EclairNode, LightningNode]
+
 
 if TEST_DEBUG:
     logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
@@ -38,17 +41,17 @@ class NodeFactory(object):
             TEST_DIR, self.testname, "lightning-{}/".format(node_id))
         port = 16330+node_id
 
-        node = implementation(lightning_dir, port, self.btc, executor=self.executor, node_id=node_id)
+        node = implementation(lightning_dir, port, self.btc,
+                              executor=self.executor, node_id=node_id)
         self.nodes.append(node)
 
         node.daemon.start()
-        # Cache `getinfo`, we'll be using it a lot
-        #node.info = node.rpc.getinfo()
         return node
 
     def killall(self):
         for n in self.nodes:
             n.daemon.stop()
+
 
 @pytest.fixture(scope="module")
 def bitcoind():
@@ -71,6 +74,7 @@ def bitcoind():
         btc.proc.kill()
     btc.proc.wait()
 
+
 @pytest.fixture
 def node_factory(request, bitcoind):
     executor = futures.ThreadPoolExecutor(max_workers=20)
@@ -79,7 +83,6 @@ def node_factory(request, bitcoind):
     node_factory.killall()
     executor.shutdown(wait=False)
 
-from pprint import pprint
 
 def wait_for(success, timeout=30):
     start_time = time.time()
@@ -88,10 +91,10 @@ def wait_for(success, timeout=30):
     if time.time() > start_time + timeout:
         raise ValueError("Error waiting for {}", success)
 
+
 def idfn(impls):
     return "_".join([i.__name__ for i in impls])
 
-impls=[EclairNode, LightningNode]
 
 @pytest.mark.parametrize("impl", impls, ids=idfn)
 def testStart(node_factory, impl):
@@ -110,4 +113,3 @@ def testConnect(node_factory, impls):
     wait_for(lambda: node2.peers())
 
     # TODO(cdecker) Check that we are connected
-
