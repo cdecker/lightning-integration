@@ -1,0 +1,5 @@
+python-bitcoinlib==0.7.0
+psutil==5.2.2
+pytest==3.1.2
+requests==2.18.1
+pylightning==0.0.1
