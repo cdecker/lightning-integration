@@ -28,7 +28,9 @@ class LightningD(TailableProc):
             '--bitcoind-regtest',
             '--dev-broadcast-interval=1000',
         ]
-        self.cmd_line += ["--{}={}".format(k, v) for k, v in LIGHTNINGD_CONFIG.items()]
+        self.cmd_line += [
+            "--{}={}".format(k, v) for k, v in LIGHTNINGD_CONFIG.items()
+        ]
         self.prefix = 'lightningd'
 
         if not os.path.exists(lightning_dir):
@@ -44,11 +46,14 @@ class LightningD(TailableProc):
         logging.info("LightningD stopped")
 
 class LightningNode(object):
-    def __init__(self, lightning_dir, lightning_port, btc, executor=None, node_id=0):
+    def __init__(self, lightning_dir, lightning_port, btc, executor=None,
+                 node_id=0):
         self.bitcoin = btc
         self.executor = executor
-        self.daemon = LightningD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
-        socket_path = os.path.join(lightning_dir, "lightning-rpc").format(node_id)
+        self.daemon = LightningD(lightning_dir, btc.bitcoin_dir,
+                                 port=lightning_port)
+        socket_path = os.path.join(lightning_dir, "lightning-rpc").format(
+            node_id)
         self.rpc = LightningRpc(socket_path, self.executor)
 
     def peers(self):

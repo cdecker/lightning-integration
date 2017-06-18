@@ -5,6 +5,7 @@ import json
 import logging
 import os
 import psutil
+import re
 import requests
 import time
 
@@ -74,7 +75,12 @@ class EclairNode(object):
         return self.rpc.peers()
 
     def id(self):
-        return "02"*33
+        exp = 'nodeid=([a-f0-9]{66})'
+        for l in self.daemon.logs:
+            m = re.search(exp, l)
+            if m:
+                return m.group(1)
+        return None
 
 
 class EclairRpc(object):

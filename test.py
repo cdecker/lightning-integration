@@ -78,7 +78,7 @@ def bitcoind():
 @pytest.fixture
 def node_factory(request, bitcoind):
     executor = futures.ThreadPoolExecutor(max_workers=20)
-    node_factory = NodeFactory(request.function.__name__, executor, bitcoind)
+    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind)
     yield node_factory
     node_factory.killall()
     executor.shutdown(wait=False)
@@ -99,6 +99,7 @@ def idfn(impls):
 @pytest.mark.parametrize("impl", impls, ids=idfn)
 def testStart(node_factory, impl):
     node = node_factory.get_node(implementation=impl)
+    time.sleep(1)
     print(node.rpc.help())
 
 
