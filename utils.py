@@ -13,7 +13,7 @@ BITCOIND_CONFIG = {
     "rpcport": 28332,
     "server": 1,
     "regtest": 1,
-    "txindex": 1,
+    "txindex": 0,
     "zmqpubrawblock": "tcp://127.0.0.1:29000",
     "zmqpubrawtx": "tcp://127.0.0.1:29000",
 }
@@ -181,7 +181,6 @@ class BitcoinD(TailableProc):
             '-regtest',
             '-debug',
             '-logtimestamps',
-            '-nolisten',
         ]
         BITCOIND_CONFIG['rpcport'] = rpcport
         write_config(
@@ -201,3 +200,26 @@ class BitcoinD(TailableProc):
         self.wait_for_log("Done loading", timeout=10)
 
         logging.info("BitcoinD started")
+
+
+class BtcD(TailableProc):
+
+    def __init__(self, btcdir="/tmp/btcd-test"):
+        TailableProc.__init__(self, btcdir)
+
+        self.cmd_line = [
+            'btcd',
+            '--regtest',
+            '--rpcuser=rpcuser',
+            '--rpcpass=rpcpass',
+            '--connect=127.0.0.1',
+            #'--debuglevel=debug'
+        ]
+        self.prefix = 'btcd'
+
+    def start(self):
+        TailableProc.start(self)
+        self.wait_for_log("New valid peer 127.0.0.1:18444", timeout=10)
+
+        logging.info("BtcD started")
+

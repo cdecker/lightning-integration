@@ -3,7 +3,7 @@ from itertools import product
 from lightningd import LightningNode
 from concurrent import futures
 from pprint import pprint
-from utils import BitcoinD
+from utils import BitcoinD, BtcD
 
 import logging
 import os
@@ -26,12 +26,13 @@ logging.info("Tests running in '%s'", TEST_DIR)
 class NodeFactory(object):
     """A factory to setup and start `lightningd` daemons.
     """
-    def __init__(self, testname, executor, btc):
+    def __init__(self, testname, executor, btc, btcd):
         self.testname = testname
         self.next_id = 1
         self.nodes = []
         self.executor = executor
         self.btc = btc
+        self.btcd = btcd
 
     def get_node(self, implementation):
         node_id = self.next_id
@@ -75,10 +76,23 @@ def bitcoind():
     btc.proc.wait()
 
 
+@pytest.fixture(scope="module")
+def btcd():
+    btcd = BtcD()
+    btcd.start()
+
+    yield btcd
+
+    try:
+        btcd.rpc.stop()
+    except:
+        btcd.proc.kill()
+    btcd.proc.wait()
+
 @pytest.fixture
-def node_factory(request, bitcoind):
+def node_factory(request, bitcoind, btcd):
     executor = futures.ThreadPoolExecutor(max_workers=20)
-    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind)
+    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind, btcd)
     yield node_factory
     node_factory.killall()
     executor.shutdown(wait=False)
