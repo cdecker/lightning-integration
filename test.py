@@ -1,6 +1,7 @@
 from eclair import EclairNode
 from itertools import product
 from lightningd import LightningNode
+from lnd import LndNode
 from concurrent import futures
 from pprint import pprint
 from utils import BitcoinD, BtcD
@@ -15,7 +16,7 @@ import unittest
 
 TEST_DIR = tempfile.mkdtemp(prefix='lightning-')
 TEST_DEBUG = os.getenv("TEST_DEBUG", "0") == "1"
-impls = [EclairNode, LightningNode]
+impls = [EclairNode, LightningNode, LndNode]
 
 
 if TEST_DEBUG:
