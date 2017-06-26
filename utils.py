@@ -213,7 +213,7 @@ class BtcD(TailableProc):
             '--rpcuser=rpcuser',
             '--rpcpass=rpcpass',
             '--connect=127.0.0.1',
-            #'--debuglevel=debug'
+            '--rpclisten=:18334',
         ]
         self.prefix = 'btcd'
 
