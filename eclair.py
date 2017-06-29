@@ -75,12 +75,8 @@ class EclairNode(object):
         return self.rpc.peers()
 
     def id(self):
-        exp = 'nodeid=([a-f0-9]{66})'
-        for l in self.daemon.logs:
-            m = re.search(exp, l)
-            if m:
-                return m.group(1)
-        return None
+        info = self.rpc._call("getinfo", [])
+        return info['nodeId']
 
 
 class EclairRpc(object):
