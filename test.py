@@ -128,3 +128,5 @@ def testConnect(node_factory, impls):
     wait_for(lambda: node2.peers())
 
     # TODO(cdecker) Check that we are connected
+    assert node1.id() in node2.peers()
+    assert node2.id() in node1.peers()
