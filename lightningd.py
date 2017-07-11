@@ -25,7 +25,7 @@ class LightningD(TailableProc):
             '--lightning-dir={}'.format(lightning_dir),
             '--port={}'.format(port),
             '--disable-irc',
-            '--bitcoind-regtest',
+            '--network=regtest',
             '--dev-broadcast-interval=1000',
         ]
         self.cmd_line += [
