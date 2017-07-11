@@ -130,3 +130,18 @@ def testConnect(node_factory, impls):
     # TODO(cdecker) Check that we are connected
     assert node1.id() in node2.peers()
     assert node2.id() in node1.peers()
+
+
+@pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
+def testOpenchannel(bitcoind, node_factory, impls):
+    node1 = node_factory.get_node(implementation=impls[0])
+    node2 = node_factory.get_node(implementation=impls[1])
+
+    node1.rpc.connect('localhost', node2.daemon.port, node2.id())
+
+    wait_for(lambda: node1.peers(), interval=1)
+    wait_for(lambda: node2.peers(), interval=1)
+
+    node1.addfunds(bitcoind, 2 * 10**6)
+    node2.addfunds(bitcoind, 2 * 10**6)
+    node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**6)
