@@ -98,10 +98,10 @@ def node_factory(request, bitcoind, btcd):
     executor.shutdown(wait=False)
 
 
-def wait_for(success, timeout=30):
+def wait_for(success, timeout=30, interval=0.1):
     start_time = time.time()
     while not success() and time.time() < start_time + timeout:
-        pass
+        time.sleep(interval)
     if time.time() > start_time + timeout:
         raise ValueError("Error waiting for {}", success)
 
