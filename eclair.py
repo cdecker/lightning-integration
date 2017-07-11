@@ -78,6 +78,23 @@ class EclairNode(object):
         info = self.rpc._call("getinfo", [])
         return info['nodeId']
 
+    def openchannel(self, node_id, host, port, satoshis):
+        return self.rpc._call('open', [node_id, host, port, satoshis, 0])
+
+    def getaddress(self):
+        exp = 'finaladdress=(m[a-zA-Z0-9]+)'
+        for l in self.daemon.logs:
+            m = re.search(exp, l)
+            if m:
+                return m.group(1)
+        return None
+
+    def addfunds(self, bitcoind, satoshis):
+        addr = self.getaddress()
+        print(addr)
+        bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
+        self.daemon.wait_for_log('received txid=')
+
 
 class EclairRpc(object):
 

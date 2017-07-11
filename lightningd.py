@@ -57,7 +57,22 @@ class LightningNode(object):
         self.rpc = LightningRpc(socket_path, self.executor)
 
     def peers(self):
-        return self.rpc.getpeers()['peers']
+        return [p['peerid'] for p in self.rpc.getpeers()['peers']]
 
     def id(self):
         return self.rpc.getinfo()['id']
+
+    def openchannel(self, node_id, host, port, satoshis):
+        # Make sure we have a connection already
+        if node_id not in self.peers():
+            raise ValueError("Must connect to node before opening a channel")
+        return self.rpc.fundchannel(node_id, satoshis)
+
+    def getaddress(self):
+        return self.rpc.newaddr()['address']
+
+    def addfunds(self, bitcoind, satoshis):
+        addr = self.getaddress()
+        txid = bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
+        tx = bitcoind.rpc.getrawtransaction(txid)
+        self.rpc.addfunds(tx)
