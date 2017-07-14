@@ -95,6 +95,16 @@ class EclairNode(object):
         bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
         self.daemon.wait_for_log('received txid=')
 
+    def ping(self):
+        """ Simple liveness test to see if the node is up and running
+
+        Returns true if the node is reachable via RPC, false otherwise.
+        """
+        try:
+            self.rpc.help()
+            return True
+        except:
+            return False
 
 class EclairRpc(object):
 

@@ -114,8 +114,7 @@ def idfn(impls):
 @pytest.mark.parametrize("impl", impls, ids=idfn)
 def testStart(node_factory, impl):
     node = node_factory.get_node(implementation=impl)
-    time.sleep(1)
-    print(node.rpc.help())
+    assert node.ping()
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)

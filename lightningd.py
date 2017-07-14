@@ -76,3 +76,14 @@ class LightningNode(object):
         txid = bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
         tx = bitcoind.rpc.getrawtransaction(txid)
         self.rpc.addfunds(tx)
+
+    def ping(self):
+        """ Simple liveness test to see if the node is up and running
+
+        Returns true if the node is reachable via RPC, false otherwise.
+        """
+        try:
+            self.rpc.help()
+            return True
+        except:
+            return False

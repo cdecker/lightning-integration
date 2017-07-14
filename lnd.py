@@ -38,8 +38,7 @@ class LndD(TailableProc):
 
     def start(self):
         TailableProc.start(self)
-        self.wait_for_log("Opened wallet")
-        time.sleep(30)
+        self.wait_for_log("gRPC proxy started at localhost:8080")
         logging.info("LND started (pid: {})".format(self.proc.pid))
 
 
@@ -50,20 +49,26 @@ class LndNode(object):
         self.bitcoin = btc
         self.executor = executor
         self.daemon = LndD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
-        self.rpc = LndRpc(lightning_port)
+        self.rpc = LndRpc(lightning_port+10000)
 
-    @property
     def id(self):
-        while True:
-            try:
-                print(self.rpc.stub.GetInfo(lnrpc.GetInfoRequest()))
-            except:
-                time.sleep(1)
-                pass
+        return self.rpc.stub.GetInfo(lnrpc.GetInfoRequest()).identity_pubkey
+
+    def ping(self):
+        """ Simple liveness test to see if the node is up and running
+
+        Returns true if the node is reachable via RPC, false otherwise.
+        """
+        try:
+            print(self.rpc.stub.GetInfo(lnrpc.GetInfoRequest()))
+            return True
+        except Exception as e:
+            print(e)
+            return False
 
 class LndRpc(object):
     def __init__(self, rpc_port):
-        print('localhost:{}'.format(rpc_port))
+        self.port = rpc_port
         channel = grpc.insecure_channel('localhost:{}'.format(rpc_port))
         self.stub = lnrpc_grpc.LightningStub(channel)
 
