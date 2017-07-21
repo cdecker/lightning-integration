@@ -142,6 +142,5 @@ def testOpenchannel(bitcoind, node_factory, impls):
     wait_for(lambda: node1.peers(), interval=1)
     wait_for(lambda: node2.peers(), interval=1)
 
-    node1.addfunds(bitcoind, 2 * 10**6)
-    node2.addfunds(bitcoind, 2 * 10**6)
-    node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**6)
+    node1.addfunds(bitcoind, 2 * 10**7)
+    node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
