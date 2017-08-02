@@ -124,8 +124,8 @@ def testConnect(node_factory, impls):
 
     node1.rpc.connect('localhost', node2.daemon.port, node2.id())
 
-    wait_for(lambda: node1.peers())
-    wait_for(lambda: node2.peers())
+    wait_for(lambda: node1.peers(), timeout=5)
+    wait_for(lambda: node2.peers(), timeout=5)
 
     # TODO(cdecker) Check that we are connected
     assert node1.id() in node2.peers()

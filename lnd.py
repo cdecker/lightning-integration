@@ -39,6 +39,7 @@ class LndD(TailableProc):
     def start(self):
         TailableProc.start(self)
         self.wait_for_log("gRPC proxy started at localhost:8080")
+        self.wait_for_log("Done catching up block hashes")
         logging.info("LND started (pid: {})".format(self.proc.pid))
 
 
@@ -60,11 +61,14 @@ class LndNode(object):
         Returns true if the node is reachable via RPC, false otherwise.
         """
         try:
-            print(self.rpc.stub.GetInfo(lnrpc.GetInfoRequest()))
+            self.rpc.stub.GetInfo(lnrpc.GetInfoRequest())
             return True
         except Exception as e:
             print(e)
             return False
+
+    def peers(self):
+        return [p.pubkey for p in self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()).peers]
 
 class LndRpc(object):
     def __init__(self, rpc_port):
