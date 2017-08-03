@@ -118,10 +118,16 @@ def testStart(node_factory, impl):
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
-def testConnect(node_factory, impls):
+def testConnect(node_factory, bitcoind, impls):
     node1 = node_factory.get_node(implementation=impls[0])
     node2 = node_factory.get_node(implementation=impls[1])
 
+    # Needed by lnd in order to have at least one block in the last 2 hours
+    bitcoind.rpc.generate(1)
+
+    print("Connecting {}@{}:{} -> {}@{}:{}".format(
+        node1.id(), 'localhost', node1.daemon.port,
+        node2.id(), 'localhost', node2.daemon.port))
     node1.rpc.connect('localhost', node2.daemon.port, node2.id())
 
     wait_for(lambda: node1.peers(), timeout=5)

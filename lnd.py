@@ -24,7 +24,7 @@ class LndD(TailableProc):
             '--rpcport={}'.format(self.rpc_port),
             '--bitcoin.active',
             '--datadir={}'.format(lightning_dir),
-            '--debuglevel=trace',
+            '--debuglevel=debug',
             '--bitcoin.rpcuser=rpcuser',
             '--bitcoin.rpcpass=rpcpass',
             '--configfile={}'.format(os.path.join(lightning_dir, 'lnd.conf')),
@@ -53,7 +53,10 @@ class LndNode(object):
         self.rpc = LndRpc(lightning_port+10000)
 
     def id(self):
-        return self.rpc.stub.GetInfo(lnrpc.GetInfoRequest()).identity_pubkey
+        return self.info().identity_pubkey
+
+    def info(self):
+        return self.rpc.stub.GetInfo(lnrpc.GetInfoRequest())
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running
@@ -68,7 +71,9 @@ class LndNode(object):
             return False
 
     def peers(self):
-        return [p.pubkey for p in self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()).peers]
+        peers = self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()).peers
+        print(self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()))
+        return [p.pub_key for p in peers]
 
 class LndRpc(object):
     def __init__(self, rpc_port):
@@ -77,6 +82,8 @@ class LndRpc(object):
         self.stub = lnrpc_grpc.LightningStub(channel)
 
     def connect(self, host, port, node_id):
-        logging.debug(self.stub.GetInfo(lnrpc.GetInfoRequest()))
+        addr = lnrpc.LightningAddress(pubkey=node_id, host="{}:{}".format(host, port))
+        req = lnrpc.ConnectPeerRequest(addr=addr, perm=True)
+        logging.debug(self.stub.ConnectPeer(req))
 
 
