@@ -72,7 +72,6 @@ class LndNode(object):
 
     def peers(self):
         peers = self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()).peers
-        print(self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()))
         return [p.pub_key for p in peers]
 
 class LndRpc(object):
