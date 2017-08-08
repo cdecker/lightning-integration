@@ -87,3 +87,12 @@ class LightningNode(object):
             return True
         except:
             return False
+
+    def check_channel(self, remote):
+        """ Make sure that we have an active channel with remote
+        """
+        for p in self.rpc.getpeers()['peers']:
+            if remote.id() == p['peerid']:
+                return p['state'] == 'CHANNELD_NORMAL'
+
+        return False

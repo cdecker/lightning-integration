@@ -150,3 +150,9 @@ def testOpenchannel(bitcoind, node_factory, impls):
 
     node1.addfunds(bitcoind, 2 * 10**7)
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
+    for _ in range(5):
+        time.sleep(1)
+        bitcoind.rpc.generate(1)
+
+    wait_for(lambda: node1.check_channel(node2))
+    wait_for(lambda: node2.check_channel(node1))

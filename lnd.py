@@ -74,6 +74,11 @@ class LndNode(object):
         peers = self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()).peers
         return [p.pub_key for p in peers]
 
+    def check_channel(self, remote):
+        """ Make sure that we have an active channel with remote
+        """
+        return False
+
 class LndRpc(object):
     def __init__(self, rpc_port):
         self.port = rpc_port

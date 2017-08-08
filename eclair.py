@@ -41,6 +41,7 @@ class EclairD(TailableProc):
     def start(self):
         TailableProc.start(self)
         self.wait_for_log("connected to tcp://127.0.0.1:29000")
+        self.wait_for_log("Successfully bound to /127.0.0.1:{}".format(self.rpc_port))
         logging.info("Eclair started (pid: {})".format(self.proc.pid))
 
     def stop(self):
@@ -105,6 +106,16 @@ class EclairNode(object):
         except:
             return False
 
+    def check_channel(self, remote):
+        """ Make sure that we have an active channel with remote
+        """
+        remote_id = remote.id()
+        for c in self.rpc.channels():
+            channel = self.rpc.channel(c)
+            if channel['nodeid'] == remote_id:
+                return channel['state'] == 'NORMAL'
+        return False
+
 class EclairRpc(object):
 
     def __init__(self, url):
@@ -127,6 +138,12 @@ class EclairRpc(object):
 
     def peers(self):
         return self._call('peers', [])
+
+    def channels(self):
+        return self._call('channels', [])
+
+    def channel(self, cid):
+        return self._call('channel', [cid])
 
     def help(self):
         return self._call('help', [])
