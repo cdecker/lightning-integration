@@ -19,7 +19,7 @@ class LndD(TailableProc):
         self.prefix = 'lnd'
 
         self.cmd_line = [
-            'lnd/lnd',
+            'bin/lnd',
             '--peerport={}'.format(self.port),
             '--rpcport={}'.format(self.rpc_port),
             '--bitcoin.active',
@@ -77,12 +77,11 @@ class LndNode(object):
 class LndRpc(object):
     def __init__(self, rpc_port):
         self.port = rpc_port
-        channel = grpc.insecure_channel('localhost:{}'.format(rpc_port))
+        cred = grpc.ssl_channel_credentials(open('tls.cert').read())
+        channel = grpc.secure_channel('localhost:{}'.format(rpc_port), cred)
         self.stub = lnrpc_grpc.LightningStub(channel)
 
     def connect(self, host, port, node_id):
         addr = lnrpc.LightningAddress(pubkey=node_id, host="{}:{}".format(host, port))
         req = lnrpc.ConnectPeerRequest(addr=addr, perm=True)
         logging.debug(self.stub.ConnectPeer(req))
-
-

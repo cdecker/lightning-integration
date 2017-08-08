@@ -22,7 +22,7 @@ class EclairD(TailableProc):
         self.cmd_line = [
             '/usr/lib/jvm/java-8-openjdk-amd64/bin/java',
             '-jar',
-            'eclair/eclair-node.jar',
+            'bin/eclair.jar',
             '--datadir={}'.format(lightning_dir)
         ]
 
@@ -30,7 +30,7 @@ class EclairD(TailableProc):
             os.makedirs(lightning_dir)
 
         # Adapt the config and store it
-        config = open('eclair/application.conf').read()
+        config = open('configs/eclair.conf').read()
         config = config.replace('9735', str(port))
         config = config.replace('18332', str(28332))
         config = config.replace('8080', str(self.rpc_port))
@@ -91,7 +91,6 @@ class EclairNode(object):
 
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
-        print(addr)
         bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
         self.daemon.wait_for_log('received txid=')
 

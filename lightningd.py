@@ -20,7 +20,7 @@ class LightningD(TailableProc):
         self.lightning_dir = lightning_dir
         self.port = port
         self.cmd_line = [
-            'lightningd/lightningd',
+            'bin/lightningd',
             '--bitcoin-datadir={}'.format(bitcoin_dir),
             '--lightning-dir={}'.format(lightning_dir),
             '--port={}'.format(port),
