@@ -40,6 +40,10 @@ class LndD(TailableProc):
         TailableProc.start(self)
         self.wait_for_log("gRPC proxy started at localhost:8080")
         self.wait_for_log("Done catching up block hashes")
+
+        # FLAKE: Seems lnd isn't always ready to accept incoming rpc calls, so wait a bit longer
+        time.sleep(5)
+
         logging.info("LND started (pid: {})".format(self.proc.pid))
 
 
