@@ -42,6 +42,13 @@ class EclairD(TailableProc):
         TailableProc.start(self)
         self.wait_for_log("connected to tcp://127.0.0.1:29000")
         self.wait_for_log("Successfully bound to /127.0.0.1:{}".format(self.rpc_port))
+
+        # And let's also remember the address
+        exp = 'finaladdress=(m[a-zA-Z0-9]+)'
+        addr_line = self.wait_for_log('finaladdress=(m[a-zA-Z0-9]+)')
+        self.addr = re.search(exp, addr_line).group(1)
+        print(self.addr)
+
         logging.info("Eclair started (pid: {})".format(self.proc.pid))
 
     def stop(self):
@@ -83,12 +90,7 @@ class EclairNode(object):
         return self.rpc._call('open', [node_id, host, port, satoshis, 0])
 
     def getaddress(self):
-        exp = 'finaladdress=(m[a-zA-Z0-9]+)'
-        for l in self.daemon.logs:
-            m = re.search(exp, l)
-            if m:
-                return m.group(1)
-        return None
+        return self.daemon.addr
 
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
