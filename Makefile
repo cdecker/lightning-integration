@@ -52,3 +52,6 @@ clean:
 	cd src/eclair; mvn clean
 
 all: bin/lightningd bin/lnd bin/eclair.jar
+
+test:
+	TEST_DEBUG=0 py.test -v test.py --tb=short --color=yes --json=report.json
