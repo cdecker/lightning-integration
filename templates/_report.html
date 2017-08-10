@@ -1,0 +1,59 @@
+{% extends "_base.html" %}
+
+{% block subtitle %}
+Test Run {{ id[:7] }}
+<a href="https://github.com/cdecker/lightning-integration/blob/master/reports/{{ id }}.json">
+  <i class="fa fa-github" aria-hidden="true"></i>
+</a>
+{% endblock %}
+
+{% block content %}
+
+<a href="index.html"> &laquo; Back to overview</a>
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Commit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for k, v in versions.items() %}
+    <tr>
+      <td>{{ k }}</td>
+      <td>{{ v }}</td>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Test</th>
+      <th>Configuration</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for name, test in tests|dictsort %}
+    <tr>
+      <td>{{ name }}</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-{{ test.color }}">{{ test.success }}/{{ test.total }}</span></td>
+    </tr>
+    {% for stest in test.subtests %}
+    <tr class="{% if stest.call.outcome == 'passed' %}success{% else %}danger{% endif %}">
+      <td>&nbsp;</td>
+      <td>{{ stest.name.replace("_", " ") }}</td>
+      <td class="result"><span class="badge badge-{% if stest.call.outcome == 'passed' %}success{% else %}danger{% endif %}">{{ stest.call.outcome }}</span></td>
+    </tr>
+
+    {% endfor %}
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}

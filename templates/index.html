@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+
+{% block subtitle %}
+Lightning Integration Tests <a href="https://github.com/cdecker/lightning-integration"><i class="fa fa-github" aria-hidden="true"></i></a>
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date/Time</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in reports %}
+    <tr>
+      <td><a href="{{ report.id }}.html">{{ report.id[:7] }}</a></td>
+      <td>{{ report.created_at[:19] }}</td>
+      <td>
+	<span class="badge badge-{{ report.summary.color }}">
+	  {{ report.summary.passed }} / {{report.summary.num_tests }}
+	</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
