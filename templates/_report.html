@@ -19,7 +19,7 @@ Test Run {{ id[:7] }}
     </tr>
   </thead>
   <tbody>
-    {% for k, v in versions.items() %}
+    {% for k, v in versions|dictsort %}
     <tr>
       <td>{{ k }}</td>
       <td>{{ v }}</td>

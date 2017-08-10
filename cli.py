@@ -53,6 +53,7 @@ def group_tests(report):
         report['tests'][name]['total'] += 1
         if t['outcome'] == 'passed':
             report['tests'][name]['success'] += 1
+        report['tests'][name]['subtests'] = sorted(report['tests'][name]['subtests'], key=lambda x: x['name'])
 
     return report
 
