@@ -44,10 +44,9 @@ class EclairD(TailableProc):
         self.wait_for_log("Successfully bound to /127.0.0.1:{}".format(self.rpc_port))
 
         # And let's also remember the address
-        exp = 'finaladdress=(m[a-zA-Z0-9]+)'
-        addr_line = self.wait_for_log('finaladdress=(m[a-zA-Z0-9]+)')
+        exp = 'finaladdress=([mn][a-zA-Z0-9]+)'
+        addr_line = self.wait_for_log(exp)
         self.addr = re.search(exp, addr_line).group(1)
-        print(self.addr)
 
         logging.info("Eclair started (pid: {})".format(self.proc.pid))
 
