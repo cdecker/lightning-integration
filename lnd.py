@@ -9,6 +9,9 @@ import os
 import time
 
 
+# Needed for grpc to negotiate a valid cipher suite
+os.environ["GRPC_SSL_CIPHER_SUITES"] = "ECDHE-ECDSA-AES256-GCM-SHA384"
+
 class LndD(TailableProc):
     def __init__(self, lightning_dir, bitcoin_dir, port):
         TailableProc.__init__(self, lightning_dir)
