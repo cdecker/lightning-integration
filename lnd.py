@@ -84,7 +84,42 @@ class LndNode(object):
     def check_channel(self, remote):
         """ Make sure that we have an active channel with remote
         """
-        return False
+        channels = self.rpc.stub.ListChannels(lnrpc.ListChannelsRequest()).channels
+        channel_by_remote = {c.remote_pubkey: c for c in channels}
+        if remote.id() not in channel_by_remote:
+            return False
+
+        channel = channel_by_remote[remote.id()]
+        return channel.active
+
+    def addfunds(self, bitcoind, satoshis):
+        req = lnrpc.NewAddressRequest(type=1)
+        addr = self.rpc.stub.NewAddress(req).address
+        txid = bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
+        self.daemon.wait_for_log("Inserting unconfirmed transaction")
+        bitcoind.rpc.generate(1)
+        self.daemon.wait_for_log("Marking unconfirmed transaction")
+
+        # The above still doesn't mean the wallet balance is updated,
+        # so let it settle a bit
+        time.sleep(1)
+        assert(self.rpc.stub.WalletBalance(lnrpc.WalletBalanceRequest()).balance == satoshis)
+
+    def openchannel(self, node_id, host, port, satoshis):
+        peers = self.rpc.stub.ListPeers (lnrpc.ListPeersRequest()).peers
+        peers_by_pubkey = {p.pub_key: p for p in peers}
+        if not node_id in peers_by_pubkey:
+            raise ValueError("Could not find peer {} in peers {}".format(node_id), peers)
+        peer = peers_by_pubkey[node_id]
+        self.rpc.stub.OpenChannel(lnrpc.OpenChannelRequest(
+            target_peer_id=peer.peer_id,
+            local_funding_amount=satoshis,
+            push_sat=0
+        ))
+
+        # Somehow broadcasting a tx is slow from time to time
+        time.sleep(5)
+
 
 class LndRpc(object):
     def __init__(self, rpc_port):
