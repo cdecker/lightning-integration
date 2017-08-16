@@ -117,6 +117,12 @@ class EclairNode(object):
                 return channel['state'] == 'NORMAL'
         return False
 
+    def getchannels(self):
+        raise ValueError("eclair currently does not expose information about non-local channels through the RPC interface")
+
+    def getnodes(self):
+        return set(self.rpc.network())
+
 class EclairRpc(object):
 
     def __init__(self, url):
@@ -145,6 +151,9 @@ class EclairRpc(object):
 
     def channel(self, cid):
         return self._call('channel', [cid])
+
+    def network(self):
+        return self._call('network', [])
 
     def help(self):
         return self._call('help', [])

@@ -159,3 +159,40 @@ def testOpenchannel(bitcoind, node_factory, impls):
 
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
+
+
+@pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
+def testgossip(node_factory, bitcoind, impls):
+    """ Create a network of lightningd nodes and connect to it using 2 new nodes
+    """
+    # These are the nodes we really want to test
+    node1 = node_factory.get_node(implementation=impls[0])
+    node2 = node_factory.get_node(implementation=impls[1])
+
+    # Using lightningd since it is quickest to start up
+    nodes = [node_factory.get_node(implementation=LightningNode) for _ in range(5)]
+    for n1, n2 in zip(nodes[:4], nodes[1:]):
+        n1.rpc.connect('localhost', n2.daemon.port, n2.id())
+        n1.addfunds(bitcoind, 2 * 10**7)
+        n1.openchannel(n2.id(), 'localhost', n2.daemon.port, 10**7)
+    time.sleep(1)
+    bitcoind.rpc.generate(6)
+
+    # Wait for gossip to settle
+    for n in nodes:
+        wait_for(lambda: len(n.getnodes()) == 5)
+        wait_for(lambda: len(n.getchannels()) == 8)
+
+    # Now connect the first node to the line graph and the second one to the first
+    node1.rpc.connect('localhost', nodes[0].daemon.port, nodes[0].id())
+    node2.rpc.connect('localhost', n1.daemon.port, n1.id())
+
+    # They should now be syncing as well
+    # TODO(cdecker) Uncomment the following line when eclair exposes non-local channels as well (ACINQ/eclair/issues/126)
+    #wait_for(lambda: len(node1.getchannels()) == 8)
+    wait_for(lambda: len(node1.getnodes()) == 5)
+
+    # Node 2 syncs through node 1
+    # TODO(cdecker) Uncomment the following line when eclair exposes non-local channels as well (ACINQ/eclair/issues/126)
+    #wait_for(lambda: len(node2.getchannels()) == 8)
+    wait_for(lambda: len(node2.getnodes()) == 5)

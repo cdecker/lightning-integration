@@ -179,7 +179,7 @@ class BitcoinD(TailableProc):
             '-printtoconsole',
             '-server',
             '-regtest',
-            '-debug',
+            #'-debug',
             '-logtimestamps',
         ]
         BITCOIND_CONFIG['rpcport'] = rpcport

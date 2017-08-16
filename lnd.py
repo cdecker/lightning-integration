@@ -120,6 +120,14 @@ class LndNode(object):
         # Somehow broadcasting a tx is slow from time to time
         time.sleep(5)
 
+    def getchannels(self):
+        raise ValueError("Not implemented")
+
+    def getnodes(self):
+        req = lnrpc.ChannelGraphRequest()
+        rep = self.rpc.stub.DescribeGraph(req)
+        return [n.pub_key for n in rep.nodes]
+
 
 class LndRpc(object):
     def __init__(self, rpc_port):

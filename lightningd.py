@@ -96,3 +96,13 @@ class LightningNode(object):
                 return p['state'] == 'CHANNELD_NORMAL'
 
         return False
+
+    def getchannels(self):
+        result = []
+        for c in self.rpc.getchannels()['channels']:
+            result.append((c['source'], c['destination']))
+        print("Numchannels", len(result))
+        return set(result)
+
+    def getnodes(self):
+        return set([n['nodeid'] for n in self.rpc.getnodes()['nodes']])
