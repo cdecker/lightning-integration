@@ -153,13 +153,17 @@ def testOpenchannel(bitcoind, node_factory, impls):
     bitcoind.rpc.generate(1)
     time.sleep(1)
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
-    for _ in range(5):
+    for _ in range(10):
         time.sleep(1)
         bitcoind.rpc.generate(1)
 
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
+    # The nodes should know at least about this one channel
+    nodeids = set([node1.id(), node2.id()])
+    wait_for(lambda: nodeids.issubset(node1.getnodes()))
+    wait_for(lambda: nodeids.issubset(node2.getnodes()))
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def testgossip(node_factory, bitcoind, impls):
@@ -190,9 +194,13 @@ def testgossip(node_factory, bitcoind, impls):
     # They should now be syncing as well
     # TODO(cdecker) Uncomment the following line when eclair exposes non-local channels as well (ACINQ/eclair/issues/126)
     #wait_for(lambda: len(node1.getchannels()) == 8)
-    wait_for(lambda: len(node1.getnodes()) == 5)
+    wait_for(lambda: len(node1.getnodes()) == 5, interval=1)
 
     # Node 2 syncs through node 1
     # TODO(cdecker) Uncomment the following line when eclair exposes non-local channels as well (ACINQ/eclair/issues/126)
     #wait_for(lambda: len(node2.getchannels()) == 8)
-    wait_for(lambda: len(node2.getnodes()) == 5)
+    wait_for(lambda: len(node2.getnodes()) == 5, interval=1)
+
+#@pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
+#def testPayment(bitcoind, node_factory, impls):
+#    pass

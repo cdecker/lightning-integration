@@ -222,4 +222,3 @@ class BtcD(TailableProc):
         self.wait_for_log("New valid peer 127.0.0.1:18444", timeout=10)
 
         logging.info("BtcD started")
-

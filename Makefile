@@ -57,6 +57,8 @@ site:
 	mkdir output
 	cp reports/* templates/
 	python cli.py html
+
+push:
 	cd output; \
 	git init;\
 	git config user.name "Travis CI";\
