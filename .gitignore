@@ -3,3 +3,4 @@ dist
 *.pyc
 bin/*
 src/*
+templates/*.json
