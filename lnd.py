@@ -32,6 +32,7 @@ class LndD(TailableProc):
             '--bitcoin.rpcpass=rpcpass',
             '--configfile={}'.format(os.path.join(lightning_dir, 'lnd.conf')),
             '--bitcoin.regtest',
+            '--no-macaroons',
         ]
 
         if not os.path.exists(lightning_dir):
@@ -41,8 +42,7 @@ class LndD(TailableProc):
 
     def start(self):
         TailableProc.start(self)
-        self.wait_for_log("gRPC proxy started at localhost:8080")
-        self.wait_for_log("Done catching up block hashes")
+        self.wait_for_log("Server listening on")
 
         # FLAKE: Seems lnd isn't always ready to accept incoming rpc calls, so wait a bit longer
         time.sleep(5)
