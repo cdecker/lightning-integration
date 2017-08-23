@@ -1,3 +1,4 @@
+from binascii import hexlify, unhexlify
 from utils import TailableProc
 import rpc_pb2_grpc as lnrpc_grpc
 import rpc_pb2 as lnrpc
@@ -130,6 +131,16 @@ class LndNode(object):
         nodes = set([n.pub_key for n in rep.nodes]) - set([self.id()])
         return nodes
 
+    def invoice(self, amount):
+        req = lnrpc.Invoice(value=int(amount/1000))
+        rep = self.rpc.stub.AddInvoice(req)
+        return hexlify(rep.r_hash)
+
+    def send(self, other, rhash, amount):
+        req = lnrpc.SendRequest(dest_string=other.id(), amt=int(amount/1000), payment_hash_string=rhash)
+        import pdb; pdb.set_trace()
+        res = self.rpc.stub.SendPaymentSync(req)
+        return hexlify(res.payment_preimage)
 
 class LndRpc(object):
     def __init__(self, rpc_port):

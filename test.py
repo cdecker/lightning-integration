@@ -1,3 +1,4 @@
+from binascii import unhexlify
 from eclair import EclairNode
 from itertools import product
 from lightningd import LightningNode
@@ -152,6 +153,10 @@ def testOpenchannel(bitcoind, node_factory, impls):
     time.sleep(1)
     bitcoind.rpc.generate(1)
     time.sleep(1)
+
+    # LndNode disagrees on open_channel
+    assert LndNode not in impls
+
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
     for _ in range(10):
         time.sleep(1)
@@ -201,6 +206,37 @@ def testgossip(node_factory, bitcoind, impls):
     #wait_for(lambda: len(node2.getchannels()) == 8)
     wait_for(lambda: len(node2.getnodes()) == 5, interval=1)
 
-#@pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
-#def testPayment(bitcoind, node_factory, impls):
-#    pass
+@pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
+def testPayment(bitcoind, node_factory, impls):
+    node1 = node_factory.get_node(implementation=impls[0])
+    node2 = node_factory.get_node(implementation=impls[1])
+
+    node1.rpc.connect('localhost', node2.daemon.port, node2.id())
+
+    wait_for(lambda: node1.peers(), interval=1)
+    wait_for(lambda: node2.peers(), interval=1)
+
+    node1.addfunds(bitcoind, 2 * 10**7)
+    time.sleep(1)
+    bitcoind.rpc.generate(1)
+    time.sleep(1)
+
+    # LndNode disagrees on open_channel
+    assert LndNode not in impls or impls[0] == impls[1]
+
+    node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
+
+    for _ in range(10):
+        time.sleep(1)
+        bitcoind.rpc.generate(1)
+
+    wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
+    wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
+
+    bitcoind.rpc.generate(6)
+    
+    time.sleep(10)
+
+    amount = 10**7
+    rhash = node2.invoice(amount)
+    node1.send(node2, rhash, amount)

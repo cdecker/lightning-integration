@@ -1,3 +1,5 @@
+from binascii import hexlify
+from lnaddr import lndecode
 from utils import TailableProc
 
 
@@ -118,10 +120,21 @@ class EclairNode(object):
         return False
 
     def getchannels(self):
-        raise ValueError("eclair currently does not expose information about non-local channels through the RPC interface")
+        channels = self.rpc._call('allchannels')
+        import pdb; pdb.set_trace()
+        return channels
 
     def getnodes(self):
-        return set(self.rpc.network())
+        return set(self.rpc.allnodes())
+
+    def invoice(self, amount):
+        addr = self.rpc._call("receive", [amount, "invoice1"])
+        a = lndecode(addr)
+        return hexlify(a.paymenthash).decode('ASCII')
+
+    def send(self, other, rhash, amount):
+        result = self.rpc._call("send", [amount, rhash, other.id()])
+        print(result)
 
 class EclairRpc(object):
 
@@ -152,8 +165,8 @@ class EclairRpc(object):
     def channel(self, cid):
         return self._call('channel', [cid])
 
-    def network(self):
-        return self._call('network', [])
+    def allnodes(self):
+        return self._call('allnodes', [])
 
     def help(self):
         return self._call('help', [])

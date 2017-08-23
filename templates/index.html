@@ -7,6 +7,15 @@ Lightning Integration Tests <a href="https://github.com/cdecker/lightning-integr
 
 {% block content %}
 
+<p>
+  This page shows the latest integration test results for the three Lightning implementations.
+  We test the latest versions of <a href="https://github.com/ACINQ/eclair">eclair</a>, <a href="https://github.com/ElementsProject/lightning">c-lightning</a>, and <a href="https://github.com/lightningnetwork/lnd">lnd</a> against each other in a number of scenarios and see if they can cooperate.
+</p>
+<p>
+  Below is a table of the latest test runs, with their respective scores.
+  Click on the ID link to see the detailed test results for that run.
+</p>
+
 <table class="table table-condensed table-striped">
   <thead>
     <tr>
@@ -29,5 +38,9 @@ Lightning Integration Tests <a href="https://github.com/cdecker/lightning-integr
     {% endfor %}
   </tbody>
 </table>
-
+<p>
+  Notice that the results are still not stable and compatibility may be
+  broken from time to time as implementations move closer to being spec
+  compliant, or as we add new scenarios.
+</p>
 {% endblock %}

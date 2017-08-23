@@ -105,3 +105,12 @@ class LightningNode(object):
 
     def getnodes(self):
         return set([n['nodeid'] for n in self.rpc.getnodes()['nodes']])
+
+    def invoice(self, amount):
+        invoice = self.rpc.invoice(amount, "invoice1")
+        return invoice['rhash']
+
+    def send(self, other, rhash, amount):
+        route = self.rpc.getroute(other.id(), amount, 1)['route']
+        result = self.rpc.sendpay(route, rhash)
+        return result['preimage']
