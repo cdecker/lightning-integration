@@ -126,7 +126,9 @@ class LndNode(object):
     def getnodes(self):
         req = lnrpc.ChannelGraphRequest()
         rep = self.rpc.stub.DescribeGraph(req)
-        return [n.pub_key for n in rep.nodes]
+        # Extract all node_ids and remove ourselves
+        nodes = set([n.pub_key for n in rep.nodes]) - set([self.id()])
+        return nodes
 
 
 class LndRpc(object):
