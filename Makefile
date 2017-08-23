@@ -20,12 +20,11 @@ update: src/eclair src/lightning src/lnd
 	cd ${GOPATH}/src/github.com/lightningnetwork/lnd && git stash; git pull origin master
 
 	cd src/eclair; git apply ${PWD}/src/eclair/*.patch
-	cd ${GOPATH}/src/github.com/lightningnetwork/lnd; git apply ${PWD}/src/lnd/*.patch
 
 bin/eclair.jar: src/eclair
 	(cd src/eclair; git rev-parse HEAD) > src/eclair/version
 	(cd src/eclair/; mvn package -Dmaven.test.skip=true || true)
-	cp src/eclair/eclair-node/target/eclair-node_2.11-0.2-SNAPSHOT-$(shell git --git-dir=src/eclair/.git rev-parse HEAD | cut -b 1-7)-capsule-fat.jar bin/eclair.jar
+	cp src/eclair/eclair-node/target/eclair-node-0.2-SNAPSHOT-$(shell git --git-dir=src/eclair/.git rev-parse HEAD | cut -b 1-7).jar bin/eclair.jar
 
 bin/lightningd: src/lightning
 	(cd src/lightning; git rev-parse HEAD) > src/lightning/version
@@ -51,8 +50,7 @@ test:
 	python cli.py postprocess
 
 site:
-	rm -rf output
-	rm templates/*.json
+	rm -rf output; rm templates/*.json || true
 	mkdir output
 	cp reports/* templates/
 	python cli.py html
