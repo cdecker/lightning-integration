@@ -43,7 +43,7 @@ class LndD(TailableProc):
 
     def start(self):
         TailableProc.start(self)
-        self.wait_for_log("Server listening on")
+        self.wait_for_log("server listening on")
 
         # FLAKE: Seems lnd isn't always ready to accept incoming rpc calls, so wait a bit longer
         time.sleep(5)

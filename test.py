@@ -155,7 +155,7 @@ def testOpenchannel(bitcoind, node_factory, impls):
     time.sleep(1)
 
     # LndNode disagrees on open_channel
-    assert LndNode not in impls
+    assert impls[1] != LndNode
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
     for _ in range(10):
@@ -222,7 +222,7 @@ def testPayment(bitcoind, node_factory, impls):
     time.sleep(1)
 
     # LndNode disagrees on open_channel
-    assert LndNode not in impls or impls[0] == impls[1]
+    assert LndNode != impls[1]
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
 
