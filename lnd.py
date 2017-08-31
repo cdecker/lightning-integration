@@ -28,7 +28,7 @@ class LndD(TailableProc):
             '--rpcport={}'.format(self.rpc_port),
             '--bitcoin.active',
             '--datadir={}'.format(lightning_dir),
-            '--debuglevel=debug',
+            '--debuglevel=trace',
             '--bitcoin.rpcuser=rpcuser',
             '--bitcoin.rpcpass=rpcpass',
             '--configfile={}'.format(os.path.join(lightning_dir, 'lnd.conf')),
