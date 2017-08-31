@@ -1,10 +1,10 @@
 diff --git a/eclair-node/src/main/resources/logback.xml b/eclair-node/src/main/resources/logback.xml
-index 83c16a4..be8874f 100644
+index f436afd..dca2f75 100644
 --- a/eclair-node/src/main/resources/logback.xml
 +++ b/eclair-node/src/main/resources/logback.xml
 @@ -1,13 +1,13 @@
  <?xml version="1.0" encoding="UTF-8"?>
- <configuration debug="false">
+ <configuration debug="true">
  
 -    <!--appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 +    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -16,20 +16,25 @@ index 83c16a4..be8874f 100644
 -    </appender-->
 +    </appender>
  
-     <!--appender name="FILE" class="ch.qos.logback.core.FileAppender">
-         <file>${user.home}/.eclair/eclair.log</file>
-@@ -19,11 +19,11 @@
+     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+         <file>${eclair.datadir:-${user.home}/.eclair}/eclair.log</file>
+@@ -19,7 +19,7 @@
  
      <logger name="fr.acinq.eclair.channel" level="DEBUG"/>
      <logger name="fr.acinq.eclair.channel.Register" level="DEBUG"/>
 -    <logger name="fr.acinq.eclair.router" level="INFO"/>
 +    <logger name="fr.acinq.eclair.router" level="DEBUG"/>
  
+     <if condition='isDefined("eclair.printToConsole")'>
+         <then>
+@@ -34,8 +34,8 @@
+         </then>
+     </if>
+ 
 -    <root level="INFO">
--        <!--appender-ref ref="CONSOLE"/-->
+-        <appender-ref ref="FILE"/>
 +    <root level="DEBUG">
 +        <appender-ref ref="CONSOLE"/>
-         <!--appender-ref ref="FILE"/-->
      </root>
  
 -</configuration>

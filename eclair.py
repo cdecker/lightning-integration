@@ -23,9 +23,10 @@ class EclairD(TailableProc):
 
         self.cmd_line = [
             '/usr/lib/jvm/java-8-openjdk-amd64/bin/java',
+            '-Declair.datadir={}'.format(lightning_dir),
+            '-Declair.printToConsole=true',
             '-jar',
-            'bin/eclair.jar',
-            '--datadir={}'.format(lightning_dir)
+            'bin/eclair.jar'
         ]
 
         if not os.path.exists(lightning_dir):
@@ -147,8 +148,8 @@ class EclairRpc(object):
         reply = requests.post(self.url, data=data, headers=headers)
 
         if reply.status_code != 200:
-            raise ValueError("Server returned an unknown error: {}".format(
-                reply.status_code))
+            raise ValueError("Server returned an unknown error: {} ({})".format(
+                reply.status_code, reply.text))
 
         if 'error' in reply.json():
             raise ValueError('Error calling {}: {}'.format(
