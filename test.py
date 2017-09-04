@@ -158,11 +158,10 @@ def testOpenchannel(bitcoind, node_factory, impls):
     assert impls[1] != LndNode
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
-    for _ in range(6):
+    for _ in range(10):
         time.sleep(1)
         bitcoind.rpc.generate(1)
 
-    time.sleep(10)
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
