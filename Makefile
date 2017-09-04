@@ -29,7 +29,7 @@ bin/eclair.jar: src/eclair
 bin/lightningd: src/lightning
 	(cd src/lightning; git rev-parse HEAD) > src/lightning/version
 	cd src/lightning; make
-	cp src/lightning/lightningd/lightningd src/lightning/lightningd/lightningd_* bin
+	cp src/lightning/lightningd/lightningd src/lightning/lightningd/lightning_* bin
 
 bin/lnd: src/lnd
 	(cd src/lnd; git rev-parse HEAD) > src/lnd/version
