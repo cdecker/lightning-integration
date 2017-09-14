@@ -34,6 +34,7 @@ class LndD(TailableProc):
             '--configfile={}'.format(os.path.join(lightning_dir, 'lnd.conf')),
             '--bitcoin.regtest',
             '--no-macaroons',
+            '--nobootstrap',
         ]
 
         if not os.path.exists(lightning_dir):
@@ -44,9 +45,8 @@ class LndD(TailableProc):
     def start(self):
         TailableProc.start(self)
         self.wait_for_log("server listening on")
-
-        # FLAKE: Seems lnd isn't always ready to accept incoming rpc calls, so wait a bit longer
-        time.sleep(5)
+        self.wait_for_log("Done catching up block hashes")
+        time.sleep(10)
 
         logging.info("LND started (pid: {})".format(self.proc.pid))
 
@@ -122,14 +122,21 @@ class LndNode(object):
         time.sleep(5)
 
     def getchannels(self):
-        raise ValueError("Not implemented")
+        req = lnrpc.ChannelGraphRequest()
+        rep = self.rpc.stub.DescribeGraph(req)
+        channels = []
+
+        for e in rep.edges:
+            channels.append((e.node1_pub, e.node2_pub))
+            channels.append((e.node2_pub, e.node1_pub))
+        return channels
 
     def getnodes(self):
         req = lnrpc.ChannelGraphRequest()
         rep = self.rpc.stub.DescribeGraph(req)
-        # Extract all node_ids and remove ourselves
         nodes = set([n.pub_key for n in rep.nodes]) - set([self.id()])
         return nodes
+
 
     def invoice(self, amount):
         req = lnrpc.Invoice(value=int(amount/1000))
@@ -138,7 +145,6 @@ class LndNode(object):
 
     def send(self, other, rhash, amount):
         req = lnrpc.SendRequest(dest_string=other.id(), amt=int(amount/1000), payment_hash_string=rhash)
-        import pdb; pdb.set_trace()
         res = self.rpc.stub.SendPaymentSync(req)
         return hexlify(res.payment_preimage)
 

@@ -140,7 +140,7 @@ def testConnect(node_factory, bitcoind, impls):
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
-def testOpenchannel(bitcoind, node_factory, impls):
+def test_open_channel(bitcoind, node_factory, impls):
     node1 = node_factory.get_node(implementation=impls[0])
     node2 = node_factory.get_node(implementation=impls[1])
 
@@ -154,21 +154,17 @@ def testOpenchannel(bitcoind, node_factory, impls):
     bitcoind.rpc.generate(1)
     time.sleep(1)
 
-    # LndNode disagrees on open_channel
-    assert impls[1] != LndNode
-
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
     for _ in range(10):
-        time.sleep(1)
+        time.sleep(3)
         bitcoind.rpc.generate(1)
 
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
     # The nodes should know at least about this one channel
-    nodeids = set([node1.id(), node2.id()])
-    wait_for(lambda: nodeids.issubset(node1.getnodes()), interval=1)
-    wait_for(lambda: nodeids.issubset(node2.getnodes()), interval=1)
+    assert len(node1.getchannels()) == 2
+    assert len(node2.getchannels()) == 2
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def testgossip(node_factory, bitcoind, impls):
@@ -221,13 +217,10 @@ def testPayment(bitcoind, node_factory, impls):
     bitcoind.rpc.generate(1)
     time.sleep(1)
 
-    # LndNode disagrees on open_channel
-    assert LndNode != impls[1]
-
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
 
     for _ in range(10):
-        time.sleep(1)
+        time.sleep(3)
         bitcoind.rpc.generate(1)
 
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
