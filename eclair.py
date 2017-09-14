@@ -33,10 +33,18 @@ class EclairD(TailableProc):
             os.makedirs(lightning_dir)
 
         # Adapt the config and store it
-        config = open('configs/eclair.conf').read()
-        config = config.replace('9735', str(port))
-        config = config.replace('18332', str(28332))
-        config = config.replace('8080', str(self.rpc_port))
+        config = open('src/eclair/eclair-core/src/main/resources/reference.conf').read()
+        replacements = [
+            ('9735', str(port)),
+            ('18332', str(28332)),
+            ('8080', str(self.rpc_port)),
+            ('"test"', '"regtest"'),
+            ('"foo"', '"rpcuser"'),
+            ('"bar"', '"rpcpass"'),
+        ]
+
+        for old, new in replacements:
+            config = config.replace(old, new)
 
         with open(os.path.join(lightning_dir, "eclair.conf"), "w") as f:
             f.write(config)
@@ -44,10 +52,9 @@ class EclairD(TailableProc):
     def start(self):
         TailableProc.start(self)
         self.wait_for_log("connected to tcp://127.0.0.1:29000")
-        self.wait_for_log("Successfully bound to /127.0.0.1:{}".format(self.rpc_port))
 
         # And let's also remember the address
-        exp = 'finaladdress=([mn][a-zA-Z0-9]+)'
+        exp = 'initial wallet address=([mn][a-zA-Z0-9]+)'
         addr_line = self.wait_for_log(exp)
         self.addr = re.search(exp, addr_line).group(1)
 
@@ -97,7 +104,8 @@ class EclairNode(object):
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
         bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
-        self.daemon.wait_for_log('received txid=')
+        #self.daemon.wait_for_log('received txid=')
+        time.sleep(5)
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running

@@ -19,12 +19,12 @@ update: src/eclair src/lightning src/lnd
 	cd src/lightning && git stash; git pull origin master
 	cd ${GOPATH}/src/github.com/lightningnetwork/lnd && git stash; git pull origin master
 
-	cd src/eclair; git apply ${PWD}/src/eclair/*.patch
+	#cd src/eclair; git apply ${PWD}/src/eclair/*.patch
 
 bin/eclair.jar: src/eclair
 	(cd src/eclair; git rev-parse HEAD) > src/eclair/version
 	(cd src/eclair/; mvn package -Dmaven.test.skip=true || true)
-	cp src/eclair/eclair-node/target/eclair-node-0.2-SNAPSHOT-$(shell git --git-dir=src/eclair/.git rev-parse HEAD | cut -b 1-7).jar bin/eclair.jar
+	cp src/eclair/eclair-node/target/eclair-node-0.2-spv-SNAPSHOT-$(shell git --git-dir=src/eclair/.git rev-parse HEAD | cut -b 1-7).jar bin/eclair.jar
 
 bin/lightningd: src/lightning
 	(cd src/lightning; git rev-parse HEAD) > src/lightning/version
