@@ -24,7 +24,7 @@ update: src/eclair src/lightning src/lnd
 bin/eclair.jar: src/eclair
 	(cd src/eclair; git rev-parse HEAD) > src/eclair/version
 	(cd src/eclair/; mvn package -Dmaven.test.skip=true || true)
-	cp src/eclair/eclair-node/target/eclair-node-0.2-spv-SNAPSHOT-$(shell git --git-dir=src/eclair/.git rev-parse HEAD | cut -b 1-7).jar bin/eclair.jar
+	cp src/eclair/eclair-node/target/eclair-node-*-$(shell git --git-dir=src/eclair/.git rev-parse HEAD | cut -b 1-7).jar bin/eclair.jar
 
 bin/lightningd: src/lightning
 	(cd src/lightning; git rev-parse HEAD) > src/lightning/version
