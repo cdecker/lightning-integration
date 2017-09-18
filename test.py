@@ -113,13 +113,13 @@ def idfn(impls):
 
 
 @pytest.mark.parametrize("impl", impls, ids=idfn)
-def testStart(node_factory, impl):
+def test_start(node_factory, impl):
     node = node_factory.get_node(implementation=impl)
     assert node.ping()
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
-def testConnect(node_factory, bitcoind, impls):
+def test_connect(node_factory, bitcoind, impls):
     node1 = node_factory.get_node(implementation=impls[0])
     node2 = node_factory.get_node(implementation=impls[1])
 
@@ -167,7 +167,7 @@ def test_open_channel(bitcoind, node_factory, impls):
     wait_for(lambda: len(node2.getchannels()) == 2)
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
-def testgossip(node_factory, bitcoind, impls):
+def test_gossip(node_factory, bitcoind, impls):
     """ Create a network of lightningd nodes and connect to it using 2 new nodes
     """
     # These are the nodes we really want to test
@@ -203,7 +203,7 @@ def testgossip(node_factory, bitcoind, impls):
     wait_for(lambda: len(node2.getnodes()) == 5, interval=1)
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
-def testPayment(bitcoind, node_factory, impls):
+def test_direct_payment(bitcoind, node_factory, impls):
     node1 = node_factory.get_node(implementation=impls[0])
     node2 = node_factory.get_node(implementation=impls[1])
 
