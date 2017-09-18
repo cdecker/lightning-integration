@@ -129,8 +129,11 @@ class EclairNode(object):
         return False
 
     def getchannels(self):
-        channels = self.rpc._call('allchannels')
-        import pdb; pdb.set_trace()
+        channels = []
+        for c in self.rpc._call('allchannels', []):
+            channels.append((c['nodeId1'], c['nodeId2']))
+            channels.append((c['nodeId2'], c['nodeId1']))
+        print(channels)
         return channels
 
     def getnodes(self):
