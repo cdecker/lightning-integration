@@ -233,3 +233,40 @@ def test_direct_payment(bitcoind, node_factory, impls):
     amount = 10**7
     rhash = node2.invoice(amount)
     node1.send(node2, rhash, amount)
+
+
+@pytest.mark.parametrize("impls", product(impls, repeat=3), ids=idfn)
+def test_forwarded_payment(bitcoind, node_factory, impls):
+    num_nodes = len(impls)
+    nodes = [node_factory.get_node(implementation=impls[i]) for i in range(3)]
+    capacity = 10**7
+
+    for i in range(num_nodes-1):
+        nodes[i].rpc.connect('localhost', nodes[i+1].daemon.port, nodes[i+1].id())
+        wait_for(lambda: nodes[i].peers(), interval=1)
+        wait_for(lambda: nodes[i+1].peers(), interval=1)
+        nodes[i].addfunds(bitcoind, 4 * capacity)
+
+    time.sleep(1)
+    bitcoind.rpc.generate(1)
+    time.sleep(1)
+
+    for i in range(num_nodes-1):
+        nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
+
+    for _ in range(10):
+        time.sleep(3)
+        bitcoind.rpc.generate(1)
+
+    #wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
+    #wait_for(lambda: node2.check_channel(node3), interval=1, timeout=10)
+
+    for _ in range(10):
+        time.sleep(3)
+        bitcoind.rpc.generate(1)
+
+    src = nodes[0]
+    dst = nodes[len(nodes)-2]
+    amount = int(capacity / 10)
+    rhash = dst.invoice(amount)
+    print(src.send(dst, rhash, amount))
