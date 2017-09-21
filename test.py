@@ -41,7 +41,7 @@ class NodeFactory(object):
         self.next_id += 1
 
         lightning_dir = os.path.join(
-            TEST_DIR, self.testname, "lightning-{}/".format(node_id))
+            TEST_DIR, self.testname, "node-{}/".format(node_id))
         port = 16330+node_id
 
         node = implementation(lightning_dir, port, self.btc,
@@ -109,7 +109,7 @@ def wait_for(success, timeout=30, interval=0.1):
 
 
 def idfn(impls):
-    return "_".join([i.__name__ for i in impls])
+    return "_".join([i.displayName for i in impls])
 
 
 @pytest.mark.parametrize("impl", impls, ids=idfn)

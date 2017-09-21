@@ -148,6 +148,10 @@ class LndNode(object):
         res = self.rpc.stub.SendPaymentSync(req)
         return hexlify(res.payment_preimage)
 
+
+LndNode.displayName = 'lnd'
+
+
 class LndRpc(object):
     def __init__(self, rpc_port):
         self.port = rpc_port

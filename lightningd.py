@@ -113,3 +113,5 @@ class LightningNode(object):
         route = self.rpc.getroute(other.id(), amount, 1)['route']
         result = self.rpc.sendpay(route, rhash)
         return result['preimage']
+
+LightningNode.displayName = 'lightning'

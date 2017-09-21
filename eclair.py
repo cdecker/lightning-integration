@@ -175,6 +175,8 @@ class EclairNode(object):
         else:
             return result
 
+EclairNode.displayName = 'eclair'
+
 class EclairRpc(object):
 
     def __init__(self, url):
