@@ -170,7 +170,10 @@ class EclairNode(object):
 
     def send(self, other, rhash, amount):
         result = self.rpc._call("send", [amount, rhash, other.id()])
-        print(result)
+        if 'failures' in result:
+            raise ValueError("Failed to send payment: {}".format(result))
+        else:
+            return result
 
 class EclairRpc(object):
 
