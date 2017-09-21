@@ -1,5 +1,7 @@
 from binascii import hexlify
 from lnaddr import lndecode
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 from utils import TailableProc
 
 
@@ -10,6 +12,28 @@ import psutil
 import re
 import requests
 import time
+
+
+
+
+def requests_retry_session(
+    retries=3,
+    backoff_factor=0.3,
+    status_forcelist=(500, 502, 504),
+    session=None,
+):
+    session = session or requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    return session
 
 
 class EclairD(TailableProc):
@@ -152,11 +176,12 @@ class EclairRpc(object):
 
     def __init__(self, url):
         self.url = url
+        self.session = requests_retry_session(retries=10, session=requests.Session())
 
     def _call(self, method, params):
         headers = {'Content-type': 'application/json'}
         data = json.dumps({'method': method, 'params': params})
-        reply = requests.post(self.url, data=data, headers=headers)
+        reply = self.session.post(self.url, data=data, headers=headers)
 
         if reply.status_code != 200:
             raise ValueError("Server returned an unknown error: {} ({})".format(
