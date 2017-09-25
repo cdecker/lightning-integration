@@ -166,6 +166,7 @@ def test_open_channel(bitcoind, node_factory, impls):
     wait_for(lambda: len(node1.getchannels()) == 2)
     wait_for(lambda: len(node2.getchannels()) == 2)
 
+
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def test_gossip(node_factory, bitcoind, impls):
     """ Create a network of lightningd nodes and connect to it using 2 new nodes
@@ -202,22 +203,24 @@ def test_gossip(node_factory, bitcoind, impls):
     #wait_for(lambda: len(node2.getchannels()) == 8)
     wait_for(lambda: len(node2.getnodes()) == 5, interval=1)
 
+
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def test_direct_payment(bitcoind, node_factory, impls):
     node1 = node_factory.get_node(implementation=impls[0])
     node2 = node_factory.get_node(implementation=impls[1])
+    capacity = 10**7
 
     node1.rpc.connect('localhost', node2.daemon.port, node2.id())
 
     wait_for(lambda: node1.peers(), interval=1)
     wait_for(lambda: node2.peers(), interval=1)
 
-    node1.addfunds(bitcoind, 2 * 10**7)
+    node1.addfunds(bitcoind, 2*capacity)
     time.sleep(1)
     bitcoind.rpc.generate(1)
     time.sleep(1)
 
-    node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
+    node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
 
     for _ in range(10):
         time.sleep(3)
@@ -226,11 +229,7 @@ def test_direct_payment(bitcoind, node_factory, impls):
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
-    bitcoind.rpc.generate(6)
-    
-    time.sleep(10)
-
-    amount = 10**7
+    amount = int(capacity / 10)
     rhash = node2.invoice(amount)
     node1.send(node2, rhash, amount)
 
