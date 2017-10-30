@@ -185,12 +185,14 @@ class EclairRpc(object):
     def _call(self, method, params):
         headers = {'Content-type': 'application/json'}
         data = json.dumps({'method': method, 'params': params})
+        logging.info("Calling %s with params=%s", method, params)
         reply = self.session.post(self.url, data=data, headers=headers)
 
         if reply.status_code != 200:
             raise ValueError("Server returned an unknown error: {} ({})".format(
                 reply.status_code, reply.text))
 
+        logging.debug("Method %s returned %r", method, reply.json())
         if 'error' in reply.json():
             raise ValueError('Error calling {}: {}'.format(
                 method, reply.json()['error']))
