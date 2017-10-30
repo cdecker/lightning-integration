@@ -253,19 +253,20 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     for i in range(num_nodes-1):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
 
-    for _ in range(10):
+    for _ in range(30):
         time.sleep(3)
         bitcoind.rpc.generate(1)
 
-    #wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
-    #wait_for(lambda: node2.check_channel(node3), interval=1, timeout=10)
+    print(nodes[0].check_channel(nodes[1]))
+    print(nodes[1].check_channel(nodes[2]))
 
-    for _ in range(10):
-        time.sleep(3)
-        bitcoind.rpc.generate(1)
+    wait_for(lambda: nodes[0].check_channel(nodes[1]), interval=1, timeout=10)
+    wait_for(lambda: nodes[1].check_channel(nodes[2]), interval=1, timeout=10)
 
+    #import pdb; pdb.set_trace()
     src = nodes[0]
-    dst = nodes[len(nodes)-2]
+    dst = nodes[len(nodes)-1]
     amount = int(capacity / 10)
     rhash = dst.invoice(amount)
+    print("SENDING PAYMENT")
     print(src.send(dst, rhash, amount))
