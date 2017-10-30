@@ -35,6 +35,7 @@ class LndD(TailableProc):
             '--bitcoin.regtest',
             '--no-macaroons',
             '--nobootstrap',
+            '--noencryptwallet',
         ]
 
         if not os.path.exists(lightning_dir):
