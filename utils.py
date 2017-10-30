@@ -13,7 +13,7 @@ BITCOIND_CONFIG = {
     "rpcport": 28332,
     "server": 1,
     "regtest": 1,
-    "txindex": 0,
+    "txindex": 1,
     "zmqpubrawblock": "tcp://127.0.0.1:29000",
     "zmqpubrawtx": "tcp://127.0.0.1:29000",
 }

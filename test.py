@@ -163,8 +163,8 @@ def test_open_channel(bitcoind, node_factory, impls):
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
     # The nodes should know at least about this one channel
-    wait_for(lambda: len(node1.getchannels()) == 2)
-    wait_for(lambda: len(node2.getchannels()) == 2)
+    wait_for(lambda: len(node1.getchannels()) == 2, interval=1, timeout=10)
+    wait_for(lambda: len(node2.getchannels()) == 2, interval=1, timeout=10)
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
