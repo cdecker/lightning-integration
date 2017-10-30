@@ -174,6 +174,9 @@ class EclairNode(object):
         else:
             return result
 
+    def connect(self, host, port, node_id):
+        return self.rpc._call('connect', [host, port, node_id])
+
 EclairNode.displayName = 'eclair'
 
 class EclairRpc(object):
@@ -213,6 +216,3 @@ class EclairRpc(object):
 
     def help(self):
         return self._call('help', [])
-
-    def connect(self, host, port, node_id):
-        return self._call('connect', [host, port, node_id])

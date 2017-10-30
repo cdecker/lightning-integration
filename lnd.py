@@ -149,6 +149,11 @@ class LndNode(object):
         res = self.rpc.stub.SendPaymentSync(req)
         return hexlify(res.payment_preimage)
 
+    def connect(self, host, port, node_id):
+        addr = lnrpc.LightningAddress(pubkey=node_id, host="{}:{}".format(host, port))
+        req = lnrpc.ConnectPeerRequest(addr=addr, perm=True)
+        logging.debug(self.rpc.stub.ConnectPeer(req))
+
 
 LndNode.displayName = 'lnd'
 
@@ -159,8 +164,3 @@ class LndRpc(object):
         cred = grpc.ssl_channel_credentials(open('tls.cert').read())
         channel = grpc.secure_channel('localhost:{}'.format(rpc_port), cred)
         self.stub = lnrpc_grpc.LightningStub(channel)
-
-    def connect(self, host, port, node_id):
-        addr = lnrpc.LightningAddress(pubkey=node_id, host="{}:{}".format(host, port))
-        req = lnrpc.ConnectPeerRequest(addr=addr, perm=True)
-        logging.debug(self.stub.ConnectPeer(req))

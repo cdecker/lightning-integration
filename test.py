@@ -129,7 +129,7 @@ def test_connect(node_factory, bitcoind, impls):
     print("Connecting {}@{}:{} -> {}@{}:{}".format(
         node1.id(), 'localhost', node1.daemon.port,
         node2.id(), 'localhost', node2.daemon.port))
-    node1.rpc.connect('localhost', node2.daemon.port, node2.id())
+    node1.connect('localhost', node2.daemon.port, node2.id())
 
     wait_for(lambda: node1.peers(), timeout=5)
     wait_for(lambda: node2.peers(), timeout=5)
@@ -144,7 +144,7 @@ def test_open_channel(bitcoind, node_factory, impls):
     node1 = node_factory.get_node(implementation=impls[0])
     node2 = node_factory.get_node(implementation=impls[1])
 
-    node1.rpc.connect('localhost', node2.daemon.port, node2.id())
+    node1.connect('localhost', node2.daemon.port, node2.id())
 
     wait_for(lambda: node1.peers(), interval=1)
     wait_for(lambda: node2.peers(), interval=1)
@@ -178,7 +178,7 @@ def test_gossip(node_factory, bitcoind, impls):
     # Using lightningd since it is quickest to start up
     nodes = [node_factory.get_node(implementation=LightningNode) for _ in range(5)]
     for n1, n2 in zip(nodes[:4], nodes[1:]):
-        n1.rpc.connect('localhost', n2.daemon.port, n2.id())
+        n1.connect('localhost', n2.daemon.port, n2.id())
         n1.addfunds(bitcoind, 2 * 10**7)
         n1.openchannel(n2.id(), 'localhost', n2.daemon.port, 10**7)
     time.sleep(1)
@@ -190,8 +190,8 @@ def test_gossip(node_factory, bitcoind, impls):
         wait_for(lambda: len(n.getchannels()) == 8)
 
     # Now connect the first node to the line graph and the second one to the first
-    node1.rpc.connect('localhost', nodes[0].daemon.port, nodes[0].id())
-    node2.rpc.connect('localhost', n1.daemon.port, n1.id())
+    node1.connect('localhost', nodes[0].daemon.port, nodes[0].id())
+    node2.connect('localhost', n1.daemon.port, n1.id())
 
     # They should now be syncing as well
     # TODO(cdecker) Uncomment the following line when eclair exposes non-local channels as well (ACINQ/eclair/issues/126)
@@ -210,7 +210,7 @@ def test_direct_payment(bitcoind, node_factory, impls):
     node2 = node_factory.get_node(implementation=impls[1])
     capacity = 10**7
 
-    node1.rpc.connect('localhost', node2.daemon.port, node2.id())
+    node1.connect('localhost', node2.daemon.port, node2.id())
 
     wait_for(lambda: node1.peers(), interval=1)
     wait_for(lambda: node2.peers(), interval=1)
@@ -241,7 +241,7 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     capacity = 10**7
 
     for i in range(num_nodes-1):
-        nodes[i].rpc.connect('localhost', nodes[i+1].daemon.port, nodes[i+1].id())
+        nodes[i].connect('localhost', nodes[i+1].daemon.port, nodes[i+1].id())
         wait_for(lambda: nodes[i].peers(), interval=1)
         wait_for(lambda: nodes[i+1].peers(), interval=1)
         nodes[i].addfunds(bitcoind, 4 * capacity)

@@ -114,4 +114,7 @@ class LightningNode(object):
         result = self.rpc.sendpay(route, rhash)
         return result['preimage']
 
+    def connect(self, host, port, node_id):
+        return self.rpc.connect(node_id, "{}:{}".format(host, port))
+
 LightningNode.displayName = 'lightning'
