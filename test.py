@@ -48,6 +48,7 @@ class NodeFactory(object):
                               executor=self.executor, node_id=node_id)
         self.nodes.append(node)
 
+        node.btcd = self.btcd
         node.daemon.start()
         return node
 
