@@ -1,7 +1,9 @@
-from binascii import unhexlify
+from binascii import unhexlify, hexlify
 from eclair import EclairNode
+from hashlib import sha256
 from itertools import product
 from lightningd import LightningNode
+from lnaddr import lndecode
 from lnd import LndNode
 from concurrent import futures
 from pprint import pprint
@@ -163,6 +165,8 @@ def test_open_channel(bitcoind, node_factory, impls):
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
+    bitcoind.rpc.generate(100)
+
     # The nodes should know at least about this one channel
     wait_for(lambda: len(node1.getchannels()) == 2, interval=1, timeout=10)
     wait_for(lambda: len(node2.getchannels()) == 2, interval=1, timeout=10)
@@ -231,8 +235,10 @@ def test_direct_payment(bitcoind, node_factory, impls):
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
     amount = int(capacity / 10)
-    rhash = node2.invoice(amount)
-    node1.send(node2, rhash, amount)
+    req = node2.invoice(amount)
+    payment_key = node1.send(req)
+    dec = lndecode(req)
+    assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=3), ids=idfn)
@@ -268,6 +274,7 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     src = nodes[0]
     dst = nodes[len(nodes)-1]
     amount = int(capacity / 10)
-    rhash = dst.invoice(amount)
-    print("SENDING PAYMENT")
-    print(src.send(dst, rhash, amount))
+    req = dst.invoice(amount)
+    payment_key = src.send(req)
+    dec = lndecode(req)
+    assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)

@@ -8,9 +8,8 @@ import time
 LIGHTNINGD_CONFIG = {
     "bitcoind-poll": "1s",
     "log-level": "debug",
-    "deadline-blocks": 5,
-    "min-htlc-expiry": 6,
     "locktime-blocks": 6,
+    "network": "regtest",
 }
 
 
@@ -53,6 +52,7 @@ class LightningNode(object):
                                  port=lightning_port)
         socket_path = os.path.join(lightning_dir, "lightning-rpc").format(
             node_id)
+        self.invoice_count = 0
         self.rpc = LightningRpc(socket_path, self.executor)
 
     def peers(self):
@@ -106,12 +106,13 @@ class LightningNode(object):
         return set([n['nodeid'] for n in self.rpc.getnodes()['nodes']])
 
     def invoice(self, amount):
-        invoice = self.rpc.invoice(amount, "invoice1")
-        return invoice['rhash']
+        invoice = self.rpc.invoice(amount, "invoice%d" % (self.invoice_count), "description")
+        self.invoice_count += 1
+        print(invoice)
+        return invoice['bolt11']
 
-    def send(self, other, rhash, amount):
-        route = self.rpc.getroute(other.id(), amount, 1)['route']
-        result = self.rpc.sendpay(route, rhash)
+    def send(self, req):
+        result = self.rpc.pay(req)
         return result['preimage']
 
     def connect(self, host, port, node_id):

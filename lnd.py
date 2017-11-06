@@ -142,10 +142,10 @@ class LndNode(object):
     def invoice(self, amount):
         req = lnrpc.Invoice(value=int(amount/1000))
         rep = self.rpc.stub.AddInvoice(req)
-        return hexlify(rep.r_hash).decode('ascii')
+        return rep.payment_request
 
-    def send(self, other, rhash, amount):
-        req = lnrpc.SendRequest(dest_string=other.id(), amt=int(amount/1000), payment_hash_string=rhash)
+    def send(self, req):
+        req = lnrpc.SendRequest(payment_request=req)
         res = self.rpc.stub.SendPaymentSync(req)
         return hexlify(res.payment_preimage)
 

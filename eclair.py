@@ -163,16 +163,16 @@ class EclairNode(object):
         return set(self.rpc.allnodes())
 
     def invoice(self, amount):
-        addr = self.rpc._call("receive", [amount, "invoice1"])
-        a = lndecode(addr)
-        return hexlify(a.paymenthash).decode('ASCII')
+        req = self.rpc._call("receive", [amount, "invoice1"])
+        print(req)
+        return req
 
-    def send(self, other, rhash, amount):
-        result = self.rpc._call("send", [amount, rhash, other.id()])
+    def send(self, req):
+        result = self.rpc._call("send", [req])
         if 'failures' in result:
             raise ValueError("Failed to send payment: {}".format(result))
         else:
-            return result
+            return result['paymentPreimage']
 
     def connect(self, host, port, node_id):
         return self.rpc._call('connect', [host, port, node_id])
