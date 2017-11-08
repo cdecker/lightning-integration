@@ -119,6 +119,22 @@ def sync_blockheight(btc, nodes):
     for n in nodes:
         wait_for(lambda: n.info()['blockheight'] == blocks, interval=1)
 
+def generate_until(btc, success, blocks=30, interval=1):
+    """Generate new blocks until `success` returns true.
+
+    Mainly used to wait for transactions to confirm since they might
+    be delayed and we don't want to add a long waiting time to all
+    tests just because some are slow.
+    """
+    for i in range(blocks):
+        time.sleep(interval)
+        if success():
+            return
+        btc.rpc.generate(1)
+    time.sleep(interval)
+    if not success():
+        raise ValueError("Generated %d blocks, but still no success", blocks)
+
 def idfn(impls):
     return "_".join([i.displayName for i in impls])
 
@@ -167,14 +183,12 @@ def test_open_channel(bitcoind, node_factory, impls):
     time.sleep(1)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
-    for _ in range(10):
+    for _ in range(15):
         time.sleep(3)
         bitcoind.rpc.generate(1)
 
-    wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
-    wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
-
-    bitcoind.rpc.generate(100)
+    generate_until(bitcoind, lambda: node1.check_channel(node2), interval=1, blocks=10)
+    generate_until(bitcoind, lambda: node2.check_channel(node1), interval=1, blocks=10)
 
     # The nodes should know at least about this one channel
     wait_for(lambda: len(node1.getchannels()) == 2, interval=1, timeout=10)
@@ -230,26 +244,31 @@ def test_direct_payment(bitcoind, node_factory, impls):
     wait_for(lambda: node2.peers(), interval=1)
 
     node1.addfunds(bitcoind, 2*capacity)
-    time.sleep(1)
-    bitcoind.rpc.generate(1)
-    time.sleep(1)
+    time.sleep(5)
+    bitcoind.rpc.generate(10)
+    time.sleep(5)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
 
-    for _ in range(10):
-        time.sleep(3)
-        bitcoind.rpc.generate(1)
-
+    generate_until(bitcoind, lambda: gossip_is_synced([node1, node2], 2), blocks=60, interval=1)
     sync_blockheight(bitcoind, [node1, node2])
-
-    wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
-    wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
 
     amount = int(capacity / 10)
     req = node2.invoice(amount)
     payment_key = node1.send(req)
     dec = lndecode(req)
     assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)
+
+
+def gossip_is_synced(nodes, num_channels):
+    print("Checking %d nodes for gossip sync" % (len(nodes)))
+    for i, n in enumerate(nodes):
+        node_chans = n.getchannels()
+        logging.debug("Node {} knows about the following channels {}".format(i, node_chans))
+        if len(node_chans) != num_channels:
+            print("Node %d is missing %d channels" % (i, num_channels - len(node_chans)))
+            return False
+    return True
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=3), ids=idfn)
@@ -271,15 +290,9 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     for i in range(num_nodes-1):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
 
-    for _ in range(30):
-        time.sleep(3)
-        bitcoind.rpc.generate(1)
-
-    print(nodes[0].check_channel(nodes[1]))
-    print(nodes[1].check_channel(nodes[2]))
-
-    wait_for(lambda: nodes[0].check_channel(nodes[1]), interval=1, timeout=10)
-    wait_for(lambda: nodes[1].check_channel(nodes[2]), interval=1, timeout=10)
+    # Each node should know 2 channels, 4 directions:
+    generate_until(bitcoind, lambda: gossip_is_synced(nodes, 4), blocks=60, interval=1)
+    sync_blockheight(bitcoind, nodes)
 
     #import pdb; pdb.set_trace()
     src = nodes[0]
