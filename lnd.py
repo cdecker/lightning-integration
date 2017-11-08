@@ -62,10 +62,7 @@ class LndNode(object):
         self.rpc = LndRpc(lightning_port+10000)
 
     def id(self):
-        return self.info().identity_pubkey
-
-    def info(self):
-        return self.rpc.stub.GetInfo(lnrpc.GetInfoRequest())
+        return self.info()['id']
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running
@@ -154,6 +151,13 @@ class LndNode(object):
         req = lnrpc.ConnectPeerRequest(addr=addr, perm=True)
         logging.debug(self.rpc.stub.ConnectPeer(req))
 
+
+    def info(self):
+        r = self.rpc.stub.GetInfo(lnrpc.GetInfoRequest())
+        return {
+            'id': r.identity_pubkey,
+            'blockheight': r.block_height,
+        }
 
 LndNode.displayName = 'lnd'
 

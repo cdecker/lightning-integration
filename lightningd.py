@@ -118,4 +118,11 @@ class LightningNode(object):
     def connect(self, host, port, node_id):
         return self.rpc.connect(node_id, "{}:{}".format(host, port))
 
+    def info(self):
+        r = self.rpc.getinfo()
+        return {
+            'id': r['id'],
+           'blockheight': r['blockheight'],
+        }
+
 LightningNode.displayName = 'lightning'

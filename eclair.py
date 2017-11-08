@@ -177,6 +177,13 @@ class EclairNode(object):
     def connect(self, host, port, node_id):
         return self.rpc._call('connect', [host, port, node_id])
 
+    def info(self):
+        r = self.rpc._call('getinfo', [])
+        return {
+            'id': r['nodeId'],
+            'blockheight': r['blockHeight'],
+        }
+
 EclairNode.displayName = 'eclair'
 
 class EclairRpc(object):

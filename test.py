@@ -111,14 +111,23 @@ def wait_for(success, timeout=30, interval=0.1):
         raise ValueError("Error waiting for {}", success)
 
 
+def sync_blockheight(btc, nodes):
+    info = btc.rpc.getblockchaininfo()
+    blocks = info['blocks']
+
+    print("Waiting for %d nodes to blockheight %d" % (len(nodes), blocks))
+    for n in nodes:
+        wait_for(lambda: n.info()['blockheight'] == blocks, interval=1)
+
 def idfn(impls):
     return "_".join([i.displayName for i in impls])
 
 
 @pytest.mark.parametrize("impl", impls, ids=idfn)
-def test_start(node_factory, impl):
+def test_start(bitcoind, node_factory, impl):
     node = node_factory.get_node(implementation=impl)
     assert node.ping()
+    sync_blockheight(bitcoind, [node])
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
@@ -230,6 +239,8 @@ def test_direct_payment(bitcoind, node_factory, impls):
     for _ in range(10):
         time.sleep(3)
         bitcoind.rpc.generate(1)
+
+    sync_blockheight(bitcoind, [node1, node2])
 
     wait_for(lambda: node1.check_channel(node2), interval=1, timeout=10)
     wait_for(lambda: node2.check_channel(node1), interval=1, timeout=10)
