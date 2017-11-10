@@ -120,7 +120,10 @@ class EclairNode(object):
         return info['nodeId']
 
     def openchannel(self, node_id, host, port, satoshis):
-        return self.rpc._call('open', [node_id, host, port, satoshis, 0])
+        r = self.rpc._call('open', [node_id, host, port, satoshis, 0])
+        time.sleep(3)
+        self.bitcoin.rpc.generate(6)
+        return r
 
     def getaddress(self):
         return self.daemon.addr
@@ -128,8 +131,8 @@ class EclairNode(object):
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
         bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
-        #self.daemon.wait_for_log('received txid=')
-        time.sleep(5)
+        time.sleep(1)
+        bitcoind.rpc.generate(3)
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running

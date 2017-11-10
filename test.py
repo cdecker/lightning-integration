@@ -279,19 +279,14 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
 
     for i in range(num_nodes-1):
         nodes[i].connect('localhost', nodes[i+1].daemon.port, nodes[i+1].id())
-        wait_for(lambda: nodes[i].peers(), interval=1)
-        wait_for(lambda: nodes[i+1].peers(), interval=1)
         nodes[i].addfunds(bitcoind, 4 * capacity)
-
-    time.sleep(1)
-    bitcoind.rpc.generate(1)
-    time.sleep(1)
 
     for i in range(num_nodes-1):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
 
+    sync_blockheight(bitcoind, nodes)
     # Each node should know 2 channels, 4 directions:
-    generate_until(bitcoind, lambda: gossip_is_synced(nodes, 4), blocks=60, interval=1)
+    generate_until(bitcoind, lambda: gossip_is_synced(nodes, 4), blocks=60, interval=3)
     sync_blockheight(bitcoind, nodes)
 
     #import pdb; pdb.set_trace()
