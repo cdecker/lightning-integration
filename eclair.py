@@ -38,7 +38,7 @@ def requests_retry_session(
 
 class EclairD(TailableProc):
     def __init__(self, lightning_dir, bitcoin_dir, port):
-        TailableProc.__init__(self, lightning_dir)
+        TailableProc.__init__(self, lightning_dir, "eclair({})".format(port))
         self.lightning_dir = lightning_dir
         self.bitcoin_dir = bitcoin_dir
         self.port = port
@@ -82,7 +82,7 @@ class EclairD(TailableProc):
         addr_line = self.wait_for_log(exp)
         self.addr = re.search(exp, addr_line).group(1)
 
-        logging.info("Eclair started (pid: {})".format(self.proc.pid))
+        self.logger.info("Eclair started (pid: {})".format(self.proc.pid))
 
     def stop(self):
         # Java forks internally and detaches its children, use psutil to hunt
@@ -111,6 +111,7 @@ class EclairNode(object):
                               port=lightning_port)
         self.rpc = EclairRpc(
             'http://localhost:{}'.format(self.daemon.rpc_port))
+        self.logger = logging.getLogger('eclair-node({})'.format(lightning_port))
 
     def peers(self):
         return self.rpc.peers()
@@ -121,8 +122,9 @@ class EclairNode(object):
 
     def openchannel(self, node_id, host, port, satoshis):
         r = self.rpc._call('open', [node_id, host, port, satoshis, 0])
-        time.sleep(3)
+        time.sleep(5)
         self.bitcoin.rpc.generate(6)
+        time.sleep(5)
         return r
 
     def getaddress(self):
@@ -131,8 +133,8 @@ class EclairNode(object):
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
         bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
-        time.sleep(1)
-        bitcoind.rpc.generate(3)
+        time.sleep(5)
+        bitcoind.rpc.generate(6)
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running
@@ -148,11 +150,14 @@ class EclairNode(object):
     def check_channel(self, remote):
         """ Make sure that we have an active channel with remote
         """
+        self_id = self.id()
         remote_id = remote.id()
         for c in self.rpc.channels():
             channel = self.rpc.channel(c)
             if channel['nodeid'] == remote_id:
+                self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, channel['state']))
                 return channel['state'] == 'NORMAL'
+        self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
         return False
 
     def getchannels(self):

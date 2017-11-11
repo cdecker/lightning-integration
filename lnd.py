@@ -60,6 +60,7 @@ class LndNode(object):
         self.executor = executor
         self.daemon = LndD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
         self.rpc = LndRpc(lightning_port+10000)
+        self.logger = logging.getLogger('lnd-node({})'.format(lightning_port))
 
     def id(self):
         return self.info()['id']
@@ -83,12 +84,16 @@ class LndNode(object):
     def check_channel(self, remote):
         """ Make sure that we have an active channel with remote
         """
+        self_id = self.id()
+        remote_id = remote.id()
         channels = self.rpc.stub.ListChannels(lnrpc.ListChannelsRequest()).channels
         channel_by_remote = {c.remote_pubkey: c for c in channels}
-        if remote.id() not in channel_by_remote:
+        if remote_id not in channel_by_remote:
+            self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
             return False
 
-        channel = channel_by_remote[remote.id()]
+        channel = channel_by_remote[remote_id]
+        self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, channel))
         return channel.active
 
     def addfunds(self, bitcoind, satoshis):

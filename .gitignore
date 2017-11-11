@@ -4,3 +4,5 @@ dist
 bin/*
 src/*
 templates/*.json
+output
+report.json

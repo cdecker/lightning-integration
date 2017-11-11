@@ -103,7 +103,7 @@ def node_factory(request, bitcoind, btcd):
     executor.shutdown(wait=False)
 
 
-def wait_for(success, timeout=30, interval=0.1):
+def wait_for(success, timeout=30, interval=1):
     start_time = time.time()
     while not success() and time.time() < start_time + timeout:
         time.sleep(interval)
@@ -271,6 +271,14 @@ def gossip_is_synced(nodes, num_channels):
     return True
 
 
+def check_channels(pairs):
+    ok = True
+    logging.debug("Checking all channels between {}".format(pairs))
+    for node1, node2 in pairs:
+        ok &= node1.check_channel(node2)
+        ok &= node2.check_channel(node1)
+    return ok
+
 @pytest.mark.parametrize("impls", product(impls, repeat=3), ids=idfn)
 def test_forwarded_payment(bitcoind, node_factory, impls):
     num_nodes = len(impls)
@@ -284,7 +292,13 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     for i in range(num_nodes-1):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
 
+    bitcoind.rpc.generate(6)
+
     sync_blockheight(bitcoind, nodes)
+
+    # Make sure that everybody knows about its own channel and it's confirmed
+    generate_until(bitcoind, lambda: check_channels([(nodes[0], nodes[1]), (nodes[1], nodes[2])]), interval=1)
+
     # Each node should know 2 channels, 4 directions:
     generate_until(bitcoind, lambda: gossip_is_synced(nodes, 4), blocks=60, interval=3)
     sync_blockheight(bitcoind, nodes)

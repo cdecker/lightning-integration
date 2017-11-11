@@ -39,7 +39,7 @@ class TailableProc(object):
     tail the processes and react to their output.
     """
 
-    def __init__(self, outputDir=None):
+    def __init__(self, outputDir=None, prefix='proc'):
         self.logs = []
         self.logs_cond = threading.Condition(threading.RLock())
         self.thread = threading.Thread(target=self.tail)
@@ -48,6 +48,7 @@ class TailableProc(object):
         self.running = False
         self.proc = None
         self.outputDir = outputDir
+        self.logger = logging.getLogger(prefix)
 
     def start(self):
         """Start the underlying process and start monitoring it.
@@ -78,7 +79,7 @@ class TailableProc(object):
                 break
             with self.logs_cond:
                 self.logs.append(str(line.rstrip()))
-                logging.debug("%s: %s", self.prefix, line.decode().rstrip())
+                self.logger.debug(line.decode().rstrip())
                 self.logs_cond.notifyAll()
         self.running = False
 
