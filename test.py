@@ -288,11 +288,15 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     for i in range(num_nodes-1):
         nodes[i].connect('localhost', nodes[i+1].daemon.port, nodes[i+1].id())
         nodes[i].addfunds(bitcoind, 4 * capacity)
+        time.sleep(5)
+        bitcoind.rpc.generate(6)
+        time.sleep(5)
 
     for i in range(num_nodes-1):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
-
-    bitcoind.rpc.generate(6)
+        time.sleep(5)
+        bitcoind.rpc.generate(6)
+        time.sleep(5)
 
     sync_blockheight(bitcoind, nodes)
 
