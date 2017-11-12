@@ -61,7 +61,7 @@ class NodeFactory(object):
 
 @pytest.fixture(scope="module")
 def bitcoind():
-    btc = BitcoinD(rpcport=28332)
+    btc = BitcoinD(bitcoin_dir=os.path.join(TEST_DIR, "bitcoind"), rpcport=28332)
     btc.start()
     info = btc.rpc.getinfo()
     # Make sure we have segwit and some funds
