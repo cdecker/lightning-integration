@@ -54,6 +54,7 @@ class LightningNode(object):
             node_id)
         self.invoice_count = 0
         self.rpc = LightningRpc(socket_path, self.executor)
+        self.logger = logging.getLogger('lightning-node({})'.format(lightning_port))
 
     def peers(self):
         return [p['peerid'] for p in self.rpc.getpeers()['peers']]
@@ -90,10 +91,14 @@ class LightningNode(object):
     def check_channel(self, remote):
         """ Make sure that we have an active channel with remote
         """
+        remote_id = remote.id()
+        self_id = self.id()
         for p in self.rpc.getpeers()['peers']:
             if remote.id() == p['peerid']:
+                self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, p['state']))
                 return p['state'] == 'CHANNELD_NORMAL'
 
+        self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
         return False
 
     def getchannels(self):
