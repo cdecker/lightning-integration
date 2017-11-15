@@ -192,6 +192,12 @@ class EclairNode(object):
             'blockheight': r['blockHeight'],
         }
 
+    def restart(self):
+        self.daemon.stop()
+        time.sleep(5)
+        self.daemon.start()
+        time.sleep(1)
+
 EclairNode.displayName = 'eclair'
 
 class EclairRpc(object):

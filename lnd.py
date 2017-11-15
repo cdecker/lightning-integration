@@ -47,7 +47,7 @@ class LndD(TailableProc):
         TailableProc.start(self)
         self.wait_for_log("server listening on")
         self.wait_for_log("Done catching up block hashes")
-        time.sleep(10)
+        time.sleep(5)
 
         logging.info("LND started (pid: {})".format(self.proc.pid))
 
@@ -163,6 +163,12 @@ class LndNode(object):
             'id': r.identity_pubkey,
             'blockheight': r.block_height,
         }
+
+    def restart(self):
+        self.daemon.stop()
+        time.sleep(5)
+        self.daemon.start()
+        self.rpc = LndRpc(self.daemon.rpc_port)
 
 LndNode.displayName = 'lnd'
 

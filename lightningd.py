@@ -53,8 +53,19 @@ class LightningNode(object):
         socket_path = os.path.join(lightning_dir, "lightning-rpc").format(
             node_id)
         self.invoice_count = 0
-        self.rpc = LightningRpc(socket_path, self.executor)
         self.logger = logging.getLogger('lightning-node({})'.format(lightning_port))
+
+        self.rpc = LightningRpc(socket_path, self.executor)
+
+        orig_call = self.rpc._call
+        def rpc_call(method, args):
+            self.logger.debug("Calling {} with arguments {}".format(method, args))
+            r = orig_call(method, args)
+            self.logger.debug("Call returned {}".format(r))
+            return r
+
+        self.rpc._call = rpc_call
+
 
     def peers(self):
         return [p['peerid'] for p in self.rpc.getpeers()['peers']]
@@ -96,7 +107,7 @@ class LightningNode(object):
         for p in self.rpc.getpeers()['peers']:
             if remote.id() == p['peerid']:
                 self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, p['state']))
-                return p['state'] == 'CHANNELD_NORMAL'
+                return p['state'] == 'CHANNELD_NORMAL' and p['connected']
 
         self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
         return False
@@ -129,5 +140,11 @@ class LightningNode(object):
             'id': r['id'],
            'blockheight': r['blockheight'],
         }
+
+    def restart(self):
+        self.daemon.stop()
+        time.sleep(5)
+        self.daemon.start()
+        time.sleep(1)
 
 LightningNode.displayName = 'lightning'

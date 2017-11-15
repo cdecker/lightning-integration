@@ -307,11 +307,61 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     generate_until(bitcoind, lambda: gossip_is_synced(nodes, 4), blocks=60, interval=3)
     sync_blockheight(bitcoind, nodes)
 
+    time.sleep(15)
+
     #import pdb; pdb.set_trace()
     src = nodes[0]
     dst = nodes[len(nodes)-1]
     amount = int(capacity / 10)
     req = dst.invoice(amount)
     payment_key = src.send(req)
+    dec = lndecode(req)
+    assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)
+
+
+@pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
+def test_reconnect(bitcoind, node_factory, impls):
+    node1 = node_factory.get_node(implementation=impls[0])
+    node2 = node_factory.get_node(implementation=impls[1])
+    capacity = 10**7
+
+    node1.connect('localhost', node2.daemon.port, node2.id())
+
+    wait_for(lambda: node1.peers(), interval=1)
+    wait_for(lambda: node2.peers(), interval=1)
+
+    node1.addfunds(bitcoind, 2*capacity)
+    time.sleep(5)
+    bitcoind.rpc.generate(10)
+    time.sleep(5)
+
+    node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
+
+    for i in range(30):
+        node1.bitcoin.rpc.generate(1)
+        time.sleep(1)
+
+    wait_for(lambda: node1.check_channel(node2))
+    wait_for(lambda: node2.check_channel(node1))
+    sync_blockheight(bitcoind, [node1, node2])
+
+    amount = int(capacity / 10)
+    req = node2.invoice(amount)
+    payment_key = node1.send(req)
+    dec = lndecode(req)
+    assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)
+
+    print("Sleep before restart")
+    time.sleep(5)
+
+    print("Restarting")
+    node2.restart()
+
+    wait_for(lambda: node1.check_channel(node2))
+    wait_for(lambda: node2.check_channel(node1))
+    sync_blockheight(bitcoind, [node1, node2])
+
+    req = node2.invoice(amount)
+    payment_key = node1.send(req)
     dec = lndecode(req)
     assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)
