@@ -167,6 +167,17 @@ def test_connect(node_factory, bitcoind, impls):
     assert node2.id() in node1.peers()
 
 
+def confirm_channel(bitcoind, n1, n2):
+    print("Waiting for channel {} -> {} to confirm".format(n1.id(), n2.id()))
+    assert n1.id() in n2.peers()
+    assert n2.id() in n1.peers()
+    for i in range(6):
+        time.sleep(3)
+        if n1.check_channel(n2) and n2.check_channel(n1):
+            print("Channel {} -> {} confirmed".format(n1.id(), n2.id()))
+            return
+        bitcoind.rpc.generate(1)
+
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def test_open_channel(bitcoind, node_factory, impls):
     node1 = node_factory.get_node(implementation=impls[0])
@@ -178,17 +189,15 @@ def test_open_channel(bitcoind, node_factory, impls):
     wait_for(lambda: node2.peers(), interval=1)
 
     node1.addfunds(bitcoind, 2 * 10**7)
-    time.sleep(1)
-    bitcoind.rpc.generate(1)
-    time.sleep(1)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
-    for _ in range(15):
-        time.sleep(3)
-        bitcoind.rpc.generate(1)
+    confirm_channel(bitcoind, node1, node2)
 
-    generate_until(bitcoind, lambda: node1.check_channel(node2), interval=1, blocks=10)
-    generate_until(bitcoind, lambda: node2.check_channel(node1), interval=1, blocks=10)
+    assert(node1.check_channel(node2))
+    assert(node2.check_channel(node1))
+
+    # Generate some more, to reach the announcement depth
+    bitcoind.rpc.generate(4)
 
     # The nodes should know at least about this one channel
     wait_for(lambda: len(node1.getchannels()) == 2, interval=1, timeout=10)
@@ -288,15 +297,10 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     for i in range(num_nodes-1):
         nodes[i].connect('localhost', nodes[i+1].daemon.port, nodes[i+1].id())
         nodes[i].addfunds(bitcoind, 4 * capacity)
-        time.sleep(5)
-        bitcoind.rpc.generate(6)
-        time.sleep(5)
 
     for i in range(num_nodes-1):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
-        time.sleep(5)
-        bitcoind.rpc.generate(6)
-        time.sleep(5)
+        confirm_channel(bitcoind, nodes[i], nodes[i+1])
 
     sync_blockheight(bitcoind, nodes)
 

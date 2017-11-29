@@ -164,7 +164,7 @@ class SimpleBitcoinProxy:
 class BitcoinD(TailableProc):
 
     def __init__(self, bitcoin_dir="/tmp/bitcoind-test", rpcport=18332):
-        TailableProc.__init__(self, bitcoin_dir)
+        TailableProc.__init__(self, bitcoin_dir, 'bitcoind')
 
         self.bitcoin_dir = bitcoin_dir
         self.rpcport = rpcport

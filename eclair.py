@@ -133,8 +133,11 @@ class EclairNode(object):
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
         bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
-        time.sleep(5)
-        bitcoind.rpc.generate(6)
+
+        # Eclair seems to grab funds from the block, so give it a
+        # chance to see it
+        time.sleep(1)
+        bitcoind.rpc.generate(1)
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running
