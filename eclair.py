@@ -78,7 +78,7 @@ class EclairD(TailableProc):
         self.wait_for_log("connected to tcp://127.0.0.1:29000")
 
         # And let's also remember the address
-        exp = 'initial wallet address=([mn][a-zA-Z0-9]+)'
+        exp = 'initial wallet address=([a-zA-Z0-9]+)'
         addr_line = self.wait_for_log(exp)
         self.addr = re.search(exp, addr_line).group(1)
 
