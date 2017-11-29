@@ -15,7 +15,7 @@ os.environ["GRPC_SSL_CIPHER_SUITES"] = "ECDHE-ECDSA-AES256-GCM-SHA384"
 
 class LndD(TailableProc):
     def __init__(self, lightning_dir, bitcoin_dir, port):
-        TailableProc.__init__(self, lightning_dir)
+        TailableProc.__init__(self, lightning_dir, 'lnd({})'.format(port))
         self.lightning_dir = lightning_dir
         self.bitcoin_dir = bitcoin_dir
         self.port = port
