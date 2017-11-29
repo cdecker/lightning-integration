@@ -25,6 +25,7 @@ class LightningD(TailableProc):
             '--port={}'.format(port),
             '--network=regtest',
             '--dev-broadcast-interval=1000',
+            '--override-fee-rates=2000/2000/2000',
         ]
         self.cmd_line += [
             "--{}={}".format(k, v) for k, v in LIGHTNINGD_CONFIG.items()
