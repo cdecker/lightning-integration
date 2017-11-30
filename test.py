@@ -171,12 +171,17 @@ def confirm_channel(bitcoind, n1, n2):
     print("Waiting for channel {} -> {} to confirm".format(n1.id(), n2.id()))
     assert n1.id() in n2.peers()
     assert n2.id() in n1.peers()
-    for i in range(6):
-        time.sleep(3)
+    for i in range(30):
+        time.sleep(1)
         if n1.check_channel(n2) and n2.check_channel(n1):
             print("Channel {} -> {} confirmed".format(n1.id(), n2.id()))
-            return
-        bitcoind.rpc.generate(1)
+            return True
+        bhash = bitcoind.rpc.generate(1)[0]
+        n1.block_sync(bhash)
+        n2.block_sync(bhash)
+
+    # Last ditch attempt
+    return n1.check_channel(n2) and n2.check_channel(n1)
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def test_open_channel(bitcoind, node_factory, impls):
@@ -191,7 +196,7 @@ def test_open_channel(bitcoind, node_factory, impls):
     node1.addfunds(bitcoind, 2 * 10**7)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
-    confirm_channel(bitcoind, node1, node2)
+    assert confirm_channel(bitcoind, node1, node2)
 
     assert(node1.check_channel(node2))
     assert(node2.check_channel(node1))
@@ -218,13 +223,16 @@ def test_gossip(node_factory, bitcoind, impls):
         n1.connect('localhost', n2.daemon.port, n2.id())
         n1.addfunds(bitcoind, 2 * 10**7)
         n1.openchannel(n2.id(), 'localhost', n2.daemon.port, 10**7)
-    time.sleep(1)
-    bitcoind.rpc.generate(6)
+        confirm_channel(bitcoind, n1, n2)
+
+    time.sleep(5)
+    bitcoind.rpc.generate(30)
+    time.sleep(5)
 
     # Wait for gossip to settle
     for n in nodes:
-        wait_for(lambda: len(n.getnodes()) == 5)
-        wait_for(lambda: len(n.getchannels()) == 8)
+        wait_for(lambda: len(n.getnodes()) == 5, interval=1, timeout=60)
+        wait_for(lambda: len(n.getchannels()) == 8, interval=1, timeout=60)
 
     # Now connect the first node to the line graph and the second one to the first
     node1.connect('localhost', nodes[0].daemon.port, nodes[0].id())
@@ -258,6 +266,7 @@ def test_direct_payment(bitcoind, node_factory, impls):
     time.sleep(5)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
+    confirm_channel(bitcoind, node1, node2)
 
     generate_until(bitcoind, lambda: gossip_is_synced([node1, node2], 2), blocks=60, interval=1)
     sync_blockheight(bitcoind, [node1, node2])

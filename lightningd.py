@@ -25,6 +25,7 @@ class LightningD(TailableProc):
             '--port={}'.format(port),
             '--network=regtest',
             '--dev-broadcast-interval=1000',
+            '--override-fee-rates={0}/{0}/{0}'.format(12*1000), # Fix fee in sat/kw
         ]
         self.cmd_line += [
             "--{}={}".format(k, v) for k, v in LIGHTNINGD_CONFIG.items()
@@ -36,7 +37,7 @@ class LightningD(TailableProc):
 
     def start(self):
         TailableProc.start(self)
-        self.wait_for_log("Creating IPv6 listener on port")
+        self.wait_for_log("Hello world")
         logging.info("LightningD started")
 
     def stop(self):
@@ -65,13 +66,20 @@ class LightningNode(object):
             return r
 
         self.rpc._call = rpc_call
-
+        self.myid = None
 
     def peers(self):
         return [p['peerid'] for p in self.rpc.getpeers()['peers']]
 
+    def getinfo(self):
+        if not self.info:
+            self.info = self.rpc.getinfo()
+        return self.info
+
     def id(self):
-        return self.rpc.getinfo()['id']
+        if not self.myid:
+            self.myid = self.rpc.getinfo()['id']
+        return self.myid
 
     def openchannel(self, node_id, host, port, satoshis):
         # Make sure we have a connection already
@@ -140,6 +148,9 @@ class LightningNode(object):
             'id': r['id'],
            'blockheight': r['blockheight'],
         }
+
+    def block_sync(self, blockhash):
+        time.sleep(1)
 
     def restart(self):
         self.daemon.stop()

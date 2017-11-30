@@ -61,9 +61,12 @@ class LndNode(object):
         self.daemon = LndD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
         self.rpc = LndRpc(lightning_port+10000)
         self.logger = logging.getLogger('lnd-node({})'.format(lightning_port))
+        self.myid = None
 
     def id(self):
-        return self.info()['id']
+        if not self.myid:
+            self.myid = self.info()['id']
+        return self.myid
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running
@@ -163,6 +166,10 @@ class LndNode(object):
             'id': r.identity_pubkey,
             'blockheight': r.block_height,
         }
+
+    def block_sync(self, blockhash):
+        print("Waiting for node to learn about", blockhash)
+        self.daemon.wait_for_log('NTFN: New block: height=([0-9]+), sha={}'.format(blockhash))
 
     def restart(self):
         self.daemon.stop()

@@ -188,6 +188,9 @@ class EclairNode(object):
     def connect(self, host, port, node_id):
         return self.rpc._call('connect', [node_id, host, port])
 
+    def block_sync(self, blockhash):
+        time.sleep(1)
+
     def info(self):
         r = self.rpc._call('getinfo', [])
         return {
