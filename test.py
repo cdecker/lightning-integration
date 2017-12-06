@@ -370,9 +370,13 @@ def test_reconnect(bitcoind, node_factory, impls):
     print("Restarting")
     node2.restart()
 
+    time.sleep(15)
+
     wait_for(lambda: node1.check_channel(node2))
     wait_for(lambda: node2.check_channel(node1))
     sync_blockheight(bitcoind, [node1, node2])
+
+    time.sleep(15)
 
     req = node2.invoice(amount)
     payment_key = node1.send(req)

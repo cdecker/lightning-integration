@@ -140,7 +140,7 @@ class LightningNode(object):
         return result['preimage']
 
     def connect(self, host, port, node_id):
-        return self.rpc.connect(node_id, "{}:{}".format(host, port))
+        return self.rpc.connect(node_id, host, port)
 
     def info(self):
         r = self.rpc.getinfo()
