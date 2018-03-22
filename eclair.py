@@ -14,8 +14,6 @@ import requests
 import time
 
 
-
-
 def requests_retry_session(
     retries=3,
     backoff_factor=0.3,
@@ -37,6 +35,7 @@ def requests_retry_session(
 
 
 class EclairD(TailableProc):
+
     def __init__(self, lightning_dir, bitcoin_dir, port):
         TailableProc.__init__(self, lightning_dir, "eclair({})".format(port))
         self.lightning_dir = lightning_dir
@@ -102,6 +101,8 @@ class EclairD(TailableProc):
 
 
 class EclairNode(object):
+
+    displayName = 'eclair'
 
     def __init__(self, lightning_dir, lightning_port, btc, executor=None,
                  node_id=0):
@@ -204,7 +205,6 @@ class EclairNode(object):
         self.daemon.start()
         time.sleep(1)
 
-EclairNode.displayName = 'eclair'
 
 class EclairRpc(object):
 

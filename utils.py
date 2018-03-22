@@ -16,14 +16,9 @@ BITCOIND_CONFIG = {
     "txindex": 1,
     "zmqpubrawblock": "tcp://127.0.0.1:29000",
     "zmqpubrawtx": "tcp://127.0.0.1:29000",
+    "deprecatedrpc": "addwitnessaddress",
+    "addresstype": "p2sh-segwit",
 }
-
-
-def get_config_opt(config, name, default):
-    for k, v in config.items():
-        if k == name:
-            return v
-    return default
 
 
 def write_config(filename, opts):
@@ -122,6 +117,7 @@ class TailableProc(object):
                 raise TimeoutError(
                     'Unable to find "{}" in logs.'.format(regex))
             elif not self.running:
+                print('Logs: {}'.format(self.logs))
                 raise ValueError('Process died while waiting for logs')
 
             with self.logs_cond:
@@ -143,8 +139,8 @@ class SimpleBitcoinProxy:
     throwaway connections. This is easier than to reach into the RPC
     library to close, reopen and reauth upon failure.
     """
-    def __init__(self, url):
-        self.url = url
+    def __init__(self, conf_file=None):
+        self.conf_file = conf_file
 
     def __getattr__(self, name):
         if name.startswith('__') and name.endswith('__'):
@@ -153,7 +149,7 @@ class SimpleBitcoinProxy:
 
         # Create a callable to do the actual call
         def callback(*args):
-            return BitcoinProxy(self.url)._call(name, *args)
+            return BitcoinProxy(btc_conf_file=self.conf_file)._call(name, *args)
 
         # Make debuggers show <function bitcoin.rpc.name> rather than <function
         # bitcoin.rpc.<lambda>>
@@ -163,8 +159,10 @@ class SimpleBitcoinProxy:
 
 class BitcoinD(TailableProc):
 
+    CONF_NAME = 'bitcoin.conf'
+
     def __init__(self, bitcoin_dir="/tmp/bitcoind-test", rpcport=18332):
-        TailableProc.__init__(self, bitcoin_dir, 'bitcoind')
+        super().__init__(bitcoin_dir, 'bitcoind')
 
         self.bitcoin_dir = bitcoin_dir
         self.rpcport = rpcport
@@ -174,30 +172,26 @@ class BitcoinD(TailableProc):
         if not os.path.exists(regtestdir):
             os.makedirs(regtestdir)
 
+        conf_file = os.path.join(bitcoin_dir, self.CONF_NAME)
+
         self.cmd_line = [
             'bitcoind',
             '-datadir={}'.format(bitcoin_dir),
+            '-conf={}'.format(conf_file),
             '-printtoconsole',
             '-server',
             '-regtest',
-            #'-debug',
             '-logtimestamps',
         ]
         BITCOIND_CONFIG['rpcport'] = rpcport
         write_config(
-            os.path.join(bitcoin_dir, 'bitcoin.conf'), BITCOIND_CONFIG)
+            os.path.join(bitcoin_dir, self.CONF_NAME), BITCOIND_CONFIG)
         write_config(
-            os.path.join(regtestdir, 'bitcoin.conf'), BITCOIND_CONFIG)
-        self.rpc = SimpleBitcoinProxy(
-            "http://{}:{}@127.0.0.1:{}".format(
-                get_config_opt(BITCOIND_CONFIG, 'rpcuser', 'rpcuser'),
-                get_config_opt(BITCOIND_CONFIG, 'rpcpassword', 'rpcpass'),
-                self.rpcport
-            )
-        )
+            os.path.join(regtestdir, self.CONF_NAME), BITCOIND_CONFIG)
+        self.rpc = SimpleBitcoinProxy(conf_file=conf_file)
 
     def start(self):
-        TailableProc.start(self)
+        super().start()
         self.wait_for_log("Done loading", timeout=10)
 
         logging.info("BitcoinD started")

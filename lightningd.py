@@ -5,6 +5,7 @@ import logging
 import os
 import time
 
+
 LIGHTNINGD_CONFIG = {
     "bitcoind-poll": "1s",
     "log-level": "debug",
@@ -14,6 +15,7 @@ LIGHTNINGD_CONFIG = {
 
 
 class LightningD(TailableProc):
+
     def __init__(self, lightning_dir, bitcoin_dir, port=9735):
         TailableProc.__init__(self, lightning_dir)
         self.lightning_dir = lightning_dir
@@ -44,9 +46,12 @@ class LightningD(TailableProc):
         TailableProc.stop(self)
         logging.info("LightningD stopped")
 
+
 class LightningNode(object):
-    def __init__(self, lightning_dir, lightning_port, btc, executor=None,
-                 node_id=0):
+
+    displayName = 'lightning'
+
+    def __init__(self, lightning_dir, lightning_port, btc, executor=None, node_id=0):
         self.bitcoin = btc
         self.executor = executor
         self.daemon = LightningD(lightning_dir, btc.bitcoin_dir,
@@ -157,5 +162,3 @@ class LightningNode(object):
         time.sleep(5)
         self.daemon.start()
         time.sleep(1)
-
-LightningNode.displayName = 'lightning'

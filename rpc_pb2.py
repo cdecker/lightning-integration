@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='rpc.proto',
   package='lnrpc',
   syntax='proto3',
-  serialized_pb=_b('\n\trpc.proto\x12\x05lnrpc\x1a\x1cgoogle/api/annotations.proto\"\xf1\x01\n\x0bTransaction\x12\x18\n\x07tx_hash\x18\x01 \x01(\tR\x07tx_hash\x12\x16\n\x06\x61mount\x18\x02 \x01(\x03R\x06\x61mount\x12,\n\x11num_confirmations\x18\x03 \x01(\x05R\x11num_confirmations\x12\x1e\n\nblock_hash\x18\x04 \x01(\tR\nblock_hash\x12\"\n\x0c\x62lock_height\x18\x05 \x01(\x05R\x0c\x62lock_height\x12\x1e\n\ntime_stamp\x18\x06 \x01(\x03R\ntime_stamp\x12\x1e\n\ntotal_fees\x18\x07 \x01(\x03R\ntotal_fees\"\x18\n\x16GetTransactionsRequest\"L\n\x12TransactionDetails\x12\x36\n\x0ctransactions\x18\x01 \x03(\x0b\x32\x12.lnrpc.TransactionR\x0ctransactions\"\x89\x01\n\x0bSendRequest\x12\x0c\n\x04\x64\x65st\x18\x01 \x01(\x0c\x12\x13\n\x0b\x64\x65st_string\x18\x02 \x01(\t\x12\x0b\n\x03\x61mt\x18\x03 \x01(\x03\x12\x14\n\x0cpayment_hash\x18\x04 \x01(\x0c\x12\x1b\n\x13payment_hash_string\x18\x05 \x01(\t\x12\x17\n\x0fpayment_request\x18\x06 \x01(\t\"\x94\x01\n\x0cSendResponse\x12$\n\rpayment_error\x18\x01 \x01(\tR\rpayment_error\x12*\n\x10payment_preimage\x18\x02 \x01(\x0cR\x10payment_preimage\x12\x32\n\rpayment_route\x18\x03 \x01(\x0b\x32\x0c.lnrpc.RouteR\rpayment_route\"\x82\x01\n\x0c\x43hannelPoint\x12\"\n\x0c\x66unding_txid\x18\x01 \x01(\x0cR\x0c\x66unding_txid\x12*\n\x10\x66unding_txid_str\x18\x02 \x01(\tR\x10\x66unding_txid_str\x12\"\n\x0coutput_index\x18\x03 \x01(\rR\x0coutput_index\">\n\x10LightningAddress\x12\x16\n\x06pubkey\x18\x01 \x01(\tR\x06pubkey\x12\x12\n\x04host\x18\x02 \x01(\tR\x04host\"\x86\x01\n\x0fSendManyRequest\x12>\n\x0c\x41\x64\x64rToAmount\x18\x01 \x03(\x0b\x32(.lnrpc.SendManyRequest.AddrToAmountEntry\x1a\x33\n\x11\x41\x64\x64rToAmountEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"&\n\x10SendManyResponse\x12\x12\n\x04txid\x18\x01 \x01(\tR\x04txid\"0\n\x10SendCoinsRequest\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x03\"\'\n\x11SendCoinsResponse\x12\x12\n\x04txid\x18\x01 \x01(\tR\x04txid\"\x98\x01\n\x11NewAddressRequest\x12\x32\n\x04type\x18\x01 \x01(\x0e\x32$.lnrpc.NewAddressRequest.AddressType\"O\n\x0b\x41\x64\x64ressType\x12\x17\n\x13WITNESS_PUBKEY_HASH\x10\x00\x12\x16\n\x12NESTED_PUBKEY_HASH\x10\x01\x12\x0f\n\x0bPUBKEY_HASH\x10\x02\"\x1a\n\x18NewWitnessAddressRequest\".\n\x12NewAddressResponse\x12\x18\n\x07\x61\x64\x64ress\x18\x01 \x01(\tR\x07\x61\x64\x64ress\"&\n\x12SignMessageRequest\x12\x10\n\x03msg\x18\x01 \x01(\x0cR\x03msg\"3\n\x13SignMessageResponse\x12\x1c\n\tsignature\x18\x01 \x01(\tR\tsignature\"F\n\x14VerifyMessageRequest\x12\x10\n\x03msg\x18\x01 \x01(\x0cR\x03msg\x12\x1c\n\tsignature\x18\x02 \x01(\tR\tsignature\"E\n\x15VerifyMessageResponse\x12\x14\n\x05valid\x18\x01 \x01(\x08R\x05valid\x12\x16\n\x06pubkey\x18\x02 \x01(\tR\x06pubkey\"I\n\x12\x43onnectPeerRequest\x12%\n\x04\x61\x64\x64r\x18\x01 \x01(\x0b\x32\x17.lnrpc.LightningAddress\x12\x0c\n\x04perm\x18\x02 \x01(\x08\"/\n\x13\x43onnectPeerResponse\x12\x18\n\x07peer_id\x18\x01 \x01(\x05R\x07peer_id\"1\n\x15\x44isconnectPeerRequest\x12\x18\n\x07pub_key\x18\x01 \x01(\tR\x07pub_key\"\x18\n\x16\x44isconnectPeerResponse\"\xb2\x01\n\x04HTLC\x12\x1a\n\x08incoming\x18\x01 \x01(\x08R\x08incoming\x12\x16\n\x06\x61mount\x18\x02 \x01(\x03R\x06\x61mount\x12\x1c\n\thash_lock\x18\x03 \x01(\x0cR\thash_lock\x12,\n\x11\x65xpiration_height\x18\x04 \x01(\rR\x11\x65xpiration_height\x12*\n\x10revocation_delay\x18\x05 \x01(\rR\x10revocation_delay\"\xcc\x04\n\rActiveChannel\x12\x16\n\x06\x61\x63tive\x18\x01 \x01(\x08R\x06\x61\x63tive\x12$\n\rremote_pubkey\x18\x02 \x01(\tR\rremote_pubkey\x12$\n\rchannel_point\x18\x03 \x01(\tR\rchannel_point\x12\x18\n\x07\x63han_id\x18\x04 \x01(\x04R\x07\x63han_id\x12\x1a\n\x08\x63\x61pacity\x18\x05 \x01(\x03R\x08\x63\x61pacity\x12$\n\rlocal_balance\x18\x06 \x01(\x03R\rlocal_balance\x12&\n\x0eremote_balance\x18\x07 \x01(\x03R\x0eremote_balance\x12\x1e\n\ncommit_fee\x18\x08 \x01(\x03R\ncommit_fee\x12$\n\rcommit_weight\x18\t \x01(\x03R\rcommit_weight\x12\x1e\n\nfee_per_kw\x18\n \x01(\x03R\nfee_per_kw\x12,\n\x11unsettled_balance\x18\x0b \x01(\x03R\x11unsettled_balance\x12\x30\n\x13total_satoshis_sent\x18\x0c \x01(\x03R\x13total_satoshis_sent\x12\x38\n\x17total_satoshis_received\x18\r \x01(\x03R\x17total_satoshis_received\x12 \n\x0bnum_updates\x18\x0e \x01(\x04R\x0bnum_updates\x12\x31\n\rpending_htlcs\x18\x0f \x03(\x0b\x32\x0b.lnrpc.HTLCR\rpending_htlcs\"\x15\n\x13ListChannelsRequest\"H\n\x14ListChannelsResponse\x12\x30\n\x08\x63hannels\x18\x0b \x03(\x0b\x32\x14.lnrpc.ActiveChannelR\x08\x63hannels\"\x84\x02\n\x04Peer\x12\x18\n\x07pub_key\x18\x01 \x01(\tR\x07pub_key\x12\x18\n\x07peer_id\x18\x02 \x01(\x05R\x07peer_id\x12\x18\n\x07\x61\x64\x64ress\x18\x03 \x01(\tR\x07\x61\x64\x64ress\x12\x1e\n\nbytes_sent\x18\x04 \x01(\x04R\nbytes_sent\x12\x1e\n\nbytes_recv\x18\x05 \x01(\x04R\nbytes_recv\x12\x1a\n\x08sat_sent\x18\x06 \x01(\x03R\x08sat_sent\x12\x1a\n\x08sat_recv\x18\x07 \x01(\x03R\x08sat_recv\x12\x18\n\x07inbound\x18\x08 \x01(\x08R\x07inbound\x12\x1c\n\tping_time\x18\t \x01(\x03R\tping_time\"\x12\n\x10ListPeersRequest\"6\n\x11ListPeersResponse\x12!\n\x05peers\x18\x01 \x03(\x0b\x32\x0b.lnrpc.PeerR\x05peers\"\x10\n\x0eGetInfoRequest\"\xf5\x02\n\x0fGetInfoResponse\x12(\n\x0fidentity_pubkey\x18\x01 \x01(\tR\x0fidentity_pubkey\x12\x14\n\x05\x61lias\x18\x02 \x01(\tR\x05\x61lias\x12\x32\n\x14num_pending_channels\x18\x03 \x01(\rR\x14num_pending_channels\x12\x30\n\x13num_active_channels\x18\x04 \x01(\rR\x13num_active_channels\x12\x1c\n\tnum_peers\x18\x05 \x01(\rR\tnum_peers\x12\"\n\x0c\x62lock_height\x18\x06 \x01(\rR\x0c\x62lock_height\x12\x1e\n\nblock_hash\x18\x08 \x01(\tR\nblock_hash\x12(\n\x0fsynced_to_chain\x18\t \x01(\x08R\x0fsynced_to_chain\x12\x18\n\x07testnet\x18\n \x01(\x08R\x07testnet\x12\x16\n\x06\x63hains\x18\x0b \x03(\tR\x06\x63hains\"U\n\x12\x43onfirmationUpdate\x12\x11\n\tblock_sha\x18\x01 \x01(\x0c\x12\x14\n\x0c\x62lock_height\x18\x02 \x01(\x05\x12\x16\n\x0enum_confs_left\x18\x03 \x01(\r\"N\n\x11\x43hannelOpenUpdate\x12\x39\n\rchannel_point\x18\x01 \x01(\x0b\x32\x13.lnrpc.ChannelPointR\rchannel_point\"R\n\x12\x43hannelCloseUpdate\x12\"\n\x0c\x63losing_txid\x18\x01 \x01(\x0cR\x0c\x63losing_txid\x12\x18\n\x07success\x18\x02 \x01(\x08R\x07success\"d\n\x13\x43loseChannelRequest\x12*\n\rchannel_point\x18\x01 \x01(\x0b\x32\x13.lnrpc.ChannelPoint\x12\x12\n\ntime_limit\x18\x02 \x01(\x03\x12\r\n\x05\x66orce\x18\x03 \x01(\x08\"\xd9\x01\n\x11\x43loseStatusUpdate\x12<\n\rclose_pending\x18\x01 \x01(\x0b\x32\x14.lnrpc.PendingUpdateH\x00R\rclose_pending\x12?\n\x0c\x63onfirmation\x18\x02 \x01(\x0b\x32\x19.lnrpc.ConfirmationUpdateH\x00R\x0c\x63onfirmation\x12;\n\nchan_close\x18\x03 \x01(\x0b\x32\x19.lnrpc.ChannelCloseUpdateH\x00R\nchan_closeB\x08\n\x06update\"G\n\rPendingUpdate\x12\x12\n\x04txid\x18\x01 \x01(\x0cR\x04txid\x12\"\n\x0coutput_index\x18\x02 \x01(\rR\x0coutput_index\"\xde\x01\n\x12OpenChannelRequest\x12&\n\x0etarget_peer_id\x18\x01 \x01(\x05R\x0etarget_peer_id\x12 \n\x0bnode_pubkey\x18\x02 \x01(\x0cR\x0bnode_pubkey\x12.\n\x12node_pubkey_string\x18\x03 \x01(\tR\x12node_pubkey_string\x12\x32\n\x14local_funding_amount\x18\x04 \x01(\x03R\x14local_funding_amount\x12\x1a\n\x08push_sat\x18\x05 \x01(\x03R\x08push_sat\"\xd3\x01\n\x10OpenStatusUpdate\x12:\n\x0c\x63han_pending\x18\x01 \x01(\x0b\x32\x14.lnrpc.PendingUpdateH\x00R\x0c\x63han_pending\x12?\n\x0c\x63onfirmation\x18\x02 \x01(\x0b\x32\x19.lnrpc.ConfirmationUpdateH\x00R\x0c\x63onfirmation\x12\x38\n\tchan_open\x18\x03 \x01(\x0b\x32\x18.lnrpc.ChannelOpenUpdateH\x00R\tchan_openB\x08\n\x06update\"\x17\n\x15PendingChannelRequest\"\xfe\t\n\x16PendingChannelResponse\x12\x30\n\x13total_limbo_balance\x18\x01 \x01(\x03R\x13total_limbo_balance\x12\x66\n\x15pending_open_channels\x18\x02 \x03(\x0b\x32\x30.lnrpc.PendingChannelResponse.PendingOpenChannelR\x15pending_open_channels\x12g\n\x18pending_closing_channels\x18\x03 \x03(\x0b\x32+.lnrpc.PendingChannelResponse.ClosedChannelR\x18pending_closing_channels\x12x\n\x1epending_force_closing_channels\x18\x04 \x03(\x0b\x32\x30.lnrpc.PendingChannelResponse.ForceClosedChannelR\x1epending_force_closing_channels\x1a\xca\x01\n\x0ePendingChannel\x12(\n\x0fremote_node_pub\x18\x01 \x01(\tR\x0fremote_node_pub\x12$\n\rchannel_point\x18\x02 \x01(\tR\rchannel_point\x12\x1a\n\x08\x63\x61pacity\x18\x03 \x01(\x03R\x08\x63\x61pacity\x12$\n\rlocal_balance\x18\x04 \x01(\x03R\rlocal_balance\x12&\n\x0eremote_balance\x18\x05 \x01(\x03R\x0eremote_balance\x1a\xa0\x02\n\x12PendingOpenChannel\x12\x46\n\x07\x63hannel\x18\x01 \x01(\x0b\x32,.lnrpc.PendingChannelResponse.PendingChannelR\x07\x63hannel\x12\x30\n\x13\x63onfirmation_height\x18\x02 \x01(\rR\x13\x63onfirmation_height\x12*\n\x10\x62locks_till_open\x18\x03 \x01(\rR\x10\x62locks_till_open\x12\x1e\n\ncommit_fee\x18\x04 \x01(\x03R\ncommit_fee\x12$\n\rcommit_weight\x18\x05 \x01(\x03R\rcommit_weight\x12\x1e\n\nfee_per_kw\x18\x06 \x01(\x03R\nfee_per_kw\x1ar\n\rClosedChannel\x12=\n\x07\x63hannel\x18\x01 \x01(\x0b\x32,.lnrpc.PendingChannelResponse.PendingChannel\x12\"\n\x0c\x63losing_txid\x18\x02 \x01(\tR\x0c\x63losing_txid\x1a\x82\x02\n\x12\x46orceClosedChannel\x12\x46\n\x07\x63hannel\x18\x01 \x01(\x0b\x32,.lnrpc.PendingChannelResponse.PendingChannelR\x07\x63hannel\x12\"\n\x0c\x63losing_txid\x18\x02 \x01(\tR\x0c\x63losing_txid\x12$\n\rlimbo_balance\x18\x03 \x01(\x03R\rlimbo_balance\x12(\n\x0fmaturity_height\x18\x04 \x01(\rR\x0fmaturity_height\x12\x30\n\x13\x62locks_til_maturity\x18\x05 \x01(\rR\x13\x62locks_til_maturity\",\n\x14WalletBalanceRequest\x12\x14\n\x0cwitness_only\x18\x01 \x01(\x08\"1\n\x15WalletBalanceResponse\x12\x18\n\x07\x62\x61lance\x18\x01 \x01(\x03R\x07\x62\x61lance\"\x17\n\x15\x43hannelBalanceRequest\"2\n\x16\x43hannelBalanceResponse\x12\x18\n\x07\x62\x61lance\x18\x01 \x01(\x03R\x07\x62\x61lance\"2\n\x12QueryRoutesRequest\x12\x0f\n\x07pub_key\x18\x01 \x01(\t\x12\x0b\n\x03\x61mt\x18\x02 \x01(\x03\";\n\x13QueryRoutesResponse\x12$\n\x06routes\x18\x01 \x03(\x0b\x32\x0c.lnrpc.RouteR\x06routes\"\x97\x01\n\x03Hop\x12\x18\n\x07\x63han_id\x18\x01 \x01(\x04R\x07\x63han_id\x12$\n\rchan_capacity\x18\x02 \x01(\x03R\rchan_capacity\x12&\n\x0e\x61mt_to_forward\x18\x03 \x01(\x03R\x0e\x61mt_to_forward\x12\x10\n\x03\x66\x65\x65\x18\x04 \x01(\x03R\x03\x66\x65\x65\x12\x16\n\x06\x65xpiry\x18\x05 \x01(\rR\x06\x65xpiry\"\x8f\x01\n\x05Route\x12(\n\x0ftotal_time_lock\x18\x01 \x01(\rR\x0ftotal_time_lock\x12\x1e\n\ntotal_fees\x18\x02 \x01(\x03R\ntotal_fees\x12\x1c\n\ttotal_amt\x18\x03 \x01(\x03R\ttotal_amt\x12\x1e\n\x04hops\x18\x04 \x03(\x0b\x32\n.lnrpc.HopR\x04hops\"\"\n\x0fNodeInfoRequest\x12\x0f\n\x07pub_key\x18\x01 \x01(\t\"\x80\x01\n\x08NodeInfo\x12(\n\x04node\x18\x01 \x01(\x0b\x32\x14.lnrpc.LightningNodeR\x04node\x12\"\n\x0cnum_channels\x18\x02 \x01(\rR\x0cnum_channels\x12&\n\x0etotal_capacity\x18\x03 \x01(\x03R\x0etotal_capacity\"\x93\x01\n\rLightningNode\x12 \n\x0blast_update\x18\x01 \x01(\rR\x0blast_update\x12\x18\n\x07pub_key\x18\x02 \x01(\tR\x07pub_key\x12\x14\n\x05\x61lias\x18\x03 \x01(\tR\x05\x61lias\x12\x30\n\taddresses\x18\x04 \x03(\x0b\x32\x12.lnrpc.NodeAddressR\taddresses\";\n\x0bNodeAddress\x12\x18\n\x07network\x18\x01 \x01(\tR\x07network\x12\x12\n\x04\x61\x64\x64r\x18\x02 \x01(\tR\x04\x61\x64\x64r\"\xad\x01\n\rRoutingPolicy\x12(\n\x0ftime_lock_delta\x18\x01 \x01(\rR\x0ftime_lock_delta\x12\x1a\n\x08min_htlc\x18\x02 \x01(\x03R\x08min_htlc\x12$\n\rfee_base_msat\x18\x03 \x01(\x03R\rfee_base_msat\x12\x30\n\x13\x66\x65\x65_rate_milli_msat\x18\x04 \x01(\x03R\x13\x66\x65\x65_rate_milli_msat\"\xbb\x02\n\x0b\x43hannelEdge\x12\x1e\n\nchannel_id\x18\x01 \x01(\x04R\nchannel_id\x12\x1e\n\nchan_point\x18\x02 \x01(\tR\nchan_point\x12 \n\x0blast_update\x18\x03 \x01(\rR\x0blast_update\x12\x1c\n\tnode1_pub\x18\x04 \x01(\tR\tnode1_pub\x12\x1c\n\tnode2_pub\x18\x05 \x01(\tR\tnode2_pub\x12\x1a\n\x08\x63\x61pacity\x18\x06 \x01(\x03R\x08\x63\x61pacity\x12\x38\n\x0cnode1_policy\x18\x07 \x01(\x0b\x32\x14.lnrpc.RoutingPolicyR\x0cnode1_policy\x12\x38\n\x0cnode2_policy\x18\x08 \x01(\x0b\x32\x14.lnrpc.RoutingPolicyR\x0cnode2_policy\"\x15\n\x13\x43hannelGraphRequest\"d\n\x0c\x43hannelGraph\x12*\n\x05nodes\x18\x01 \x03(\x0b\x32\x14.lnrpc.LightningNodeR\x05nodes\x12(\n\x05\x65\x64ges\x18\x02 \x03(\x0b\x32\x12.lnrpc.ChannelEdgeR\x05\x65\x64ges\"\"\n\x0f\x43hanInfoRequest\x12\x0f\n\x07\x63han_id\x18\x01 \x01(\x04\"\x14\n\x12NetworkInfoRequest\"\x83\x03\n\x0bNetworkInfo\x12&\n\x0egraph_diameter\x18\x01 \x01(\rR\x0egraph_diameter\x12&\n\x0e\x61vg_out_degree\x18\x02 \x01(\x01R\x0e\x61vg_out_degree\x12&\n\x0emax_out_degree\x18\x03 \x01(\rR\x0emax_out_degree\x12\x1c\n\tnum_nodes\x18\x04 \x01(\rR\tnum_nodes\x12\"\n\x0cnum_channels\x18\x05 \x01(\rR\x0cnum_channels\x12\x36\n\x16total_network_capacity\x18\x06 \x01(\x03R\x16total_network_capacity\x12*\n\x10\x61vg_channel_size\x18\x07 \x01(\x01R\x10\x61vg_channel_size\x12*\n\x10min_channel_size\x18\x08 \x01(\x03R\x10min_channel_size\x12*\n\x10max_channel_size\x18\t \x01(\x03R\x10max_channel_size\"\r\n\x0bStopRequest\"\x0e\n\x0cStopResponse\"\x1b\n\x19GraphTopologySubscription\"\xa3\x01\n\x13GraphTopologyUpdate\x12\'\n\x0cnode_updates\x18\x01 \x03(\x0b\x32\x11.lnrpc.NodeUpdate\x12\x31\n\x0f\x63hannel_updates\x18\x02 \x03(\x0b\x32\x18.lnrpc.ChannelEdgeUpdate\x12\x30\n\x0c\x63losed_chans\x18\x03 \x03(\x0b\x32\x1a.lnrpc.ClosedChannelUpdate\"]\n\nNodeUpdate\x12\x11\n\taddresses\x18\x01 \x03(\t\x12\x14\n\x0cidentity_key\x18\x02 \x01(\t\x12\x17\n\x0fglobal_features\x18\x03 \x01(\x0c\x12\r\n\x05\x61lias\x18\x04 \x01(\t\"\xc0\x01\n\x11\x43hannelEdgeUpdate\x12\x0f\n\x07\x63han_id\x18\x01 \x01(\x04\x12\'\n\nchan_point\x18\x02 \x01(\x0b\x32\x13.lnrpc.ChannelPoint\x12\x10\n\x08\x63\x61pacity\x18\x03 \x01(\x03\x12,\n\x0erouting_policy\x18\x04 \x01(\x0b\x32\x14.lnrpc.RoutingPolicy\x12\x18\n\x10\x61\x64vertising_node\x18\x05 \x01(\t\x12\x17\n\x0f\x63onnecting_node\x18\x06 \x01(\t\"x\n\x13\x43losedChannelUpdate\x12\x0f\n\x07\x63han_id\x18\x01 \x01(\x04\x12\x10\n\x08\x63\x61pacity\x18\x02 \x01(\x03\x12\x15\n\rclosed_height\x18\x03 \x01(\r\x12\'\n\nchan_point\x18\x04 \x01(\x0b\x32\x13.lnrpc.ChannelPoint\"$\n\x0fSetAliasRequest\x12\x11\n\tnew_alias\x18\x01 \x01(\t\"\x12\n\x10SetAliasResponse\"\x91\x02\n\x07Invoice\x12\x12\n\x04memo\x18\x01 \x01(\tR\x04memo\x12\x18\n\x07receipt\x18\x02 \x01(\x0cR\x07receipt\x12\x1e\n\nr_preimage\x18\x03 \x01(\x0cR\nr_preimage\x12\x16\n\x06r_hash\x18\x04 \x01(\x0cR\x06r_hash\x12\x14\n\x05value\x18\x05 \x01(\x03R\x05value\x12\x18\n\x07settled\x18\x06 \x01(\x08R\x07settled\x12$\n\rcreation_date\x18\x07 \x01(\x03R\rcreation_date\x12 \n\x0bsettle_date\x18\x08 \x01(\x03R\x0bsettle_date\x12(\n\x0fpayment_request\x18\t \x01(\tR\x0fpayment_request\"V\n\x12\x41\x64\x64InvoiceResponse\x12\x16\n\x06r_hash\x18\x01 \x01(\x0cR\x06r_hash\x12(\n\x0fpayment_request\x18\x02 \x01(\tR\x0fpayment_request\"E\n\x0bPaymentHash\x12\x1e\n\nr_hash_str\x18\x01 \x01(\tR\nr_hash_str\x12\x16\n\x06r_hash\x18\x02 \x01(\x0cR\x06r_hash\"*\n\x12ListInvoiceRequest\x12\x14\n\x0cpending_only\x18\x01 \x01(\x08\"A\n\x13ListInvoiceResponse\x12*\n\x08invoices\x18\x01 \x03(\x0b\x32\x0e.lnrpc.InvoiceR\x08invoices\"\x15\n\x13InvoiceSubscription\"\x8f\x01\n\x07Payment\x12\"\n\x0cpayment_hash\x18\x01 \x01(\tR\x0cpayment_hash\x12\x14\n\x05value\x18\x02 \x01(\x03R\x05value\x12$\n\rcreation_date\x18\x03 \x01(\x03R\rcreation_date\x12\x12\n\x04path\x18\x04 \x03(\tR\x04path\x12\x10\n\x03\x66\x65\x65\x18\x05 \x01(\x03R\x03\x66\x65\x65\"\x15\n\x13ListPaymentsRequest\"B\n\x14ListPaymentsResponse\x12*\n\x08payments\x18\x01 \x03(\x0b\x32\x0e.lnrpc.PaymentR\x08payments\"\x1a\n\x18\x44\x65leteAllPaymentsRequest\"\x1b\n\x19\x44\x65leteAllPaymentsResponse\"5\n\x11\x44\x65\x62ugLevelRequest\x12\x0c\n\x04show\x18\x01 \x01(\x08\x12\x12\n\nlevel_spec\x18\x02 \x01(\t\"6\n\x12\x44\x65\x62ugLevelResponse\x12 \n\x0bsub_systems\x18\x01 \x01(\tR\x0bsub_systems\"\x1f\n\x0cPayReqString\x12\x0f\n\x07pay_req\x18\x01 \x01(\t\"r\n\x06PayReq\x12 \n\x0b\x64\x65stination\x18\x01 \x01(\tR\x0b\x64\x65stination\x12\"\n\x0cpayment_hash\x18\x02 \x01(\tR\x0cpayment_hash\x12\"\n\x0cnum_satoshis\x18\x03 \x01(\x03R\x0cnum_satoshis2\x85\x1a\n\tLightning\x12j\n\rWalletBalance\x12\x1b.lnrpc.WalletBalanceRequest\x1a\x1c.lnrpc.WalletBalanceResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/balance/blockchain\x12k\n\x0e\x43hannelBalance\x12\x1c.lnrpc.ChannelBalanceRequest\x1a\x1d.lnrpc.ChannelBalanceResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/balance/channels\x12\x65\n\x0fGetTransactions\x12\x1d.lnrpc.GetTransactionsRequest\x1a\x19.lnrpc.TransactionDetails\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/transactions\x12[\n\tSendCoins\x12\x17.lnrpc.SendCoinsRequest\x1a\x18.lnrpc.SendCoinsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/transactions:\x01*\x12L\n\x15SubscribeTransactions\x12\x1d.lnrpc.GetTransactionsRequest\x1a\x12.lnrpc.Transaction0\x01\x12;\n\x08SendMany\x12\x16.lnrpc.SendManyRequest\x1a\x17.lnrpc.SendManyResponse\x12\x41\n\nNewAddress\x12\x18.lnrpc.NewAddressRequest\x1a\x19.lnrpc.NewAddressResponse\x12g\n\x11NewWitnessAddress\x12\x1f.lnrpc.NewWitnessAddressRequest\x1a\x19.lnrpc.NewAddressResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/newaddress\x12\x44\n\x0bSignMessage\x12\x19.lnrpc.SignMessageRequest\x1a\x1a.lnrpc.SignMessageResponse\x12J\n\rVerifyMessage\x12\x1b.lnrpc.VerifyMessageRequest\x1a\x1c.lnrpc.VerifyMessageResponse\x12Z\n\x0b\x43onnectPeer\x12\x19.lnrpc.ConnectPeerRequest\x1a\x1a.lnrpc.ConnectPeerResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\"\t/v1/peers:\x01*\x12j\n\x0e\x44isconnectPeer\x12\x1c.lnrpc.DisconnectPeerRequest\x1a\x1d.lnrpc.DisconnectPeerResponse\"\x1b\x82\xd3\xe4\x93\x02\x15*\x13/v1/peers/{pub_key}\x12Q\n\tListPeers\x12\x17.lnrpc.ListPeersRequest\x1a\x18.lnrpc.ListPeersResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/peers\x12M\n\x07GetInfo\x12\x15.lnrpc.GetInfoRequest\x1a\x16.lnrpc.GetInfoResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\x0b/v1/getinfo\x12l\n\x0fPendingChannels\x12\x1c.lnrpc.PendingChannelRequest\x1a\x1d.lnrpc.PendingChannelResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/channels/pending\x12]\n\x0cListChannels\x12\x1a.lnrpc.ListChannelsRequest\x1a\x1b.lnrpc.ListChannelsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\x0c/v1/channels\x12Z\n\x0fOpenChannelSync\x12\x19.lnrpc.OpenChannelRequest\x1a\x13.lnrpc.ChannelPoint\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/v1/channels:\x01*\x12\x43\n\x0bOpenChannel\x12\x19.lnrpc.OpenChannelRequest\x1a\x17.lnrpc.OpenStatusUpdate0\x01\x12\x9e\x01\n\x0c\x43loseChannel\x12\x1a.lnrpc.CloseChannelRequest\x1a\x18.lnrpc.CloseStatusUpdate\"V\x82\xd3\xe4\x93\x02P*N/v1/channels/{channel_point.funding_txid}/{channel_point.output_index}/{force}0\x01\x12:\n\x0bSendPayment\x12\x12.lnrpc.SendRequest\x1a\x13.lnrpc.SendResponse(\x01\x30\x01\x12`\n\x0fSendPaymentSync\x12\x12.lnrpc.SendRequest\x1a\x13.lnrpc.SendResponse\"$\x82\xd3\xe4\x93\x02\x1e\"\x19/v1/channels/transactions:\x01*\x12P\n\nAddInvoice\x12\x0e.lnrpc.Invoice\x1a\x19.lnrpc.AddInvoiceResponse\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/v1/invoices:\x01*\x12j\n\x0cListInvoices\x12\x19.lnrpc.ListInvoiceRequest\x1a\x1a.lnrpc.ListInvoiceResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/invoices/{pending_only}\x12V\n\rLookupInvoice\x12\x12.lnrpc.PaymentHash\x1a\x0e.lnrpc.Invoice\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/v1/invoices/{r_hash_str}\x12\x61\n\x11SubscribeInvoices\x12\x1a.lnrpc.InvoiceSubscription\x1a\x0e.lnrpc.Invoice\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/invoices/subscribe0\x01\x12P\n\x0c\x44\x65\x63odePayReq\x12\x13.lnrpc.PayReqString\x1a\r.lnrpc.PayReq\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/payreq/{pay_req}\x12]\n\x0cListPayments\x12\x1a.lnrpc.ListPaymentsRequest\x1a\x1b.lnrpc.ListPaymentsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\x0c/v1/payments\x12l\n\x11\x44\x65leteAllPayments\x12\x1f.lnrpc.DeleteAllPaymentsRequest\x1a .lnrpc.DeleteAllPaymentsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e*\x0c/v1/payments\x12S\n\rDescribeGraph\x12\x1a.lnrpc.ChannelGraphRequest\x1a\x13.lnrpc.ChannelGraph\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/graph\x12[\n\x0bGetChanInfo\x12\x16.lnrpc.ChanInfoRequest\x1a\x12.lnrpc.ChannelEdge\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/graph/edge/{chan_id}\x12X\n\x0bGetNodeInfo\x12\x16.lnrpc.NodeInfoRequest\x1a\x0f.lnrpc.NodeInfo\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/graph/node/{pub_key}\x12n\n\x0bQueryRoutes\x12\x19.lnrpc.QueryRoutesRequest\x1a\x1a.lnrpc.QueryRoutesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v1/graph/routes/{pub_key}/{amt}\x12W\n\x0eGetNetworkInfo\x12\x19.lnrpc.NetworkInfoRequest\x1a\x12.lnrpc.NetworkInfo\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/graph/info\x12\x35\n\nStopDaemon\x12\x12.lnrpc.StopRequest\x1a\x13.lnrpc.StopResponse\x12W\n\x15SubscribeChannelGraph\x12 .lnrpc.GraphTopologySubscription\x1a\x1a.lnrpc.GraphTopologyUpdate0\x01\x12;\n\x08SetAlias\x12\x16.lnrpc.SetAliasRequest\x1a\x17.lnrpc.SetAliasResponse\x12\x41\n\nDebugLevel\x12\x18.lnrpc.DebugLevelRequest\x1a\x19.lnrpc.DebugLevelResponseb\x06proto3')
+  serialized_pb=_b('\n\trpc.proto\x12\x05lnrpc\x1a\x1cgoogle/api/annotations.proto\"A\n\x0eGenSeedRequest\x12\x19\n\x11\x61\x65zeed_passphrase\x18\x01 \x01(\x0c\x12\x14\n\x0cseed_entropy\x18\x02 \x01(\x0c\"H\n\x0fGenSeedResponse\x12\x1c\n\x14\x63ipher_seed_mnemonic\x18\x01 \x03(\t\x12\x17\n\x0f\x65nciphered_seed\x18\x02 \x01(\x0c\"e\n\x11InitWalletRequest\x12\x17\n\x0fwallet_password\x18\x01 \x01(\x0c\x12\x1c\n\x14\x63ipher_seed_mnemonic\x18\x02 \x03(\t\x12\x19\n\x11\x61\x65zeed_passphrase\x18\x03 \x01(\x0c\"\x14\n\x12InitWalletResponse\".\n\x13UnlockWalletRequest\x12\x17\n\x0fwallet_password\x18\x01 \x01(\x0c\"\x16\n\x14UnlockWalletResponse\"\x99\x02\n\x0bTransaction\x12\x18\n\x07tx_hash\x18\x01 \x01(\tR\x07tx_hash\x12\x16\n\x06\x61mount\x18\x02 \x01(\x03R\x06\x61mount\x12,\n\x11num_confirmations\x18\x03 \x01(\x05R\x11num_confirmations\x12\x1e\n\nblock_hash\x18\x04 \x01(\tR\nblock_hash\x12\"\n\x0c\x62lock_height\x18\x05 \x01(\x05R\x0c\x62lock_height\x12\x1e\n\ntime_stamp\x18\x06 \x01(\x03R\ntime_stamp\x12\x1e\n\ntotal_fees\x18\x07 \x01(\x03R\ntotal_fees\x12&\n\x0e\x64\x65st_addresses\x18\x08 \x03(\tR\x0e\x64\x65st_addresses\"\x18\n\x16GetTransactionsRequest\"L\n\x12TransactionDetails\x12\x36\n\x0ctransactions\x18\x01 \x03(\x0b\x32\x12.lnrpc.TransactionR\x0ctransactions\"\xa3\x01\n\x0bSendRequest\x12\x0c\n\x04\x64\x65st\x18\x01 \x01(\x0c\x12\x13\n\x0b\x64\x65st_string\x18\x02 \x01(\t\x12\x0b\n\x03\x61mt\x18\x03 \x01(\x03\x12\x14\n\x0cpayment_hash\x18\x04 \x01(\x0c\x12\x1b\n\x13payment_hash_string\x18\x05 \x01(\t\x12\x17\n\x0fpayment_request\x18\x06 \x01(\t\x12\x18\n\x10\x66inal_cltv_delta\x18\x07 \x01(\x05\"\x94\x01\n\x0cSendResponse\x12$\n\rpayment_error\x18\x01 \x01(\tR\rpayment_error\x12*\n\x10payment_preimage\x18\x02 \x01(\x0cR\x10payment_preimage\x12\x32\n\rpayment_route\x18\x03 \x01(\x0b\x32\x0c.lnrpc.RouteR\rpayment_route\"\xa2\x01\n\x0c\x43hannelPoint\x12\x30\n\x12\x66unding_txid_bytes\x18\x01 \x01(\x0cH\x00R\x12\x66unding_txid_bytes\x12,\n\x10\x66unding_txid_str\x18\x02 \x01(\tH\x00R\x10\x66unding_txid_str\x12\"\n\x0coutput_index\x18\x03 \x01(\rR\x0coutput_indexB\x0e\n\x0c\x66unding_txid\">\n\x10LightningAddress\x12\x16\n\x06pubkey\x18\x01 \x01(\tR\x06pubkey\x12\x12\n\x04host\x18\x02 \x01(\tR\x04host\"\xb1\x01\n\x0fSendManyRequest\x12>\n\x0c\x41\x64\x64rToAmount\x18\x01 \x03(\x0b\x32(.lnrpc.SendManyRequest.AddrToAmountEntry\x12\x13\n\x0btarget_conf\x18\x03 \x01(\x05\x12\x14\n\x0csat_per_byte\x18\x05 \x01(\x03\x1a\x33\n\x11\x41\x64\x64rToAmountEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\"&\n\x10SendManyResponse\x12\x12\n\x04txid\x18\x01 \x01(\tR\x04txid\"[\n\x10SendCoinsRequest\x12\x0c\n\x04\x61\x64\x64r\x18\x01 \x01(\t\x12\x0e\n\x06\x61mount\x18\x02 \x01(\x03\x12\x13\n\x0btarget_conf\x18\x03 \x01(\x05\x12\x14\n\x0csat_per_byte\x18\x05 \x01(\x03\"\'\n\x11SendCoinsResponse\x12\x12\n\x04txid\x18\x01 \x01(\tR\x04txid\"\x87\x01\n\x11NewAddressRequest\x12\x32\n\x04type\x18\x01 \x01(\x0e\x32$.lnrpc.NewAddressRequest.AddressType\">\n\x0b\x41\x64\x64ressType\x12\x17\n\x13WITNESS_PUBKEY_HASH\x10\x00\x12\x16\n\x12NESTED_PUBKEY_HASH\x10\x01\"\x1a\n\x18NewWitnessAddressRequest\".\n\x12NewAddressResponse\x12\x18\n\x07\x61\x64\x64ress\x18\x01 \x01(\tR\x07\x61\x64\x64ress\"&\n\x12SignMessageRequest\x12\x10\n\x03msg\x18\x01 \x01(\x0cR\x03msg\"3\n\x13SignMessageResponse\x12\x1c\n\tsignature\x18\x01 \x01(\tR\tsignature\"F\n\x14VerifyMessageRequest\x12\x10\n\x03msg\x18\x01 \x01(\x0cR\x03msg\x12\x1c\n\tsignature\x18\x02 \x01(\tR\tsignature\"E\n\x15VerifyMessageResponse\x12\x14\n\x05valid\x18\x01 \x01(\x08R\x05valid\x12\x16\n\x06pubkey\x18\x02 \x01(\tR\x06pubkey\"I\n\x12\x43onnectPeerRequest\x12%\n\x04\x61\x64\x64r\x18\x01 \x01(\x0b\x32\x17.lnrpc.LightningAddress\x12\x0c\n\x04perm\x18\x02 \x01(\x08\"\x15\n\x13\x43onnectPeerResponse\"1\n\x15\x44isconnectPeerRequest\x12\x18\n\x07pub_key\x18\x01 \x01(\tR\x07pub_key\"\x18\n\x16\x44isconnectPeerResponse\"\x86\x01\n\x04HTLC\x12\x1a\n\x08incoming\x18\x01 \x01(\x08R\x08incoming\x12\x16\n\x06\x61mount\x18\x02 \x01(\x03R\x06\x61mount\x12\x1c\n\thash_lock\x18\x03 \x01(\x0cR\thash_lock\x12,\n\x11\x65xpiration_height\x18\x04 \x01(\rR\x11\x65xpiration_height\"\xea\x04\n\rActiveChannel\x12\x16\n\x06\x61\x63tive\x18\x01 \x01(\x08R\x06\x61\x63tive\x12$\n\rremote_pubkey\x18\x02 \x01(\tR\rremote_pubkey\x12$\n\rchannel_point\x18\x03 \x01(\tR\rchannel_point\x12\x18\n\x07\x63han_id\x18\x04 \x01(\x04R\x07\x63han_id\x12\x1a\n\x08\x63\x61pacity\x18\x05 \x01(\x03R\x08\x63\x61pacity\x12$\n\rlocal_balance\x18\x06 \x01(\x03R\rlocal_balance\x12&\n\x0eremote_balance\x18\x07 \x01(\x03R\x0eremote_balance\x12\x1e\n\ncommit_fee\x18\x08 \x01(\x03R\ncommit_fee\x12$\n\rcommit_weight\x18\t \x01(\x03R\rcommit_weight\x12\x1e\n\nfee_per_kw\x18\n \x01(\x03R\nfee_per_kw\x12,\n\x11unsettled_balance\x18\x0b \x01(\x03R\x11unsettled_balance\x12\x30\n\x13total_satoshis_sent\x18\x0c \x01(\x03R\x13total_satoshis_sent\x12\x38\n\x17total_satoshis_received\x18\r \x01(\x03R\x17total_satoshis_received\x12 \n\x0bnum_updates\x18\x0e \x01(\x04R\x0bnum_updates\x12\x31\n\rpending_htlcs\x18\x0f \x03(\x0b\x32\x0b.lnrpc.HTLCR\rpending_htlcs\x12\x1c\n\tcsv_delay\x18\x10 \x01(\rR\tcsv_delay\"\x15\n\x13ListChannelsRequest\"H\n\x14ListChannelsResponse\x12\x30\n\x08\x63hannels\x18\x0b \x03(\x0b\x32\x14.lnrpc.ActiveChannelR\x08\x63hannels\"\xea\x01\n\x04Peer\x12\x18\n\x07pub_key\x18\x01 \x01(\tR\x07pub_key\x12\x18\n\x07\x61\x64\x64ress\x18\x03 \x01(\tR\x07\x61\x64\x64ress\x12\x1e\n\nbytes_sent\x18\x04 \x01(\x04R\nbytes_sent\x12\x1e\n\nbytes_recv\x18\x05 \x01(\x04R\nbytes_recv\x12\x1a\n\x08sat_sent\x18\x06 \x01(\x03R\x08sat_sent\x12\x1a\n\x08sat_recv\x18\x07 \x01(\x03R\x08sat_recv\x12\x18\n\x07inbound\x18\x08 \x01(\x08R\x07inbound\x12\x1c\n\tping_time\x18\t \x01(\x03R\tping_time\"\x12\n\x10ListPeersRequest\"6\n\x11ListPeersResponse\x12!\n\x05peers\x18\x01 \x03(\x0b\x32\x0b.lnrpc.PeerR\x05peers\"\x10\n\x0eGetInfoRequest\"\xbf\x03\n\x0fGetInfoResponse\x12(\n\x0fidentity_pubkey\x18\x01 \x01(\tR\x0fidentity_pubkey\x12\x14\n\x05\x61lias\x18\x02 \x01(\tR\x05\x61lias\x12\x32\n\x14num_pending_channels\x18\x03 \x01(\rR\x14num_pending_channels\x12\x30\n\x13num_active_channels\x18\x04 \x01(\rR\x13num_active_channels\x12\x1c\n\tnum_peers\x18\x05 \x01(\rR\tnum_peers\x12\"\n\x0c\x62lock_height\x18\x06 \x01(\rR\x0c\x62lock_height\x12\x1e\n\nblock_hash\x18\x08 \x01(\tR\nblock_hash\x12(\n\x0fsynced_to_chain\x18\t \x01(\x08R\x0fsynced_to_chain\x12\x18\n\x07testnet\x18\n \x01(\x08R\x07testnet\x12\x16\n\x06\x63hains\x18\x0b \x03(\tR\x06\x63hains\x12\x12\n\x04uris\x18\x0c \x03(\tR\x04uris\x12\x34\n\x15\x62\x65st_header_timestamp\x18\r \x01(\x03R\x15\x62\x65st_header_timestamp\"U\n\x12\x43onfirmationUpdate\x12\x11\n\tblock_sha\x18\x01 \x01(\x0c\x12\x14\n\x0c\x62lock_height\x18\x02 \x01(\x05\x12\x16\n\x0enum_confs_left\x18\x03 \x01(\r\"N\n\x11\x43hannelOpenUpdate\x12\x39\n\rchannel_point\x18\x01 \x01(\x0b\x32\x13.lnrpc.ChannelPointR\rchannel_point\"R\n\x12\x43hannelCloseUpdate\x12\"\n\x0c\x63losing_txid\x18\x01 \x01(\x0cR\x0c\x63losing_txid\x12\x18\n\x07success\x18\x02 \x01(\x08R\x07success\"{\n\x13\x43loseChannelRequest\x12*\n\rchannel_point\x18\x01 \x01(\x0b\x32\x13.lnrpc.ChannelPoint\x12\r\n\x05\x66orce\x18\x02 \x01(\x08\x12\x13\n\x0btarget_conf\x18\x03 \x01(\x05\x12\x14\n\x0csat_per_byte\x18\x04 \x01(\x03\"\xd9\x01\n\x11\x43loseStatusUpdate\x12<\n\rclose_pending\x18\x01 \x01(\x0b\x32\x14.lnrpc.PendingUpdateH\x00R\rclose_pending\x12?\n\x0c\x63onfirmation\x18\x02 \x01(\x0b\x32\x19.lnrpc.ConfirmationUpdateH\x00R\x0c\x63onfirmation\x12;\n\nchan_close\x18\x03 \x01(\x0b\x32\x19.lnrpc.ChannelCloseUpdateH\x00R\nchan_closeB\x08\n\x06update\"G\n\rPendingUpdate\x12\x12\n\x04txid\x18\x01 \x01(\x0cR\x04txid\x12\"\n\x0coutput_index\x18\x02 \x01(\rR\x0coutput_index\"\xa1\x02\n\x12OpenChannelRequest\x12 \n\x0bnode_pubkey\x18\x02 \x01(\x0cR\x0bnode_pubkey\x12.\n\x12node_pubkey_string\x18\x03 \x01(\tR\x12node_pubkey_string\x12\x32\n\x14local_funding_amount\x18\x04 \x01(\x03R\x14local_funding_amount\x12\x1a\n\x08push_sat\x18\x05 \x01(\x03R\x08push_sat\x12\x13\n\x0btarget_conf\x18\x06 \x01(\x05\x12\x14\n\x0csat_per_byte\x18\x07 \x01(\x03\x12\x18\n\x07private\x18\x08 \x01(\x08R\x07private\x12$\n\rmin_htlc_msat\x18\t \x01(\x03R\rmin_htlc_msat\"\xd3\x01\n\x10OpenStatusUpdate\x12:\n\x0c\x63han_pending\x18\x01 \x01(\x0b\x32\x14.lnrpc.PendingUpdateH\x00R\x0c\x63han_pending\x12?\n\x0c\x63onfirmation\x18\x02 \x01(\x0b\x32\x19.lnrpc.ConfirmationUpdateH\x00R\x0c\x63onfirmation\x12\x38\n\tchan_open\x18\x03 \x01(\x0b\x32\x18.lnrpc.ChannelOpenUpdateH\x00R\tchan_openB\x08\n\x06update\"\xcf\x01\n\x0bPendingHTLC\x12\x1a\n\x08incoming\x18\x01 \x01(\x08R\x08incoming\x12\x16\n\x06\x61mount\x18\x02 \x01(\x03R\x06\x61mount\x12\x1a\n\x08outpoint\x18\x03 \x01(\tR\x08outpoint\x12(\n\x0fmaturity_height\x18\x04 \x01(\rR\x0fmaturity_height\x12\x30\n\x13\x62locks_til_maturity\x18\x05 \x01(\x05R\x13\x62locks_til_maturity\x12\x14\n\x05stage\x18\x06 \x01(\rR\x05stage\"\x18\n\x16PendingChannelsRequest\"\xc1\n\n\x17PendingChannelsResponse\x12\x30\n\x13total_limbo_balance\x18\x01 \x01(\x03R\x13total_limbo_balance\x12g\n\x15pending_open_channels\x18\x02 \x03(\x0b\x32\x31.lnrpc.PendingChannelsResponse.PendingOpenChannelR\x15pending_open_channels\x12h\n\x18pending_closing_channels\x18\x03 \x03(\x0b\x32,.lnrpc.PendingChannelsResponse.ClosedChannelR\x18pending_closing_channels\x12y\n\x1epending_force_closing_channels\x18\x04 \x03(\x0b\x32\x31.lnrpc.PendingChannelsResponse.ForceClosedChannelR\x1epending_force_closing_channels\x1a\xca\x01\n\x0ePendingChannel\x12(\n\x0fremote_node_pub\x18\x01 \x01(\tR\x0fremote_node_pub\x12$\n\rchannel_point\x18\x02 \x01(\tR\rchannel_point\x12\x1a\n\x08\x63\x61pacity\x18\x03 \x01(\x03R\x08\x63\x61pacity\x12$\n\rlocal_balance\x18\x04 \x01(\x03R\rlocal_balance\x12&\n\x0eremote_balance\x18\x05 \x01(\x03R\x0eremote_balance\x1a\xf5\x01\n\x12PendingOpenChannel\x12G\n\x07\x63hannel\x18\x01 \x01(\x0b\x32-.lnrpc.PendingChannelsResponse.PendingChannelR\x07\x63hannel\x12\x30\n\x13\x63onfirmation_height\x18\x02 \x01(\rR\x13\x63onfirmation_height\x12\x1e\n\ncommit_fee\x18\x04 \x01(\x03R\ncommit_fee\x12$\n\rcommit_weight\x18\x05 \x01(\x03R\rcommit_weight\x12\x1e\n\nfee_per_kw\x18\x06 \x01(\x03R\nfee_per_kw\x1as\n\rClosedChannel\x12>\n\x07\x63hannel\x18\x01 \x01(\x0b\x32-.lnrpc.PendingChannelsResponse.PendingChannel\x12\"\n\x0c\x63losing_txid\x18\x02 \x01(\tR\x0c\x63losing_txid\x1a\xeb\x02\n\x12\x46orceClosedChannel\x12G\n\x07\x63hannel\x18\x01 \x01(\x0b\x32-.lnrpc.PendingChannelsResponse.PendingChannelR\x07\x63hannel\x12\"\n\x0c\x63losing_txid\x18\x02 \x01(\tR\x0c\x63losing_txid\x12$\n\rlimbo_balance\x18\x03 \x01(\x03R\rlimbo_balance\x12(\n\x0fmaturity_height\x18\x04 \x01(\rR\x0fmaturity_height\x12\x30\n\x13\x62locks_til_maturity\x18\x05 \x01(\x05R\x13\x62locks_til_maturity\x12,\n\x11recovered_balance\x18\x06 \x01(\x03R\x11recovered_balance\x12\x38\n\rpending_htlcs\x18\x08 \x03(\x0b\x32\x12.lnrpc.PendingHTLCR\rpending_htlcs\"\x16\n\x14WalletBalanceRequest\"\x9d\x01\n\x15WalletBalanceResponse\x12$\n\rtotal_balance\x18\x01 \x01(\x03R\rtotal_balance\x12,\n\x11\x63onfirmed_balance\x18\x02 \x01(\x03R\x11\x63onfirmed_balance\x12\x30\n\x13unconfirmed_balance\x18\x03 \x01(\x03R\x13unconfirmed_balance\"\x17\n\x15\x43hannelBalanceRequest\"2\n\x16\x43hannelBalanceResponse\x12\x18\n\x07\x62\x61lance\x18\x01 \x01(\x03R\x07\x62\x61lance\"F\n\x12QueryRoutesRequest\x12\x0f\n\x07pub_key\x18\x01 \x01(\t\x12\x0b\n\x03\x61mt\x18\x02 \x01(\x03\x12\x12\n\nnum_routes\x18\x03 \x01(\x05\";\n\x13QueryRoutesResponse\x12$\n\x06routes\x18\x01 \x03(\x0b\x32\x0c.lnrpc.RouteR\x06routes\"\x97\x01\n\x03Hop\x12\x18\n\x07\x63han_id\x18\x01 \x01(\x04R\x07\x63han_id\x12$\n\rchan_capacity\x18\x02 \x01(\x03R\rchan_capacity\x12&\n\x0e\x61mt_to_forward\x18\x03 \x01(\x03R\x0e\x61mt_to_forward\x12\x10\n\x03\x66\x65\x65\x18\x04 \x01(\x03R\x03\x66\x65\x65\x12\x16\n\x06\x65xpiry\x18\x05 \x01(\rR\x06\x65xpiry\"\x8f\x01\n\x05Route\x12(\n\x0ftotal_time_lock\x18\x01 \x01(\rR\x0ftotal_time_lock\x12\x1e\n\ntotal_fees\x18\x02 \x01(\x03R\ntotal_fees\x12\x1c\n\ttotal_amt\x18\x03 \x01(\x03R\ttotal_amt\x12\x1e\n\x04hops\x18\x04 \x03(\x0b\x32\n.lnrpc.HopR\x04hops\"\"\n\x0fNodeInfoRequest\x12\x0f\n\x07pub_key\x18\x01 \x01(\t\"\x80\x01\n\x08NodeInfo\x12(\n\x04node\x18\x01 \x01(\x0b\x32\x14.lnrpc.LightningNodeR\x04node\x12\"\n\x0cnum_channels\x18\x02 \x01(\rR\x0cnum_channels\x12&\n\x0etotal_capacity\x18\x03 \x01(\x03R\x0etotal_capacity\"\xa9\x01\n\rLightningNode\x12 \n\x0blast_update\x18\x01 \x01(\rR\x0blast_update\x12\x18\n\x07pub_key\x18\x02 \x01(\tR\x07pub_key\x12\x14\n\x05\x61lias\x18\x03 \x01(\tR\x05\x61lias\x12\x30\n\taddresses\x18\x04 \x03(\x0b\x32\x12.lnrpc.NodeAddressR\taddresses\x12\x14\n\x05\x63olor\x18\x05 \x01(\tR\x05\x63olor\";\n\x0bNodeAddress\x12\x18\n\x07network\x18\x01 \x01(\tR\x07network\x12\x12\n\x04\x61\x64\x64r\x18\x02 \x01(\tR\x04\x61\x64\x64r\"\xad\x01\n\rRoutingPolicy\x12(\n\x0ftime_lock_delta\x18\x01 \x01(\rR\x0ftime_lock_delta\x12\x1a\n\x08min_htlc\x18\x02 \x01(\x03R\x08min_htlc\x12$\n\rfee_base_msat\x18\x03 \x01(\x03R\rfee_base_msat\x12\x30\n\x13\x66\x65\x65_rate_milli_msat\x18\x04 \x01(\x03R\x13\x66\x65\x65_rate_milli_msat\"\xbb\x02\n\x0b\x43hannelEdge\x12\x1e\n\nchannel_id\x18\x01 \x01(\x04R\nchannel_id\x12\x1e\n\nchan_point\x18\x02 \x01(\tR\nchan_point\x12 \n\x0blast_update\x18\x03 \x01(\rR\x0blast_update\x12\x1c\n\tnode1_pub\x18\x04 \x01(\tR\tnode1_pub\x12\x1c\n\tnode2_pub\x18\x05 \x01(\tR\tnode2_pub\x12\x1a\n\x08\x63\x61pacity\x18\x06 \x01(\x03R\x08\x63\x61pacity\x12\x38\n\x0cnode1_policy\x18\x07 \x01(\x0b\x32\x14.lnrpc.RoutingPolicyR\x0cnode1_policy\x12\x38\n\x0cnode2_policy\x18\x08 \x01(\x0b\x32\x14.lnrpc.RoutingPolicyR\x0cnode2_policy\"\x15\n\x13\x43hannelGraphRequest\"d\n\x0c\x43hannelGraph\x12*\n\x05nodes\x18\x01 \x03(\x0b\x32\x14.lnrpc.LightningNodeR\x05nodes\x12(\n\x05\x65\x64ges\x18\x02 \x03(\x0b\x32\x12.lnrpc.ChannelEdgeR\x05\x65\x64ges\"\"\n\x0f\x43hanInfoRequest\x12\x0f\n\x07\x63han_id\x18\x01 \x01(\x04\"\x14\n\x12NetworkInfoRequest\"\x83\x03\n\x0bNetworkInfo\x12&\n\x0egraph_diameter\x18\x01 \x01(\rR\x0egraph_diameter\x12&\n\x0e\x61vg_out_degree\x18\x02 \x01(\x01R\x0e\x61vg_out_degree\x12&\n\x0emax_out_degree\x18\x03 \x01(\rR\x0emax_out_degree\x12\x1c\n\tnum_nodes\x18\x04 \x01(\rR\tnum_nodes\x12\"\n\x0cnum_channels\x18\x05 \x01(\rR\x0cnum_channels\x12\x36\n\x16total_network_capacity\x18\x06 \x01(\x03R\x16total_network_capacity\x12*\n\x10\x61vg_channel_size\x18\x07 \x01(\x01R\x10\x61vg_channel_size\x12*\n\x10min_channel_size\x18\x08 \x01(\x03R\x10min_channel_size\x12*\n\x10max_channel_size\x18\t \x01(\x03R\x10max_channel_size\"\r\n\x0bStopRequest\"\x0e\n\x0cStopResponse\"\x1b\n\x19GraphTopologySubscription\"\xa3\x01\n\x13GraphTopologyUpdate\x12\'\n\x0cnode_updates\x18\x01 \x03(\x0b\x32\x11.lnrpc.NodeUpdate\x12\x31\n\x0f\x63hannel_updates\x18\x02 \x03(\x0b\x32\x18.lnrpc.ChannelEdgeUpdate\x12\x30\n\x0c\x63losed_chans\x18\x03 \x03(\x0b\x32\x1a.lnrpc.ClosedChannelUpdate\"]\n\nNodeUpdate\x12\x11\n\taddresses\x18\x01 \x03(\t\x12\x14\n\x0cidentity_key\x18\x02 \x01(\t\x12\x17\n\x0fglobal_features\x18\x03 \x01(\x0c\x12\r\n\x05\x61lias\x18\x04 \x01(\t\"\xc0\x01\n\x11\x43hannelEdgeUpdate\x12\x0f\n\x07\x63han_id\x18\x01 \x01(\x04\x12\'\n\nchan_point\x18\x02 \x01(\x0b\x32\x13.lnrpc.ChannelPoint\x12\x10\n\x08\x63\x61pacity\x18\x03 \x01(\x03\x12,\n\x0erouting_policy\x18\x04 \x01(\x0b\x32\x14.lnrpc.RoutingPolicy\x12\x18\n\x10\x61\x64vertising_node\x18\x05 \x01(\t\x12\x17\n\x0f\x63onnecting_node\x18\x06 \x01(\t\"x\n\x13\x43losedChannelUpdate\x12\x0f\n\x07\x63han_id\x18\x01 \x01(\x04\x12\x10\n\x08\x63\x61pacity\x18\x02 \x01(\x03\x12\x15\n\rclosed_height\x18\x03 \x01(\r\x12\'\n\nchan_point\x18\x04 \x01(\x0b\x32\x13.lnrpc.ChannelPoint\"\x9d\x03\n\x07Invoice\x12\x12\n\x04memo\x18\x01 \x01(\tR\x04memo\x12\x18\n\x07receipt\x18\x02 \x01(\x0cR\x07receipt\x12\x1e\n\nr_preimage\x18\x03 \x01(\x0cR\nr_preimage\x12\x16\n\x06r_hash\x18\x04 \x01(\x0cR\x06r_hash\x12\x14\n\x05value\x18\x05 \x01(\x03R\x05value\x12\x18\n\x07settled\x18\x06 \x01(\x08R\x07settled\x12$\n\rcreation_date\x18\x07 \x01(\x03R\rcreation_date\x12 \n\x0bsettle_date\x18\x08 \x01(\x03R\x0bsettle_date\x12(\n\x0fpayment_request\x18\t \x01(\tR\x0fpayment_request\x12*\n\x10\x64\x65scription_hash\x18\n \x01(\x0cR\x10\x64\x65scription_hash\x12\x16\n\x06\x65xpiry\x18\x0b \x01(\x03R\x06\x65xpiry\x12$\n\rfallback_addr\x18\x0c \x01(\tR\rfallback_addr\x12 \n\x0b\x63ltv_expiry\x18\r \x01(\x04R\x0b\x63ltv_expiry\"V\n\x12\x41\x64\x64InvoiceResponse\x12\x16\n\x06r_hash\x18\x01 \x01(\x0cR\x06r_hash\x12(\n\x0fpayment_request\x18\x02 \x01(\tR\x0fpayment_request\"E\n\x0bPaymentHash\x12\x1e\n\nr_hash_str\x18\x01 \x01(\tR\nr_hash_str\x12\x16\n\x06r_hash\x18\x02 \x01(\x0cR\x06r_hash\"*\n\x12ListInvoiceRequest\x12\x14\n\x0cpending_only\x18\x01 \x01(\x08\"A\n\x13ListInvoiceResponse\x12*\n\x08invoices\x18\x01 \x03(\x0b\x32\x0e.lnrpc.InvoiceR\x08invoices\"\x15\n\x13InvoiceSubscription\"\xbb\x01\n\x07Payment\x12\"\n\x0cpayment_hash\x18\x01 \x01(\tR\x0cpayment_hash\x12\x14\n\x05value\x18\x02 \x01(\x03R\x05value\x12$\n\rcreation_date\x18\x03 \x01(\x03R\rcreation_date\x12\x12\n\x04path\x18\x04 \x03(\tR\x04path\x12\x10\n\x03\x66\x65\x65\x18\x05 \x01(\x03R\x03\x66\x65\x65\x12*\n\x10payment_preimage\x18\x06 \x01(\tR\x10payment_preimage\"\x15\n\x13ListPaymentsRequest\"B\n\x14ListPaymentsResponse\x12*\n\x08payments\x18\x01 \x03(\x0b\x32\x0e.lnrpc.PaymentR\x08payments\"\x1a\n\x18\x44\x65leteAllPaymentsRequest\"\x1b\n\x19\x44\x65leteAllPaymentsResponse\"5\n\x11\x44\x65\x62ugLevelRequest\x12\x0c\n\x04show\x18\x01 \x01(\x08\x12\x12\n\nlevel_spec\x18\x02 \x01(\t\"6\n\x12\x44\x65\x62ugLevelResponse\x12 \n\x0bsub_systems\x18\x01 \x01(\tR\x0bsub_systems\"\x1f\n\x0cPayReqString\x12\x0f\n\x07pay_req\x18\x01 \x01(\t\"\xbe\x02\n\x06PayReq\x12 \n\x0b\x64\x65stination\x18\x01 \x01(\tR\x0b\x64\x65stination\x12\"\n\x0cpayment_hash\x18\x02 \x01(\tR\x0cpayment_hash\x12\"\n\x0cnum_satoshis\x18\x03 \x01(\x03R\x0cnum_satoshis\x12\x1c\n\ttimestamp\x18\x04 \x01(\x03R\ttimestamp\x12\x16\n\x06\x65xpiry\x18\x05 \x01(\x03R\x06\x65xpiry\x12 \n\x0b\x64\x65scription\x18\x06 \x01(\tR\x0b\x64\x65scription\x12*\n\x10\x64\x65scription_hash\x18\x07 \x01(\tR\x10\x64\x65scription_hash\x12$\n\rfallback_addr\x18\x08 \x01(\tR\rfallback_addr\x12 \n\x0b\x63ltv_expiry\x18\t \x01(\x03R\x0b\x63ltv_expiry\"\x12\n\x10\x46\x65\x65ReportRequest\"\x99\x01\n\x10\x43hannelFeeReport\x12!\n\nchan_point\x18\x01 \x01(\tR\rchannel_point\x12$\n\rbase_fee_msat\x18\x02 \x01(\x03R\rbase_fee_msat\x12 \n\x0b\x66\x65\x65_per_mil\x18\x03 \x01(\x03R\x0b\x66\x65\x65_per_mil\x12\x1a\n\x08\x66\x65\x65_rate\x18\x04 \x01(\x01R\x08\x66\x65\x65_rate\"\xbc\x01\n\x11\x46\x65\x65ReportResponse\x12;\n\x0c\x63hannel_fees\x18\x01 \x03(\x0b\x32\x17.lnrpc.ChannelFeeReportR\x0c\x63hannel_fees\x12 \n\x0b\x64\x61y_fee_sum\x18\x02 \x01(\x04R\x0b\x64\x61y_fee_sum\x12\"\n\x0cweek_fee_sum\x18\x03 \x01(\x04R\x0cweek_fee_sum\x12$\n\rmonth_fee_sum\x18\x04 \x01(\x04R\rmonth_fee_sum\"\xdb\x01\n\x13PolicyUpdateRequest\x12\x18\n\x06global\x18\x01 \x01(\x08H\x00R\x06global\x12\x35\n\nchan_point\x18\x02 \x01(\x0b\x32\x13.lnrpc.ChannelPointH\x00R\nchan_point\x12$\n\rbase_fee_msat\x18\x03 \x01(\x03R\rbase_fee_msat\x12\x1a\n\x08\x66\x65\x65_rate\x18\x04 \x01(\x01R\x08\x66\x65\x65_rate\x12(\n\x0ftime_lock_delta\x18\x05 \x01(\rR\x0ftime_lock_deltaB\x07\n\x05scope\"\x16\n\x14PolicyUpdateResponse\"\xa2\x01\n\x18\x46orwardingHistoryRequest\x12\x1e\n\nstart_time\x18\x01 \x01(\x04R\nstart_time\x12\x1a\n\x08\x65nd_time\x18\x02 \x01(\x04R\x08\x65nd_time\x12\"\n\x0cindex_offset\x18\x03 \x01(\rR\x0cindex_offset\x12&\n\x0enum_max_events\x18\x04 \x01(\rR\x0enum_max_events\"\xb5\x01\n\x0f\x46orwardingEvent\x12\x1c\n\ttimestamp\x18\x01 \x01(\x04R\ttimestamp\x12\x1e\n\nchan_id_in\x18\x02 \x01(\x04R\nchan_id_in\x12 \n\x0b\x63han_id_out\x18\x04 \x01(\x04R\x0b\x63han_id_out\x12\x16\n\x06\x61mt_in\x18\x05 \x01(\x04R\x06\x61mt_in\x12\x18\n\x07\x61mt_out\x18\x06 \x01(\x04R\x07\x61mt_out\x12\x10\n\x03\x66\x65\x65\x18\x07 \x01(\x04R\x03\x66\x65\x65\"\x8f\x01\n\x19\x46orwardingHistoryResponse\x12\x44\n\x11\x66orwarding_events\x18\x01 \x03(\x0b\x32\x16.lnrpc.ForwardingEventR\x11\x66orwarding_events\x12,\n\x11last_offset_index\x18\x02 \x01(\rR\x11last_offset_index2\xa3\x02\n\x0eWalletUnlocker\x12M\n\x07GenSeed\x12\x15.lnrpc.GenSeedRequest\x1a\x16.lnrpc.GenSeedResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\x0b/v1/genseed\x12\\\n\nInitWallet\x12\x18.lnrpc.InitWalletRequest\x1a\x19.lnrpc.InitWalletResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/initwallet:\x01*\x12\x64\n\x0cUnlockWallet\x12\x1a.lnrpc.UnlockWalletRequest\x1a\x1b.lnrpc.UnlockWalletResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/unlockwallet:\x01*2\xe2\x1b\n\tLightning\x12j\n\rWalletBalance\x12\x1b.lnrpc.WalletBalanceRequest\x1a\x1c.lnrpc.WalletBalanceResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/balance/blockchain\x12k\n\x0e\x43hannelBalance\x12\x1c.lnrpc.ChannelBalanceRequest\x1a\x1d.lnrpc.ChannelBalanceResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/balance/channels\x12\x65\n\x0fGetTransactions\x12\x1d.lnrpc.GetTransactionsRequest\x1a\x19.lnrpc.TransactionDetails\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/transactions\x12[\n\tSendCoins\x12\x17.lnrpc.SendCoinsRequest\x1a\x18.lnrpc.SendCoinsResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\"\x10/v1/transactions:\x01*\x12L\n\x15SubscribeTransactions\x12\x1d.lnrpc.GetTransactionsRequest\x1a\x12.lnrpc.Transaction0\x01\x12;\n\x08SendMany\x12\x16.lnrpc.SendManyRequest\x1a\x17.lnrpc.SendManyResponse\x12\x41\n\nNewAddress\x12\x18.lnrpc.NewAddressRequest\x1a\x19.lnrpc.NewAddressResponse\x12g\n\x11NewWitnessAddress\x12\x1f.lnrpc.NewWitnessAddressRequest\x1a\x19.lnrpc.NewAddressResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/newaddress\x12\x44\n\x0bSignMessage\x12\x19.lnrpc.SignMessageRequest\x1a\x1a.lnrpc.SignMessageResponse\x12J\n\rVerifyMessage\x12\x1b.lnrpc.VerifyMessageRequest\x1a\x1c.lnrpc.VerifyMessageResponse\x12Z\n\x0b\x43onnectPeer\x12\x19.lnrpc.ConnectPeerRequest\x1a\x1a.lnrpc.ConnectPeerResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\"\t/v1/peers:\x01*\x12j\n\x0e\x44isconnectPeer\x12\x1c.lnrpc.DisconnectPeerRequest\x1a\x1d.lnrpc.DisconnectPeerResponse\"\x1b\x82\xd3\xe4\x93\x02\x15*\x13/v1/peers/{pub_key}\x12Q\n\tListPeers\x12\x17.lnrpc.ListPeersRequest\x1a\x18.lnrpc.ListPeersResponse\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/peers\x12M\n\x07GetInfo\x12\x15.lnrpc.GetInfoRequest\x1a\x16.lnrpc.GetInfoResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\x0b/v1/getinfo\x12n\n\x0fPendingChannels\x12\x1d.lnrpc.PendingChannelsRequest\x1a\x1e.lnrpc.PendingChannelsResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/channels/pending\x12]\n\x0cListChannels\x12\x1a.lnrpc.ListChannelsRequest\x1a\x1b.lnrpc.ListChannelsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\x0c/v1/channels\x12Z\n\x0fOpenChannelSync\x12\x19.lnrpc.OpenChannelRequest\x1a\x13.lnrpc.ChannelPoint\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/v1/channels:\x01*\x12\x43\n\x0bOpenChannel\x12\x19.lnrpc.OpenChannelRequest\x1a\x17.lnrpc.OpenStatusUpdate0\x01\x12\x9a\x01\n\x0c\x43loseChannel\x12\x1a.lnrpc.CloseChannelRequest\x1a\x18.lnrpc.CloseStatusUpdate\"R\x82\xd3\xe4\x93\x02L*J/v1/channels/{channel_point.funding_txid_str}/{channel_point.output_index}0\x01\x12:\n\x0bSendPayment\x12\x12.lnrpc.SendRequest\x1a\x13.lnrpc.SendResponse(\x01\x30\x01\x12`\n\x0fSendPaymentSync\x12\x12.lnrpc.SendRequest\x1a\x13.lnrpc.SendResponse\"$\x82\xd3\xe4\x93\x02\x1e\"\x19/v1/channels/transactions:\x01*\x12P\n\nAddInvoice\x12\x0e.lnrpc.Invoice\x1a\x19.lnrpc.AddInvoiceResponse\"\x17\x82\xd3\xe4\x93\x02\x11\"\x0c/v1/invoices:\x01*\x12[\n\x0cListInvoices\x12\x19.lnrpc.ListInvoiceRequest\x1a\x1a.lnrpc.ListInvoiceResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\x0c/v1/invoices\x12U\n\rLookupInvoice\x12\x12.lnrpc.PaymentHash\x1a\x0e.lnrpc.Invoice\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/invoice/{r_hash_str}\x12\x61\n\x11SubscribeInvoices\x12\x1a.lnrpc.InvoiceSubscription\x1a\x0e.lnrpc.Invoice\"\x1e\x82\xd3\xe4\x93\x02\x18\x12\x16/v1/invoices/subscribe0\x01\x12P\n\x0c\x44\x65\x63odePayReq\x12\x13.lnrpc.PayReqString\x1a\r.lnrpc.PayReq\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/payreq/{pay_req}\x12]\n\x0cListPayments\x12\x1a.lnrpc.ListPaymentsRequest\x1a\x1b.lnrpc.ListPaymentsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\x0c/v1/payments\x12l\n\x11\x44\x65leteAllPayments\x12\x1f.lnrpc.DeleteAllPaymentsRequest\x1a .lnrpc.DeleteAllPaymentsResponse\"\x14\x82\xd3\xe4\x93\x02\x0e*\x0c/v1/payments\x12S\n\rDescribeGraph\x12\x1a.lnrpc.ChannelGraphRequest\x1a\x13.lnrpc.ChannelGraph\"\x11\x82\xd3\xe4\x93\x02\x0b\x12\t/v1/graph\x12[\n\x0bGetChanInfo\x12\x16.lnrpc.ChanInfoRequest\x1a\x12.lnrpc.ChannelEdge\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/graph/edge/{chan_id}\x12X\n\x0bGetNodeInfo\x12\x16.lnrpc.NodeInfoRequest\x1a\x0f.lnrpc.NodeInfo\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/graph/node/{pub_key}\x12n\n\x0bQueryRoutes\x12\x19.lnrpc.QueryRoutesRequest\x1a\x1a.lnrpc.QueryRoutesResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v1/graph/routes/{pub_key}/{amt}\x12W\n\x0eGetNetworkInfo\x12\x19.lnrpc.NetworkInfoRequest\x1a\x12.lnrpc.NetworkInfo\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/graph/info\x12\x35\n\nStopDaemon\x12\x12.lnrpc.StopRequest\x1a\x13.lnrpc.StopResponse\x12W\n\x15SubscribeChannelGraph\x12 .lnrpc.GraphTopologySubscription\x1a\x1a.lnrpc.GraphTopologyUpdate0\x01\x12\x41\n\nDebugLevel\x12\x18.lnrpc.DebugLevelRequest\x1a\x19.lnrpc.DebugLevelResponse\x12P\n\tFeeReport\x12\x17.lnrpc.FeeReportRequest\x1a\x18.lnrpc.FeeReportResponse\"\x10\x82\xd3\xe4\x93\x02\n\x12\x08/v1/fees\x12i\n\x13UpdateChannelPolicy\x12\x1a.lnrpc.PolicyUpdateRequest\x1a\x1b.lnrpc.PolicyUpdateResponse\"\x19\x82\xd3\xe4\x93\x02\x13\"\x0e/v1/chanpolicy:\x01*\x12m\n\x11\x46orwardingHistory\x12\x1f.lnrpc.ForwardingHistoryRequest\x1a .lnrpc.ForwardingHistoryResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\"\n/v1/switch:\x01*b\x06proto3')
   ,
   dependencies=[google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
@@ -40,17 +40,213 @@ _NEWADDRESSREQUEST_ADDRESSTYPE = _descriptor.EnumDescriptor(
       name='NESTED_PUBKEY_HASH', index=1, number=1,
       options=None,
       type=None),
-    _descriptor.EnumValueDescriptor(
-      name='PUBKEY_HASH', index=2, number=2,
-      options=None,
-      type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=1228,
-  serialized_end=1307,
+  serialized_start=1750,
+  serialized_end=1812,
 )
 _sym_db.RegisterEnumDescriptor(_NEWADDRESSREQUEST_ADDRESSTYPE)
+
+
+_GENSEEDREQUEST = _descriptor.Descriptor(
+  name='GenSeedRequest',
+  full_name='lnrpc.GenSeedRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='aezeed_passphrase', full_name='lnrpc.GenSeedRequest.aezeed_passphrase', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='seed_entropy', full_name='lnrpc.GenSeedRequest.seed_entropy', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=50,
+  serialized_end=115,
+)
+
+
+_GENSEEDRESPONSE = _descriptor.Descriptor(
+  name='GenSeedResponse',
+  full_name='lnrpc.GenSeedResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='cipher_seed_mnemonic', full_name='lnrpc.GenSeedResponse.cipher_seed_mnemonic', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='enciphered_seed', full_name='lnrpc.GenSeedResponse.enciphered_seed', index=1,
+      number=2, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=117,
+  serialized_end=189,
+)
+
+
+_INITWALLETREQUEST = _descriptor.Descriptor(
+  name='InitWalletRequest',
+  full_name='lnrpc.InitWalletRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='wallet_password', full_name='lnrpc.InitWalletRequest.wallet_password', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='cipher_seed_mnemonic', full_name='lnrpc.InitWalletRequest.cipher_seed_mnemonic', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='aezeed_passphrase', full_name='lnrpc.InitWalletRequest.aezeed_passphrase', index=2,
+      number=3, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=191,
+  serialized_end=292,
+)
+
+
+_INITWALLETRESPONSE = _descriptor.Descriptor(
+  name='InitWalletResponse',
+  full_name='lnrpc.InitWalletResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=294,
+  serialized_end=314,
+)
+
+
+_UNLOCKWALLETREQUEST = _descriptor.Descriptor(
+  name='UnlockWalletRequest',
+  full_name='lnrpc.UnlockWalletRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='wallet_password', full_name='lnrpc.UnlockWalletRequest.wallet_password', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=316,
+  serialized_end=362,
+)
+
+
+_UNLOCKWALLETRESPONSE = _descriptor.Descriptor(
+  name='UnlockWalletResponse',
+  full_name='lnrpc.UnlockWalletResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=364,
+  serialized_end=386,
+)
 
 
 _TRANSACTION = _descriptor.Descriptor(
@@ -66,49 +262,56 @@ _TRANSACTION = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='tx_hash'),
+      options=None, json_name='tx_hash', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='amount', full_name='lnrpc.Transaction.amount', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='amount'),
+      options=None, json_name='amount', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_confirmations', full_name='lnrpc.Transaction.num_confirmations', index=2,
       number=3, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_confirmations'),
+      options=None, json_name='num_confirmations', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='block_hash', full_name='lnrpc.Transaction.block_hash', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='block_hash'),
+      options=None, json_name='block_hash', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='block_height', full_name='lnrpc.Transaction.block_height', index=4,
       number=5, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='block_height'),
+      options=None, json_name='block_height', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='time_stamp', full_name='lnrpc.Transaction.time_stamp', index=5,
       number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='time_stamp'),
+      options=None, json_name='time_stamp', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='total_fees', full_name='lnrpc.Transaction.total_fees', index=6,
       number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_fees'),
+      options=None, json_name='total_fees', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='dest_addresses', full_name='lnrpc.Transaction.dest_addresses', index=7,
+      number=8, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='dest_addresses', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -121,8 +324,8 @@ _TRANSACTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=51,
-  serialized_end=292,
+  serialized_start=389,
+  serialized_end=670,
 )
 
 
@@ -145,8 +348,8 @@ _GETTRANSACTIONSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=294,
-  serialized_end=318,
+  serialized_start=672,
+  serialized_end=696,
 )
 
 
@@ -163,7 +366,7 @@ _TRANSACTIONDETAILS = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='transactions'),
+      options=None, json_name='transactions', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -176,8 +379,8 @@ _TRANSACTIONDETAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=320,
-  serialized_end=396,
+  serialized_start=698,
+  serialized_end=774,
 )
 
 
@@ -194,42 +397,49 @@ _SENDREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='dest_string', full_name='lnrpc.SendRequest.dest_string', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='amt', full_name='lnrpc.SendRequest.amt', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_hash', full_name='lnrpc.SendRequest.payment_hash', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_hash_string', full_name='lnrpc.SendRequest.payment_hash_string', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_request', full_name='lnrpc.SendRequest.payment_request', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='final_cltv_delta', full_name='lnrpc.SendRequest.final_cltv_delta', index=6,
+      number=7, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -242,8 +452,8 @@ _SENDREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=399,
-  serialized_end=536,
+  serialized_start=777,
+  serialized_end=940,
 )
 
 
@@ -260,21 +470,21 @@ _SENDRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payment_error'),
+      options=None, json_name='payment_error', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_preimage', full_name='lnrpc.SendResponse.payment_preimage', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payment_preimage'),
+      options=None, json_name='payment_preimage', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_route', full_name='lnrpc.SendResponse.payment_route', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payment_route'),
+      options=None, json_name='payment_route', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -287,8 +497,8 @@ _SENDRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=539,
-  serialized_end=687,
+  serialized_start=943,
+  serialized_end=1091,
 )
 
 
@@ -300,26 +510,26 @@ _CHANNELPOINT = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='funding_txid', full_name='lnrpc.ChannelPoint.funding_txid', index=0,
+      name='funding_txid_bytes', full_name='lnrpc.ChannelPoint.funding_txid_bytes', index=0,
       number=1, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='funding_txid'),
+      options=None, json_name='funding_txid_bytes', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='funding_txid_str', full_name='lnrpc.ChannelPoint.funding_txid_str', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='funding_txid_str'),
+      options=None, json_name='funding_txid_str', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='output_index', full_name='lnrpc.ChannelPoint.output_index', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='output_index'),
+      options=None, json_name='output_index', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -331,9 +541,12 @@ _CHANNELPOINT = _descriptor.Descriptor(
   syntax='proto3',
   extension_ranges=[],
   oneofs=[
+    _descriptor.OneofDescriptor(
+      name='funding_txid', full_name='lnrpc.ChannelPoint.funding_txid',
+      index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=690,
-  serialized_end=820,
+  serialized_start=1094,
+  serialized_end=1256,
 )
 
 
@@ -350,14 +563,14 @@ _LIGHTNINGADDRESS = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='pubkey'),
+      options=None, json_name='pubkey', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='host', full_name='lnrpc.LightningAddress.host', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='host'),
+      options=None, json_name='host', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -370,8 +583,8 @@ _LIGHTNINGADDRESS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=822,
-  serialized_end=884,
+  serialized_start=1258,
+  serialized_end=1320,
 )
 
 
@@ -388,14 +601,14 @@ _SENDMANYREQUEST_ADDRTOAMOUNTENTRY = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='lnrpc.SendManyRequest.AddrToAmountEntry.value', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -408,8 +621,8 @@ _SENDMANYREQUEST_ADDRTOAMOUNTENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=970,
-  serialized_end=1021,
+  serialized_start=1449,
+  serialized_end=1500,
 )
 
 _SENDMANYREQUEST = _descriptor.Descriptor(
@@ -425,7 +638,21 @@ _SENDMANYREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='target_conf', full_name='lnrpc.SendManyRequest.target_conf', index=1,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sat_per_byte', full_name='lnrpc.SendManyRequest.sat_per_byte', index=2,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -438,8 +665,8 @@ _SENDMANYREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=887,
-  serialized_end=1021,
+  serialized_start=1323,
+  serialized_end=1500,
 )
 
 
@@ -456,7 +683,7 @@ _SENDMANYRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='txid'),
+      options=None, json_name='txid', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -469,8 +696,8 @@ _SENDMANYRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1023,
-  serialized_end=1061,
+  serialized_start=1502,
+  serialized_end=1540,
 )
 
 
@@ -487,14 +714,28 @@ _SENDCOINSREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='amount', full_name='lnrpc.SendCoinsRequest.amount', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='target_conf', full_name='lnrpc.SendCoinsRequest.target_conf', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sat_per_byte', full_name='lnrpc.SendCoinsRequest.sat_per_byte', index=3,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -507,8 +748,8 @@ _SENDCOINSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1063,
-  serialized_end=1111,
+  serialized_start=1542,
+  serialized_end=1633,
 )
 
 
@@ -525,7 +766,7 @@ _SENDCOINSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='txid'),
+      options=None, json_name='txid', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -538,8 +779,8 @@ _SENDCOINSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1113,
-  serialized_end=1152,
+  serialized_start=1635,
+  serialized_end=1674,
 )
 
 
@@ -556,7 +797,7 @@ _NEWADDRESSREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -570,8 +811,8 @@ _NEWADDRESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1155,
-  serialized_end=1307,
+  serialized_start=1677,
+  serialized_end=1812,
 )
 
 
@@ -594,8 +835,8 @@ _NEWWITNESSADDRESSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1309,
-  serialized_end=1335,
+  serialized_start=1814,
+  serialized_end=1840,
 )
 
 
@@ -612,7 +853,7 @@ _NEWADDRESSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='address'),
+      options=None, json_name='address', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -625,8 +866,8 @@ _NEWADDRESSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1337,
-  serialized_end=1383,
+  serialized_start=1842,
+  serialized_end=1888,
 )
 
 
@@ -643,7 +884,7 @@ _SIGNMESSAGEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='msg'),
+      options=None, json_name='msg', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -656,8 +897,8 @@ _SIGNMESSAGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1385,
-  serialized_end=1423,
+  serialized_start=1890,
+  serialized_end=1928,
 )
 
 
@@ -674,7 +915,7 @@ _SIGNMESSAGERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='signature'),
+      options=None, json_name='signature', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -687,8 +928,8 @@ _SIGNMESSAGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1425,
-  serialized_end=1476,
+  serialized_start=1930,
+  serialized_end=1981,
 )
 
 
@@ -705,14 +946,14 @@ _VERIFYMESSAGEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='msg'),
+      options=None, json_name='msg', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='signature', full_name='lnrpc.VerifyMessageRequest.signature', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='signature'),
+      options=None, json_name='signature', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -725,8 +966,8 @@ _VERIFYMESSAGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1478,
-  serialized_end=1548,
+  serialized_start=1983,
+  serialized_end=2053,
 )
 
 
@@ -743,14 +984,14 @@ _VERIFYMESSAGERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='valid'),
+      options=None, json_name='valid', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='pubkey', full_name='lnrpc.VerifyMessageResponse.pubkey', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='pubkey'),
+      options=None, json_name='pubkey', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -763,8 +1004,8 @@ _VERIFYMESSAGERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1550,
-  serialized_end=1619,
+  serialized_start=2055,
+  serialized_end=2124,
 )
 
 
@@ -781,14 +1022,14 @@ _CONNECTPEERREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='perm', full_name='lnrpc.ConnectPeerRequest.perm', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -801,8 +1042,8 @@ _CONNECTPEERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1621,
-  serialized_end=1694,
+  serialized_start=2126,
+  serialized_end=2199,
 )
 
 
@@ -813,13 +1054,6 @@ _CONNECTPEERRESPONSE = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='peer_id', full_name='lnrpc.ConnectPeerResponse.peer_id', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='peer_id'),
   ],
   extensions=[
   ],
@@ -832,8 +1066,8 @@ _CONNECTPEERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1696,
-  serialized_end=1743,
+  serialized_start=2201,
+  serialized_end=2222,
 )
 
 
@@ -850,7 +1084,7 @@ _DISCONNECTPEERREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='pub_key'),
+      options=None, json_name='pub_key', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -863,8 +1097,8 @@ _DISCONNECTPEERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1745,
-  serialized_end=1794,
+  serialized_start=2224,
+  serialized_end=2273,
 )
 
 
@@ -887,8 +1121,8 @@ _DISCONNECTPEERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1796,
-  serialized_end=1820,
+  serialized_start=2275,
+  serialized_end=2299,
 )
 
 
@@ -905,35 +1139,28 @@ _HTLC = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='incoming'),
+      options=None, json_name='incoming', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='amount', full_name='lnrpc.HTLC.amount', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='amount'),
+      options=None, json_name='amount', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='hash_lock', full_name='lnrpc.HTLC.hash_lock', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='hash_lock'),
+      options=None, json_name='hash_lock', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='expiration_height', full_name='lnrpc.HTLC.expiration_height', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='expiration_height'),
-    _descriptor.FieldDescriptor(
-      name='revocation_delay', full_name='lnrpc.HTLC.revocation_delay', index=4,
-      number=5, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='revocation_delay'),
+      options=None, json_name='expiration_height', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -946,8 +1173,8 @@ _HTLC = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1823,
-  serialized_end=2001,
+  serialized_start=2302,
+  serialized_end=2436,
 )
 
 
@@ -964,105 +1191,112 @@ _ACTIVECHANNEL = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='active'),
+      options=None, json_name='active', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='remote_pubkey', full_name='lnrpc.ActiveChannel.remote_pubkey', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='remote_pubkey'),
+      options=None, json_name='remote_pubkey', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='channel_point', full_name='lnrpc.ActiveChannel.channel_point', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='channel_point'),
+      options=None, json_name='channel_point', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chan_id', full_name='lnrpc.ActiveChannel.chan_id', index=3,
       number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chan_id'),
+      options=None, json_name='chan_id', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='capacity', full_name='lnrpc.ActiveChannel.capacity', index=4,
       number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='capacity'),
+      options=None, json_name='capacity', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='local_balance', full_name='lnrpc.ActiveChannel.local_balance', index=5,
       number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='local_balance'),
+      options=None, json_name='local_balance', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='remote_balance', full_name='lnrpc.ActiveChannel.remote_balance', index=6,
       number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='remote_balance'),
+      options=None, json_name='remote_balance', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='commit_fee', full_name='lnrpc.ActiveChannel.commit_fee', index=7,
       number=8, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='commit_fee'),
+      options=None, json_name='commit_fee', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='commit_weight', full_name='lnrpc.ActiveChannel.commit_weight', index=8,
       number=9, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='commit_weight'),
+      options=None, json_name='commit_weight', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fee_per_kw', full_name='lnrpc.ActiveChannel.fee_per_kw', index=9,
       number=10, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='fee_per_kw'),
+      options=None, json_name='fee_per_kw', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='unsettled_balance', full_name='lnrpc.ActiveChannel.unsettled_balance', index=10,
       number=11, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='unsettled_balance'),
+      options=None, json_name='unsettled_balance', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='total_satoshis_sent', full_name='lnrpc.ActiveChannel.total_satoshis_sent', index=11,
       number=12, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_satoshis_sent'),
+      options=None, json_name='total_satoshis_sent', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='total_satoshis_received', full_name='lnrpc.ActiveChannel.total_satoshis_received', index=12,
       number=13, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_satoshis_received'),
+      options=None, json_name='total_satoshis_received', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_updates', full_name='lnrpc.ActiveChannel.num_updates', index=13,
       number=14, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_updates'),
+      options=None, json_name='num_updates', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='pending_htlcs', full_name='lnrpc.ActiveChannel.pending_htlcs', index=14,
       number=15, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='pending_htlcs'),
+      options=None, json_name='pending_htlcs', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='csv_delay', full_name='lnrpc.ActiveChannel.csv_delay', index=15,
+      number=16, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='csv_delay', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1075,8 +1309,8 @@ _ACTIVECHANNEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2004,
-  serialized_end=2592,
+  serialized_start=2439,
+  serialized_end=3057,
 )
 
 
@@ -1099,8 +1333,8 @@ _LISTCHANNELSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2594,
-  serialized_end=2615,
+  serialized_start=3059,
+  serialized_end=3080,
 )
 
 
@@ -1117,7 +1351,7 @@ _LISTCHANNELSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='channels'),
+      options=None, json_name='channels', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1130,8 +1364,8 @@ _LISTCHANNELSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2617,
-  serialized_end=2689,
+  serialized_start=3082,
+  serialized_end=3154,
 )
 
 
@@ -1148,63 +1382,56 @@ _PEER = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='pub_key'),
+      options=None, json_name='pub_key', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='peer_id', full_name='lnrpc.Peer.peer_id', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='peer_id'),
-    _descriptor.FieldDescriptor(
-      name='address', full_name='lnrpc.Peer.address', index=2,
+      name='address', full_name='lnrpc.Peer.address', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='address'),
+      options=None, json_name='address', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='bytes_sent', full_name='lnrpc.Peer.bytes_sent', index=3,
+      name='bytes_sent', full_name='lnrpc.Peer.bytes_sent', index=2,
       number=4, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='bytes_sent'),
+      options=None, json_name='bytes_sent', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='bytes_recv', full_name='lnrpc.Peer.bytes_recv', index=4,
+      name='bytes_recv', full_name='lnrpc.Peer.bytes_recv', index=3,
       number=5, type=4, cpp_type=4, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='bytes_recv'),
+      options=None, json_name='bytes_recv', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='sat_sent', full_name='lnrpc.Peer.sat_sent', index=5,
+      name='sat_sent', full_name='lnrpc.Peer.sat_sent', index=4,
       number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='sat_sent'),
+      options=None, json_name='sat_sent', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='sat_recv', full_name='lnrpc.Peer.sat_recv', index=6,
+      name='sat_recv', full_name='lnrpc.Peer.sat_recv', index=5,
       number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='sat_recv'),
+      options=None, json_name='sat_recv', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='inbound', full_name='lnrpc.Peer.inbound', index=7,
+      name='inbound', full_name='lnrpc.Peer.inbound', index=6,
       number=8, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='inbound'),
+      options=None, json_name='inbound', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='ping_time', full_name='lnrpc.Peer.ping_time', index=8,
+      name='ping_time', full_name='lnrpc.Peer.ping_time', index=7,
       number=9, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='ping_time'),
+      options=None, json_name='ping_time', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1217,8 +1444,8 @@ _PEER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2692,
-  serialized_end=2952,
+  serialized_start=3157,
+  serialized_end=3391,
 )
 
 
@@ -1241,8 +1468,8 @@ _LISTPEERSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2954,
-  serialized_end=2972,
+  serialized_start=3393,
+  serialized_end=3411,
 )
 
 
@@ -1259,7 +1486,7 @@ _LISTPEERSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='peers'),
+      options=None, json_name='peers', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1272,8 +1499,8 @@ _LISTPEERSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2974,
-  serialized_end=3028,
+  serialized_start=3413,
+  serialized_end=3467,
 )
 
 
@@ -1296,8 +1523,8 @@ _GETINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3030,
-  serialized_end=3046,
+  serialized_start=3469,
+  serialized_end=3485,
 )
 
 
@@ -1314,70 +1541,84 @@ _GETINFORESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='identity_pubkey'),
+      options=None, json_name='identity_pubkey', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='alias', full_name='lnrpc.GetInfoResponse.alias', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='alias'),
+      options=None, json_name='alias', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_pending_channels', full_name='lnrpc.GetInfoResponse.num_pending_channels', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_pending_channels'),
+      options=None, json_name='num_pending_channels', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_active_channels', full_name='lnrpc.GetInfoResponse.num_active_channels', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_active_channels'),
+      options=None, json_name='num_active_channels', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_peers', full_name='lnrpc.GetInfoResponse.num_peers', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_peers'),
+      options=None, json_name='num_peers', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='block_height', full_name='lnrpc.GetInfoResponse.block_height', index=5,
       number=6, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='block_height'),
+      options=None, json_name='block_height', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='block_hash', full_name='lnrpc.GetInfoResponse.block_hash', index=6,
       number=8, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='block_hash'),
+      options=None, json_name='block_hash', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='synced_to_chain', full_name='lnrpc.GetInfoResponse.synced_to_chain', index=7,
       number=9, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='synced_to_chain'),
+      options=None, json_name='synced_to_chain', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='testnet', full_name='lnrpc.GetInfoResponse.testnet', index=8,
       number=10, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='testnet'),
+      options=None, json_name='testnet', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chains', full_name='lnrpc.GetInfoResponse.chains', index=9,
       number=11, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chains'),
+      options=None, json_name='chains', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='uris', full_name='lnrpc.GetInfoResponse.uris', index=10,
+      number=12, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='uris', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='best_header_timestamp', full_name='lnrpc.GetInfoResponse.best_header_timestamp', index=11,
+      number=13, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='best_header_timestamp', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1390,8 +1631,8 @@ _GETINFORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3049,
-  serialized_end=3422,
+  serialized_start=3488,
+  serialized_end=3935,
 )
 
 
@@ -1408,21 +1649,21 @@ _CONFIRMATIONUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='block_height', full_name='lnrpc.ConfirmationUpdate.block_height', index=1,
       number=2, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_confs_left', full_name='lnrpc.ConfirmationUpdate.num_confs_left', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1435,8 +1676,8 @@ _CONFIRMATIONUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3424,
-  serialized_end=3509,
+  serialized_start=3937,
+  serialized_end=4022,
 )
 
 
@@ -1453,7 +1694,7 @@ _CHANNELOPENUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='channel_point'),
+      options=None, json_name='channel_point', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1466,8 +1707,8 @@ _CHANNELOPENUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3511,
-  serialized_end=3589,
+  serialized_start=4024,
+  serialized_end=4102,
 )
 
 
@@ -1484,14 +1725,14 @@ _CHANNELCLOSEUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='closing_txid'),
+      options=None, json_name='closing_txid', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='success', full_name='lnrpc.ChannelCloseUpdate.success', index=1,
       number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='success'),
+      options=None, json_name='success', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1504,8 +1745,8 @@ _CHANNELCLOSEUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3591,
-  serialized_end=3673,
+  serialized_start=4104,
+  serialized_end=4186,
 )
 
 
@@ -1522,21 +1763,28 @@ _CLOSECHANNELREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='time_limit', full_name='lnrpc.CloseChannelRequest.time_limit', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='force', full_name='lnrpc.CloseChannelRequest.force', index=2,
-      number=3, type=8, cpp_type=7, label=1,
+      name='force', full_name='lnrpc.CloseChannelRequest.force', index=1,
+      number=2, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='target_conf', full_name='lnrpc.CloseChannelRequest.target_conf', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sat_per_byte', full_name='lnrpc.CloseChannelRequest.sat_per_byte', index=3,
+      number=4, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1549,8 +1797,8 @@ _CLOSECHANNELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3675,
-  serialized_end=3775,
+  serialized_start=4188,
+  serialized_end=4311,
 )
 
 
@@ -1567,21 +1815,21 @@ _CLOSESTATUSUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='close_pending'),
+      options=None, json_name='close_pending', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='confirmation', full_name='lnrpc.CloseStatusUpdate.confirmation', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='confirmation'),
+      options=None, json_name='confirmation', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chan_close', full_name='lnrpc.CloseStatusUpdate.chan_close', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chan_close'),
+      options=None, json_name='chan_close', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1597,8 +1845,8 @@ _CLOSESTATUSUPDATE = _descriptor.Descriptor(
       name='update', full_name='lnrpc.CloseStatusUpdate.update',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=3778,
-  serialized_end=3995,
+  serialized_start=4314,
+  serialized_end=4531,
 )
 
 
@@ -1615,14 +1863,14 @@ _PENDINGUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='txid'),
+      options=None, json_name='txid', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='output_index', full_name='lnrpc.PendingUpdate.output_index', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='output_index'),
+      options=None, json_name='output_index', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1635,8 +1883,8 @@ _PENDINGUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=3997,
-  serialized_end=4068,
+  serialized_start=4533,
+  serialized_end=4604,
 )
 
 
@@ -1648,40 +1896,61 @@ _OPENCHANNELREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='target_peer_id', full_name='lnrpc.OpenChannelRequest.target_peer_id', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='target_peer_id'),
-    _descriptor.FieldDescriptor(
-      name='node_pubkey', full_name='lnrpc.OpenChannelRequest.node_pubkey', index=1,
+      name='node_pubkey', full_name='lnrpc.OpenChannelRequest.node_pubkey', index=0,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='node_pubkey'),
+      options=None, json_name='node_pubkey', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='node_pubkey_string', full_name='lnrpc.OpenChannelRequest.node_pubkey_string', index=2,
+      name='node_pubkey_string', full_name='lnrpc.OpenChannelRequest.node_pubkey_string', index=1,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='node_pubkey_string'),
+      options=None, json_name='node_pubkey_string', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='local_funding_amount', full_name='lnrpc.OpenChannelRequest.local_funding_amount', index=3,
+      name='local_funding_amount', full_name='lnrpc.OpenChannelRequest.local_funding_amount', index=2,
       number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='local_funding_amount'),
+      options=None, json_name='local_funding_amount', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='push_sat', full_name='lnrpc.OpenChannelRequest.push_sat', index=4,
+      name='push_sat', full_name='lnrpc.OpenChannelRequest.push_sat', index=3,
       number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='push_sat'),
+      options=None, json_name='push_sat', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='target_conf', full_name='lnrpc.OpenChannelRequest.target_conf', index=4,
+      number=6, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='sat_per_byte', full_name='lnrpc.OpenChannelRequest.sat_per_byte', index=5,
+      number=7, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='private', full_name='lnrpc.OpenChannelRequest.private', index=6,
+      number=8, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='private', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='min_htlc_msat', full_name='lnrpc.OpenChannelRequest.min_htlc_msat', index=7,
+      number=9, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='min_htlc_msat', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1694,8 +1963,8 @@ _OPENCHANNELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4071,
-  serialized_end=4293,
+  serialized_start=4607,
+  serialized_end=4896,
 )
 
 
@@ -1712,21 +1981,21 @@ _OPENSTATUSUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chan_pending'),
+      options=None, json_name='chan_pending', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='confirmation', full_name='lnrpc.OpenStatusUpdate.confirmation', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='confirmation'),
+      options=None, json_name='confirmation', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chan_open', full_name='lnrpc.OpenStatusUpdate.chan_open', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chan_open'),
+      options=None, json_name='chan_open', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1742,237 +2011,60 @@ _OPENSTATUSUPDATE = _descriptor.Descriptor(
       name='update', full_name='lnrpc.OpenStatusUpdate.update',
       index=0, containing_type=None, fields=[]),
   ],
-  serialized_start=4296,
-  serialized_end=4507,
+  serialized_start=4899,
+  serialized_end=5110,
 )
 
 
-_PENDINGCHANNELREQUEST = _descriptor.Descriptor(
-  name='PendingChannelRequest',
-  full_name='lnrpc.PendingChannelRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4509,
-  serialized_end=4532,
-)
-
-
-_PENDINGCHANNELRESPONSE_PENDINGCHANNEL = _descriptor.Descriptor(
-  name='PendingChannel',
-  full_name='lnrpc.PendingChannelResponse.PendingChannel',
+_PENDINGHTLC = _descriptor.Descriptor(
+  name='PendingHTLC',
+  full_name='lnrpc.PendingHTLC',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='remote_node_pub', full_name='lnrpc.PendingChannelResponse.PendingChannel.remote_node_pub', index=0,
-      number=1, type=9, cpp_type=9, label=1,
+      name='incoming', full_name='lnrpc.PendingHTLC.incoming', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='incoming', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='amount', full_name='lnrpc.PendingHTLC.amount', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='amount', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='outpoint', full_name='lnrpc.PendingHTLC.outpoint', index=2,
+      number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='remote_node_pub'),
+      options=None, json_name='outpoint', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='channel_point', full_name='lnrpc.PendingChannelResponse.PendingChannel.channel_point', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='channel_point'),
-    _descriptor.FieldDescriptor(
-      name='capacity', full_name='lnrpc.PendingChannelResponse.PendingChannel.capacity', index=2,
-      number=3, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='capacity'),
-    _descriptor.FieldDescriptor(
-      name='local_balance', full_name='lnrpc.PendingChannelResponse.PendingChannel.local_balance', index=3,
-      number=4, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='local_balance'),
-    _descriptor.FieldDescriptor(
-      name='remote_balance', full_name='lnrpc.PendingChannelResponse.PendingChannel.remote_balance', index=4,
-      number=5, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='remote_balance'),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=4943,
-  serialized_end=5145,
-)
-
-_PENDINGCHANNELRESPONSE_PENDINGOPENCHANNEL = _descriptor.Descriptor(
-  name='PendingOpenChannel',
-  full_name='lnrpc.PendingChannelResponse.PendingOpenChannel',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='channel', full_name='lnrpc.PendingChannelResponse.PendingOpenChannel.channel', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='channel'),
-    _descriptor.FieldDescriptor(
-      name='confirmation_height', full_name='lnrpc.PendingChannelResponse.PendingOpenChannel.confirmation_height', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='confirmation_height'),
-    _descriptor.FieldDescriptor(
-      name='blocks_till_open', full_name='lnrpc.PendingChannelResponse.PendingOpenChannel.blocks_till_open', index=2,
-      number=3, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='blocks_till_open'),
-    _descriptor.FieldDescriptor(
-      name='commit_fee', full_name='lnrpc.PendingChannelResponse.PendingOpenChannel.commit_fee', index=3,
-      number=4, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='commit_fee'),
-    _descriptor.FieldDescriptor(
-      name='commit_weight', full_name='lnrpc.PendingChannelResponse.PendingOpenChannel.commit_weight', index=4,
-      number=5, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='commit_weight'),
-    _descriptor.FieldDescriptor(
-      name='fee_per_kw', full_name='lnrpc.PendingChannelResponse.PendingOpenChannel.fee_per_kw', index=5,
-      number=6, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='fee_per_kw'),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5148,
-  serialized_end=5436,
-)
-
-_PENDINGCHANNELRESPONSE_CLOSEDCHANNEL = _descriptor.Descriptor(
-  name='ClosedChannel',
-  full_name='lnrpc.PendingChannelResponse.ClosedChannel',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='channel', full_name='lnrpc.PendingChannelResponse.ClosedChannel.channel', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='closing_txid', full_name='lnrpc.PendingChannelResponse.ClosedChannel.closing_txid', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='closing_txid'),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=5438,
-  serialized_end=5552,
-)
-
-_PENDINGCHANNELRESPONSE_FORCECLOSEDCHANNEL = _descriptor.Descriptor(
-  name='ForceClosedChannel',
-  full_name='lnrpc.PendingChannelResponse.ForceClosedChannel',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='channel', full_name='lnrpc.PendingChannelResponse.ForceClosedChannel.channel', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='channel'),
-    _descriptor.FieldDescriptor(
-      name='closing_txid', full_name='lnrpc.PendingChannelResponse.ForceClosedChannel.closing_txid', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='closing_txid'),
-    _descriptor.FieldDescriptor(
-      name='limbo_balance', full_name='lnrpc.PendingChannelResponse.ForceClosedChannel.limbo_balance', index=2,
-      number=3, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='limbo_balance'),
-    _descriptor.FieldDescriptor(
-      name='maturity_height', full_name='lnrpc.PendingChannelResponse.ForceClosedChannel.maturity_height', index=3,
+      name='maturity_height', full_name='lnrpc.PendingHTLC.maturity_height', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='maturity_height'),
+      options=None, json_name='maturity_height', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='blocks_til_maturity', full_name='lnrpc.PendingChannelResponse.ForceClosedChannel.blocks_til_maturity', index=4,
-      number=5, type=13, cpp_type=3, label=1,
+      name='blocks_til_maturity', full_name='lnrpc.PendingHTLC.blocks_til_maturity', index=4,
+      number=5, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='blocks_til_maturity'),
+      options=None, json_name='blocks_til_maturity', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='stage', full_name='lnrpc.PendingHTLC.stage', index=5,
+      number=6, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='stage', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -1985,49 +2077,22 @@ _PENDINGCHANNELRESPONSE_FORCECLOSEDCHANNEL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5555,
-  serialized_end=5813,
+  serialized_start=5113,
+  serialized_end=5320,
 )
 
-_PENDINGCHANNELRESPONSE = _descriptor.Descriptor(
-  name='PendingChannelResponse',
-  full_name='lnrpc.PendingChannelResponse',
+
+_PENDINGCHANNELSREQUEST = _descriptor.Descriptor(
+  name='PendingChannelsRequest',
+  full_name='lnrpc.PendingChannelsRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='total_limbo_balance', full_name='lnrpc.PendingChannelResponse.total_limbo_balance', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='total_limbo_balance'),
-    _descriptor.FieldDescriptor(
-      name='pending_open_channels', full_name='lnrpc.PendingChannelResponse.pending_open_channels', index=1,
-      number=2, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='pending_open_channels'),
-    _descriptor.FieldDescriptor(
-      name='pending_closing_channels', full_name='lnrpc.PendingChannelResponse.pending_closing_channels', index=2,
-      number=3, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='pending_closing_channels'),
-    _descriptor.FieldDescriptor(
-      name='pending_force_closing_channels', full_name='lnrpc.PendingChannelResponse.pending_force_closing_channels', index=3,
-      number=4, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None, json_name='pending_force_closing_channels'),
   ],
   extensions=[
   ],
-  nested_types=[_PENDINGCHANNELRESPONSE_PENDINGCHANNEL, _PENDINGCHANNELRESPONSE_PENDINGOPENCHANNEL, _PENDINGCHANNELRESPONSE_CLOSEDCHANNEL, _PENDINGCHANNELRESPONSE_FORCECLOSEDCHANNEL, ],
+  nested_types=[],
   enum_types=[
   ],
   options=None,
@@ -2036,8 +2101,285 @@ _PENDINGCHANNELRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=4535,
-  serialized_end=5813,
+  serialized_start=5322,
+  serialized_end=5346,
+)
+
+
+_PENDINGCHANNELSRESPONSE_PENDINGCHANNEL = _descriptor.Descriptor(
+  name='PendingChannel',
+  full_name='lnrpc.PendingChannelsResponse.PendingChannel',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='remote_node_pub', full_name='lnrpc.PendingChannelsResponse.PendingChannel.remote_node_pub', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='remote_node_pub', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='channel_point', full_name='lnrpc.PendingChannelsResponse.PendingChannel.channel_point', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='channel_point', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='capacity', full_name='lnrpc.PendingChannelsResponse.PendingChannel.capacity', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='capacity', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='local_balance', full_name='lnrpc.PendingChannelsResponse.PendingChannel.local_balance', index=3,
+      number=4, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='local_balance', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='remote_balance', full_name='lnrpc.PendingChannelsResponse.PendingChannel.remote_balance', index=4,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='remote_balance', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=5761,
+  serialized_end=5963,
+)
+
+_PENDINGCHANNELSRESPONSE_PENDINGOPENCHANNEL = _descriptor.Descriptor(
+  name='PendingOpenChannel',
+  full_name='lnrpc.PendingChannelsResponse.PendingOpenChannel',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='channel', full_name='lnrpc.PendingChannelsResponse.PendingOpenChannel.channel', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='channel', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='confirmation_height', full_name='lnrpc.PendingChannelsResponse.PendingOpenChannel.confirmation_height', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='confirmation_height', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='commit_fee', full_name='lnrpc.PendingChannelsResponse.PendingOpenChannel.commit_fee', index=2,
+      number=4, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='commit_fee', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='commit_weight', full_name='lnrpc.PendingChannelsResponse.PendingOpenChannel.commit_weight', index=3,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='commit_weight', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='fee_per_kw', full_name='lnrpc.PendingChannelsResponse.PendingOpenChannel.fee_per_kw', index=4,
+      number=6, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='fee_per_kw', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=5966,
+  serialized_end=6211,
+)
+
+_PENDINGCHANNELSRESPONSE_CLOSEDCHANNEL = _descriptor.Descriptor(
+  name='ClosedChannel',
+  full_name='lnrpc.PendingChannelsResponse.ClosedChannel',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='channel', full_name='lnrpc.PendingChannelsResponse.ClosedChannel.channel', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='closing_txid', full_name='lnrpc.PendingChannelsResponse.ClosedChannel.closing_txid', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='closing_txid', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=6213,
+  serialized_end=6328,
+)
+
+_PENDINGCHANNELSRESPONSE_FORCECLOSEDCHANNEL = _descriptor.Descriptor(
+  name='ForceClosedChannel',
+  full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='channel', full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel.channel', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='channel', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='closing_txid', full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel.closing_txid', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='closing_txid', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='limbo_balance', full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel.limbo_balance', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='limbo_balance', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='maturity_height', full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel.maturity_height', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='maturity_height', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='blocks_til_maturity', full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel.blocks_til_maturity', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='blocks_til_maturity', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='recovered_balance', full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel.recovered_balance', index=5,
+      number=6, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='recovered_balance', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pending_htlcs', full_name='lnrpc.PendingChannelsResponse.ForceClosedChannel.pending_htlcs', index=6,
+      number=8, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='pending_htlcs', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=6331,
+  serialized_end=6694,
+)
+
+_PENDINGCHANNELSRESPONSE = _descriptor.Descriptor(
+  name='PendingChannelsResponse',
+  full_name='lnrpc.PendingChannelsResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='total_limbo_balance', full_name='lnrpc.PendingChannelsResponse.total_limbo_balance', index=0,
+      number=1, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='total_limbo_balance', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pending_open_channels', full_name='lnrpc.PendingChannelsResponse.pending_open_channels', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='pending_open_channels', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pending_closing_channels', full_name='lnrpc.PendingChannelsResponse.pending_closing_channels', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='pending_closing_channels', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='pending_force_closing_channels', full_name='lnrpc.PendingChannelsResponse.pending_force_closing_channels', index=3,
+      number=4, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='pending_force_closing_channels', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[_PENDINGCHANNELSRESPONSE_PENDINGCHANNEL, _PENDINGCHANNELSRESPONSE_PENDINGOPENCHANNEL, _PENDINGCHANNELSRESPONSE_CLOSEDCHANNEL, _PENDINGCHANNELSRESPONSE_FORCECLOSEDCHANNEL, ],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=5349,
+  serialized_end=6694,
 )
 
 
@@ -2048,13 +2390,6 @@ _WALLETBALANCEREQUEST = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='witness_only', full_name='lnrpc.WalletBalanceRequest.witness_only', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -2067,8 +2402,8 @@ _WALLETBALANCEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5815,
-  serialized_end=5859,
+  serialized_start=6696,
+  serialized_end=6718,
 )
 
 
@@ -2080,12 +2415,26 @@ _WALLETBALANCERESPONSE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='balance', full_name='lnrpc.WalletBalanceResponse.balance', index=0,
+      name='total_balance', full_name='lnrpc.WalletBalanceResponse.total_balance', index=0,
       number=1, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='balance'),
+      options=None, json_name='total_balance', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='confirmed_balance', full_name='lnrpc.WalletBalanceResponse.confirmed_balance', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='confirmed_balance', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='unconfirmed_balance', full_name='lnrpc.WalletBalanceResponse.unconfirmed_balance', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='unconfirmed_balance', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2098,8 +2447,8 @@ _WALLETBALANCERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5861,
-  serialized_end=5910,
+  serialized_start=6721,
+  serialized_end=6878,
 )
 
 
@@ -2122,8 +2471,8 @@ _CHANNELBALANCEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5912,
-  serialized_end=5935,
+  serialized_start=6880,
+  serialized_end=6903,
 )
 
 
@@ -2140,7 +2489,7 @@ _CHANNELBALANCERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='balance'),
+      options=None, json_name='balance', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2153,8 +2502,8 @@ _CHANNELBALANCERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5937,
-  serialized_end=5987,
+  serialized_start=6905,
+  serialized_end=6955,
 )
 
 
@@ -2171,14 +2520,21 @@ _QUERYROUTESREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='amt', full_name='lnrpc.QueryRoutesRequest.amt', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='num_routes', full_name='lnrpc.QueryRoutesRequest.num_routes', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2191,8 +2547,8 @@ _QUERYROUTESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=5989,
-  serialized_end=6039,
+  serialized_start=6957,
+  serialized_end=7027,
 )
 
 
@@ -2209,7 +2565,7 @@ _QUERYROUTESRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='routes'),
+      options=None, json_name='routes', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2222,8 +2578,8 @@ _QUERYROUTESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6041,
-  serialized_end=6100,
+  serialized_start=7029,
+  serialized_end=7088,
 )
 
 
@@ -2240,35 +2596,35 @@ _HOP = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chan_id'),
+      options=None, json_name='chan_id', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chan_capacity', full_name='lnrpc.Hop.chan_capacity', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chan_capacity'),
+      options=None, json_name='chan_capacity', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='amt_to_forward', full_name='lnrpc.Hop.amt_to_forward', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='amt_to_forward'),
+      options=None, json_name='amt_to_forward', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fee', full_name='lnrpc.Hop.fee', index=3,
       number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='fee'),
+      options=None, json_name='fee', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='expiry', full_name='lnrpc.Hop.expiry', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='expiry'),
+      options=None, json_name='expiry', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2281,8 +2637,8 @@ _HOP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6103,
-  serialized_end=6254,
+  serialized_start=7091,
+  serialized_end=7242,
 )
 
 
@@ -2299,28 +2655,28 @@ _ROUTE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_time_lock'),
+      options=None, json_name='total_time_lock', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='total_fees', full_name='lnrpc.Route.total_fees', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_fees'),
+      options=None, json_name='total_fees', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='total_amt', full_name='lnrpc.Route.total_amt', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_amt'),
+      options=None, json_name='total_amt', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='hops', full_name='lnrpc.Route.hops', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='hops'),
+      options=None, json_name='hops', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2333,8 +2689,8 @@ _ROUTE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6257,
-  serialized_end=6400,
+  serialized_start=7245,
+  serialized_end=7388,
 )
 
 
@@ -2351,7 +2707,7 @@ _NODEINFOREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2364,8 +2720,8 @@ _NODEINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6402,
-  serialized_end=6436,
+  serialized_start=7390,
+  serialized_end=7424,
 )
 
 
@@ -2382,21 +2738,21 @@ _NODEINFO = _descriptor.Descriptor(
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='node'),
+      options=None, json_name='node', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_channels', full_name='lnrpc.NodeInfo.num_channels', index=1,
       number=2, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_channels'),
+      options=None, json_name='num_channels', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='total_capacity', full_name='lnrpc.NodeInfo.total_capacity', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_capacity'),
+      options=None, json_name='total_capacity', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2409,8 +2765,8 @@ _NODEINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6439,
-  serialized_end=6567,
+  serialized_start=7427,
+  serialized_end=7555,
 )
 
 
@@ -2427,28 +2783,35 @@ _LIGHTNINGNODE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='last_update'),
+      options=None, json_name='last_update', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='pub_key', full_name='lnrpc.LightningNode.pub_key', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='pub_key'),
+      options=None, json_name='pub_key', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='alias', full_name='lnrpc.LightningNode.alias', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='alias'),
+      options=None, json_name='alias', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='addresses', full_name='lnrpc.LightningNode.addresses', index=3,
       number=4, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='addresses'),
+      options=None, json_name='addresses', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='color', full_name='lnrpc.LightningNode.color', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='color', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2461,8 +2824,8 @@ _LIGHTNINGNODE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6570,
-  serialized_end=6717,
+  serialized_start=7558,
+  serialized_end=7727,
 )
 
 
@@ -2479,14 +2842,14 @@ _NODEADDRESS = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='network'),
+      options=None, json_name='network', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='addr', full_name='lnrpc.NodeAddress.addr', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='addr'),
+      options=None, json_name='addr', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2499,8 +2862,8 @@ _NODEADDRESS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6719,
-  serialized_end=6778,
+  serialized_start=7729,
+  serialized_end=7788,
 )
 
 
@@ -2517,28 +2880,28 @@ _ROUTINGPOLICY = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='time_lock_delta'),
+      options=None, json_name='time_lock_delta', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='min_htlc', full_name='lnrpc.RoutingPolicy.min_htlc', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='min_htlc'),
+      options=None, json_name='min_htlc', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fee_base_msat', full_name='lnrpc.RoutingPolicy.fee_base_msat', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='fee_base_msat'),
+      options=None, json_name='fee_base_msat', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fee_rate_milli_msat', full_name='lnrpc.RoutingPolicy.fee_rate_milli_msat', index=3,
       number=4, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='fee_rate_milli_msat'),
+      options=None, json_name='fee_rate_milli_msat', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2551,8 +2914,8 @@ _ROUTINGPOLICY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6781,
-  serialized_end=6954,
+  serialized_start=7791,
+  serialized_end=7964,
 )
 
 
@@ -2569,56 +2932,56 @@ _CHANNELEDGE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='channel_id'),
+      options=None, json_name='channel_id', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chan_point', full_name='lnrpc.ChannelEdge.chan_point', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='chan_point'),
+      options=None, json_name='chan_point', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='last_update', full_name='lnrpc.ChannelEdge.last_update', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='last_update'),
+      options=None, json_name='last_update', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='node1_pub', full_name='lnrpc.ChannelEdge.node1_pub', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='node1_pub'),
+      options=None, json_name='node1_pub', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='node2_pub', full_name='lnrpc.ChannelEdge.node2_pub', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='node2_pub'),
+      options=None, json_name='node2_pub', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='capacity', full_name='lnrpc.ChannelEdge.capacity', index=5,
       number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='capacity'),
+      options=None, json_name='capacity', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='node1_policy', full_name='lnrpc.ChannelEdge.node1_policy', index=6,
       number=7, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='node1_policy'),
+      options=None, json_name='node1_policy', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='node2_policy', full_name='lnrpc.ChannelEdge.node2_policy', index=7,
       number=8, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='node2_policy'),
+      options=None, json_name='node2_policy', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2631,8 +2994,8 @@ _CHANNELEDGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=6957,
-  serialized_end=7272,
+  serialized_start=7967,
+  serialized_end=8282,
 )
 
 
@@ -2655,8 +3018,8 @@ _CHANNELGRAPHREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7274,
-  serialized_end=7295,
+  serialized_start=8284,
+  serialized_end=8305,
 )
 
 
@@ -2673,14 +3036,14 @@ _CHANNELGRAPH = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='nodes'),
+      options=None, json_name='nodes', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='edges', full_name='lnrpc.ChannelGraph.edges', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='edges'),
+      options=None, json_name='edges', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2693,8 +3056,8 @@ _CHANNELGRAPH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7297,
-  serialized_end=7397,
+  serialized_start=8307,
+  serialized_end=8407,
 )
 
 
@@ -2711,7 +3074,7 @@ _CHANINFOREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2724,8 +3087,8 @@ _CHANINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7399,
-  serialized_end=7433,
+  serialized_start=8409,
+  serialized_end=8443,
 )
 
 
@@ -2748,8 +3111,8 @@ _NETWORKINFOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7435,
-  serialized_end=7455,
+  serialized_start=8445,
+  serialized_end=8465,
 )
 
 
@@ -2766,63 +3129,63 @@ _NETWORKINFO = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='graph_diameter'),
+      options=None, json_name='graph_diameter', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='avg_out_degree', full_name='lnrpc.NetworkInfo.avg_out_degree', index=1,
       number=2, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='avg_out_degree'),
+      options=None, json_name='avg_out_degree', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='max_out_degree', full_name='lnrpc.NetworkInfo.max_out_degree', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='max_out_degree'),
+      options=None, json_name='max_out_degree', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_nodes', full_name='lnrpc.NetworkInfo.num_nodes', index=3,
       number=4, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_nodes'),
+      options=None, json_name='num_nodes', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_channels', full_name='lnrpc.NetworkInfo.num_channels', index=4,
       number=5, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_channels'),
+      options=None, json_name='num_channels', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='total_network_capacity', full_name='lnrpc.NetworkInfo.total_network_capacity', index=5,
       number=6, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='total_network_capacity'),
+      options=None, json_name='total_network_capacity', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='avg_channel_size', full_name='lnrpc.NetworkInfo.avg_channel_size', index=6,
       number=7, type=1, cpp_type=5, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='avg_channel_size'),
+      options=None, json_name='avg_channel_size', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='min_channel_size', full_name='lnrpc.NetworkInfo.min_channel_size', index=7,
       number=8, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='min_channel_size'),
+      options=None, json_name='min_channel_size', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='max_channel_size', full_name='lnrpc.NetworkInfo.max_channel_size', index=8,
       number=9, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='max_channel_size'),
+      options=None, json_name='max_channel_size', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2835,8 +3198,8 @@ _NETWORKINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7458,
-  serialized_end=7845,
+  serialized_start=8468,
+  serialized_end=8855,
 )
 
 
@@ -2859,8 +3222,8 @@ _STOPREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7847,
-  serialized_end=7860,
+  serialized_start=8857,
+  serialized_end=8870,
 )
 
 
@@ -2883,8 +3246,8 @@ _STOPRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7862,
-  serialized_end=7876,
+  serialized_start=8872,
+  serialized_end=8886,
 )
 
 
@@ -2907,8 +3270,8 @@ _GRAPHTOPOLOGYSUBSCRIPTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7878,
-  serialized_end=7905,
+  serialized_start=8888,
+  serialized_end=8915,
 )
 
 
@@ -2925,21 +3288,21 @@ _GRAPHTOPOLOGYUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='channel_updates', full_name='lnrpc.GraphTopologyUpdate.channel_updates', index=1,
       number=2, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='closed_chans', full_name='lnrpc.GraphTopologyUpdate.closed_chans', index=2,
       number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -2952,8 +3315,8 @@ _GRAPHTOPOLOGYUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=7908,
-  serialized_end=8071,
+  serialized_start=8918,
+  serialized_end=9081,
 )
 
 
@@ -2970,28 +3333,28 @@ _NODEUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='identity_key', full_name='lnrpc.NodeUpdate.identity_key', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='global_features', full_name='lnrpc.NodeUpdate.global_features', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='alias', full_name='lnrpc.NodeUpdate.alias', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3004,8 +3367,8 @@ _NODEUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8073,
-  serialized_end=8166,
+  serialized_start=9083,
+  serialized_end=9176,
 )
 
 
@@ -3022,42 +3385,42 @@ _CHANNELEDGEUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chan_point', full_name='lnrpc.ChannelEdgeUpdate.chan_point', index=1,
       number=2, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='capacity', full_name='lnrpc.ChannelEdgeUpdate.capacity', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='routing_policy', full_name='lnrpc.ChannelEdgeUpdate.routing_policy', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='advertising_node', full_name='lnrpc.ChannelEdgeUpdate.advertising_node', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='connecting_node', full_name='lnrpc.ChannelEdgeUpdate.connecting_node', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3070,8 +3433,8 @@ _CHANNELEDGEUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8169,
-  serialized_end=8361,
+  serialized_start=9179,
+  serialized_end=9371,
 )
 
 
@@ -3088,28 +3451,28 @@ _CLOSEDCHANNELUPDATE = _descriptor.Descriptor(
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='capacity', full_name='lnrpc.ClosedChannelUpdate.capacity', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='closed_height', full_name='lnrpc.ClosedChannelUpdate.closed_height', index=2,
       number=3, type=13, cpp_type=3, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='chan_point', full_name='lnrpc.ClosedChannelUpdate.chan_point', index=3,
       number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3122,63 +3485,8 @@ _CLOSEDCHANNELUPDATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8363,
-  serialized_end=8483,
-)
-
-
-_SETALIASREQUEST = _descriptor.Descriptor(
-  name='SetAliasRequest',
-  full_name='lnrpc.SetAliasRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='new_alias', full_name='lnrpc.SetAliasRequest.new_alias', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=8485,
-  serialized_end=8521,
-)
-
-
-_SETALIASRESPONSE = _descriptor.Descriptor(
-  name='SetAliasResponse',
-  full_name='lnrpc.SetAliasResponse',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=8523,
-  serialized_end=8541,
+  serialized_start=9373,
+  serialized_end=9493,
 )
 
 
@@ -3195,63 +3503,91 @@ _INVOICE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='memo'),
+      options=None, json_name='memo', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='receipt', full_name='lnrpc.Invoice.receipt', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='receipt'),
+      options=None, json_name='receipt', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='r_preimage', full_name='lnrpc.Invoice.r_preimage', index=2,
       number=3, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='r_preimage'),
+      options=None, json_name='r_preimage', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='r_hash', full_name='lnrpc.Invoice.r_hash', index=3,
       number=4, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='r_hash'),
+      options=None, json_name='r_hash', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='lnrpc.Invoice.value', index=4,
       number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='value'),
+      options=None, json_name='value', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='settled', full_name='lnrpc.Invoice.settled', index=5,
       number=6, type=8, cpp_type=7, label=1,
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='settled'),
+      options=None, json_name='settled', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='creation_date', full_name='lnrpc.Invoice.creation_date', index=6,
       number=7, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='creation_date'),
+      options=None, json_name='creation_date', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='settle_date', full_name='lnrpc.Invoice.settle_date', index=7,
       number=8, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='settle_date'),
+      options=None, json_name='settle_date', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_request', full_name='lnrpc.Invoice.payment_request', index=8,
       number=9, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payment_request'),
+      options=None, json_name='payment_request', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='description_hash', full_name='lnrpc.Invoice.description_hash', index=9,
+      number=10, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='description_hash', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='expiry', full_name='lnrpc.Invoice.expiry', index=10,
+      number=11, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='expiry', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='fallback_addr', full_name='lnrpc.Invoice.fallback_addr', index=11,
+      number=12, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='fallback_addr', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='cltv_expiry', full_name='lnrpc.Invoice.cltv_expiry', index=12,
+      number=13, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='cltv_expiry', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3264,8 +3600,8 @@ _INVOICE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8544,
-  serialized_end=8817,
+  serialized_start=9496,
+  serialized_end=9909,
 )
 
 
@@ -3282,14 +3618,14 @@ _ADDINVOICERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='r_hash'),
+      options=None, json_name='r_hash', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_request', full_name='lnrpc.AddInvoiceResponse.payment_request', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payment_request'),
+      options=None, json_name='payment_request', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3302,8 +3638,8 @@ _ADDINVOICERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8819,
-  serialized_end=8905,
+  serialized_start=9911,
+  serialized_end=9997,
 )
 
 
@@ -3320,14 +3656,14 @@ _PAYMENTHASH = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='r_hash_str'),
+      options=None, json_name='r_hash_str', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='r_hash', full_name='lnrpc.PaymentHash.r_hash', index=1,
       number=2, type=12, cpp_type=9, label=1,
       has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='r_hash'),
+      options=None, json_name='r_hash', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3340,8 +3676,8 @@ _PAYMENTHASH = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8907,
-  serialized_end=8976,
+  serialized_start=9999,
+  serialized_end=10068,
 )
 
 
@@ -3358,7 +3694,7 @@ _LISTINVOICEREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3371,8 +3707,8 @@ _LISTINVOICEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=8978,
-  serialized_end=9020,
+  serialized_start=10070,
+  serialized_end=10112,
 )
 
 
@@ -3389,7 +3725,7 @@ _LISTINVOICERESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='invoices'),
+      options=None, json_name='invoices', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3402,8 +3738,8 @@ _LISTINVOICERESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9022,
-  serialized_end=9087,
+  serialized_start=10114,
+  serialized_end=10179,
 )
 
 
@@ -3426,8 +3762,8 @@ _INVOICESUBSCRIPTION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9089,
-  serialized_end=9110,
+  serialized_start=10181,
+  serialized_end=10202,
 )
 
 
@@ -3444,35 +3780,42 @@ _PAYMENT = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payment_hash'),
+      options=None, json_name='payment_hash', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='value', full_name='lnrpc.Payment.value', index=1,
       number=2, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='value'),
+      options=None, json_name='value', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='creation_date', full_name='lnrpc.Payment.creation_date', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='creation_date'),
+      options=None, json_name='creation_date', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='path', full_name='lnrpc.Payment.path', index=3,
       number=4, type=9, cpp_type=9, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='path'),
+      options=None, json_name='path', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='fee', full_name='lnrpc.Payment.fee', index=4,
       number=5, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='fee'),
+      options=None, json_name='fee', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='payment_preimage', full_name='lnrpc.Payment.payment_preimage', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='payment_preimage', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3485,8 +3828,8 @@ _PAYMENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9113,
-  serialized_end=9256,
+  serialized_start=10205,
+  serialized_end=10392,
 )
 
 
@@ -3509,8 +3852,8 @@ _LISTPAYMENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9258,
-  serialized_end=9279,
+  serialized_start=10394,
+  serialized_end=10415,
 )
 
 
@@ -3527,7 +3870,7 @@ _LISTPAYMENTSRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payments'),
+      options=None, json_name='payments', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3540,8 +3883,8 @@ _LISTPAYMENTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9281,
-  serialized_end=9347,
+  serialized_start=10417,
+  serialized_end=10483,
 )
 
 
@@ -3564,8 +3907,8 @@ _DELETEALLPAYMENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9349,
-  serialized_end=9375,
+  serialized_start=10485,
+  serialized_end=10511,
 )
 
 
@@ -3588,8 +3931,8 @@ _DELETEALLPAYMENTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9377,
-  serialized_end=9404,
+  serialized_start=10513,
+  serialized_end=10540,
 )
 
 
@@ -3606,14 +3949,14 @@ _DEBUGLEVELREQUEST = _descriptor.Descriptor(
       has_default_value=False, default_value=False,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='level_spec', full_name='lnrpc.DebugLevelRequest.level_spec', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3626,8 +3969,8 @@ _DEBUGLEVELREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9406,
-  serialized_end=9459,
+  serialized_start=10542,
+  serialized_end=10595,
 )
 
 
@@ -3644,7 +3987,7 @@ _DEBUGLEVELRESPONSE = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='sub_systems'),
+      options=None, json_name='sub_systems', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3657,8 +4000,8 @@ _DEBUGLEVELRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9461,
-  serialized_end=9515,
+  serialized_start=10597,
+  serialized_end=10651,
 )
 
 
@@ -3675,7 +4018,7 @@ _PAYREQSTRING = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None),
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3688,8 +4031,8 @@ _PAYREQSTRING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9517,
-  serialized_end=9548,
+  serialized_start=10653,
+  serialized_end=10684,
 )
 
 
@@ -3706,21 +4049,63 @@ _PAYREQ = _descriptor.Descriptor(
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='destination'),
+      options=None, json_name='destination', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='payment_hash', full_name='lnrpc.PayReq.payment_hash', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='payment_hash'),
+      options=None, json_name='payment_hash', file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='num_satoshis', full_name='lnrpc.PayReq.num_satoshis', index=2,
       number=3, type=3, cpp_type=2, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      options=None, json_name='num_satoshis'),
+      options=None, json_name='num_satoshis', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='timestamp', full_name='lnrpc.PayReq.timestamp', index=3,
+      number=4, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='timestamp', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='expiry', full_name='lnrpc.PayReq.expiry', index=4,
+      number=5, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='expiry', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='description', full_name='lnrpc.PayReq.description', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='description', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='description_hash', full_name='lnrpc.PayReq.description_hash', index=6,
+      number=7, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='description_hash', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='fallback_addr', full_name='lnrpc.PayReq.fallback_addr', index=7,
+      number=8, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='fallback_addr', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='cltv_expiry', full_name='lnrpc.PayReq.cltv_expiry', index=8,
+      number=9, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='cltv_expiry', file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -3733,12 +4118,388 @@ _PAYREQ = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=9550,
-  serialized_end=9664,
+  serialized_start=10687,
+  serialized_end=11005,
+)
+
+
+_FEEREPORTREQUEST = _descriptor.Descriptor(
+  name='FeeReportRequest',
+  full_name='lnrpc.FeeReportRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=11007,
+  serialized_end=11025,
+)
+
+
+_CHANNELFEEREPORT = _descriptor.Descriptor(
+  name='ChannelFeeReport',
+  full_name='lnrpc.ChannelFeeReport',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='chan_point', full_name='lnrpc.ChannelFeeReport.chan_point', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='channel_point', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='base_fee_msat', full_name='lnrpc.ChannelFeeReport.base_fee_msat', index=1,
+      number=2, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='base_fee_msat', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='fee_per_mil', full_name='lnrpc.ChannelFeeReport.fee_per_mil', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='fee_per_mil', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='fee_rate', full_name='lnrpc.ChannelFeeReport.fee_rate', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='fee_rate', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=11028,
+  serialized_end=11181,
+)
+
+
+_FEEREPORTRESPONSE = _descriptor.Descriptor(
+  name='FeeReportResponse',
+  full_name='lnrpc.FeeReportResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='channel_fees', full_name='lnrpc.FeeReportResponse.channel_fees', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='channel_fees', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='day_fee_sum', full_name='lnrpc.FeeReportResponse.day_fee_sum', index=1,
+      number=2, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='day_fee_sum', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='week_fee_sum', full_name='lnrpc.FeeReportResponse.week_fee_sum', index=2,
+      number=3, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='week_fee_sum', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='month_fee_sum', full_name='lnrpc.FeeReportResponse.month_fee_sum', index=3,
+      number=4, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='month_fee_sum', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=11184,
+  serialized_end=11372,
+)
+
+
+_POLICYUPDATEREQUEST = _descriptor.Descriptor(
+  name='PolicyUpdateRequest',
+  full_name='lnrpc.PolicyUpdateRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='global', full_name='lnrpc.PolicyUpdateRequest.global', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='global', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='chan_point', full_name='lnrpc.PolicyUpdateRequest.chan_point', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='chan_point', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='base_fee_msat', full_name='lnrpc.PolicyUpdateRequest.base_fee_msat', index=2,
+      number=3, type=3, cpp_type=2, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='base_fee_msat', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='fee_rate', full_name='lnrpc.PolicyUpdateRequest.fee_rate', index=3,
+      number=4, type=1, cpp_type=5, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='fee_rate', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='time_lock_delta', full_name='lnrpc.PolicyUpdateRequest.time_lock_delta', index=4,
+      number=5, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='time_lock_delta', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='scope', full_name='lnrpc.PolicyUpdateRequest.scope',
+      index=0, containing_type=None, fields=[]),
+  ],
+  serialized_start=11375,
+  serialized_end=11594,
+)
+
+
+_POLICYUPDATERESPONSE = _descriptor.Descriptor(
+  name='PolicyUpdateResponse',
+  full_name='lnrpc.PolicyUpdateResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=11596,
+  serialized_end=11618,
+)
+
+
+_FORWARDINGHISTORYREQUEST = _descriptor.Descriptor(
+  name='ForwardingHistoryRequest',
+  full_name='lnrpc.ForwardingHistoryRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='start_time', full_name='lnrpc.ForwardingHistoryRequest.start_time', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='start_time', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='end_time', full_name='lnrpc.ForwardingHistoryRequest.end_time', index=1,
+      number=2, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='end_time', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='index_offset', full_name='lnrpc.ForwardingHistoryRequest.index_offset', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='index_offset', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='num_max_events', full_name='lnrpc.ForwardingHistoryRequest.num_max_events', index=3,
+      number=4, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='num_max_events', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=11621,
+  serialized_end=11783,
+)
+
+
+_FORWARDINGEVENT = _descriptor.Descriptor(
+  name='ForwardingEvent',
+  full_name='lnrpc.ForwardingEvent',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='timestamp', full_name='lnrpc.ForwardingEvent.timestamp', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='timestamp', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='chan_id_in', full_name='lnrpc.ForwardingEvent.chan_id_in', index=1,
+      number=2, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='chan_id_in', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='chan_id_out', full_name='lnrpc.ForwardingEvent.chan_id_out', index=2,
+      number=4, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='chan_id_out', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='amt_in', full_name='lnrpc.ForwardingEvent.amt_in', index=3,
+      number=5, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='amt_in', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='amt_out', full_name='lnrpc.ForwardingEvent.amt_out', index=4,
+      number=6, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='amt_out', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='fee', full_name='lnrpc.ForwardingEvent.fee', index=5,
+      number=7, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='fee', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=11786,
+  serialized_end=11967,
+)
+
+
+_FORWARDINGHISTORYRESPONSE = _descriptor.Descriptor(
+  name='ForwardingHistoryResponse',
+  full_name='lnrpc.ForwardingHistoryResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='forwarding_events', full_name='lnrpc.ForwardingHistoryResponse.forwarding_events', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='forwarding_events', file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='last_offset_index', full_name='lnrpc.ForwardingHistoryResponse.last_offset_index', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, json_name='last_offset_index', file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=11970,
+  serialized_end=12113,
 )
 
 _TRANSACTIONDETAILS.fields_by_name['transactions'].message_type = _TRANSACTION
 _SENDRESPONSE.fields_by_name['payment_route'].message_type = _ROUTE
+_CHANNELPOINT.oneofs_by_name['funding_txid'].fields.append(
+  _CHANNELPOINT.fields_by_name['funding_txid_bytes'])
+_CHANNELPOINT.fields_by_name['funding_txid_bytes'].containing_oneof = _CHANNELPOINT.oneofs_by_name['funding_txid']
+_CHANNELPOINT.oneofs_by_name['funding_txid'].fields.append(
+  _CHANNELPOINT.fields_by_name['funding_txid_str'])
+_CHANNELPOINT.fields_by_name['funding_txid_str'].containing_oneof = _CHANNELPOINT.oneofs_by_name['funding_txid']
 _SENDMANYREQUEST_ADDRTOAMOUNTENTRY.containing_type = _SENDMANYREQUEST
 _SENDMANYREQUEST.fields_by_name['AddrToAmount'].message_type = _SENDMANYREQUEST_ADDRTOAMOUNTENTRY
 _NEWADDRESSREQUEST.fields_by_name['type'].enum_type = _NEWADDRESSREQUEST_ADDRESSTYPE
@@ -3773,16 +4534,17 @@ _OPENSTATUSUPDATE.fields_by_name['confirmation'].containing_oneof = _OPENSTATUSU
 _OPENSTATUSUPDATE.oneofs_by_name['update'].fields.append(
   _OPENSTATUSUPDATE.fields_by_name['chan_open'])
 _OPENSTATUSUPDATE.fields_by_name['chan_open'].containing_oneof = _OPENSTATUSUPDATE.oneofs_by_name['update']
-_PENDINGCHANNELRESPONSE_PENDINGCHANNEL.containing_type = _PENDINGCHANNELRESPONSE
-_PENDINGCHANNELRESPONSE_PENDINGOPENCHANNEL.fields_by_name['channel'].message_type = _PENDINGCHANNELRESPONSE_PENDINGCHANNEL
-_PENDINGCHANNELRESPONSE_PENDINGOPENCHANNEL.containing_type = _PENDINGCHANNELRESPONSE
-_PENDINGCHANNELRESPONSE_CLOSEDCHANNEL.fields_by_name['channel'].message_type = _PENDINGCHANNELRESPONSE_PENDINGCHANNEL
-_PENDINGCHANNELRESPONSE_CLOSEDCHANNEL.containing_type = _PENDINGCHANNELRESPONSE
-_PENDINGCHANNELRESPONSE_FORCECLOSEDCHANNEL.fields_by_name['channel'].message_type = _PENDINGCHANNELRESPONSE_PENDINGCHANNEL
-_PENDINGCHANNELRESPONSE_FORCECLOSEDCHANNEL.containing_type = _PENDINGCHANNELRESPONSE
-_PENDINGCHANNELRESPONSE.fields_by_name['pending_open_channels'].message_type = _PENDINGCHANNELRESPONSE_PENDINGOPENCHANNEL
-_PENDINGCHANNELRESPONSE.fields_by_name['pending_closing_channels'].message_type = _PENDINGCHANNELRESPONSE_CLOSEDCHANNEL
-_PENDINGCHANNELRESPONSE.fields_by_name['pending_force_closing_channels'].message_type = _PENDINGCHANNELRESPONSE_FORCECLOSEDCHANNEL
+_PENDINGCHANNELSRESPONSE_PENDINGCHANNEL.containing_type = _PENDINGCHANNELSRESPONSE
+_PENDINGCHANNELSRESPONSE_PENDINGOPENCHANNEL.fields_by_name['channel'].message_type = _PENDINGCHANNELSRESPONSE_PENDINGCHANNEL
+_PENDINGCHANNELSRESPONSE_PENDINGOPENCHANNEL.containing_type = _PENDINGCHANNELSRESPONSE
+_PENDINGCHANNELSRESPONSE_CLOSEDCHANNEL.fields_by_name['channel'].message_type = _PENDINGCHANNELSRESPONSE_PENDINGCHANNEL
+_PENDINGCHANNELSRESPONSE_CLOSEDCHANNEL.containing_type = _PENDINGCHANNELSRESPONSE
+_PENDINGCHANNELSRESPONSE_FORCECLOSEDCHANNEL.fields_by_name['channel'].message_type = _PENDINGCHANNELSRESPONSE_PENDINGCHANNEL
+_PENDINGCHANNELSRESPONSE_FORCECLOSEDCHANNEL.fields_by_name['pending_htlcs'].message_type = _PENDINGHTLC
+_PENDINGCHANNELSRESPONSE_FORCECLOSEDCHANNEL.containing_type = _PENDINGCHANNELSRESPONSE
+_PENDINGCHANNELSRESPONSE.fields_by_name['pending_open_channels'].message_type = _PENDINGCHANNELSRESPONSE_PENDINGOPENCHANNEL
+_PENDINGCHANNELSRESPONSE.fields_by_name['pending_closing_channels'].message_type = _PENDINGCHANNELSRESPONSE_CLOSEDCHANNEL
+_PENDINGCHANNELSRESPONSE.fields_by_name['pending_force_closing_channels'].message_type = _PENDINGCHANNELSRESPONSE_FORCECLOSEDCHANNEL
 _QUERYROUTESRESPONSE.fields_by_name['routes'].message_type = _ROUTE
 _ROUTE.fields_by_name['hops'].message_type = _HOP
 _NODEINFO.fields_by_name['node'].message_type = _LIGHTNINGNODE
@@ -3799,6 +4561,21 @@ _CHANNELEDGEUPDATE.fields_by_name['routing_policy'].message_type = _ROUTINGPOLIC
 _CLOSEDCHANNELUPDATE.fields_by_name['chan_point'].message_type = _CHANNELPOINT
 _LISTINVOICERESPONSE.fields_by_name['invoices'].message_type = _INVOICE
 _LISTPAYMENTSRESPONSE.fields_by_name['payments'].message_type = _PAYMENT
+_FEEREPORTRESPONSE.fields_by_name['channel_fees'].message_type = _CHANNELFEEREPORT
+_POLICYUPDATEREQUEST.fields_by_name['chan_point'].message_type = _CHANNELPOINT
+_POLICYUPDATEREQUEST.oneofs_by_name['scope'].fields.append(
+  _POLICYUPDATEREQUEST.fields_by_name['global'])
+_POLICYUPDATEREQUEST.fields_by_name['global'].containing_oneof = _POLICYUPDATEREQUEST.oneofs_by_name['scope']
+_POLICYUPDATEREQUEST.oneofs_by_name['scope'].fields.append(
+  _POLICYUPDATEREQUEST.fields_by_name['chan_point'])
+_POLICYUPDATEREQUEST.fields_by_name['chan_point'].containing_oneof = _POLICYUPDATEREQUEST.oneofs_by_name['scope']
+_FORWARDINGHISTORYRESPONSE.fields_by_name['forwarding_events'].message_type = _FORWARDINGEVENT
+DESCRIPTOR.message_types_by_name['GenSeedRequest'] = _GENSEEDREQUEST
+DESCRIPTOR.message_types_by_name['GenSeedResponse'] = _GENSEEDRESPONSE
+DESCRIPTOR.message_types_by_name['InitWalletRequest'] = _INITWALLETREQUEST
+DESCRIPTOR.message_types_by_name['InitWalletResponse'] = _INITWALLETRESPONSE
+DESCRIPTOR.message_types_by_name['UnlockWalletRequest'] = _UNLOCKWALLETREQUEST
+DESCRIPTOR.message_types_by_name['UnlockWalletResponse'] = _UNLOCKWALLETRESPONSE
 DESCRIPTOR.message_types_by_name['Transaction'] = _TRANSACTION
 DESCRIPTOR.message_types_by_name['GetTransactionsRequest'] = _GETTRANSACTIONSREQUEST
 DESCRIPTOR.message_types_by_name['TransactionDetails'] = _TRANSACTIONDETAILS
@@ -3838,8 +4615,9 @@ DESCRIPTOR.message_types_by_name['CloseStatusUpdate'] = _CLOSESTATUSUPDATE
 DESCRIPTOR.message_types_by_name['PendingUpdate'] = _PENDINGUPDATE
 DESCRIPTOR.message_types_by_name['OpenChannelRequest'] = _OPENCHANNELREQUEST
 DESCRIPTOR.message_types_by_name['OpenStatusUpdate'] = _OPENSTATUSUPDATE
-DESCRIPTOR.message_types_by_name['PendingChannelRequest'] = _PENDINGCHANNELREQUEST
-DESCRIPTOR.message_types_by_name['PendingChannelResponse'] = _PENDINGCHANNELRESPONSE
+DESCRIPTOR.message_types_by_name['PendingHTLC'] = _PENDINGHTLC
+DESCRIPTOR.message_types_by_name['PendingChannelsRequest'] = _PENDINGCHANNELSREQUEST
+DESCRIPTOR.message_types_by_name['PendingChannelsResponse'] = _PENDINGCHANNELSRESPONSE
 DESCRIPTOR.message_types_by_name['WalletBalanceRequest'] = _WALLETBALANCEREQUEST
 DESCRIPTOR.message_types_by_name['WalletBalanceResponse'] = _WALLETBALANCERESPONSE
 DESCRIPTOR.message_types_by_name['ChannelBalanceRequest'] = _CHANNELBALANCEREQUEST
@@ -3866,8 +4644,6 @@ DESCRIPTOR.message_types_by_name['GraphTopologyUpdate'] = _GRAPHTOPOLOGYUPDATE
 DESCRIPTOR.message_types_by_name['NodeUpdate'] = _NODEUPDATE
 DESCRIPTOR.message_types_by_name['ChannelEdgeUpdate'] = _CHANNELEDGEUPDATE
 DESCRIPTOR.message_types_by_name['ClosedChannelUpdate'] = _CLOSEDCHANNELUPDATE
-DESCRIPTOR.message_types_by_name['SetAliasRequest'] = _SETALIASREQUEST
-DESCRIPTOR.message_types_by_name['SetAliasResponse'] = _SETALIASRESPONSE
 DESCRIPTOR.message_types_by_name['Invoice'] = _INVOICE
 DESCRIPTOR.message_types_by_name['AddInvoiceResponse'] = _ADDINVOICERESPONSE
 DESCRIPTOR.message_types_by_name['PaymentHash'] = _PAYMENTHASH
@@ -3883,55 +4659,105 @@ DESCRIPTOR.message_types_by_name['DebugLevelRequest'] = _DEBUGLEVELREQUEST
 DESCRIPTOR.message_types_by_name['DebugLevelResponse'] = _DEBUGLEVELRESPONSE
 DESCRIPTOR.message_types_by_name['PayReqString'] = _PAYREQSTRING
 DESCRIPTOR.message_types_by_name['PayReq'] = _PAYREQ
+DESCRIPTOR.message_types_by_name['FeeReportRequest'] = _FEEREPORTREQUEST
+DESCRIPTOR.message_types_by_name['ChannelFeeReport'] = _CHANNELFEEREPORT
+DESCRIPTOR.message_types_by_name['FeeReportResponse'] = _FEEREPORTRESPONSE
+DESCRIPTOR.message_types_by_name['PolicyUpdateRequest'] = _POLICYUPDATEREQUEST
+DESCRIPTOR.message_types_by_name['PolicyUpdateResponse'] = _POLICYUPDATERESPONSE
+DESCRIPTOR.message_types_by_name['ForwardingHistoryRequest'] = _FORWARDINGHISTORYREQUEST
+DESCRIPTOR.message_types_by_name['ForwardingEvent'] = _FORWARDINGEVENT
+DESCRIPTOR.message_types_by_name['ForwardingHistoryResponse'] = _FORWARDINGHISTORYRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+GenSeedRequest = _reflection.GeneratedProtocolMessageType('GenSeedRequest', (_message.Message,), dict(
+  DESCRIPTOR = _GENSEEDREQUEST,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.GenSeedRequest)
+))
+_sym_db.RegisterMessage(GenSeedRequest)
+
+GenSeedResponse = _reflection.GeneratedProtocolMessageType('GenSeedResponse', (_message.Message,), dict(
+  DESCRIPTOR = _GENSEEDRESPONSE,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.GenSeedResponse)
+))
+_sym_db.RegisterMessage(GenSeedResponse)
+
+InitWalletRequest = _reflection.GeneratedProtocolMessageType('InitWalletRequest', (_message.Message,), dict(
+  DESCRIPTOR = _INITWALLETREQUEST,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.InitWalletRequest)
+))
+_sym_db.RegisterMessage(InitWalletRequest)
+
+InitWalletResponse = _reflection.GeneratedProtocolMessageType('InitWalletResponse', (_message.Message,), dict(
+  DESCRIPTOR = _INITWALLETRESPONSE,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.InitWalletResponse)
+))
+_sym_db.RegisterMessage(InitWalletResponse)
+
+UnlockWalletRequest = _reflection.GeneratedProtocolMessageType('UnlockWalletRequest', (_message.Message,), dict(
+  DESCRIPTOR = _UNLOCKWALLETREQUEST,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.UnlockWalletRequest)
+))
+_sym_db.RegisterMessage(UnlockWalletRequest)
+
+UnlockWalletResponse = _reflection.GeneratedProtocolMessageType('UnlockWalletResponse', (_message.Message,), dict(
+  DESCRIPTOR = _UNLOCKWALLETRESPONSE,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.UnlockWalletResponse)
+))
+_sym_db.RegisterMessage(UnlockWalletResponse)
 
 Transaction = _reflection.GeneratedProtocolMessageType('Transaction', (_message.Message,), dict(
   DESCRIPTOR = _TRANSACTION,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.Transaction)
-  ))
+))
 _sym_db.RegisterMessage(Transaction)
 
 GetTransactionsRequest = _reflection.GeneratedProtocolMessageType('GetTransactionsRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETTRANSACTIONSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.GetTransactionsRequest)
-  ))
+))
 _sym_db.RegisterMessage(GetTransactionsRequest)
 
 TransactionDetails = _reflection.GeneratedProtocolMessageType('TransactionDetails', (_message.Message,), dict(
   DESCRIPTOR = _TRANSACTIONDETAILS,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.TransactionDetails)
-  ))
+))
 _sym_db.RegisterMessage(TransactionDetails)
 
 SendRequest = _reflection.GeneratedProtocolMessageType('SendRequest', (_message.Message,), dict(
   DESCRIPTOR = _SENDREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SendRequest)
-  ))
+))
 _sym_db.RegisterMessage(SendRequest)
 
 SendResponse = _reflection.GeneratedProtocolMessageType('SendResponse', (_message.Message,), dict(
   DESCRIPTOR = _SENDRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SendResponse)
-  ))
+))
 _sym_db.RegisterMessage(SendResponse)
 
 ChannelPoint = _reflection.GeneratedProtocolMessageType('ChannelPoint', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELPOINT,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelPoint)
-  ))
+))
 _sym_db.RegisterMessage(ChannelPoint)
 
 LightningAddress = _reflection.GeneratedProtocolMessageType('LightningAddress', (_message.Message,), dict(
   DESCRIPTOR = _LIGHTNINGADDRESS,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.LightningAddress)
-  ))
+))
 _sym_db.RegisterMessage(LightningAddress)
 
 SendManyRequest = _reflection.GeneratedProtocolMessageType('SendManyRequest', (_message.Message,), dict(
@@ -3940,12 +4766,12 @@ SendManyRequest = _reflection.GeneratedProtocolMessageType('SendManyRequest', (_
     DESCRIPTOR = _SENDMANYREQUEST_ADDRTOAMOUNTENTRY,
     __module__ = 'rpc_pb2'
     # @@protoc_insertion_point(class_scope:lnrpc.SendManyRequest.AddrToAmountEntry)
-    ))
+  ))
   ,
   DESCRIPTOR = _SENDMANYREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SendManyRequest)
-  ))
+))
 _sym_db.RegisterMessage(SendManyRequest)
 _sym_db.RegisterMessage(SendManyRequest.AddrToAmountEntry)
 
@@ -3953,1832 +4779,1024 @@ SendManyResponse = _reflection.GeneratedProtocolMessageType('SendManyResponse', 
   DESCRIPTOR = _SENDMANYRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SendManyResponse)
-  ))
+))
 _sym_db.RegisterMessage(SendManyResponse)
 
 SendCoinsRequest = _reflection.GeneratedProtocolMessageType('SendCoinsRequest', (_message.Message,), dict(
   DESCRIPTOR = _SENDCOINSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SendCoinsRequest)
-  ))
+))
 _sym_db.RegisterMessage(SendCoinsRequest)
 
 SendCoinsResponse = _reflection.GeneratedProtocolMessageType('SendCoinsResponse', (_message.Message,), dict(
   DESCRIPTOR = _SENDCOINSRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SendCoinsResponse)
-  ))
+))
 _sym_db.RegisterMessage(SendCoinsResponse)
 
 NewAddressRequest = _reflection.GeneratedProtocolMessageType('NewAddressRequest', (_message.Message,), dict(
   DESCRIPTOR = _NEWADDRESSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NewAddressRequest)
-  ))
+))
 _sym_db.RegisterMessage(NewAddressRequest)
 
 NewWitnessAddressRequest = _reflection.GeneratedProtocolMessageType('NewWitnessAddressRequest', (_message.Message,), dict(
   DESCRIPTOR = _NEWWITNESSADDRESSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NewWitnessAddressRequest)
-  ))
+))
 _sym_db.RegisterMessage(NewWitnessAddressRequest)
 
 NewAddressResponse = _reflection.GeneratedProtocolMessageType('NewAddressResponse', (_message.Message,), dict(
   DESCRIPTOR = _NEWADDRESSRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NewAddressResponse)
-  ))
+))
 _sym_db.RegisterMessage(NewAddressResponse)
 
 SignMessageRequest = _reflection.GeneratedProtocolMessageType('SignMessageRequest', (_message.Message,), dict(
   DESCRIPTOR = _SIGNMESSAGEREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SignMessageRequest)
-  ))
+))
 _sym_db.RegisterMessage(SignMessageRequest)
 
 SignMessageResponse = _reflection.GeneratedProtocolMessageType('SignMessageResponse', (_message.Message,), dict(
   DESCRIPTOR = _SIGNMESSAGERESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.SignMessageResponse)
-  ))
+))
 _sym_db.RegisterMessage(SignMessageResponse)
 
 VerifyMessageRequest = _reflection.GeneratedProtocolMessageType('VerifyMessageRequest', (_message.Message,), dict(
   DESCRIPTOR = _VERIFYMESSAGEREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.VerifyMessageRequest)
-  ))
+))
 _sym_db.RegisterMessage(VerifyMessageRequest)
 
 VerifyMessageResponse = _reflection.GeneratedProtocolMessageType('VerifyMessageResponse', (_message.Message,), dict(
   DESCRIPTOR = _VERIFYMESSAGERESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.VerifyMessageResponse)
-  ))
+))
 _sym_db.RegisterMessage(VerifyMessageResponse)
 
 ConnectPeerRequest = _reflection.GeneratedProtocolMessageType('ConnectPeerRequest', (_message.Message,), dict(
   DESCRIPTOR = _CONNECTPEERREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ConnectPeerRequest)
-  ))
+))
 _sym_db.RegisterMessage(ConnectPeerRequest)
 
 ConnectPeerResponse = _reflection.GeneratedProtocolMessageType('ConnectPeerResponse', (_message.Message,), dict(
   DESCRIPTOR = _CONNECTPEERRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ConnectPeerResponse)
-  ))
+))
 _sym_db.RegisterMessage(ConnectPeerResponse)
 
 DisconnectPeerRequest = _reflection.GeneratedProtocolMessageType('DisconnectPeerRequest', (_message.Message,), dict(
   DESCRIPTOR = _DISCONNECTPEERREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.DisconnectPeerRequest)
-  ))
+))
 _sym_db.RegisterMessage(DisconnectPeerRequest)
 
 DisconnectPeerResponse = _reflection.GeneratedProtocolMessageType('DisconnectPeerResponse', (_message.Message,), dict(
   DESCRIPTOR = _DISCONNECTPEERRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.DisconnectPeerResponse)
-  ))
+))
 _sym_db.RegisterMessage(DisconnectPeerResponse)
 
 HTLC = _reflection.GeneratedProtocolMessageType('HTLC', (_message.Message,), dict(
   DESCRIPTOR = _HTLC,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.HTLC)
-  ))
+))
 _sym_db.RegisterMessage(HTLC)
 
 ActiveChannel = _reflection.GeneratedProtocolMessageType('ActiveChannel', (_message.Message,), dict(
   DESCRIPTOR = _ACTIVECHANNEL,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ActiveChannel)
-  ))
+))
 _sym_db.RegisterMessage(ActiveChannel)
 
 ListChannelsRequest = _reflection.GeneratedProtocolMessageType('ListChannelsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTCHANNELSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListChannelsRequest)
-  ))
+))
 _sym_db.RegisterMessage(ListChannelsRequest)
 
 ListChannelsResponse = _reflection.GeneratedProtocolMessageType('ListChannelsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTCHANNELSRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListChannelsResponse)
-  ))
+))
 _sym_db.RegisterMessage(ListChannelsResponse)
 
 Peer = _reflection.GeneratedProtocolMessageType('Peer', (_message.Message,), dict(
   DESCRIPTOR = _PEER,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.Peer)
-  ))
+))
 _sym_db.RegisterMessage(Peer)
 
 ListPeersRequest = _reflection.GeneratedProtocolMessageType('ListPeersRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTPEERSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListPeersRequest)
-  ))
+))
 _sym_db.RegisterMessage(ListPeersRequest)
 
 ListPeersResponse = _reflection.GeneratedProtocolMessageType('ListPeersResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTPEERSRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListPeersResponse)
-  ))
+))
 _sym_db.RegisterMessage(ListPeersResponse)
 
 GetInfoRequest = _reflection.GeneratedProtocolMessageType('GetInfoRequest', (_message.Message,), dict(
   DESCRIPTOR = _GETINFOREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.GetInfoRequest)
-  ))
+))
 _sym_db.RegisterMessage(GetInfoRequest)
 
 GetInfoResponse = _reflection.GeneratedProtocolMessageType('GetInfoResponse', (_message.Message,), dict(
   DESCRIPTOR = _GETINFORESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.GetInfoResponse)
-  ))
+))
 _sym_db.RegisterMessage(GetInfoResponse)
 
 ConfirmationUpdate = _reflection.GeneratedProtocolMessageType('ConfirmationUpdate', (_message.Message,), dict(
   DESCRIPTOR = _CONFIRMATIONUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ConfirmationUpdate)
-  ))
+))
 _sym_db.RegisterMessage(ConfirmationUpdate)
 
 ChannelOpenUpdate = _reflection.GeneratedProtocolMessageType('ChannelOpenUpdate', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELOPENUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelOpenUpdate)
-  ))
+))
 _sym_db.RegisterMessage(ChannelOpenUpdate)
 
 ChannelCloseUpdate = _reflection.GeneratedProtocolMessageType('ChannelCloseUpdate', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELCLOSEUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelCloseUpdate)
-  ))
+))
 _sym_db.RegisterMessage(ChannelCloseUpdate)
 
 CloseChannelRequest = _reflection.GeneratedProtocolMessageType('CloseChannelRequest', (_message.Message,), dict(
   DESCRIPTOR = _CLOSECHANNELREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.CloseChannelRequest)
-  ))
+))
 _sym_db.RegisterMessage(CloseChannelRequest)
 
 CloseStatusUpdate = _reflection.GeneratedProtocolMessageType('CloseStatusUpdate', (_message.Message,), dict(
   DESCRIPTOR = _CLOSESTATUSUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.CloseStatusUpdate)
-  ))
+))
 _sym_db.RegisterMessage(CloseStatusUpdate)
 
 PendingUpdate = _reflection.GeneratedProtocolMessageType('PendingUpdate', (_message.Message,), dict(
   DESCRIPTOR = _PENDINGUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.PendingUpdate)
-  ))
+))
 _sym_db.RegisterMessage(PendingUpdate)
 
 OpenChannelRequest = _reflection.GeneratedProtocolMessageType('OpenChannelRequest', (_message.Message,), dict(
   DESCRIPTOR = _OPENCHANNELREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.OpenChannelRequest)
-  ))
+))
 _sym_db.RegisterMessage(OpenChannelRequest)
 
 OpenStatusUpdate = _reflection.GeneratedProtocolMessageType('OpenStatusUpdate', (_message.Message,), dict(
   DESCRIPTOR = _OPENSTATUSUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.OpenStatusUpdate)
-  ))
+))
 _sym_db.RegisterMessage(OpenStatusUpdate)
 
-PendingChannelRequest = _reflection.GeneratedProtocolMessageType('PendingChannelRequest', (_message.Message,), dict(
-  DESCRIPTOR = _PENDINGCHANNELREQUEST,
+PendingHTLC = _reflection.GeneratedProtocolMessageType('PendingHTLC', (_message.Message,), dict(
+  DESCRIPTOR = _PENDINGHTLC,
   __module__ = 'rpc_pb2'
-  # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelRequest)
-  ))
-_sym_db.RegisterMessage(PendingChannelRequest)
+  # @@protoc_insertion_point(class_scope:lnrpc.PendingHTLC)
+))
+_sym_db.RegisterMessage(PendingHTLC)
 
-PendingChannelResponse = _reflection.GeneratedProtocolMessageType('PendingChannelResponse', (_message.Message,), dict(
+PendingChannelsRequest = _reflection.GeneratedProtocolMessageType('PendingChannelsRequest', (_message.Message,), dict(
+  DESCRIPTOR = _PENDINGCHANNELSREQUEST,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelsRequest)
+))
+_sym_db.RegisterMessage(PendingChannelsRequest)
+
+PendingChannelsResponse = _reflection.GeneratedProtocolMessageType('PendingChannelsResponse', (_message.Message,), dict(
 
   PendingChannel = _reflection.GeneratedProtocolMessageType('PendingChannel', (_message.Message,), dict(
-    DESCRIPTOR = _PENDINGCHANNELRESPONSE_PENDINGCHANNEL,
+    DESCRIPTOR = _PENDINGCHANNELSRESPONSE_PENDINGCHANNEL,
     __module__ = 'rpc_pb2'
-    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelResponse.PendingChannel)
-    ))
+    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelsResponse.PendingChannel)
+  ))
   ,
 
   PendingOpenChannel = _reflection.GeneratedProtocolMessageType('PendingOpenChannel', (_message.Message,), dict(
-    DESCRIPTOR = _PENDINGCHANNELRESPONSE_PENDINGOPENCHANNEL,
+    DESCRIPTOR = _PENDINGCHANNELSRESPONSE_PENDINGOPENCHANNEL,
     __module__ = 'rpc_pb2'
-    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelResponse.PendingOpenChannel)
-    ))
+    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelsResponse.PendingOpenChannel)
+  ))
   ,
 
   ClosedChannel = _reflection.GeneratedProtocolMessageType('ClosedChannel', (_message.Message,), dict(
-    DESCRIPTOR = _PENDINGCHANNELRESPONSE_CLOSEDCHANNEL,
+    DESCRIPTOR = _PENDINGCHANNELSRESPONSE_CLOSEDCHANNEL,
     __module__ = 'rpc_pb2'
-    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelResponse.ClosedChannel)
-    ))
+    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelsResponse.ClosedChannel)
+  ))
   ,
 
   ForceClosedChannel = _reflection.GeneratedProtocolMessageType('ForceClosedChannel', (_message.Message,), dict(
-    DESCRIPTOR = _PENDINGCHANNELRESPONSE_FORCECLOSEDCHANNEL,
+    DESCRIPTOR = _PENDINGCHANNELSRESPONSE_FORCECLOSEDCHANNEL,
     __module__ = 'rpc_pb2'
-    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelResponse.ForceClosedChannel)
-    ))
-  ,
-  DESCRIPTOR = _PENDINGCHANNELRESPONSE,
-  __module__ = 'rpc_pb2'
-  # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelResponse)
+    # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelsResponse.ForceClosedChannel)
   ))
-_sym_db.RegisterMessage(PendingChannelResponse)
-_sym_db.RegisterMessage(PendingChannelResponse.PendingChannel)
-_sym_db.RegisterMessage(PendingChannelResponse.PendingOpenChannel)
-_sym_db.RegisterMessage(PendingChannelResponse.ClosedChannel)
-_sym_db.RegisterMessage(PendingChannelResponse.ForceClosedChannel)
+  ,
+  DESCRIPTOR = _PENDINGCHANNELSRESPONSE,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.PendingChannelsResponse)
+))
+_sym_db.RegisterMessage(PendingChannelsResponse)
+_sym_db.RegisterMessage(PendingChannelsResponse.PendingChannel)
+_sym_db.RegisterMessage(PendingChannelsResponse.PendingOpenChannel)
+_sym_db.RegisterMessage(PendingChannelsResponse.ClosedChannel)
+_sym_db.RegisterMessage(PendingChannelsResponse.ForceClosedChannel)
 
 WalletBalanceRequest = _reflection.GeneratedProtocolMessageType('WalletBalanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _WALLETBALANCEREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.WalletBalanceRequest)
-  ))
+))
 _sym_db.RegisterMessage(WalletBalanceRequest)
 
 WalletBalanceResponse = _reflection.GeneratedProtocolMessageType('WalletBalanceResponse', (_message.Message,), dict(
   DESCRIPTOR = _WALLETBALANCERESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.WalletBalanceResponse)
-  ))
+))
 _sym_db.RegisterMessage(WalletBalanceResponse)
 
 ChannelBalanceRequest = _reflection.GeneratedProtocolMessageType('ChannelBalanceRequest', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELBALANCEREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelBalanceRequest)
-  ))
+))
 _sym_db.RegisterMessage(ChannelBalanceRequest)
 
 ChannelBalanceResponse = _reflection.GeneratedProtocolMessageType('ChannelBalanceResponse', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELBALANCERESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelBalanceResponse)
-  ))
+))
 _sym_db.RegisterMessage(ChannelBalanceResponse)
 
 QueryRoutesRequest = _reflection.GeneratedProtocolMessageType('QueryRoutesRequest', (_message.Message,), dict(
   DESCRIPTOR = _QUERYROUTESREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.QueryRoutesRequest)
-  ))
+))
 _sym_db.RegisterMessage(QueryRoutesRequest)
 
 QueryRoutesResponse = _reflection.GeneratedProtocolMessageType('QueryRoutesResponse', (_message.Message,), dict(
   DESCRIPTOR = _QUERYROUTESRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.QueryRoutesResponse)
-  ))
+))
 _sym_db.RegisterMessage(QueryRoutesResponse)
 
 Hop = _reflection.GeneratedProtocolMessageType('Hop', (_message.Message,), dict(
   DESCRIPTOR = _HOP,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.Hop)
-  ))
+))
 _sym_db.RegisterMessage(Hop)
 
 Route = _reflection.GeneratedProtocolMessageType('Route', (_message.Message,), dict(
   DESCRIPTOR = _ROUTE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.Route)
-  ))
+))
 _sym_db.RegisterMessage(Route)
 
 NodeInfoRequest = _reflection.GeneratedProtocolMessageType('NodeInfoRequest', (_message.Message,), dict(
   DESCRIPTOR = _NODEINFOREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NodeInfoRequest)
-  ))
+))
 _sym_db.RegisterMessage(NodeInfoRequest)
 
 NodeInfo = _reflection.GeneratedProtocolMessageType('NodeInfo', (_message.Message,), dict(
   DESCRIPTOR = _NODEINFO,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NodeInfo)
-  ))
+))
 _sym_db.RegisterMessage(NodeInfo)
 
 LightningNode = _reflection.GeneratedProtocolMessageType('LightningNode', (_message.Message,), dict(
   DESCRIPTOR = _LIGHTNINGNODE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.LightningNode)
-  ))
+))
 _sym_db.RegisterMessage(LightningNode)
 
 NodeAddress = _reflection.GeneratedProtocolMessageType('NodeAddress', (_message.Message,), dict(
   DESCRIPTOR = _NODEADDRESS,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NodeAddress)
-  ))
+))
 _sym_db.RegisterMessage(NodeAddress)
 
 RoutingPolicy = _reflection.GeneratedProtocolMessageType('RoutingPolicy', (_message.Message,), dict(
   DESCRIPTOR = _ROUTINGPOLICY,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.RoutingPolicy)
-  ))
+))
 _sym_db.RegisterMessage(RoutingPolicy)
 
 ChannelEdge = _reflection.GeneratedProtocolMessageType('ChannelEdge', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELEDGE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelEdge)
-  ))
+))
 _sym_db.RegisterMessage(ChannelEdge)
 
 ChannelGraphRequest = _reflection.GeneratedProtocolMessageType('ChannelGraphRequest', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELGRAPHREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelGraphRequest)
-  ))
+))
 _sym_db.RegisterMessage(ChannelGraphRequest)
 
 ChannelGraph = _reflection.GeneratedProtocolMessageType('ChannelGraph', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELGRAPH,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelGraph)
-  ))
+))
 _sym_db.RegisterMessage(ChannelGraph)
 
 ChanInfoRequest = _reflection.GeneratedProtocolMessageType('ChanInfoRequest', (_message.Message,), dict(
   DESCRIPTOR = _CHANINFOREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChanInfoRequest)
-  ))
+))
 _sym_db.RegisterMessage(ChanInfoRequest)
 
 NetworkInfoRequest = _reflection.GeneratedProtocolMessageType('NetworkInfoRequest', (_message.Message,), dict(
   DESCRIPTOR = _NETWORKINFOREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NetworkInfoRequest)
-  ))
+))
 _sym_db.RegisterMessage(NetworkInfoRequest)
 
 NetworkInfo = _reflection.GeneratedProtocolMessageType('NetworkInfo', (_message.Message,), dict(
   DESCRIPTOR = _NETWORKINFO,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NetworkInfo)
-  ))
+))
 _sym_db.RegisterMessage(NetworkInfo)
 
 StopRequest = _reflection.GeneratedProtocolMessageType('StopRequest', (_message.Message,), dict(
   DESCRIPTOR = _STOPREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.StopRequest)
-  ))
+))
 _sym_db.RegisterMessage(StopRequest)
 
 StopResponse = _reflection.GeneratedProtocolMessageType('StopResponse', (_message.Message,), dict(
   DESCRIPTOR = _STOPRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.StopResponse)
-  ))
+))
 _sym_db.RegisterMessage(StopResponse)
 
 GraphTopologySubscription = _reflection.GeneratedProtocolMessageType('GraphTopologySubscription', (_message.Message,), dict(
   DESCRIPTOR = _GRAPHTOPOLOGYSUBSCRIPTION,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.GraphTopologySubscription)
-  ))
+))
 _sym_db.RegisterMessage(GraphTopologySubscription)
 
 GraphTopologyUpdate = _reflection.GeneratedProtocolMessageType('GraphTopologyUpdate', (_message.Message,), dict(
   DESCRIPTOR = _GRAPHTOPOLOGYUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.GraphTopologyUpdate)
-  ))
+))
 _sym_db.RegisterMessage(GraphTopologyUpdate)
 
 NodeUpdate = _reflection.GeneratedProtocolMessageType('NodeUpdate', (_message.Message,), dict(
   DESCRIPTOR = _NODEUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.NodeUpdate)
-  ))
+))
 _sym_db.RegisterMessage(NodeUpdate)
 
 ChannelEdgeUpdate = _reflection.GeneratedProtocolMessageType('ChannelEdgeUpdate', (_message.Message,), dict(
   DESCRIPTOR = _CHANNELEDGEUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ChannelEdgeUpdate)
-  ))
+))
 _sym_db.RegisterMessage(ChannelEdgeUpdate)
 
 ClosedChannelUpdate = _reflection.GeneratedProtocolMessageType('ClosedChannelUpdate', (_message.Message,), dict(
   DESCRIPTOR = _CLOSEDCHANNELUPDATE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ClosedChannelUpdate)
-  ))
+))
 _sym_db.RegisterMessage(ClosedChannelUpdate)
-
-SetAliasRequest = _reflection.GeneratedProtocolMessageType('SetAliasRequest', (_message.Message,), dict(
-  DESCRIPTOR = _SETALIASREQUEST,
-  __module__ = 'rpc_pb2'
-  # @@protoc_insertion_point(class_scope:lnrpc.SetAliasRequest)
-  ))
-_sym_db.RegisterMessage(SetAliasRequest)
-
-SetAliasResponse = _reflection.GeneratedProtocolMessageType('SetAliasResponse', (_message.Message,), dict(
-  DESCRIPTOR = _SETALIASRESPONSE,
-  __module__ = 'rpc_pb2'
-  # @@protoc_insertion_point(class_scope:lnrpc.SetAliasResponse)
-  ))
-_sym_db.RegisterMessage(SetAliasResponse)
 
 Invoice = _reflection.GeneratedProtocolMessageType('Invoice', (_message.Message,), dict(
   DESCRIPTOR = _INVOICE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.Invoice)
-  ))
+))
 _sym_db.RegisterMessage(Invoice)
 
 AddInvoiceResponse = _reflection.GeneratedProtocolMessageType('AddInvoiceResponse', (_message.Message,), dict(
   DESCRIPTOR = _ADDINVOICERESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.AddInvoiceResponse)
-  ))
+))
 _sym_db.RegisterMessage(AddInvoiceResponse)
 
 PaymentHash = _reflection.GeneratedProtocolMessageType('PaymentHash', (_message.Message,), dict(
   DESCRIPTOR = _PAYMENTHASH,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.PaymentHash)
-  ))
+))
 _sym_db.RegisterMessage(PaymentHash)
 
 ListInvoiceRequest = _reflection.GeneratedProtocolMessageType('ListInvoiceRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTINVOICEREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListInvoiceRequest)
-  ))
+))
 _sym_db.RegisterMessage(ListInvoiceRequest)
 
 ListInvoiceResponse = _reflection.GeneratedProtocolMessageType('ListInvoiceResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTINVOICERESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListInvoiceResponse)
-  ))
+))
 _sym_db.RegisterMessage(ListInvoiceResponse)
 
 InvoiceSubscription = _reflection.GeneratedProtocolMessageType('InvoiceSubscription', (_message.Message,), dict(
   DESCRIPTOR = _INVOICESUBSCRIPTION,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.InvoiceSubscription)
-  ))
+))
 _sym_db.RegisterMessage(InvoiceSubscription)
 
 Payment = _reflection.GeneratedProtocolMessageType('Payment', (_message.Message,), dict(
   DESCRIPTOR = _PAYMENT,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.Payment)
-  ))
+))
 _sym_db.RegisterMessage(Payment)
 
 ListPaymentsRequest = _reflection.GeneratedProtocolMessageType('ListPaymentsRequest', (_message.Message,), dict(
   DESCRIPTOR = _LISTPAYMENTSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListPaymentsRequest)
-  ))
+))
 _sym_db.RegisterMessage(ListPaymentsRequest)
 
 ListPaymentsResponse = _reflection.GeneratedProtocolMessageType('ListPaymentsResponse', (_message.Message,), dict(
   DESCRIPTOR = _LISTPAYMENTSRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.ListPaymentsResponse)
-  ))
+))
 _sym_db.RegisterMessage(ListPaymentsResponse)
 
 DeleteAllPaymentsRequest = _reflection.GeneratedProtocolMessageType('DeleteAllPaymentsRequest', (_message.Message,), dict(
   DESCRIPTOR = _DELETEALLPAYMENTSREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.DeleteAllPaymentsRequest)
-  ))
+))
 _sym_db.RegisterMessage(DeleteAllPaymentsRequest)
 
 DeleteAllPaymentsResponse = _reflection.GeneratedProtocolMessageType('DeleteAllPaymentsResponse', (_message.Message,), dict(
   DESCRIPTOR = _DELETEALLPAYMENTSRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.DeleteAllPaymentsResponse)
-  ))
+))
 _sym_db.RegisterMessage(DeleteAllPaymentsResponse)
 
 DebugLevelRequest = _reflection.GeneratedProtocolMessageType('DebugLevelRequest', (_message.Message,), dict(
   DESCRIPTOR = _DEBUGLEVELREQUEST,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.DebugLevelRequest)
-  ))
+))
 _sym_db.RegisterMessage(DebugLevelRequest)
 
 DebugLevelResponse = _reflection.GeneratedProtocolMessageType('DebugLevelResponse', (_message.Message,), dict(
   DESCRIPTOR = _DEBUGLEVELRESPONSE,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.DebugLevelResponse)
-  ))
+))
 _sym_db.RegisterMessage(DebugLevelResponse)
 
 PayReqString = _reflection.GeneratedProtocolMessageType('PayReqString', (_message.Message,), dict(
   DESCRIPTOR = _PAYREQSTRING,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.PayReqString)
-  ))
+))
 _sym_db.RegisterMessage(PayReqString)
 
 PayReq = _reflection.GeneratedProtocolMessageType('PayReq', (_message.Message,), dict(
   DESCRIPTOR = _PAYREQ,
   __module__ = 'rpc_pb2'
   # @@protoc_insertion_point(class_scope:lnrpc.PayReq)
-  ))
+))
 _sym_db.RegisterMessage(PayReq)
+
+FeeReportRequest = _reflection.GeneratedProtocolMessageType('FeeReportRequest', (_message.Message,), dict(
+  DESCRIPTOR = _FEEREPORTREQUEST,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.FeeReportRequest)
+))
+_sym_db.RegisterMessage(FeeReportRequest)
+
+ChannelFeeReport = _reflection.GeneratedProtocolMessageType('ChannelFeeReport', (_message.Message,), dict(
+  DESCRIPTOR = _CHANNELFEEREPORT,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.ChannelFeeReport)
+))
+_sym_db.RegisterMessage(ChannelFeeReport)
+
+FeeReportResponse = _reflection.GeneratedProtocolMessageType('FeeReportResponse', (_message.Message,), dict(
+  DESCRIPTOR = _FEEREPORTRESPONSE,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.FeeReportResponse)
+))
+_sym_db.RegisterMessage(FeeReportResponse)
+
+PolicyUpdateRequest = _reflection.GeneratedProtocolMessageType('PolicyUpdateRequest', (_message.Message,), dict(
+  DESCRIPTOR = _POLICYUPDATEREQUEST,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.PolicyUpdateRequest)
+))
+_sym_db.RegisterMessage(PolicyUpdateRequest)
+
+PolicyUpdateResponse = _reflection.GeneratedProtocolMessageType('PolicyUpdateResponse', (_message.Message,), dict(
+  DESCRIPTOR = _POLICYUPDATERESPONSE,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.PolicyUpdateResponse)
+))
+_sym_db.RegisterMessage(PolicyUpdateResponse)
+
+ForwardingHistoryRequest = _reflection.GeneratedProtocolMessageType('ForwardingHistoryRequest', (_message.Message,), dict(
+  DESCRIPTOR = _FORWARDINGHISTORYREQUEST,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.ForwardingHistoryRequest)
+))
+_sym_db.RegisterMessage(ForwardingHistoryRequest)
+
+ForwardingEvent = _reflection.GeneratedProtocolMessageType('ForwardingEvent', (_message.Message,), dict(
+  DESCRIPTOR = _FORWARDINGEVENT,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.ForwardingEvent)
+))
+_sym_db.RegisterMessage(ForwardingEvent)
+
+ForwardingHistoryResponse = _reflection.GeneratedProtocolMessageType('ForwardingHistoryResponse', (_message.Message,), dict(
+  DESCRIPTOR = _FORWARDINGHISTORYRESPONSE,
+  __module__ = 'rpc_pb2'
+  # @@protoc_insertion_point(class_scope:lnrpc.ForwardingHistoryResponse)
+))
+_sym_db.RegisterMessage(ForwardingHistoryResponse)
 
 
 _SENDMANYREQUEST_ADDRTOAMOUNTENTRY.has_options = True
 _SENDMANYREQUEST_ADDRTOAMOUNTENTRY._options = _descriptor._ParseOptions(descriptor_pb2.MessageOptions(), _b('8\001'))
-try:
-  # THESE ELEMENTS WILL BE DEPRECATED.
-  # Please use the generated *_pb2_grpc.py files instead.
-  import grpc
-  from grpc.beta import implementations as beta_implementations
-  from grpc.beta import interfaces as beta_interfaces
-  from grpc.framework.common import cardinality
-  from grpc.framework.interfaces.face import utilities as face_utilities
+
+_WALLETUNLOCKER = _descriptor.ServiceDescriptor(
+  name='WalletUnlocker',
+  full_name='lnrpc.WalletUnlocker',
+  file=DESCRIPTOR,
+  index=0,
+  options=None,
+  serialized_start=12116,
+  serialized_end=12407,
+  methods=[
+    _descriptor.MethodDescriptor(
+      name='GenSeed',
+      full_name='lnrpc.WalletUnlocker.GenSeed',
+      index=0,
+      containing_service=None,
+      input_type=_GENSEEDREQUEST,
+      output_type=_GENSEEDRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\r\022\013/v1/genseed')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='InitWallet',
+      full_name='lnrpc.WalletUnlocker.InitWallet',
+      index=1,
+      containing_service=None,
+      input_type=_INITWALLETREQUEST,
+      output_type=_INITWALLETRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\023\"\016/v1/initwallet:\001*')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='UnlockWallet',
+      full_name='lnrpc.WalletUnlocker.UnlockWallet',
+      index=2,
+      containing_service=None,
+      input_type=_UNLOCKWALLETREQUEST,
+      output_type=_UNLOCKWALLETRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\025\"\020/v1/unlockwallet:\001*')),
+    ),
+  ])
+_sym_db.RegisterServiceDescriptor(_WALLETUNLOCKER)
+
+DESCRIPTOR.services_by_name['WalletUnlocker'] = _WALLETUNLOCKER
 
 
-  class LightningStub(object):
-    # missing associated documentation comment in .proto file
-    pass
+_LIGHTNING = _descriptor.ServiceDescriptor(
+  name='Lightning',
+  full_name='lnrpc.Lightning',
+  file=DESCRIPTOR,
+  index=1,
+  options=None,
+  serialized_start=12410,
+  serialized_end=15964,
+  methods=[
+    _descriptor.MethodDescriptor(
+      name='WalletBalance',
+      full_name='lnrpc.Lightning.WalletBalance',
+      index=0,
+      containing_service=None,
+      input_type=_WALLETBALANCEREQUEST,
+      output_type=_WALLETBALANCERESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\030\022\026/v1/balance/blockchain')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='ChannelBalance',
+      full_name='lnrpc.Lightning.ChannelBalance',
+      index=1,
+      containing_service=None,
+      input_type=_CHANNELBALANCEREQUEST,
+      output_type=_CHANNELBALANCERESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\026\022\024/v1/balance/channels')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='GetTransactions',
+      full_name='lnrpc.Lightning.GetTransactions',
+      index=2,
+      containing_service=None,
+      input_type=_GETTRANSACTIONSREQUEST,
+      output_type=_TRANSACTIONDETAILS,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\022\022\020/v1/transactions')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='SendCoins',
+      full_name='lnrpc.Lightning.SendCoins',
+      index=3,
+      containing_service=None,
+      input_type=_SENDCOINSREQUEST,
+      output_type=_SENDCOINSRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\025\"\020/v1/transactions:\001*')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='SubscribeTransactions',
+      full_name='lnrpc.Lightning.SubscribeTransactions',
+      index=4,
+      containing_service=None,
+      input_type=_GETTRANSACTIONSREQUEST,
+      output_type=_TRANSACTION,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='SendMany',
+      full_name='lnrpc.Lightning.SendMany',
+      index=5,
+      containing_service=None,
+      input_type=_SENDMANYREQUEST,
+      output_type=_SENDMANYRESPONSE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='NewAddress',
+      full_name='lnrpc.Lightning.NewAddress',
+      index=6,
+      containing_service=None,
+      input_type=_NEWADDRESSREQUEST,
+      output_type=_NEWADDRESSRESPONSE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='NewWitnessAddress',
+      full_name='lnrpc.Lightning.NewWitnessAddress',
+      index=7,
+      containing_service=None,
+      input_type=_NEWWITNESSADDRESSREQUEST,
+      output_type=_NEWADDRESSRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\020\022\016/v1/newaddress')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='SignMessage',
+      full_name='lnrpc.Lightning.SignMessage',
+      index=8,
+      containing_service=None,
+      input_type=_SIGNMESSAGEREQUEST,
+      output_type=_SIGNMESSAGERESPONSE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='VerifyMessage',
+      full_name='lnrpc.Lightning.VerifyMessage',
+      index=9,
+      containing_service=None,
+      input_type=_VERIFYMESSAGEREQUEST,
+      output_type=_VERIFYMESSAGERESPONSE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='ConnectPeer',
+      full_name='lnrpc.Lightning.ConnectPeer',
+      index=10,
+      containing_service=None,
+      input_type=_CONNECTPEERREQUEST,
+      output_type=_CONNECTPEERRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\016\"\t/v1/peers:\001*')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='DisconnectPeer',
+      full_name='lnrpc.Lightning.DisconnectPeer',
+      index=11,
+      containing_service=None,
+      input_type=_DISCONNECTPEERREQUEST,
+      output_type=_DISCONNECTPEERRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\025*\023/v1/peers/{pub_key}')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='ListPeers',
+      full_name='lnrpc.Lightning.ListPeers',
+      index=12,
+      containing_service=None,
+      input_type=_LISTPEERSREQUEST,
+      output_type=_LISTPEERSRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\013\022\t/v1/peers')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='GetInfo',
+      full_name='lnrpc.Lightning.GetInfo',
+      index=13,
+      containing_service=None,
+      input_type=_GETINFOREQUEST,
+      output_type=_GETINFORESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\r\022\013/v1/getinfo')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='PendingChannels',
+      full_name='lnrpc.Lightning.PendingChannels',
+      index=14,
+      containing_service=None,
+      input_type=_PENDINGCHANNELSREQUEST,
+      output_type=_PENDINGCHANNELSRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\026\022\024/v1/channels/pending')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='ListChannels',
+      full_name='lnrpc.Lightning.ListChannels',
+      index=15,
+      containing_service=None,
+      input_type=_LISTCHANNELSREQUEST,
+      output_type=_LISTCHANNELSRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\016\022\014/v1/channels')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='OpenChannelSync',
+      full_name='lnrpc.Lightning.OpenChannelSync',
+      index=16,
+      containing_service=None,
+      input_type=_OPENCHANNELREQUEST,
+      output_type=_CHANNELPOINT,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\021\"\014/v1/channels:\001*')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='OpenChannel',
+      full_name='lnrpc.Lightning.OpenChannel',
+      index=17,
+      containing_service=None,
+      input_type=_OPENCHANNELREQUEST,
+      output_type=_OPENSTATUSUPDATE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='CloseChannel',
+      full_name='lnrpc.Lightning.CloseChannel',
+      index=18,
+      containing_service=None,
+      input_type=_CLOSECHANNELREQUEST,
+      output_type=_CLOSESTATUSUPDATE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002L*J/v1/channels/{channel_point.funding_txid_str}/{channel_point.output_index}')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='SendPayment',
+      full_name='lnrpc.Lightning.SendPayment',
+      index=19,
+      containing_service=None,
+      input_type=_SENDREQUEST,
+      output_type=_SENDRESPONSE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='SendPaymentSync',
+      full_name='lnrpc.Lightning.SendPaymentSync',
+      index=20,
+      containing_service=None,
+      input_type=_SENDREQUEST,
+      output_type=_SENDRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\036\"\031/v1/channels/transactions:\001*')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='AddInvoice',
+      full_name='lnrpc.Lightning.AddInvoice',
+      index=21,
+      containing_service=None,
+      input_type=_INVOICE,
+      output_type=_ADDINVOICERESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\021\"\014/v1/invoices:\001*')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='ListInvoices',
+      full_name='lnrpc.Lightning.ListInvoices',
+      index=22,
+      containing_service=None,
+      input_type=_LISTINVOICEREQUEST,
+      output_type=_LISTINVOICERESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\016\022\014/v1/invoices')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='LookupInvoice',
+      full_name='lnrpc.Lightning.LookupInvoice',
+      index=23,
+      containing_service=None,
+      input_type=_PAYMENTHASH,
+      output_type=_INVOICE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\032\022\030/v1/invoice/{r_hash_str}')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='SubscribeInvoices',
+      full_name='lnrpc.Lightning.SubscribeInvoices',
+      index=24,
+      containing_service=None,
+      input_type=_INVOICESUBSCRIPTION,
+      output_type=_INVOICE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\030\022\026/v1/invoices/subscribe')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='DecodePayReq',
+      full_name='lnrpc.Lightning.DecodePayReq',
+      index=25,
+      containing_service=None,
+      input_type=_PAYREQSTRING,
+      output_type=_PAYREQ,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\026\022\024/v1/payreq/{pay_req}')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='ListPayments',
+      full_name='lnrpc.Lightning.ListPayments',
+      index=26,
+      containing_service=None,
+      input_type=_LISTPAYMENTSREQUEST,
+      output_type=_LISTPAYMENTSRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\016\022\014/v1/payments')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='DeleteAllPayments',
+      full_name='lnrpc.Lightning.DeleteAllPayments',
+      index=27,
+      containing_service=None,
+      input_type=_DELETEALLPAYMENTSREQUEST,
+      output_type=_DELETEALLPAYMENTSRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\016*\014/v1/payments')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='DescribeGraph',
+      full_name='lnrpc.Lightning.DescribeGraph',
+      index=28,
+      containing_service=None,
+      input_type=_CHANNELGRAPHREQUEST,
+      output_type=_CHANNELGRAPH,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\013\022\t/v1/graph')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='GetChanInfo',
+      full_name='lnrpc.Lightning.GetChanInfo',
+      index=29,
+      containing_service=None,
+      input_type=_CHANINFOREQUEST,
+      output_type=_CHANNELEDGE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\032\022\030/v1/graph/edge/{chan_id}')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='GetNodeInfo',
+      full_name='lnrpc.Lightning.GetNodeInfo',
+      index=30,
+      containing_service=None,
+      input_type=_NODEINFOREQUEST,
+      output_type=_NODEINFO,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\032\022\030/v1/graph/node/{pub_key}')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='QueryRoutes',
+      full_name='lnrpc.Lightning.QueryRoutes',
+      index=31,
+      containing_service=None,
+      input_type=_QUERYROUTESREQUEST,
+      output_type=_QUERYROUTESRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\"\022 /v1/graph/routes/{pub_key}/{amt}')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='GetNetworkInfo',
+      full_name='lnrpc.Lightning.GetNetworkInfo',
+      index=32,
+      containing_service=None,
+      input_type=_NETWORKINFOREQUEST,
+      output_type=_NETWORKINFO,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\020\022\016/v1/graph/info')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='StopDaemon',
+      full_name='lnrpc.Lightning.StopDaemon',
+      index=33,
+      containing_service=None,
+      input_type=_STOPREQUEST,
+      output_type=_STOPRESPONSE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='SubscribeChannelGraph',
+      full_name='lnrpc.Lightning.SubscribeChannelGraph',
+      index=34,
+      containing_service=None,
+      input_type=_GRAPHTOPOLOGYSUBSCRIPTION,
+      output_type=_GRAPHTOPOLOGYUPDATE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='DebugLevel',
+      full_name='lnrpc.Lightning.DebugLevel',
+      index=35,
+      containing_service=None,
+      input_type=_DEBUGLEVELREQUEST,
+      output_type=_DEBUGLEVELRESPONSE,
+      options=None,
+    ),
+    _descriptor.MethodDescriptor(
+      name='FeeReport',
+      full_name='lnrpc.Lightning.FeeReport',
+      index=36,
+      containing_service=None,
+      input_type=_FEEREPORTREQUEST,
+      output_type=_FEEREPORTRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\n\022\010/v1/fees')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='UpdateChannelPolicy',
+      full_name='lnrpc.Lightning.UpdateChannelPolicy',
+      index=37,
+      containing_service=None,
+      input_type=_POLICYUPDATEREQUEST,
+      output_type=_POLICYUPDATERESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\023\"\016/v1/chanpolicy:\001*')),
+    ),
+    _descriptor.MethodDescriptor(
+      name='ForwardingHistory',
+      full_name='lnrpc.Lightning.ForwardingHistory',
+      index=38,
+      containing_service=None,
+      input_type=_FORWARDINGHISTORYREQUEST,
+      output_type=_FORWARDINGHISTORYRESPONSE,
+      options=_descriptor._ParseOptions(descriptor_pb2.MethodOptions(), _b('\202\323\344\223\002\017\"\n/v1/switch:\001*')),
+    ),
+  ])
+_sym_db.RegisterServiceDescriptor(_LIGHTNING)
 
-    def __init__(self, channel):
-      """Constructor.
+DESCRIPTOR.services_by_name['Lightning'] = _LIGHTNING
 
-      Args:
-        channel: A grpc.Channel.
-      """
-      self.WalletBalance = channel.unary_unary(
-          '/lnrpc.Lightning/WalletBalance',
-          request_serializer=WalletBalanceRequest.SerializeToString,
-          response_deserializer=WalletBalanceResponse.FromString,
-          )
-      self.ChannelBalance = channel.unary_unary(
-          '/lnrpc.Lightning/ChannelBalance',
-          request_serializer=ChannelBalanceRequest.SerializeToString,
-          response_deserializer=ChannelBalanceResponse.FromString,
-          )
-      self.GetTransactions = channel.unary_unary(
-          '/lnrpc.Lightning/GetTransactions',
-          request_serializer=GetTransactionsRequest.SerializeToString,
-          response_deserializer=TransactionDetails.FromString,
-          )
-      self.SendCoins = channel.unary_unary(
-          '/lnrpc.Lightning/SendCoins',
-          request_serializer=SendCoinsRequest.SerializeToString,
-          response_deserializer=SendCoinsResponse.FromString,
-          )
-      self.SubscribeTransactions = channel.unary_stream(
-          '/lnrpc.Lightning/SubscribeTransactions',
-          request_serializer=GetTransactionsRequest.SerializeToString,
-          response_deserializer=Transaction.FromString,
-          )
-      self.SendMany = channel.unary_unary(
-          '/lnrpc.Lightning/SendMany',
-          request_serializer=SendManyRequest.SerializeToString,
-          response_deserializer=SendManyResponse.FromString,
-          )
-      self.NewAddress = channel.unary_unary(
-          '/lnrpc.Lightning/NewAddress',
-          request_serializer=NewAddressRequest.SerializeToString,
-          response_deserializer=NewAddressResponse.FromString,
-          )
-      self.NewWitnessAddress = channel.unary_unary(
-          '/lnrpc.Lightning/NewWitnessAddress',
-          request_serializer=NewWitnessAddressRequest.SerializeToString,
-          response_deserializer=NewAddressResponse.FromString,
-          )
-      self.SignMessage = channel.unary_unary(
-          '/lnrpc.Lightning/SignMessage',
-          request_serializer=SignMessageRequest.SerializeToString,
-          response_deserializer=SignMessageResponse.FromString,
-          )
-      self.VerifyMessage = channel.unary_unary(
-          '/lnrpc.Lightning/VerifyMessage',
-          request_serializer=VerifyMessageRequest.SerializeToString,
-          response_deserializer=VerifyMessageResponse.FromString,
-          )
-      self.ConnectPeer = channel.unary_unary(
-          '/lnrpc.Lightning/ConnectPeer',
-          request_serializer=ConnectPeerRequest.SerializeToString,
-          response_deserializer=ConnectPeerResponse.FromString,
-          )
-      self.DisconnectPeer = channel.unary_unary(
-          '/lnrpc.Lightning/DisconnectPeer',
-          request_serializer=DisconnectPeerRequest.SerializeToString,
-          response_deserializer=DisconnectPeerResponse.FromString,
-          )
-      self.ListPeers = channel.unary_unary(
-          '/lnrpc.Lightning/ListPeers',
-          request_serializer=ListPeersRequest.SerializeToString,
-          response_deserializer=ListPeersResponse.FromString,
-          )
-      self.GetInfo = channel.unary_unary(
-          '/lnrpc.Lightning/GetInfo',
-          request_serializer=GetInfoRequest.SerializeToString,
-          response_deserializer=GetInfoResponse.FromString,
-          )
-      self.PendingChannels = channel.unary_unary(
-          '/lnrpc.Lightning/PendingChannels',
-          request_serializer=PendingChannelRequest.SerializeToString,
-          response_deserializer=PendingChannelResponse.FromString,
-          )
-      self.ListChannels = channel.unary_unary(
-          '/lnrpc.Lightning/ListChannels',
-          request_serializer=ListChannelsRequest.SerializeToString,
-          response_deserializer=ListChannelsResponse.FromString,
-          )
-      self.OpenChannelSync = channel.unary_unary(
-          '/lnrpc.Lightning/OpenChannelSync',
-          request_serializer=OpenChannelRequest.SerializeToString,
-          response_deserializer=ChannelPoint.FromString,
-          )
-      self.OpenChannel = channel.unary_stream(
-          '/lnrpc.Lightning/OpenChannel',
-          request_serializer=OpenChannelRequest.SerializeToString,
-          response_deserializer=OpenStatusUpdate.FromString,
-          )
-      self.CloseChannel = channel.unary_stream(
-          '/lnrpc.Lightning/CloseChannel',
-          request_serializer=CloseChannelRequest.SerializeToString,
-          response_deserializer=CloseStatusUpdate.FromString,
-          )
-      self.SendPayment = channel.stream_stream(
-          '/lnrpc.Lightning/SendPayment',
-          request_serializer=SendRequest.SerializeToString,
-          response_deserializer=SendResponse.FromString,
-          )
-      self.SendPaymentSync = channel.unary_unary(
-          '/lnrpc.Lightning/SendPaymentSync',
-          request_serializer=SendRequest.SerializeToString,
-          response_deserializer=SendResponse.FromString,
-          )
-      self.AddInvoice = channel.unary_unary(
-          '/lnrpc.Lightning/AddInvoice',
-          request_serializer=Invoice.SerializeToString,
-          response_deserializer=AddInvoiceResponse.FromString,
-          )
-      self.ListInvoices = channel.unary_unary(
-          '/lnrpc.Lightning/ListInvoices',
-          request_serializer=ListInvoiceRequest.SerializeToString,
-          response_deserializer=ListInvoiceResponse.FromString,
-          )
-      self.LookupInvoice = channel.unary_unary(
-          '/lnrpc.Lightning/LookupInvoice',
-          request_serializer=PaymentHash.SerializeToString,
-          response_deserializer=Invoice.FromString,
-          )
-      self.SubscribeInvoices = channel.unary_stream(
-          '/lnrpc.Lightning/SubscribeInvoices',
-          request_serializer=InvoiceSubscription.SerializeToString,
-          response_deserializer=Invoice.FromString,
-          )
-      self.DecodePayReq = channel.unary_unary(
-          '/lnrpc.Lightning/DecodePayReq',
-          request_serializer=PayReqString.SerializeToString,
-          response_deserializer=PayReq.FromString,
-          )
-      self.ListPayments = channel.unary_unary(
-          '/lnrpc.Lightning/ListPayments',
-          request_serializer=ListPaymentsRequest.SerializeToString,
-          response_deserializer=ListPaymentsResponse.FromString,
-          )
-      self.DeleteAllPayments = channel.unary_unary(
-          '/lnrpc.Lightning/DeleteAllPayments',
-          request_serializer=DeleteAllPaymentsRequest.SerializeToString,
-          response_deserializer=DeleteAllPaymentsResponse.FromString,
-          )
-      self.DescribeGraph = channel.unary_unary(
-          '/lnrpc.Lightning/DescribeGraph',
-          request_serializer=ChannelGraphRequest.SerializeToString,
-          response_deserializer=ChannelGraph.FromString,
-          )
-      self.GetChanInfo = channel.unary_unary(
-          '/lnrpc.Lightning/GetChanInfo',
-          request_serializer=ChanInfoRequest.SerializeToString,
-          response_deserializer=ChannelEdge.FromString,
-          )
-      self.GetNodeInfo = channel.unary_unary(
-          '/lnrpc.Lightning/GetNodeInfo',
-          request_serializer=NodeInfoRequest.SerializeToString,
-          response_deserializer=NodeInfo.FromString,
-          )
-      self.QueryRoutes = channel.unary_unary(
-          '/lnrpc.Lightning/QueryRoutes',
-          request_serializer=QueryRoutesRequest.SerializeToString,
-          response_deserializer=QueryRoutesResponse.FromString,
-          )
-      self.GetNetworkInfo = channel.unary_unary(
-          '/lnrpc.Lightning/GetNetworkInfo',
-          request_serializer=NetworkInfoRequest.SerializeToString,
-          response_deserializer=NetworkInfo.FromString,
-          )
-      self.StopDaemon = channel.unary_unary(
-          '/lnrpc.Lightning/StopDaemon',
-          request_serializer=StopRequest.SerializeToString,
-          response_deserializer=StopResponse.FromString,
-          )
-      self.SubscribeChannelGraph = channel.unary_stream(
-          '/lnrpc.Lightning/SubscribeChannelGraph',
-          request_serializer=GraphTopologySubscription.SerializeToString,
-          response_deserializer=GraphTopologyUpdate.FromString,
-          )
-      self.SetAlias = channel.unary_unary(
-          '/lnrpc.Lightning/SetAlias',
-          request_serializer=SetAliasRequest.SerializeToString,
-          response_deserializer=SetAliasResponse.FromString,
-          )
-      self.DebugLevel = channel.unary_unary(
-          '/lnrpc.Lightning/DebugLevel',
-          request_serializer=DebugLevelRequest.SerializeToString,
-          response_deserializer=DebugLevelResponse.FromString,
-          )
-
-
-  class LightningServicer(object):
-    # missing associated documentation comment in .proto file
-    pass
-
-    def WalletBalance(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def ChannelBalance(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def GetTransactions(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SendCoins(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SubscribeTransactions(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SendMany(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def NewAddress(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def NewWitnessAddress(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SignMessage(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def VerifyMessage(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def ConnectPeer(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def DisconnectPeer(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def ListPeers(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def GetInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def PendingChannels(self, request, context):
-      """TODO(roasbeef): merge with below with bool?
-      """
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def ListChannels(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def OpenChannelSync(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def OpenChannel(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def CloseChannel(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SendPayment(self, request_iterator, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SendPaymentSync(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def AddInvoice(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def ListInvoices(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def LookupInvoice(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SubscribeInvoices(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def DecodePayReq(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def ListPayments(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def DeleteAllPayments(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def DescribeGraph(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def GetChanInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def GetNodeInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def QueryRoutes(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def GetNetworkInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def StopDaemon(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SubscribeChannelGraph(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def SetAlias(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-    def DebugLevel(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-      context.set_details('Method not implemented!')
-      raise NotImplementedError('Method not implemented!')
-
-
-  def add_LightningServicer_to_server(servicer, server):
-    rpc_method_handlers = {
-        'WalletBalance': grpc.unary_unary_rpc_method_handler(
-            servicer.WalletBalance,
-            request_deserializer=WalletBalanceRequest.FromString,
-            response_serializer=WalletBalanceResponse.SerializeToString,
-        ),
-        'ChannelBalance': grpc.unary_unary_rpc_method_handler(
-            servicer.ChannelBalance,
-            request_deserializer=ChannelBalanceRequest.FromString,
-            response_serializer=ChannelBalanceResponse.SerializeToString,
-        ),
-        'GetTransactions': grpc.unary_unary_rpc_method_handler(
-            servicer.GetTransactions,
-            request_deserializer=GetTransactionsRequest.FromString,
-            response_serializer=TransactionDetails.SerializeToString,
-        ),
-        'SendCoins': grpc.unary_unary_rpc_method_handler(
-            servicer.SendCoins,
-            request_deserializer=SendCoinsRequest.FromString,
-            response_serializer=SendCoinsResponse.SerializeToString,
-        ),
-        'SubscribeTransactions': grpc.unary_stream_rpc_method_handler(
-            servicer.SubscribeTransactions,
-            request_deserializer=GetTransactionsRequest.FromString,
-            response_serializer=Transaction.SerializeToString,
-        ),
-        'SendMany': grpc.unary_unary_rpc_method_handler(
-            servicer.SendMany,
-            request_deserializer=SendManyRequest.FromString,
-            response_serializer=SendManyResponse.SerializeToString,
-        ),
-        'NewAddress': grpc.unary_unary_rpc_method_handler(
-            servicer.NewAddress,
-            request_deserializer=NewAddressRequest.FromString,
-            response_serializer=NewAddressResponse.SerializeToString,
-        ),
-        'NewWitnessAddress': grpc.unary_unary_rpc_method_handler(
-            servicer.NewWitnessAddress,
-            request_deserializer=NewWitnessAddressRequest.FromString,
-            response_serializer=NewAddressResponse.SerializeToString,
-        ),
-        'SignMessage': grpc.unary_unary_rpc_method_handler(
-            servicer.SignMessage,
-            request_deserializer=SignMessageRequest.FromString,
-            response_serializer=SignMessageResponse.SerializeToString,
-        ),
-        'VerifyMessage': grpc.unary_unary_rpc_method_handler(
-            servicer.VerifyMessage,
-            request_deserializer=VerifyMessageRequest.FromString,
-            response_serializer=VerifyMessageResponse.SerializeToString,
-        ),
-        'ConnectPeer': grpc.unary_unary_rpc_method_handler(
-            servicer.ConnectPeer,
-            request_deserializer=ConnectPeerRequest.FromString,
-            response_serializer=ConnectPeerResponse.SerializeToString,
-        ),
-        'DisconnectPeer': grpc.unary_unary_rpc_method_handler(
-            servicer.DisconnectPeer,
-            request_deserializer=DisconnectPeerRequest.FromString,
-            response_serializer=DisconnectPeerResponse.SerializeToString,
-        ),
-        'ListPeers': grpc.unary_unary_rpc_method_handler(
-            servicer.ListPeers,
-            request_deserializer=ListPeersRequest.FromString,
-            response_serializer=ListPeersResponse.SerializeToString,
-        ),
-        'GetInfo': grpc.unary_unary_rpc_method_handler(
-            servicer.GetInfo,
-            request_deserializer=GetInfoRequest.FromString,
-            response_serializer=GetInfoResponse.SerializeToString,
-        ),
-        'PendingChannels': grpc.unary_unary_rpc_method_handler(
-            servicer.PendingChannels,
-            request_deserializer=PendingChannelRequest.FromString,
-            response_serializer=PendingChannelResponse.SerializeToString,
-        ),
-        'ListChannels': grpc.unary_unary_rpc_method_handler(
-            servicer.ListChannels,
-            request_deserializer=ListChannelsRequest.FromString,
-            response_serializer=ListChannelsResponse.SerializeToString,
-        ),
-        'OpenChannelSync': grpc.unary_unary_rpc_method_handler(
-            servicer.OpenChannelSync,
-            request_deserializer=OpenChannelRequest.FromString,
-            response_serializer=ChannelPoint.SerializeToString,
-        ),
-        'OpenChannel': grpc.unary_stream_rpc_method_handler(
-            servicer.OpenChannel,
-            request_deserializer=OpenChannelRequest.FromString,
-            response_serializer=OpenStatusUpdate.SerializeToString,
-        ),
-        'CloseChannel': grpc.unary_stream_rpc_method_handler(
-            servicer.CloseChannel,
-            request_deserializer=CloseChannelRequest.FromString,
-            response_serializer=CloseStatusUpdate.SerializeToString,
-        ),
-        'SendPayment': grpc.stream_stream_rpc_method_handler(
-            servicer.SendPayment,
-            request_deserializer=SendRequest.FromString,
-            response_serializer=SendResponse.SerializeToString,
-        ),
-        'SendPaymentSync': grpc.unary_unary_rpc_method_handler(
-            servicer.SendPaymentSync,
-            request_deserializer=SendRequest.FromString,
-            response_serializer=SendResponse.SerializeToString,
-        ),
-        'AddInvoice': grpc.unary_unary_rpc_method_handler(
-            servicer.AddInvoice,
-            request_deserializer=Invoice.FromString,
-            response_serializer=AddInvoiceResponse.SerializeToString,
-        ),
-        'ListInvoices': grpc.unary_unary_rpc_method_handler(
-            servicer.ListInvoices,
-            request_deserializer=ListInvoiceRequest.FromString,
-            response_serializer=ListInvoiceResponse.SerializeToString,
-        ),
-        'LookupInvoice': grpc.unary_unary_rpc_method_handler(
-            servicer.LookupInvoice,
-            request_deserializer=PaymentHash.FromString,
-            response_serializer=Invoice.SerializeToString,
-        ),
-        'SubscribeInvoices': grpc.unary_stream_rpc_method_handler(
-            servicer.SubscribeInvoices,
-            request_deserializer=InvoiceSubscription.FromString,
-            response_serializer=Invoice.SerializeToString,
-        ),
-        'DecodePayReq': grpc.unary_unary_rpc_method_handler(
-            servicer.DecodePayReq,
-            request_deserializer=PayReqString.FromString,
-            response_serializer=PayReq.SerializeToString,
-        ),
-        'ListPayments': grpc.unary_unary_rpc_method_handler(
-            servicer.ListPayments,
-            request_deserializer=ListPaymentsRequest.FromString,
-            response_serializer=ListPaymentsResponse.SerializeToString,
-        ),
-        'DeleteAllPayments': grpc.unary_unary_rpc_method_handler(
-            servicer.DeleteAllPayments,
-            request_deserializer=DeleteAllPaymentsRequest.FromString,
-            response_serializer=DeleteAllPaymentsResponse.SerializeToString,
-        ),
-        'DescribeGraph': grpc.unary_unary_rpc_method_handler(
-            servicer.DescribeGraph,
-            request_deserializer=ChannelGraphRequest.FromString,
-            response_serializer=ChannelGraph.SerializeToString,
-        ),
-        'GetChanInfo': grpc.unary_unary_rpc_method_handler(
-            servicer.GetChanInfo,
-            request_deserializer=ChanInfoRequest.FromString,
-            response_serializer=ChannelEdge.SerializeToString,
-        ),
-        'GetNodeInfo': grpc.unary_unary_rpc_method_handler(
-            servicer.GetNodeInfo,
-            request_deserializer=NodeInfoRequest.FromString,
-            response_serializer=NodeInfo.SerializeToString,
-        ),
-        'QueryRoutes': grpc.unary_unary_rpc_method_handler(
-            servicer.QueryRoutes,
-            request_deserializer=QueryRoutesRequest.FromString,
-            response_serializer=QueryRoutesResponse.SerializeToString,
-        ),
-        'GetNetworkInfo': grpc.unary_unary_rpc_method_handler(
-            servicer.GetNetworkInfo,
-            request_deserializer=NetworkInfoRequest.FromString,
-            response_serializer=NetworkInfo.SerializeToString,
-        ),
-        'StopDaemon': grpc.unary_unary_rpc_method_handler(
-            servicer.StopDaemon,
-            request_deserializer=StopRequest.FromString,
-            response_serializer=StopResponse.SerializeToString,
-        ),
-        'SubscribeChannelGraph': grpc.unary_stream_rpc_method_handler(
-            servicer.SubscribeChannelGraph,
-            request_deserializer=GraphTopologySubscription.FromString,
-            response_serializer=GraphTopologyUpdate.SerializeToString,
-        ),
-        'SetAlias': grpc.unary_unary_rpc_method_handler(
-            servicer.SetAlias,
-            request_deserializer=SetAliasRequest.FromString,
-            response_serializer=SetAliasResponse.SerializeToString,
-        ),
-        'DebugLevel': grpc.unary_unary_rpc_method_handler(
-            servicer.DebugLevel,
-            request_deserializer=DebugLevelRequest.FromString,
-            response_serializer=DebugLevelResponse.SerializeToString,
-        ),
-    }
-    generic_handler = grpc.method_handlers_generic_handler(
-        'lnrpc.Lightning', rpc_method_handlers)
-    server.add_generic_rpc_handlers((generic_handler,))
-
-
-  class BetaLightningServicer(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    # missing associated documentation comment in .proto file
-    pass
-    def WalletBalance(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def ChannelBalance(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def GetTransactions(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SendCoins(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SubscribeTransactions(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SendMany(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def NewAddress(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def NewWitnessAddress(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SignMessage(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def VerifyMessage(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def ConnectPeer(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def DisconnectPeer(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def ListPeers(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def GetInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def PendingChannels(self, request, context):
-      """TODO(roasbeef): merge with below with bool?
-      """
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def ListChannels(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def OpenChannelSync(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def OpenChannel(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def CloseChannel(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SendPayment(self, request_iterator, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SendPaymentSync(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def AddInvoice(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def ListInvoices(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def LookupInvoice(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SubscribeInvoices(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def DecodePayReq(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def ListPayments(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def DeleteAllPayments(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def DescribeGraph(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def GetChanInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def GetNodeInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def QueryRoutes(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def GetNetworkInfo(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def StopDaemon(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SubscribeChannelGraph(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def SetAlias(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-    def DebugLevel(self, request, context):
-      # missing associated documentation comment in .proto file
-      pass
-      context.code(beta_interfaces.StatusCode.UNIMPLEMENTED)
-
-
-  class BetaLightningStub(object):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This class was generated
-    only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0."""
-    # missing associated documentation comment in .proto file
-    pass
-    def WalletBalance(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    WalletBalance.future = None
-    def ChannelBalance(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    ChannelBalance.future = None
-    def GetTransactions(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    GetTransactions.future = None
-    def SendCoins(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    SendCoins.future = None
-    def SubscribeTransactions(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    def SendMany(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    SendMany.future = None
-    def NewAddress(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    NewAddress.future = None
-    def NewWitnessAddress(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    NewWitnessAddress.future = None
-    def SignMessage(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    SignMessage.future = None
-    def VerifyMessage(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    VerifyMessage.future = None
-    def ConnectPeer(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    ConnectPeer.future = None
-    def DisconnectPeer(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    DisconnectPeer.future = None
-    def ListPeers(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    ListPeers.future = None
-    def GetInfo(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    GetInfo.future = None
-    def PendingChannels(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      """TODO(roasbeef): merge with below with bool?
-      """
-      raise NotImplementedError()
-    PendingChannels.future = None
-    def ListChannels(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    ListChannels.future = None
-    def OpenChannelSync(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    OpenChannelSync.future = None
-    def OpenChannel(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    def CloseChannel(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    def SendPayment(self, request_iterator, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    def SendPaymentSync(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    SendPaymentSync.future = None
-    def AddInvoice(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    AddInvoice.future = None
-    def ListInvoices(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    ListInvoices.future = None
-    def LookupInvoice(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    LookupInvoice.future = None
-    def SubscribeInvoices(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    def DecodePayReq(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    DecodePayReq.future = None
-    def ListPayments(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    ListPayments.future = None
-    def DeleteAllPayments(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    DeleteAllPayments.future = None
-    def DescribeGraph(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    DescribeGraph.future = None
-    def GetChanInfo(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    GetChanInfo.future = None
-    def GetNodeInfo(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    GetNodeInfo.future = None
-    def QueryRoutes(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    QueryRoutes.future = None
-    def GetNetworkInfo(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    GetNetworkInfo.future = None
-    def StopDaemon(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    StopDaemon.future = None
-    def SubscribeChannelGraph(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    def SetAlias(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    SetAlias.future = None
-    def DebugLevel(self, request, timeout, metadata=None, with_call=False, protocol_options=None):
-      # missing associated documentation comment in .proto file
-      pass
-      raise NotImplementedError()
-    DebugLevel.future = None
-
-
-  def beta_create_Lightning_server(servicer, pool=None, pool_size=None, default_timeout=None, maximum_timeout=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_deserializers = {
-      ('lnrpc.Lightning', 'AddInvoice'): Invoice.FromString,
-      ('lnrpc.Lightning', 'ChannelBalance'): ChannelBalanceRequest.FromString,
-      ('lnrpc.Lightning', 'CloseChannel'): CloseChannelRequest.FromString,
-      ('lnrpc.Lightning', 'ConnectPeer'): ConnectPeerRequest.FromString,
-      ('lnrpc.Lightning', 'DebugLevel'): DebugLevelRequest.FromString,
-      ('lnrpc.Lightning', 'DecodePayReq'): PayReqString.FromString,
-      ('lnrpc.Lightning', 'DeleteAllPayments'): DeleteAllPaymentsRequest.FromString,
-      ('lnrpc.Lightning', 'DescribeGraph'): ChannelGraphRequest.FromString,
-      ('lnrpc.Lightning', 'DisconnectPeer'): DisconnectPeerRequest.FromString,
-      ('lnrpc.Lightning', 'GetChanInfo'): ChanInfoRequest.FromString,
-      ('lnrpc.Lightning', 'GetInfo'): GetInfoRequest.FromString,
-      ('lnrpc.Lightning', 'GetNetworkInfo'): NetworkInfoRequest.FromString,
-      ('lnrpc.Lightning', 'GetNodeInfo'): NodeInfoRequest.FromString,
-      ('lnrpc.Lightning', 'GetTransactions'): GetTransactionsRequest.FromString,
-      ('lnrpc.Lightning', 'ListChannels'): ListChannelsRequest.FromString,
-      ('lnrpc.Lightning', 'ListInvoices'): ListInvoiceRequest.FromString,
-      ('lnrpc.Lightning', 'ListPayments'): ListPaymentsRequest.FromString,
-      ('lnrpc.Lightning', 'ListPeers'): ListPeersRequest.FromString,
-      ('lnrpc.Lightning', 'LookupInvoice'): PaymentHash.FromString,
-      ('lnrpc.Lightning', 'NewAddress'): NewAddressRequest.FromString,
-      ('lnrpc.Lightning', 'NewWitnessAddress'): NewWitnessAddressRequest.FromString,
-      ('lnrpc.Lightning', 'OpenChannel'): OpenChannelRequest.FromString,
-      ('lnrpc.Lightning', 'OpenChannelSync'): OpenChannelRequest.FromString,
-      ('lnrpc.Lightning', 'PendingChannels'): PendingChannelRequest.FromString,
-      ('lnrpc.Lightning', 'QueryRoutes'): QueryRoutesRequest.FromString,
-      ('lnrpc.Lightning', 'SendCoins'): SendCoinsRequest.FromString,
-      ('lnrpc.Lightning', 'SendMany'): SendManyRequest.FromString,
-      ('lnrpc.Lightning', 'SendPayment'): SendRequest.FromString,
-      ('lnrpc.Lightning', 'SendPaymentSync'): SendRequest.FromString,
-      ('lnrpc.Lightning', 'SetAlias'): SetAliasRequest.FromString,
-      ('lnrpc.Lightning', 'SignMessage'): SignMessageRequest.FromString,
-      ('lnrpc.Lightning', 'StopDaemon'): StopRequest.FromString,
-      ('lnrpc.Lightning', 'SubscribeChannelGraph'): GraphTopologySubscription.FromString,
-      ('lnrpc.Lightning', 'SubscribeInvoices'): InvoiceSubscription.FromString,
-      ('lnrpc.Lightning', 'SubscribeTransactions'): GetTransactionsRequest.FromString,
-      ('lnrpc.Lightning', 'VerifyMessage'): VerifyMessageRequest.FromString,
-      ('lnrpc.Lightning', 'WalletBalance'): WalletBalanceRequest.FromString,
-    }
-    response_serializers = {
-      ('lnrpc.Lightning', 'AddInvoice'): AddInvoiceResponse.SerializeToString,
-      ('lnrpc.Lightning', 'ChannelBalance'): ChannelBalanceResponse.SerializeToString,
-      ('lnrpc.Lightning', 'CloseChannel'): CloseStatusUpdate.SerializeToString,
-      ('lnrpc.Lightning', 'ConnectPeer'): ConnectPeerResponse.SerializeToString,
-      ('lnrpc.Lightning', 'DebugLevel'): DebugLevelResponse.SerializeToString,
-      ('lnrpc.Lightning', 'DecodePayReq'): PayReq.SerializeToString,
-      ('lnrpc.Lightning', 'DeleteAllPayments'): DeleteAllPaymentsResponse.SerializeToString,
-      ('lnrpc.Lightning', 'DescribeGraph'): ChannelGraph.SerializeToString,
-      ('lnrpc.Lightning', 'DisconnectPeer'): DisconnectPeerResponse.SerializeToString,
-      ('lnrpc.Lightning', 'GetChanInfo'): ChannelEdge.SerializeToString,
-      ('lnrpc.Lightning', 'GetInfo'): GetInfoResponse.SerializeToString,
-      ('lnrpc.Lightning', 'GetNetworkInfo'): NetworkInfo.SerializeToString,
-      ('lnrpc.Lightning', 'GetNodeInfo'): NodeInfo.SerializeToString,
-      ('lnrpc.Lightning', 'GetTransactions'): TransactionDetails.SerializeToString,
-      ('lnrpc.Lightning', 'ListChannels'): ListChannelsResponse.SerializeToString,
-      ('lnrpc.Lightning', 'ListInvoices'): ListInvoiceResponse.SerializeToString,
-      ('lnrpc.Lightning', 'ListPayments'): ListPaymentsResponse.SerializeToString,
-      ('lnrpc.Lightning', 'ListPeers'): ListPeersResponse.SerializeToString,
-      ('lnrpc.Lightning', 'LookupInvoice'): Invoice.SerializeToString,
-      ('lnrpc.Lightning', 'NewAddress'): NewAddressResponse.SerializeToString,
-      ('lnrpc.Lightning', 'NewWitnessAddress'): NewAddressResponse.SerializeToString,
-      ('lnrpc.Lightning', 'OpenChannel'): OpenStatusUpdate.SerializeToString,
-      ('lnrpc.Lightning', 'OpenChannelSync'): ChannelPoint.SerializeToString,
-      ('lnrpc.Lightning', 'PendingChannels'): PendingChannelResponse.SerializeToString,
-      ('lnrpc.Lightning', 'QueryRoutes'): QueryRoutesResponse.SerializeToString,
-      ('lnrpc.Lightning', 'SendCoins'): SendCoinsResponse.SerializeToString,
-      ('lnrpc.Lightning', 'SendMany'): SendManyResponse.SerializeToString,
-      ('lnrpc.Lightning', 'SendPayment'): SendResponse.SerializeToString,
-      ('lnrpc.Lightning', 'SendPaymentSync'): SendResponse.SerializeToString,
-      ('lnrpc.Lightning', 'SetAlias'): SetAliasResponse.SerializeToString,
-      ('lnrpc.Lightning', 'SignMessage'): SignMessageResponse.SerializeToString,
-      ('lnrpc.Lightning', 'StopDaemon'): StopResponse.SerializeToString,
-      ('lnrpc.Lightning', 'SubscribeChannelGraph'): GraphTopologyUpdate.SerializeToString,
-      ('lnrpc.Lightning', 'SubscribeInvoices'): Invoice.SerializeToString,
-      ('lnrpc.Lightning', 'SubscribeTransactions'): Transaction.SerializeToString,
-      ('lnrpc.Lightning', 'VerifyMessage'): VerifyMessageResponse.SerializeToString,
-      ('lnrpc.Lightning', 'WalletBalance'): WalletBalanceResponse.SerializeToString,
-    }
-    method_implementations = {
-      ('lnrpc.Lightning', 'AddInvoice'): face_utilities.unary_unary_inline(servicer.AddInvoice),
-      ('lnrpc.Lightning', 'ChannelBalance'): face_utilities.unary_unary_inline(servicer.ChannelBalance),
-      ('lnrpc.Lightning', 'CloseChannel'): face_utilities.unary_stream_inline(servicer.CloseChannel),
-      ('lnrpc.Lightning', 'ConnectPeer'): face_utilities.unary_unary_inline(servicer.ConnectPeer),
-      ('lnrpc.Lightning', 'DebugLevel'): face_utilities.unary_unary_inline(servicer.DebugLevel),
-      ('lnrpc.Lightning', 'DecodePayReq'): face_utilities.unary_unary_inline(servicer.DecodePayReq),
-      ('lnrpc.Lightning', 'DeleteAllPayments'): face_utilities.unary_unary_inline(servicer.DeleteAllPayments),
-      ('lnrpc.Lightning', 'DescribeGraph'): face_utilities.unary_unary_inline(servicer.DescribeGraph),
-      ('lnrpc.Lightning', 'DisconnectPeer'): face_utilities.unary_unary_inline(servicer.DisconnectPeer),
-      ('lnrpc.Lightning', 'GetChanInfo'): face_utilities.unary_unary_inline(servicer.GetChanInfo),
-      ('lnrpc.Lightning', 'GetInfo'): face_utilities.unary_unary_inline(servicer.GetInfo),
-      ('lnrpc.Lightning', 'GetNetworkInfo'): face_utilities.unary_unary_inline(servicer.GetNetworkInfo),
-      ('lnrpc.Lightning', 'GetNodeInfo'): face_utilities.unary_unary_inline(servicer.GetNodeInfo),
-      ('lnrpc.Lightning', 'GetTransactions'): face_utilities.unary_unary_inline(servicer.GetTransactions),
-      ('lnrpc.Lightning', 'ListChannels'): face_utilities.unary_unary_inline(servicer.ListChannels),
-      ('lnrpc.Lightning', 'ListInvoices'): face_utilities.unary_unary_inline(servicer.ListInvoices),
-      ('lnrpc.Lightning', 'ListPayments'): face_utilities.unary_unary_inline(servicer.ListPayments),
-      ('lnrpc.Lightning', 'ListPeers'): face_utilities.unary_unary_inline(servicer.ListPeers),
-      ('lnrpc.Lightning', 'LookupInvoice'): face_utilities.unary_unary_inline(servicer.LookupInvoice),
-      ('lnrpc.Lightning', 'NewAddress'): face_utilities.unary_unary_inline(servicer.NewAddress),
-      ('lnrpc.Lightning', 'NewWitnessAddress'): face_utilities.unary_unary_inline(servicer.NewWitnessAddress),
-      ('lnrpc.Lightning', 'OpenChannel'): face_utilities.unary_stream_inline(servicer.OpenChannel),
-      ('lnrpc.Lightning', 'OpenChannelSync'): face_utilities.unary_unary_inline(servicer.OpenChannelSync),
-      ('lnrpc.Lightning', 'PendingChannels'): face_utilities.unary_unary_inline(servicer.PendingChannels),
-      ('lnrpc.Lightning', 'QueryRoutes'): face_utilities.unary_unary_inline(servicer.QueryRoutes),
-      ('lnrpc.Lightning', 'SendCoins'): face_utilities.unary_unary_inline(servicer.SendCoins),
-      ('lnrpc.Lightning', 'SendMany'): face_utilities.unary_unary_inline(servicer.SendMany),
-      ('lnrpc.Lightning', 'SendPayment'): face_utilities.stream_stream_inline(servicer.SendPayment),
-      ('lnrpc.Lightning', 'SendPaymentSync'): face_utilities.unary_unary_inline(servicer.SendPaymentSync),
-      ('lnrpc.Lightning', 'SetAlias'): face_utilities.unary_unary_inline(servicer.SetAlias),
-      ('lnrpc.Lightning', 'SignMessage'): face_utilities.unary_unary_inline(servicer.SignMessage),
-      ('lnrpc.Lightning', 'StopDaemon'): face_utilities.unary_unary_inline(servicer.StopDaemon),
-      ('lnrpc.Lightning', 'SubscribeChannelGraph'): face_utilities.unary_stream_inline(servicer.SubscribeChannelGraph),
-      ('lnrpc.Lightning', 'SubscribeInvoices'): face_utilities.unary_stream_inline(servicer.SubscribeInvoices),
-      ('lnrpc.Lightning', 'SubscribeTransactions'): face_utilities.unary_stream_inline(servicer.SubscribeTransactions),
-      ('lnrpc.Lightning', 'VerifyMessage'): face_utilities.unary_unary_inline(servicer.VerifyMessage),
-      ('lnrpc.Lightning', 'WalletBalance'): face_utilities.unary_unary_inline(servicer.WalletBalance),
-    }
-    server_options = beta_implementations.server_options(request_deserializers=request_deserializers, response_serializers=response_serializers, thread_pool=pool, thread_pool_size=pool_size, default_timeout=default_timeout, maximum_timeout=maximum_timeout)
-    return beta_implementations.server(method_implementations, options=server_options)
-
-
-  def beta_create_Lightning_stub(channel, host=None, metadata_transformer=None, pool=None, pool_size=None):
-    """The Beta API is deprecated for 0.15.0 and later.
-
-    It is recommended to use the GA API (classes and functions in this
-    file not marked beta) for all further purposes. This function was
-    generated only to ease transition from grpcio<0.15.0 to grpcio>=0.15.0"""
-    request_serializers = {
-      ('lnrpc.Lightning', 'AddInvoice'): Invoice.SerializeToString,
-      ('lnrpc.Lightning', 'ChannelBalance'): ChannelBalanceRequest.SerializeToString,
-      ('lnrpc.Lightning', 'CloseChannel'): CloseChannelRequest.SerializeToString,
-      ('lnrpc.Lightning', 'ConnectPeer'): ConnectPeerRequest.SerializeToString,
-      ('lnrpc.Lightning', 'DebugLevel'): DebugLevelRequest.SerializeToString,
-      ('lnrpc.Lightning', 'DecodePayReq'): PayReqString.SerializeToString,
-      ('lnrpc.Lightning', 'DeleteAllPayments'): DeleteAllPaymentsRequest.SerializeToString,
-      ('lnrpc.Lightning', 'DescribeGraph'): ChannelGraphRequest.SerializeToString,
-      ('lnrpc.Lightning', 'DisconnectPeer'): DisconnectPeerRequest.SerializeToString,
-      ('lnrpc.Lightning', 'GetChanInfo'): ChanInfoRequest.SerializeToString,
-      ('lnrpc.Lightning', 'GetInfo'): GetInfoRequest.SerializeToString,
-      ('lnrpc.Lightning', 'GetNetworkInfo'): NetworkInfoRequest.SerializeToString,
-      ('lnrpc.Lightning', 'GetNodeInfo'): NodeInfoRequest.SerializeToString,
-      ('lnrpc.Lightning', 'GetTransactions'): GetTransactionsRequest.SerializeToString,
-      ('lnrpc.Lightning', 'ListChannels'): ListChannelsRequest.SerializeToString,
-      ('lnrpc.Lightning', 'ListInvoices'): ListInvoiceRequest.SerializeToString,
-      ('lnrpc.Lightning', 'ListPayments'): ListPaymentsRequest.SerializeToString,
-      ('lnrpc.Lightning', 'ListPeers'): ListPeersRequest.SerializeToString,
-      ('lnrpc.Lightning', 'LookupInvoice'): PaymentHash.SerializeToString,
-      ('lnrpc.Lightning', 'NewAddress'): NewAddressRequest.SerializeToString,
-      ('lnrpc.Lightning', 'NewWitnessAddress'): NewWitnessAddressRequest.SerializeToString,
-      ('lnrpc.Lightning', 'OpenChannel'): OpenChannelRequest.SerializeToString,
-      ('lnrpc.Lightning', 'OpenChannelSync'): OpenChannelRequest.SerializeToString,
-      ('lnrpc.Lightning', 'PendingChannels'): PendingChannelRequest.SerializeToString,
-      ('lnrpc.Lightning', 'QueryRoutes'): QueryRoutesRequest.SerializeToString,
-      ('lnrpc.Lightning', 'SendCoins'): SendCoinsRequest.SerializeToString,
-      ('lnrpc.Lightning', 'SendMany'): SendManyRequest.SerializeToString,
-      ('lnrpc.Lightning', 'SendPayment'): SendRequest.SerializeToString,
-      ('lnrpc.Lightning', 'SendPaymentSync'): SendRequest.SerializeToString,
-      ('lnrpc.Lightning', 'SetAlias'): SetAliasRequest.SerializeToString,
-      ('lnrpc.Lightning', 'SignMessage'): SignMessageRequest.SerializeToString,
-      ('lnrpc.Lightning', 'StopDaemon'): StopRequest.SerializeToString,
-      ('lnrpc.Lightning', 'SubscribeChannelGraph'): GraphTopologySubscription.SerializeToString,
-      ('lnrpc.Lightning', 'SubscribeInvoices'): InvoiceSubscription.SerializeToString,
-      ('lnrpc.Lightning', 'SubscribeTransactions'): GetTransactionsRequest.SerializeToString,
-      ('lnrpc.Lightning', 'VerifyMessage'): VerifyMessageRequest.SerializeToString,
-      ('lnrpc.Lightning', 'WalletBalance'): WalletBalanceRequest.SerializeToString,
-    }
-    response_deserializers = {
-      ('lnrpc.Lightning', 'AddInvoice'): AddInvoiceResponse.FromString,
-      ('lnrpc.Lightning', 'ChannelBalance'): ChannelBalanceResponse.FromString,
-      ('lnrpc.Lightning', 'CloseChannel'): CloseStatusUpdate.FromString,
-      ('lnrpc.Lightning', 'ConnectPeer'): ConnectPeerResponse.FromString,
-      ('lnrpc.Lightning', 'DebugLevel'): DebugLevelResponse.FromString,
-      ('lnrpc.Lightning', 'DecodePayReq'): PayReq.FromString,
-      ('lnrpc.Lightning', 'DeleteAllPayments'): DeleteAllPaymentsResponse.FromString,
-      ('lnrpc.Lightning', 'DescribeGraph'): ChannelGraph.FromString,
-      ('lnrpc.Lightning', 'DisconnectPeer'): DisconnectPeerResponse.FromString,
-      ('lnrpc.Lightning', 'GetChanInfo'): ChannelEdge.FromString,
-      ('lnrpc.Lightning', 'GetInfo'): GetInfoResponse.FromString,
-      ('lnrpc.Lightning', 'GetNetworkInfo'): NetworkInfo.FromString,
-      ('lnrpc.Lightning', 'GetNodeInfo'): NodeInfo.FromString,
-      ('lnrpc.Lightning', 'GetTransactions'): TransactionDetails.FromString,
-      ('lnrpc.Lightning', 'ListChannels'): ListChannelsResponse.FromString,
-      ('lnrpc.Lightning', 'ListInvoices'): ListInvoiceResponse.FromString,
-      ('lnrpc.Lightning', 'ListPayments'): ListPaymentsResponse.FromString,
-      ('lnrpc.Lightning', 'ListPeers'): ListPeersResponse.FromString,
-      ('lnrpc.Lightning', 'LookupInvoice'): Invoice.FromString,
-      ('lnrpc.Lightning', 'NewAddress'): NewAddressResponse.FromString,
-      ('lnrpc.Lightning', 'NewWitnessAddress'): NewAddressResponse.FromString,
-      ('lnrpc.Lightning', 'OpenChannel'): OpenStatusUpdate.FromString,
-      ('lnrpc.Lightning', 'OpenChannelSync'): ChannelPoint.FromString,
-      ('lnrpc.Lightning', 'PendingChannels'): PendingChannelResponse.FromString,
-      ('lnrpc.Lightning', 'QueryRoutes'): QueryRoutesResponse.FromString,
-      ('lnrpc.Lightning', 'SendCoins'): SendCoinsResponse.FromString,
-      ('lnrpc.Lightning', 'SendMany'): SendManyResponse.FromString,
-      ('lnrpc.Lightning', 'SendPayment'): SendResponse.FromString,
-      ('lnrpc.Lightning', 'SendPaymentSync'): SendResponse.FromString,
-      ('lnrpc.Lightning', 'SetAlias'): SetAliasResponse.FromString,
-      ('lnrpc.Lightning', 'SignMessage'): SignMessageResponse.FromString,
-      ('lnrpc.Lightning', 'StopDaemon'): StopResponse.FromString,
-      ('lnrpc.Lightning', 'SubscribeChannelGraph'): GraphTopologyUpdate.FromString,
-      ('lnrpc.Lightning', 'SubscribeInvoices'): Invoice.FromString,
-      ('lnrpc.Lightning', 'SubscribeTransactions'): Transaction.FromString,
-      ('lnrpc.Lightning', 'VerifyMessage'): VerifyMessageResponse.FromString,
-      ('lnrpc.Lightning', 'WalletBalance'): WalletBalanceResponse.FromString,
-    }
-    cardinalities = {
-      'AddInvoice': cardinality.Cardinality.UNARY_UNARY,
-      'ChannelBalance': cardinality.Cardinality.UNARY_UNARY,
-      'CloseChannel': cardinality.Cardinality.UNARY_STREAM,
-      'ConnectPeer': cardinality.Cardinality.UNARY_UNARY,
-      'DebugLevel': cardinality.Cardinality.UNARY_UNARY,
-      'DecodePayReq': cardinality.Cardinality.UNARY_UNARY,
-      'DeleteAllPayments': cardinality.Cardinality.UNARY_UNARY,
-      'DescribeGraph': cardinality.Cardinality.UNARY_UNARY,
-      'DisconnectPeer': cardinality.Cardinality.UNARY_UNARY,
-      'GetChanInfo': cardinality.Cardinality.UNARY_UNARY,
-      'GetInfo': cardinality.Cardinality.UNARY_UNARY,
-      'GetNetworkInfo': cardinality.Cardinality.UNARY_UNARY,
-      'GetNodeInfo': cardinality.Cardinality.UNARY_UNARY,
-      'GetTransactions': cardinality.Cardinality.UNARY_UNARY,
-      'ListChannels': cardinality.Cardinality.UNARY_UNARY,
-      'ListInvoices': cardinality.Cardinality.UNARY_UNARY,
-      'ListPayments': cardinality.Cardinality.UNARY_UNARY,
-      'ListPeers': cardinality.Cardinality.UNARY_UNARY,
-      'LookupInvoice': cardinality.Cardinality.UNARY_UNARY,
-      'NewAddress': cardinality.Cardinality.UNARY_UNARY,
-      'NewWitnessAddress': cardinality.Cardinality.UNARY_UNARY,
-      'OpenChannel': cardinality.Cardinality.UNARY_STREAM,
-      'OpenChannelSync': cardinality.Cardinality.UNARY_UNARY,
-      'PendingChannels': cardinality.Cardinality.UNARY_UNARY,
-      'QueryRoutes': cardinality.Cardinality.UNARY_UNARY,
-      'SendCoins': cardinality.Cardinality.UNARY_UNARY,
-      'SendMany': cardinality.Cardinality.UNARY_UNARY,
-      'SendPayment': cardinality.Cardinality.STREAM_STREAM,
-      'SendPaymentSync': cardinality.Cardinality.UNARY_UNARY,
-      'SetAlias': cardinality.Cardinality.UNARY_UNARY,
-      'SignMessage': cardinality.Cardinality.UNARY_UNARY,
-      'StopDaemon': cardinality.Cardinality.UNARY_UNARY,
-      'SubscribeChannelGraph': cardinality.Cardinality.UNARY_STREAM,
-      'SubscribeInvoices': cardinality.Cardinality.UNARY_STREAM,
-      'SubscribeTransactions': cardinality.Cardinality.UNARY_STREAM,
-      'VerifyMessage': cardinality.Cardinality.UNARY_UNARY,
-      'WalletBalance': cardinality.Cardinality.UNARY_UNARY,
-    }
-    stub_options = beta_implementations.stub_options(host=host, metadata_transformer=metadata_transformer, request_serializers=request_serializers, response_deserializers=response_deserializers, thread_pool=pool, thread_pool_size=pool_size)
-    return beta_implementations.dynamic_stub(channel, 'lnrpc.Lightning', cardinalities, options=stub_options)
-except ImportError:
-  pass
 # @@protoc_insertion_point(module_scope)
