@@ -254,19 +254,17 @@ def test_gossip(node_factory, bitcoind, impls):
     wait_for(lambda: len(node2.getnodes()) == 5, interval=1)
 
 
-@pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
-def test_invoice_decode(node_factory, impls):
+@pytest.mark.parametrize("impl", impls, ids=idfn)
+def test_invoice_decode(node_factory, impl):
     capacity = 10**7
+    node1 = node_factory.get_node(implementation=impl)
 
-    for impl in impls:
-        node1 = node_factory.get_node(implementation=impl)
+    amount = int(capacity / 10)
+    payment_request = node1.invoice(amount)
+    hrp, data = bech32_decode(payment_request)
 
-        amount = int(capacity / 10)
-        payment_request = node1.invoice(amount)
-        hrp, data = bech32_decode(payment_request)
-
-        assert hrp and data
-        assert hrp.startswith('lnbcrt')
+    assert hrp and data
+    assert hrp.startswith('lnbcrt')
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
