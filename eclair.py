@@ -118,17 +118,14 @@ class EclairNode(object):
         self.logger = logging.getLogger('eclair-node({})'.format(lightning_port))
 
     def peers(self):
-        return self.rpc.peers()
+        return [p['nodeId'] for p in self.rpc.peers()]
 
     def id(self):
         info = self.rpc._call("getinfo", [])
         return info['nodeId']
 
     def openchannel(self, node_id, host, port, satoshis):
-        r = self.rpc._call('open', [node_id, host, port, satoshis, 0])
-        time.sleep(5)
-        self.bitcoin.rpc.generate(6)
-        time.sleep(5)
+        r = self.rpc._call('open', [node_id, satoshis, 0])
         return r
 
     def getaddress(self):
@@ -161,7 +158,7 @@ class EclairNode(object):
         remote_id = remote.id()
         for c in self.rpc.channels():
             channel = self.rpc.channel(c)
-            if channel['nodeid'] == remote_id:
+            if channel['nodeId'] == remote_id:
                 self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, channel['state']))
                 return channel['state'] == 'NORMAL'
         self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
@@ -170,8 +167,8 @@ class EclairNode(object):
     def getchannels(self):
         channels = []
         for c in self.rpc._call('allchannels', []):
-            channels.append((c['nodeId1'], c['nodeId2']))
-            channels.append((c['nodeId2'], c['nodeId1']))
+            channels.append((c['a'], c['b']))
+            channels.append((c['b'], c['a']))
         return channels
 
     def getnodes(self):
@@ -218,14 +215,14 @@ class EclairRpc(object):
     def _call(self, method, params):
         headers = {'Content-type': 'application/json'}
         data = json.dumps({'method': method, 'params': params})
-        logging.info("Calling %s with params=%s", method, params)
+        logging.info("Calling {} with params={}".format(method, json.dumps(params, indent=4, sort_keys=True)))
         reply = self.session.post(self.url, data=data, headers=headers, auth=('user', 'rpcpass'))
 
         if reply.status_code != 200:
             raise ValueError("Server returned an unknown error: {} ({})".format(
                 reply.status_code, reply.text))
 
-        logging.debug("Method %s returned %r", method, reply.json())
+        logging.debug("Method {} returned {}".format(method, json.dumps(reply.json(), indent=4, sort_keys=True)))
         if 'error' in reply.json():
             raise ValueError('Error calling {}: {}'.format(
                 method, reply.json()['error']))
@@ -236,7 +233,7 @@ class EclairRpc(object):
         return self._call('peers', [])
 
     def channels(self):
-        return self._call('channels', [])
+        return [c['channelId'] for c in self._call('channels', [])]
 
     def channel(self, cid):
         return self._call('channel', [cid])

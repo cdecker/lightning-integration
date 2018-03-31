@@ -199,7 +199,8 @@ def test_open_channel(bitcoind, node_factory, impls):
     node1.addfunds(bitcoind, 2 * 10**7)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
-    bitcoind.rpc.generate(6)
+    time.sleep(1)
+    bitcoind.rpc.generate(2)
 
     assert confirm_channel(bitcoind, node1, node2)
 
@@ -207,7 +208,7 @@ def test_open_channel(bitcoind, node_factory, impls):
     assert(node2.check_channel(node1))
 
     # Generate some more, to reach the announcement depth
-    bitcoind.rpc.generate(6)
+    bitcoind.rpc.generate(4)
 
     # The nodes should know at least about this one channel
     wait_for(lambda: len(node1.getchannels()) == 2, interval=1, timeout=10)
