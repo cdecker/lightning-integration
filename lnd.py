@@ -48,6 +48,7 @@ class LndD(TailableProc):
             '--no-macaroons',
             '--nobootstrap',
             '--noencryptwallet',
+            '--bitcoin.defaultremotedelay=144',
         ]
 
         if not os.path.exists(lightning_dir):
