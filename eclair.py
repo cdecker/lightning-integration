@@ -58,6 +58,9 @@ class EclairD(TailableProc):
         # Adapt the config and store it
         config = open('src/eclair/eclair-core/src/main/resources/reference.conf').read()
         replacements = [
+            ('"testnet"', '"regtest"'),
+            ('enabled = false', 'enabled = true'),
+            ('password = ""', 'password = "rpcpass"'),
             ('9735', str(port)),
             ('18332', str(28332)),
             ('8080', str(self.rpc_port)),
@@ -216,7 +219,7 @@ class EclairRpc(object):
         headers = {'Content-type': 'application/json'}
         data = json.dumps({'method': method, 'params': params})
         logging.info("Calling %s with params=%s", method, params)
-        reply = self.session.post(self.url, data=data, headers=headers)
+        reply = self.session.post(self.url, data=data, headers=headers, auth=('user', 'rpcpass'))
 
         if reply.status_code != 200:
             raise ValueError("Server returned an unknown error: {} ({})".format(
