@@ -6,8 +6,8 @@ from lightningd import LightningNode
 from lnaddr import lndecode
 from lnd import LndNode
 from concurrent import futures
-from pprint import pprint
 from utils import BitcoinD, BtcD
+from bech32 import bech32_decode
 
 import logging
 import os
@@ -15,12 +15,10 @@ import pytest
 import sys
 import tempfile
 import time
-import unittest
 
 TEST_DIR = tempfile.mkdtemp(prefix='lightning-')
 TEST_DEBUG = os.getenv("TEST_DEBUG", "0") == "1"
 impls = [EclairNode, LightningNode, LndNode]
-
 
 if TEST_DEBUG:
     logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
@@ -63,12 +61,13 @@ class NodeFactory(object):
 def bitcoind():
     btc = BitcoinD(bitcoin_dir=os.path.join(TEST_DIR, "bitcoind"), rpcport=28332)
     btc.start()
-    info = btc.rpc.getinfo()
+    bch_info = btc.rpc.getblockchaininfo()
+    w_info = btc.rpc.getwalletinfo()
     # Make sure we have segwit and some funds
-    if info['blocks'] < 432:
+    if bch_info['blocks'] < 432:
         logging.debug("SegWit not active, generating some more blocks")
-        btc.rpc.generate(432 - info['blocks'])
-    elif info['balance'] < 1:
+        btc.rpc.generate(432 - bch_info['blocks'])
+    elif w_info['balance'] < 1:
         logging.debug("Insufficient balance, generating 1 block")
         btc.rpc.generate(1)
 
@@ -93,6 +92,7 @@ def btcd():
     except:
         btcd.proc.kill()
     btcd.proc.wait()
+
 
 @pytest.fixture
 def node_factory(request, bitcoind, btcd):
@@ -119,6 +119,7 @@ def sync_blockheight(btc, nodes):
     for n in nodes:
         wait_for(lambda: n.info()['blockheight'] == blocks, interval=1)
 
+
 def generate_until(btc, success, blocks=30, interval=1):
     """Generate new blocks until `success` returns true.
 
@@ -134,6 +135,7 @@ def generate_until(btc, success, blocks=30, interval=1):
     time.sleep(interval)
     if not success():
         raise ValueError("Generated %d blocks, but still no success", blocks)
+
 
 def idfn(impls):
     return "_".join([i.displayName for i in impls])
@@ -183,6 +185,7 @@ def confirm_channel(bitcoind, n1, n2):
     # Last ditch attempt
     return n1.check_channel(n2) and n2.check_channel(n1)
 
+
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def test_open_channel(bitcoind, node_factory, impls):
     node1 = node_factory.get_node(implementation=impls[0])
@@ -196,6 +199,8 @@ def test_open_channel(bitcoind, node_factory, impls):
     node1.addfunds(bitcoind, 2 * 10**7)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
+    bitcoind.rpc.generate(6)
+
     assert confirm_channel(bitcoind, node1, node2)
 
     assert(node1.check_channel(node2))
@@ -249,6 +254,19 @@ def test_gossip(node_factory, bitcoind, impls):
     wait_for(lambda: len(node2.getnodes()) == 5, interval=1)
 
 
+@pytest.mark.parametrize("impl", impls, ids=idfn)
+def test_invoice_decode(node_factory, impl):
+    capacity = 10**7
+    node1 = node_factory.get_node(implementation=impl)
+
+    amount = int(capacity / 10)
+    payment_request = node1.invoice(amount)
+    hrp, data = bech32_decode(payment_request)
+
+    assert hrp and data
+    assert hrp.startswith('lnbcrt')
+
+
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def test_direct_payment(bitcoind, node_factory, impls):
     node1 = node_factory.get_node(implementation=impls[0])
@@ -296,6 +314,7 @@ def check_channels(pairs):
         ok &= node1.check_channel(node2)
         ok &= node2.check_channel(node1)
     return ok
+
 
 @pytest.mark.parametrize("impls", product(impls, repeat=3), ids=idfn)
 def test_forwarded_payment(bitcoind, node_factory, impls):

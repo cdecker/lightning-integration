@@ -1,5 +1,5 @@
 from binascii import hexlify, unhexlify
-from utils import TailableProc
+from utils import TailableProc, BITCOIND_CONFIG
 import rpc_pb2_grpc as lnrpc_grpc
 import rpc_pb2 as lnrpc
 
@@ -8,31 +8,43 @@ import grpc
 import logging
 import os
 import time
+import codecs
 
 
 # Needed for grpc to negotiate a valid cipher suite
 os.environ["GRPC_SSL_CIPHER_SUITES"] = "ECDHE-ECDSA-AES256-GCM-SHA384"
 
+
 class LndD(TailableProc):
+
+    CONF_NAME = 'lnd.conf'
+
     def __init__(self, lightning_dir, bitcoin_dir, port):
-        TailableProc.__init__(self, lightning_dir, 'lnd({})'.format(port))
+        super().__init__(lightning_dir, 'lnd({})'.format(port))
         self.lightning_dir = lightning_dir
         self.bitcoin_dir = bitcoin_dir
         self.port = port
         self.rpc_port = str(10000 + port)
+        self.rest_port = str(20000 + port)
         self.prefix = 'lnd'
 
         self.cmd_line = [
             'bin/lnd',
-            '--peerport={}'.format(self.port),
-            '--rpcport={}'.format(self.rpc_port),
             '--bitcoin.active',
+            '--bitcoin.regtest',
             '--datadir={}'.format(lightning_dir),
             '--debuglevel=trace',
-            '--bitcoin.rpcuser=rpcuser',
-            '--bitcoin.rpcpass=rpcpass',
-            '--configfile={}'.format(os.path.join(lightning_dir, 'lnd.conf')),
-            '--bitcoin.regtest',
+            '--rpclisten=127.0.0.1:{}'.format(self.rpc_port),
+            '--restlisten=127.0.0.1:{}'.format(self.rest_port),
+            '--listen=127.0.0.1:{}'.format(self.port),
+            '--tlscertpath=tls.cert',
+            '--tlskeypath=tls.key',
+            '--bitcoin.node=bitcoind',
+            '--bitcoind.rpchost=127.0.0.1:{}'.format(BITCOIND_CONFIG.get('rpcport', 18332)),
+            '--bitcoind.rpcuser=rpcuser',
+            '--bitcoind.rpcpass=rpcpass',
+            '--bitcoind.zmqpath=tcp://127.0.0.1:29000',
+            '--configfile={}'.format(os.path.join(lightning_dir, self.CONF_NAME)),
             '--no-macaroons',
             '--nobootstrap',
             '--noencryptwallet',
@@ -40,28 +52,30 @@ class LndD(TailableProc):
 
         if not os.path.exists(lightning_dir):
             os.makedirs(lightning_dir)
-        with open(os.path.join(lightning_dir, "lnd.conf"), "w") as f:
+        with open(os.path.join(lightning_dir, self.CONF_NAME), "w") as f:
             f.write("""[Application Options]\n""")
 
     def start(self):
-        TailableProc.start(self)
-        self.wait_for_log("server listening on")
-        self.wait_for_log("Done catching up block hashes")
+        super().start()
+        self.wait_for_log('RPC server listening on')
+        self.wait_for_log('Done catching up block hashes')
         time.sleep(5)
 
-        logging.info("LND started (pid: {})".format(self.proc.pid))
+        logging.info('LND started (pid: {})'.format(self.proc.pid))
 
 
 class LndNode(object):
 
-    def __init__(self, lightning_dir, lightning_port, btc, executor=None,
-                 node_id=0):
+    displayName = 'lnd'
+
+    def __init__(self, lightning_dir, lightning_port, btc, executor=None, node_id=0):
         self.bitcoin = btc
         self.executor = executor
         self.daemon = LndD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
         self.rpc = LndRpc(lightning_port+10000)
         self.logger = logging.getLogger('lnd-node({})'.format(lightning_port))
         self.myid = None
+        self.node_id = node_id
 
     def id(self):
         if not self.myid:
@@ -110,16 +124,16 @@ class LndNode(object):
         # The above still doesn't mean the wallet balance is updated,
         # so let it settle a bit
         time.sleep(1)
-        assert(self.rpc.stub.WalletBalance(lnrpc.WalletBalanceRequest()).balance == satoshis)
+        assert(self.rpc.stub.WalletBalance(lnrpc.WalletBalanceRequest()).total_balance == satoshis)
 
     def openchannel(self, node_id, host, port, satoshis):
         peers = self.rpc.stub.ListPeers (lnrpc.ListPeersRequest()).peers
         peers_by_pubkey = {p.pub_key: p for p in peers}
         if not node_id in peers_by_pubkey:
-            raise ValueError("Could not find peer {} in peers {}".format(node_id), peers)
+            raise ValueError("Could not find peer {} in peers {}".format(node_id, peers))
         peer = peers_by_pubkey[node_id]
         self.rpc.stub.OpenChannel(lnrpc.OpenChannelRequest(
-            target_peer_id=peer.peer_id,
+            node_pubkey=codecs.decode(peer.pub_key, 'hex_codec'),
             local_funding_amount=satoshis,
             push_sat=0
         ))
@@ -143,7 +157,6 @@ class LndNode(object):
         nodes = set([n.pub_key for n in rep.nodes]) - set([self.id()])
         return nodes
 
-
     def invoice(self, amount):
         req = lnrpc.Invoice(value=int(amount/1000))
         rep = self.rpc.stub.AddInvoice(req)
@@ -158,7 +171,6 @@ class LndNode(object):
         addr = lnrpc.LightningAddress(pubkey=node_id, host="{}:{}".format(host, port))
         req = lnrpc.ConnectPeerRequest(addr=addr, perm=True)
         logging.debug(self.rpc.stub.ConnectPeer(req))
-
 
     def info(self):
         r = self.rpc.stub.GetInfo(lnrpc.GetInfoRequest())
@@ -177,10 +189,9 @@ class LndNode(object):
         self.daemon.start()
         self.rpc = LndRpc(self.daemon.rpc_port)
 
-LndNode.displayName = 'lnd'
-
 
 class LndRpc(object):
+
     def __init__(self, rpc_port):
         self.port = rpc_port
         cred = grpc.ssl_channel_credentials(open('tls.cert').read())
