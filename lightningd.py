@@ -39,7 +39,7 @@ class LightningD(TailableProc):
 
     def start(self):
         TailableProc.start(self)
-        self.wait_for_log("Hello world")
+        self.wait_for_log("Server started with public key")
         logging.info("LightningD started")
 
     def stop(self):
