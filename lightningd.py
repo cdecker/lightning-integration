@@ -1,6 +1,7 @@
 from lightning import LightningRpc
 from utils import TailableProc
 
+import json
 import logging
 import os
 import time
@@ -27,7 +28,7 @@ class LightningD(TailableProc):
             '--port={}'.format(port),
             '--network=regtest',
             '--dev-broadcast-interval=1000',
-            '--override-fee-rates={0}/{0}/{0}'.format(12*1000), # Fix fee in sat/kw
+            '--override-fee-rates={0}/{0}/{0}'.format(12*1000),  # Fix fee in sat/kw
         ]
         self.cmd_line += [
             "--{}={}".format(k, v) for k, v in LIGHTNINGD_CONFIG.items()
@@ -64,17 +65,18 @@ class LightningNode(object):
         self.rpc = LightningRpc(socket_path, self.executor)
 
         orig_call = self.rpc._call
+
         def rpc_call(method, args):
-            self.logger.debug("Calling {} with arguments {}".format(method, args))
+            self.logger.debug("Calling {} with arguments {}".format(method, json.dumps(args, indent=4, sort_keys=True)))
             r = orig_call(method, args)
-            self.logger.debug("Call returned {}".format(r))
+            self.logger.debug("Call returned {}".format(json.dumps(r, indent=4, sort_keys=True)))
             return r
 
         self.rpc._call = rpc_call
         self.myid = None
 
     def peers(self):
-        return [p['peerid'] for p in self.rpc.getpeers()['peers']]
+        return [p['id'] for p in self.rpc.listpeers()['peers']]
 
     def getinfo(self):
         if not self.info:
@@ -98,8 +100,10 @@ class LightningNode(object):
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
         txid = bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
-        tx = bitcoind.rpc.getrawtransaction(txid)
-        self.rpc.addfunds(tx)
+        bitcoind.rpc.getrawtransaction(txid)
+        while len(self.rpc.listfunds()['outputs']) == 0:
+            time.sleep(1)
+            bitcoind.rpc.generate(1)
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running
@@ -117,22 +121,23 @@ class LightningNode(object):
         """
         remote_id = remote.id()
         self_id = self.id()
-        for p in self.rpc.getpeers()['peers']:
-            if remote.id() == p['peerid']:
-                self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, p['state']))
-                return p['state'] == 'CHANNELD_NORMAL' and p['connected']
+        for p in self.rpc.listpeers()['peers']:
+            if remote.id() == p['id']:
+                state = p['state'] if len(p['channels']) == 0 else p['channels'][0]['state']
+                self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, state))
+                return state == 'CHANNELD_NORMAL' and p['connected']
 
         self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
         return False
 
     def getchannels(self):
         result = []
-        for c in self.rpc.getchannels()['channels']:
+        for c in self.rpc.listchannels()['channels']:
             result.append((c['source'], c['destination']))
         return set(result)
 
     def getnodes(self):
-        return set([n['nodeid'] for n in self.rpc.getnodes()['nodes']])
+        return set([n['nodeid'] for n in self.rpc.listnodes()['nodes']])
 
     def invoice(self, amount):
         invoice = self.rpc.invoice(amount, "invoice%d" % (self.invoice_count), "description")
