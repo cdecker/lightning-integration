@@ -210,10 +210,6 @@ def test_open_channel(bitcoind, node_factory, impls):
     # Generate some more, to reach the announcement depth
     bitcoind.rpc.generate(4)
 
-    # The nodes should know at least about this one channel
-    wait_for(lambda: len(node1.getchannels()) == 2, interval=1, timeout=10)
-    wait_for(lambda: len(node2.getchannels()) == 2, interval=1, timeout=10)
-
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
 def test_gossip(node_factory, bitcoind, impls):
