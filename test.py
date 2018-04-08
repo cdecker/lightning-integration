@@ -283,7 +283,6 @@ def test_direct_payment(bitcoind, node_factory, impls):
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
     confirm_channel(bitcoind, node1, node2)
 
-    generate_until(bitcoind, lambda: gossip_is_synced([node1, node2], 2), blocks=60, interval=1)
     sync_blockheight(bitcoind, [node1, node2])
 
     amount = int(capacity / 10)

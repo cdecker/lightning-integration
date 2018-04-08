@@ -147,7 +147,7 @@ class LightningNode(object):
 
     def send(self, req):
         result = self.rpc.pay(req)
-        return result['preimage']
+        return result['payment_preimage']
 
     def connect(self, host, port, node_id):
         return self.rpc.connect(node_id, host, port)
@@ -156,7 +156,7 @@ class LightningNode(object):
         r = self.rpc.getinfo()
         return {
             'id': r['id'],
-           'blockheight': r['blockheight'],
+            'blockheight': r['blockheight'],
         }
 
     def block_sync(self, blockhash):
