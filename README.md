@@ -8,7 +8,7 @@ To install the python dependencies and `bitcoind` use the following:
 
     apt-get install bitcoind python3 python3-pip
 	pip3 install -r requirements.txt
-	
+
 We suggest running this in a virtualenv in order to guard against changing dependencies.
 
 We currently do not bundle the binaries that we test against.
@@ -57,3 +57,12 @@ Should you want to jump into an interactive session if something is about to fai
 
 This will run the tests until a failure would be recorded and start the python debugging console instead.
 In the console you have a python REPL that has access to the context of the current test, and you can interact with the clients via the RPCs to gather more information about what is going wrong.
+
+## Workarounds
+
+The following changes to the default configuration are used to ensure compatibility. Possibly the default configurations should be compatible, but that is not always possible to do in a timely fashion.
+
+ - c-lightning:
+   - `--cltv-final` is set to 8 (while default is 6) because of the final hop delta enforcement by eclair (see issue #16)
+ - lnd
+   - `--bitcoin.defaultremotedelay=144` since c-lightning will not allow large `to_self_delay`s (see lightningnetwork/lnd#788 and ElementsProject/lightning#1110)
