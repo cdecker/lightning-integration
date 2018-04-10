@@ -164,13 +164,20 @@ class LndNode(object):
         rep = self.rpc.stub.AddInvoice(req)
         return rep.payment_request
 
-    def send(self, req):
-        dec = lndecode(req)
+    def send(self, bolt11):
+        dec = lndecode(bolt11)
         req = lnrpc.SendRequest(payment_hash_string=hexlify(dec.paymenthash),
                                 amt=int(dec.amount*10**8),
+                                final_cltv_delta=9,
                                 dest=dec.pubkey.serialize(),
                                 dest_string=hexlify(dec.pubkey.serialize()))
+
+        if bolt11[:4] == 'lntb':
+            req = lnrpc.SendRequest(payment_request=bolt11)
+
         res = self.rpc.stub.SendPaymentSync(req)
+        if res.payment_error:
+            raise ValueError(res.payment_error)
         return hexlify(res.payment_preimage)
 
     def connect(self, host, port, node_id):
