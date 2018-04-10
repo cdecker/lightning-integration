@@ -287,8 +287,10 @@ def test_direct_payment(bitcoind, node_factory, impls):
 
     amount = int(capacity / 10)
     req = node2.invoice(amount)
-    payment_key = node1.send(req)
     dec = lndecode(req)
+
+    print("Decoded payment request", req, dec)
+    payment_key = node1.send(req)
     assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)
 
 

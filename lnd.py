@@ -1,4 +1,5 @@
-from binascii import hexlify, unhexlify
+from binascii import hexlify
+from lnaddr import lndecode
 from utils import TailableProc, BITCOIND_CONFIG
 import rpc_pb2_grpc as lnrpc_grpc
 import rpc_pb2 as lnrpc
@@ -164,7 +165,11 @@ class LndNode(object):
         return rep.payment_request
 
     def send(self, req):
-        req = lnrpc.SendRequest(payment_request=req)
+        dec = lndecode(req)
+        req = lnrpc.SendRequest(payment_hash_string=hexlify(dec.paymenthash),
+                                amt=int(dec.amount*10**8),
+                                dest=dec.pubkey.serialize(),
+                                dest_string=hexlify(dec.pubkey.serialize()))
         res = self.rpc.stub.SendPaymentSync(req)
         return hexlify(res.payment_preimage)
 
