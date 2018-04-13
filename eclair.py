@@ -172,7 +172,7 @@ class EclairNode(object):
         return channels
 
     def getnodes(self):
-        return set(self.rpc.allnodes())
+        return set([n['nodeId'] for n in self.rpc.allnodes()])
 
     def invoice(self, amount):
         req = self.rpc._call("receive", [amount, "invoice1"])
