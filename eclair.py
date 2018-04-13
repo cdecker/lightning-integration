@@ -210,14 +210,14 @@ class EclairRpc(object):
 
     def __init__(self, url):
         self.url = url
-        self.session = requests_retry_session(retries=10, session=requests.Session())
+        # self.session = requests_retry_session(retries=10, session=requests.Session())
 
     def _call(self, method, params):
         headers = {'Content-type': 'application/json'}
         data = json.dumps({'method': method, 'params': params})
         logging.info("Calling {} with params={}".format(method, json.dumps(params, indent=4, sort_keys=True)))
-        reply = self.session.post(self.url, data=data, headers=headers, auth=('user', 'rpcpass'))
-
+        with requests_retry_session(retries=10, session=requests.Session()) as s:
+            reply = s.post(self.url, data=data, headers=headers, auth=('user', 'rpcpass'))
         if reply.status_code != 200:
             raise ValueError("Server returned an unknown error: {} ({})".format(
                 reply.status_code, reply.text))
