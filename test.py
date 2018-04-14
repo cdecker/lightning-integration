@@ -314,6 +314,14 @@ def check_channels(pairs):
     return ok
 
 
+def node_has_route(node, channels):
+    """Check whether a node knows about a specific route.
+
+    The route is a list of node_id tuples
+    """
+    return set(channels).issubset(set(node.getchannels()))
+
+
 @pytest.mark.parametrize("impls", product(impls, repeat=3), ids=idfn)
 def test_forwarded_payment(bitcoind, node_factory, impls):
     num_nodes = len(impls)
@@ -328,18 +336,15 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
         confirm_channel(bitcoind, nodes[i], nodes[i+1])
 
+    bitcoind.rpc.generate(6)
     sync_blockheight(bitcoind, nodes)
 
-    # Make sure that everybody knows about its own channel and it's confirmed
-    generate_until(bitcoind, lambda: check_channels([(nodes[0], nodes[1]), (nodes[1], nodes[2])]), interval=1)
-
-    # Each node should know 2 channels, 4 directions:
-    generate_until(bitcoind, lambda: gossip_is_synced(nodes, 4), blocks=60, interval=3)
+    # Make sure we have a path
+    ids = [n.info()['id'] for n in nodes]
+    route = [(ids[i-1], ids[i]) for i in range(1, len(ids))]
+    wait_for(lambda: node_has_route(nodes[0], route))
     sync_blockheight(bitcoind, nodes)
 
-    time.sleep(15)
-
-    #import pdb; pdb.set_trace()
     src = nodes[0]
     dst = nodes[len(nodes)-1]
     amount = int(capacity / 10)
