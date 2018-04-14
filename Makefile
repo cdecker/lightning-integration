@@ -47,7 +47,7 @@ clients: bin/lightningd bin/lnd bin/eclair.jar
 
 test:
 	# Failure is always an option
-	py.test -v test.py --tb=short --color=yes --json=report.json || true
+	py.test -v test.py --tb=short --color=yes --json=report.json --reruns=3 || true
 	python cli.py postprocess
 
 site:
