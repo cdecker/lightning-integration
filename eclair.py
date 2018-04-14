@@ -56,7 +56,9 @@ class EclairD(TailableProc):
             os.makedirs(lightning_dir)
 
         # Adapt the config and store it
-        config = open('src/eclair/eclair-core/src/main/resources/reference.conf').read()
+        with open('src/eclair/eclair-core/src/main/resources/reference.conf') as f:
+            config = f.read()
+
         replacements = [
             ('"testnet"', '"regtest"'),
             ('enabled = false', 'enabled = true'),
