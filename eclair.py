@@ -101,6 +101,7 @@ class EclairD(TailableProc):
         for p in alive:
             p.kill()
         psutil.wait_procs(alive, timeout=3)
+        self.thread.join()
 
 
 class EclairNode(object):
