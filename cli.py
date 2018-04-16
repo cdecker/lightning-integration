@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from glob2 import glob
+from google.cloud import storage
 from hashlib import sha256
 from staticjinja import make_site
 
@@ -8,19 +9,23 @@ import json
 import os
 import sys
 
+
 @click.group()
 def cli():
     pass
 
+
 def die(msg):
     print(msg)
     sys.exit(1)
+
 
 def get_version(impl_name):
     fname = os.path.join('src', impl_name, 'version')
     if not os.path.exists(fname):
         die("Could not find version of implementation {}".format(impl_name))
     return open(fname).read().strip()
+
 
 @click.command()
 def postprocess():
@@ -35,8 +40,11 @@ def postprocess():
     with open(os.path.join('reports', report['id'] + ".json"), "w") as f:
         f.write(json.dumps(report))
 
+    upload(report['id'] + ".json", json.dumps(report))
+
+
 def group_tests(report):
-    tests =  report['tests']
+    tests = report['tests']
     report['tests'] = {}
     for t in tests:
         # Strip filename
@@ -76,11 +84,13 @@ def load_reports(template):
     reports = sorted(reports, key=lambda x: x['created_at'])[::-1]
     return {'reports': reports}
 
+
 def load_report(template):
     with open(template.filename, 'r') as f:
         report = json.loads(f.read())
 
     return group_tests(report)
+
 
 def render_report(env, template, **report):
     report_template = env.get_template("_report.html")
@@ -89,6 +99,7 @@ def render_report(env, template, **report):
         ratio = v['success'] / v['total']
         report['tests'][k]['color'] = ratio_to_color(ratio)
     report_template.stream(**report).dump(out)
+
 
 @click.command()
 def html():
@@ -106,6 +117,24 @@ def html():
         staticpaths=('static/',)
     )
     s.render()
+
+
+def _get_storage_client():
+    return storage.Client(project=os.getenv("GCP_PROJECT"))
+
+
+def upload(filename, contents):
+    client = _get_storage_client()
+    bucket = client.bucket(os.getenv('GCP_STORAGE_BUCKET'))
+    blob = bucket.blob(filename)
+
+    blob.upload_from_string(
+        contents,
+        content_type='application/json')
+
+    url = blob.public_url
+    return url
+
 
 if __name__ == '__main__':
     cli.add_command(html)
