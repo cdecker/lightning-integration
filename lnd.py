@@ -118,20 +118,23 @@ class LndNode(object):
     def addfunds(self, bitcoind, satoshis):
         req = lnrpc.NewAddressRequest(type=1)
         addr = self.rpc.stub.NewAddress(req).address
-        txid = bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
+        bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
         self.daemon.wait_for_log("Inserting unconfirmed transaction")
         bitcoind.rpc.generate(1)
         self.daemon.wait_for_log("Marking unconfirmed transaction")
 
         # The above still doesn't mean the wallet balance is updated,
         # so let it settle a bit
-        time.sleep(1)
+        i = 0
+        while self.rpc.stub.WalletBalance(lnrpc.WalletBalanceRequest()).total_balance == satoshis and i < 30:
+            time.sleep(1)
+            i += 1
         assert(self.rpc.stub.WalletBalance(lnrpc.WalletBalanceRequest()).total_balance == satoshis)
 
     def openchannel(self, node_id, host, port, satoshis):
-        peers = self.rpc.stub.ListPeers (lnrpc.ListPeersRequest()).peers
+        peers = self.rpc.stub.ListPeers(lnrpc.ListPeersRequest()).peers
         peers_by_pubkey = {p.pub_key: p for p in peers}
-        if not node_id in peers_by_pubkey:
+        if node_id not in peers_by_pubkey:
             raise ValueError("Could not find peer {} in peers {}".format(node_id, peers))
         peer = peers_by_pubkey[node_id]
         self.rpc.stub.OpenChannel(lnrpc.OpenChannelRequest(
