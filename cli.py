@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from glob2 import glob
 from google.cloud import storage
 from hashlib import sha256
 from staticjinja import make_site
@@ -75,7 +74,7 @@ def ratio_to_color(ratio):
 
 def load_reports(template):
     reports = []
-    for fname in glob("reports/*.json"):
+    for fname in os.listdir("reports"):
         with open(fname, 'r') as f:
             report = json.loads(f.read())
             ratio = report['summary']['passed'] / report['summary']['num_tests']
