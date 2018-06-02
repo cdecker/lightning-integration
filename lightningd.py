@@ -25,7 +25,7 @@ class LightningD(TailableProc):
             'bin/lightningd',
             '--bitcoin-datadir={}'.format(bitcoin_dir),
             '--lightning-dir={}'.format(lightning_dir),
-            '--port={}'.format(port),
+            '--addr=:{}'.format(port),
             '--network=regtest',
             '--dev-broadcast-interval=1000',
             '--override-fee-rates={0}/{0}/{0}'.format(12*1000),  # Fix fee in sat/kw
