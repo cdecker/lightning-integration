@@ -218,7 +218,7 @@ def lnencode(addr, privkey):
         raise ValueError("Cannot include both 'd' and 'h'")
     if not 'd' in tags_set and not 'h' in tags_set:
         raise ValueError("Must include either 'd' or 'h'")
-    
+
     # We actually sign the hrp, then data (padded to 8 bits with zeroes).
     privkey = secp256k1.PrivateKey(bytes(unhexlify(privkey)))
     sig = privkey.ecdsa_sign_recoverable(bytearray([ord(c) for c in hrp]) + data.tobytes())
@@ -233,7 +233,7 @@ class LnAddr(object):
         self.date = int(time.time()) if not date else int(date)
         self.tags = [] if not tags else tags
         self.unknown_tags = []
-        self.paymenthash=paymenthash
+        self.paymenthash = paymenthash
         self.signature = None
         self.pubkey = None
         self.currency = currency
@@ -292,7 +292,7 @@ def lndecode(a):
         # `version`, or a `p`, `h`, `n` or `r` field which does not have
         # `data_length` 52, 52, 53 or 82 respectively.
         data_length = len(tagdata) / 5
-        
+
         if tag == 'r':
             if data_length != 82:
                 addr.unknown_tags.append((tag, tagdata))
