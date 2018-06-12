@@ -49,7 +49,6 @@ class LndD(TailableProc):
             '--no-macaroons',
             '--nobootstrap',
             '--noencryptwallet',
-            '--bitcoin.defaultremotedelay=144',
         ]
 
         if not os.path.exists(lightning_dir):
@@ -168,17 +167,7 @@ class LndNode(object):
         return rep.payment_request
 
     def send(self, bolt11):
-        dec = lndecode(bolt11)
-        min_final_cltv_expiry = 9 if dec.min_final_cltv_expiry is None else dec.min_final_cltv_expiry
-        req = lnrpc.SendRequest(payment_hash_string=hexlify(dec.paymenthash),
-                                amt=int(dec.amount*10**8),
-                                final_cltv_delta=min_final_cltv_expiry,
-                                dest=dec.pubkey.serialize(),
-                                dest_string=hexlify(dec.pubkey.serialize()))
-
-        if bolt11[:4] == 'lntb':
-            req = lnrpc.SendRequest(payment_request=bolt11)
-
+        req = lnrpc.SendRequest(payment_request=bolt11)
         res = self.rpc.stub.SendPaymentSync(req)
         if res.payment_error:
             raise ValueError(res.payment_error)
