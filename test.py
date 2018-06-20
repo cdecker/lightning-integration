@@ -225,7 +225,7 @@ def test_gossip(node_factory, bitcoind, impls):
         n1.connect('localhost', n2.daemon.port, n2.id())
         n1.addfunds(bitcoind, 2 * 10**7)
         n1.openchannel(n2.id(), 'localhost', n2.daemon.port, 10**7)
-        confirm_channel(bitcoind, n1, n2)
+        assert confirm_channel(bitcoind, n1, n2)
 
     time.sleep(5)
     bitcoind.rpc.generate(30)
@@ -281,7 +281,7 @@ def test_direct_payment(bitcoind, node_factory, impls):
     time.sleep(5)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
-    confirm_channel(bitcoind, node1, node2)
+    assert confirm_channel(bitcoind, node1, node2)
 
     sync_blockheight(bitcoind, [node1, node2])
 
@@ -334,7 +334,7 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
 
     for i in range(num_nodes-1):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
-        confirm_channel(bitcoind, nodes[i], nodes[i+1])
+        assert confirm_channel(bitcoind, nodes[i], nodes[i+1])
 
     bitcoind.rpc.generate(6)
     sync_blockheight(bitcoind, nodes)
