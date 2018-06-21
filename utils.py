@@ -68,7 +68,7 @@ class TailableProc(object):
         self.proc.terminate()
         self.proc.kill()
         if self.outputDir:
-            logpath = os.path.join(self.outputDir, 'log')
+            logpath = os.path.join(self.outputDir, 'log.' + str(int(time.time())))
             with open(logpath, 'w') as f:
                 for l in self.logs:
                     f.write(l + '\n')
