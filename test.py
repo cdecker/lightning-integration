@@ -57,7 +57,7 @@ class NodeFactory(object):
             n.daemon.stop()
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture()
 def bitcoind():
     btc = BitcoinD(bitcoin_dir=os.path.join(TEST_DIR, "bitcoind"), rpcport=28332)
     btc.start()
@@ -95,9 +95,9 @@ def btcd():
 
 
 @pytest.fixture
-def node_factory(request, bitcoind, btcd):
+def node_factory(request, bitcoind):
     executor = futures.ThreadPoolExecutor(max_workers=20)
-    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind, btcd)
+    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind, None)
     yield node_factory
     node_factory.killall()
     executor.shutdown(wait=False)
