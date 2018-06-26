@@ -28,7 +28,7 @@ bin/eclair.jar: src/eclair
 
 bin/lightningd: src/lightning
 	(cd src/lightning; git rev-parse HEAD) > src/lightning/version
-	cd src/lightning; ./configure; make DEVELOPER=1 NO_VALGRIND=1 CC=clang
+	cd src/lightning; ./configure --enable-developer --disable-valgrind && make CC=clang
 	cp src/lightning/lightningd/lightningd src/lightning/lightningd/lightning_* bin
 
 bin/lnd: src/lnd
