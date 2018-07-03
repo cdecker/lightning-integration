@@ -7,7 +7,7 @@ This facilitates the handling of fixtures and allows to instrument tests nicely,
 To install the python dependencies and `bitcoind` use the following:
 
     apt-get install bitcoind python3 python3-pip
-	pip3 install -r requirements.txt
+    pip3 install -r requirements.txt
 
 We suggest running this in a virtualenv in order to guard against changing dependencies.
 
@@ -15,18 +15,10 @@ We currently do not bundle the binaries that we test against.
 In order for the tests to run you'll need to compile the various clients and move/link the binaries into the directories where the tests can find them.
 Please refer to the various compilation instructions and make sure that the structure matches the following diagram:
 
-    ├── btcd
-    ├── eclair
-    │   └── eclair-node.jar
+    bin
+    ├── eclair-node.jar
     ├── lightningd
-    │   ├── lightningd
-    │   ├── lightningd_channel
-    │   ├── lightningd_gossip
-    │   ├── lightningd_handshake
-    │   ├── lightningd_hsm
-    │   └── lightningd_opening
     └── lnd
-        └── lnd
 
 The binaries for `lightningd` and `lnd` should be pretty self-explanatory.
 The binary artifact for `eclair` is the `jar`-file containing all dependencies for the `eclair-node` subproject.
