@@ -8,7 +8,6 @@ import time
 
 
 LIGHTNINGD_CONFIG = {
-    "dev-bitcoind-poll": "1",
     "log-level": "debug",
     "locktime-blocks": 6,
     "network": "regtest",
@@ -26,9 +25,6 @@ class LightningD(TailableProc):
             '--bitcoin-datadir={}'.format(bitcoin_dir),
             '--lightning-dir={}'.format(lightning_dir),
             '--addr=127.0.0.1:{}'.format(port),
-            '--network=regtest',
-            '--dev-broadcast-interval=1000',
-            '--dev-override-fee-rates={0}/{0}/{0}'.format(12*1000),  # Fix fee in sat/kw
 
             # The following are temporary workarounds
             '--cltv-final=8',

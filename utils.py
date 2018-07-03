@@ -6,26 +6,37 @@ import subprocess
 import threading
 import time
 import os
+import collections
 
-BITCOIND_CONFIG = {
-    "rpcuser": "rpcuser",
-    "rpcpassword": "rpcpass",
-    "rpcport": 28332,
-    "server": 1,
-    "regtest": 1,
-    "txindex": 1,
-    "zmqpubrawblock": "tcp://127.0.0.1:29000",
-    "zmqpubrawtx": "tcp://127.0.0.1:29000",
-    "deprecatedrpc": "addwitnessaddress",
-    "addresstype": "p2sh-segwit",
-}
+BITCOIND_CONFIG = collections.OrderedDict([
+    ("rpcuser", "rpcuser"),
+    ("rpcpassword", "rpcpass"),
+    ("printtoconsole", 1),
+    ("server", 1),
+    ("regtest", 1),
+    ("txindex", 1),
+    ("zmqpubrawblock", "tcp://127.0.0.1:29000"),
+    ("zmqpubrawtx", "tcp://127.0.0.1:29000"),
+    ("deprecatedrpc", "addwitnessaddress"),
+    ("addresstype", "p2sh-segwit"),
+    ("deprecatedrpc", "signrawtransaction"),
+    ("regtest", {
+        "rpcport": 28332,
+    }),
+])
 
 
 def write_config(filename, opts):
     with open(filename, 'w') as f:
-        for k, v in opts.items():
-            f.write("{}={}\n".format(k, v))
+        write_dict(f, opts)
 
+def write_dict(f, opts):
+    for k, v in opts.items():
+        if isinstance(v, dict):
+            f.write("[{}]\n".format(k))
+            write_dict(f, v)
+        else:
+            f.write("{}={}\n".format(k, v))
 
 class TailableProc(object):
     """A monitorable process that we can start, stop and tail.
@@ -178,8 +189,6 @@ class BitcoinD(TailableProc):
             'bitcoind',
             '-datadir={}'.format(bitcoin_dir),
             '-conf={}'.format(conf_file),
-            '-printtoconsole',
-            '-server',
             '-regtest',
             '-logtimestamps',
         ]
