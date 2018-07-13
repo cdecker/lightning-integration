@@ -1,0 +1,1011 @@
+AESTests	./src/lightning/external/libwally-core/src/test/test_aes.py	/^class AESTests(/
+AbiChecker	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^class AbiChecker(/
+AddInvoice	./rpc_pb2.py	/^    def AddInvoice(/
+AddInvoice	./rpc_pb2.py	/^    def AddInvoice(/
+AddInvoice	./rpc_pb2.py	/^    def AddInvoice(/
+AddInvoice	./rpc_pb2_grpc.py	/^  def AddInvoice(/
+AddressCase	./src/lightning/external/libwally-core/src/test/test_base58.py	/^class AddressCase(/
+BIP32Tests	./src/lightning/external/libwally-core/src/swig_python/contrib/bip32.py	/^class BIP32Tests(/
+BIP32Tests	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^class BIP32Tests(/
+BIP38Tests	./src/lightning/external/libwally-core/src/test/test_bip38.py	/^class BIP38Tests(/
+BIP39Tests	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^class BIP39Tests(/
+Base58Tests	./src/lightning/external/libwally-core/src/test/test_base58.py	/^class Base58Tests(/
+BaseLightningDTests	./src/lightning/tests/test_lightningd.py	/^class BaseLightningDTests(/
+Bech32Tests	./src/lightning/external/libwally-core/src/test/test_bech32.py	/^class Bech32Tests(/
+BetaLightningServicer	./rpc_pb2.py	/^  class BetaLightningServicer(/
+BetaLightningStub	./rpc_pb2.py	/^  class BetaLightningStub(/
+BetaWalletUnlockerServicer	./rpc_pb2.py	/^  class BetaWalletUnlockerServicer(/
+BetaWalletUnlockerStub	./rpc_pb2.py	/^  class BetaWalletUnlockerStub(/
+BitcoinD	./src/lightning/tests/utils.py	/^class BitcoinD(/
+BitcoinD	./utils.py	/^class BitcoinD(/
+BtcD	./utils.py	/^class BtcD(/
+ChannelBalance	./rpc_pb2.py	/^    def ChannelBalance(/
+ChannelBalance	./rpc_pb2.py	/^    def ChannelBalance(/
+ChannelBalance	./rpc_pb2.py	/^    def ChannelBalance(/
+ChannelBalance	./rpc_pb2_grpc.py	/^  def ChannelBalance(/
+CloseChannel	./rpc_pb2.py	/^    def CloseChannel(/
+CloseChannel	./rpc_pb2.py	/^    def CloseChannel(/
+CloseChannel	./rpc_pb2.py	/^    def CloseChannel(/
+CloseChannel	./rpc_pb2_grpc.py	/^  def CloseChannel(/
+ConnectPeer	./rpc_pb2.py	/^    def ConnectPeer(/
+ConnectPeer	./rpc_pb2.py	/^    def ConnectPeer(/
+ConnectPeer	./rpc_pb2.py	/^    def ConnectPeer(/
+ConnectPeer	./rpc_pb2_grpc.py	/^  def ConnectPeer(/
+DebugLevel	./rpc_pb2.py	/^    def DebugLevel(/
+DebugLevel	./rpc_pb2.py	/^    def DebugLevel(/
+DebugLevel	./rpc_pb2.py	/^    def DebugLevel(/
+DebugLevel	./rpc_pb2_grpc.py	/^  def DebugLevel(/
+DecodePayReq	./rpc_pb2.py	/^    def DecodePayReq(/
+DecodePayReq	./rpc_pb2.py	/^    def DecodePayReq(/
+DecodePayReq	./rpc_pb2.py	/^    def DecodePayReq(/
+DecodePayReq	./rpc_pb2_grpc.py	/^  def DecodePayReq(/
+DeleteAllPayments	./rpc_pb2.py	/^    def DeleteAllPayments(/
+DeleteAllPayments	./rpc_pb2.py	/^    def DeleteAllPayments(/
+DeleteAllPayments	./rpc_pb2.py	/^    def DeleteAllPayments(/
+DeleteAllPayments	./rpc_pb2_grpc.py	/^  def DeleteAllPayments(/
+DescribeGraph	./rpc_pb2.py	/^    def DescribeGraph(/
+DescribeGraph	./rpc_pb2.py	/^    def DescribeGraph(/
+DescribeGraph	./rpc_pb2.py	/^    def DescribeGraph(/
+DescribeGraph	./rpc_pb2_grpc.py	/^  def DescribeGraph(/
+DisconnectPeer	./rpc_pb2.py	/^    def DisconnectPeer(/
+DisconnectPeer	./rpc_pb2.py	/^    def DisconnectPeer(/
+DisconnectPeer	./rpc_pb2.py	/^    def DisconnectPeer(/
+DisconnectPeer	./rpc_pb2_grpc.py	/^  def DisconnectPeer(/
+EclairD	./eclair.py	/^class EclairD(/
+EclairNode	./eclair.py	/^class EclairNode(/
+EclairRpc	./eclair.py	/^class EclairRpc(/
+EndOfFileNewlineIssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class EndOfFileNewlineIssueTracker(/
+ExtraItem	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^class ExtraItem:/
+ExtraItem	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^class ExtraItem:/
+FeeReport	./rpc_pb2.py	/^    def FeeReport(/
+FeeReport	./rpc_pb2.py	/^    def FeeReport(/
+FeeReport	./rpc_pb2.py	/^    def FeeReport(/
+FeeReport	./rpc_pb2_grpc.py	/^  def FeeReport(/
+Field	./src/lightning/tools/generate-wire.py	/^class Field(/
+FieldType	./src/lightning/tools/generate-wire.py	/^class FieldType(/
+ForwardingHistory	./rpc_pb2.py	/^    def ForwardingHistory(/
+ForwardingHistory	./rpc_pb2.py	/^    def ForwardingHistory(/
+ForwardingHistory	./rpc_pb2.py	/^    def ForwardingHistory(/
+ForwardingHistory	./rpc_pb2_grpc.py	/^  def ForwardingHistory(/
+FuncSpec	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/wrap.py	/^class FuncSpec(/
+GenSeed	./rpc_pb2.py	/^    def GenSeed(/
+GenSeed	./rpc_pb2.py	/^    def GenSeed(/
+GenSeed	./rpc_pb2.py	/^    def GenSeed(/
+GenSeed	./rpc_pb2_grpc.py	/^  def GenSeed(/
+GetChanInfo	./rpc_pb2.py	/^    def GetChanInfo(/
+GetChanInfo	./rpc_pb2.py	/^    def GetChanInfo(/
+GetChanInfo	./rpc_pb2.py	/^    def GetChanInfo(/
+GetChanInfo	./rpc_pb2_grpc.py	/^  def GetChanInfo(/
+GetInfo	./rpc_pb2.py	/^    def GetInfo(/
+GetInfo	./rpc_pb2.py	/^    def GetInfo(/
+GetInfo	./rpc_pb2.py	/^    def GetInfo(/
+GetInfo	./rpc_pb2_grpc.py	/^  def GetInfo(/
+GetNetworkInfo	./rpc_pb2.py	/^    def GetNetworkInfo(/
+GetNetworkInfo	./rpc_pb2.py	/^    def GetNetworkInfo(/
+GetNetworkInfo	./rpc_pb2.py	/^    def GetNetworkInfo(/
+GetNetworkInfo	./rpc_pb2_grpc.py	/^  def GetNetworkInfo(/
+GetNodeInfo	./rpc_pb2.py	/^    def GetNodeInfo(/
+GetNodeInfo	./rpc_pb2.py	/^    def GetNodeInfo(/
+GetNodeInfo	./rpc_pb2.py	/^    def GetNodeInfo(/
+GetNodeInfo	./rpc_pb2_grpc.py	/^  def GetNodeInfo(/
+GetTransactions	./rpc_pb2.py	/^    def GetTransactions(/
+GetTransactions	./rpc_pb2.py	/^    def GetTransactions(/
+GetTransactions	./rpc_pb2.py	/^    def GetTransactions(/
+GetTransactions	./rpc_pb2_grpc.py	/^  def GetTransactions(/
+HMACTests	./src/lightning/external/libwally-core/src/test/test_hmac.py	/^class HMACTests(/
+HashTests	./src/lightning/external/libwally-core/src/test/test_hash.py	/^class HashTests(/
+HexTests	./src/lightning/external/libwally-core/src/test/test_hex.py	/^class HexTests(/
+InitWallet	./rpc_pb2.py	/^    def InitWallet(/
+InitWallet	./rpc_pb2.py	/^    def InitWallet(/
+InitWallet	./rpc_pb2.py	/^    def InitWallet(/
+InitWallet	./rpc_pb2_grpc.py	/^  def InitWallet(/
+IntegrityChecker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class IntegrityChecker(/
+IssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class IssueTracker(/
+LightningD	./lightningd.py	/^class LightningD(/
+LightningD	./src/lightning/tests/utils.py	/^class LightningD(/
+LightningDTests	./src/lightning/tests/test_lightningd.py	/^class LightningDTests(/
+LightningNode	./lightningd.py	/^class LightningNode(/
+LightningNode	./src/lightning/tests/utils.py	/^class LightningNode(/
+LightningRpc	./src/lightning/contrib/pylightning/lightning/lightning.py	/^class LightningRpc(/
+LightningServicer	./rpc_pb2.py	/^  class LightningServicer(/
+LightningServicer	./rpc_pb2_grpc.py	/^class LightningServicer(/
+LightningStub	./rpc_pb2.py	/^  class LightningStub(/
+LightningStub	./rpc_pb2_grpc.py	/^class LightningStub(/
+LineEndingIssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class LineEndingIssueTracker(/
+LinuxItem	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^class LinuxItem:/
+LinuxItem	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^class LinuxItem:/
+ListChannels	./rpc_pb2.py	/^    def ListChannels(/
+ListChannels	./rpc_pb2.py	/^    def ListChannels(/
+ListChannels	./rpc_pb2.py	/^    def ListChannels(/
+ListChannels	./rpc_pb2_grpc.py	/^  def ListChannels(/
+ListInvoices	./rpc_pb2.py	/^    def ListInvoices(/
+ListInvoices	./rpc_pb2.py	/^    def ListInvoices(/
+ListInvoices	./rpc_pb2.py	/^    def ListInvoices(/
+ListInvoices	./rpc_pb2_grpc.py	/^  def ListInvoices(/
+ListPayments	./rpc_pb2.py	/^    def ListPayments(/
+ListPayments	./rpc_pb2.py	/^    def ListPayments(/
+ListPayments	./rpc_pb2.py	/^    def ListPayments(/
+ListPayments	./rpc_pb2_grpc.py	/^  def ListPayments(/
+ListPeers	./rpc_pb2.py	/^    def ListPeers(/
+ListPeers	./rpc_pb2.py	/^    def ListPeers(/
+ListPeers	./rpc_pb2.py	/^    def ListPeers(/
+ListPeers	./rpc_pb2_grpc.py	/^  def ListPeers(/
+LnAddr	./lnaddr.py	/^class LnAddr(/
+LndD	./lnd.py	/^class LndD(/
+LndNode	./lnd.py	/^class LndNode(/
+LndRpc	./lnd.py	/^class LndRpc(/
+LookupInvoice	./rpc_pb2.py	/^    def LookupInvoice(/
+LookupInvoice	./rpc_pb2.py	/^    def LookupInvoice(/
+LookupInvoice	./rpc_pb2.py	/^    def LookupInvoice(/
+LookupInvoice	./rpc_pb2_grpc.py	/^  def LookupInvoice(/
+MacOSItem	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^class MacOSItem:/
+MacOSItem	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^class MacOSItem:/
+Message	./src/lightning/tools/generate-wire.py	/^class Message(/
+Mnemonic	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^class Mnemonic(/
+MnemonicTests	./src/lightning/external/libwally-core/src/test/test_mnemonic.py	/^class MnemonicTests(/
+NewAddress	./rpc_pb2.py	/^    def NewAddress(/
+NewAddress	./rpc_pb2.py	/^    def NewAddress(/
+NewAddress	./rpc_pb2.py	/^    def NewAddress(/
+NewAddress	./rpc_pb2_grpc.py	/^  def NewAddress(/
+NewWitnessAddress	./rpc_pb2.py	/^    def NewWitnessAddress(/
+NewWitnessAddress	./rpc_pb2.py	/^    def NewWitnessAddress(/
+NewWitnessAddress	./rpc_pb2.py	/^    def NewWitnessAddress(/
+NewWitnessAddress	./rpc_pb2_grpc.py	/^  def NewWitnessAddress(/
+NodeFactory	./src/lightning/tests/test_lightningd.py	/^class NodeFactory(/
+NodeFactory	./test.py	/^class NodeFactory(/
+OpenChannel	./rpc_pb2.py	/^    def OpenChannel(/
+OpenChannel	./rpc_pb2.py	/^    def OpenChannel(/
+OpenChannel	./rpc_pb2.py	/^    def OpenChannel(/
+OpenChannel	./rpc_pb2_grpc.py	/^  def OpenChannel(/
+OpenChannelSync	./rpc_pb2.py	/^    def OpenChannelSync(/
+OpenChannelSync	./rpc_pb2.py	/^    def OpenChannelSync(/
+OpenChannelSync	./rpc_pb2.py	/^    def OpenChannelSync(/
+OpenChannelSync	./rpc_pb2_grpc.py	/^  def OpenChannelSync(/
+PBKDF2Case	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^class PBKDF2Case(/
+PBKDF2Tests	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^class PBKDF2Tests(/
+PendingChannels	./rpc_pb2.py	/^    def PendingChannels(/
+PendingChannels	./rpc_pb2.py	/^    def PendingChannels(/
+PendingChannels	./rpc_pb2.py	/^    def PendingChannels(/
+PendingChannels	./rpc_pb2_grpc.py	/^  def PendingChannels(/
+PermissionIssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class PermissionIssueTracker(/
+QueryRoutes	./rpc_pb2.py	/^    def QueryRoutes(/
+QueryRoutes	./rpc_pb2.py	/^    def QueryRoutes(/
+QueryRoutes	./rpc_pb2.py	/^    def QueryRoutes(/
+QueryRoutes	./rpc_pb2_grpc.py	/^  def QueryRoutes(/
+RpcError	./src/lightning/contrib/pylightning/lightning/lightning.py	/^class RpcError(/
+ScriptTests	./src/lightning/external/libwally-core/src/test/test_script.py	/^class ScriptTests(/
+ScryptTests	./src/lightning/external/libwally-core/src/test/test_scrypt.py	/^class ScryptTests(/
+SendCoins	./rpc_pb2.py	/^    def SendCoins(/
+SendCoins	./rpc_pb2.py	/^    def SendCoins(/
+SendCoins	./rpc_pb2.py	/^    def SendCoins(/
+SendCoins	./rpc_pb2_grpc.py	/^  def SendCoins(/
+SendMany	./rpc_pb2.py	/^    def SendMany(/
+SendMany	./rpc_pb2.py	/^    def SendMany(/
+SendMany	./rpc_pb2.py	/^    def SendMany(/
+SendMany	./rpc_pb2_grpc.py	/^  def SendMany(/
+SendPayment	./rpc_pb2.py	/^    def SendPayment(/
+SendPayment	./rpc_pb2.py	/^    def SendPayment(/
+SendPayment	./rpc_pb2.py	/^    def SendPayment(/
+SendPayment	./rpc_pb2_grpc.py	/^  def SendPayment(/
+SendPaymentSync	./rpc_pb2.py	/^    def SendPaymentSync(/
+SendPaymentSync	./rpc_pb2.py	/^    def SendPaymentSync(/
+SendPaymentSync	./rpc_pb2.py	/^    def SendPaymentSync(/
+SendPaymentSync	./rpc_pb2_grpc.py	/^  def SendPaymentSync(/
+SignMessage	./rpc_pb2.py	/^    def SignMessage(/
+SignMessage	./rpc_pb2.py	/^    def SignMessage(/
+SignMessage	./rpc_pb2.py	/^    def SignMessage(/
+SignMessage	./rpc_pb2_grpc.py	/^  def SignMessage(/
+SignTests	./src/lightning/external/libwally-core/src/test/test_sign.py	/^class SignTests(/
+SimpleBitcoinProxy	./src/lightning/tests/utils.py	/^class SimpleBitcoinProxy:/
+SimpleBitcoinProxy	./utils.py	/^class SimpleBitcoinProxy:/
+StopDaemon	./rpc_pb2.py	/^    def StopDaemon(/
+StopDaemon	./rpc_pb2.py	/^    def StopDaemon(/
+StopDaemon	./rpc_pb2.py	/^    def StopDaemon(/
+StopDaemon	./rpc_pb2_grpc.py	/^  def StopDaemon(/
+SubscribeChannelGraph	./rpc_pb2.py	/^    def SubscribeChannelGraph(/
+SubscribeChannelGraph	./rpc_pb2.py	/^    def SubscribeChannelGraph(/
+SubscribeChannelGraph	./rpc_pb2.py	/^    def SubscribeChannelGraph(/
+SubscribeChannelGraph	./rpc_pb2_grpc.py	/^  def SubscribeChannelGraph(/
+SubscribeInvoices	./rpc_pb2.py	/^    def SubscribeInvoices(/
+SubscribeInvoices	./rpc_pb2.py	/^    def SubscribeInvoices(/
+SubscribeInvoices	./rpc_pb2.py	/^    def SubscribeInvoices(/
+SubscribeInvoices	./rpc_pb2_grpc.py	/^  def SubscribeInvoices(/
+SubscribeTransactions	./rpc_pb2.py	/^    def SubscribeTransactions(/
+SubscribeTransactions	./rpc_pb2.py	/^    def SubscribeTransactions(/
+SubscribeTransactions	./rpc_pb2.py	/^    def SubscribeTransactions(/
+SubscribeTransactions	./rpc_pb2_grpc.py	/^  def SubscribeTransactions(/
+TabIssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class TabIssueTracker(/
+TailableProc	./src/lightning/tests/utils.py	/^class TailableProc(/
+TailableProc	./utils.py	/^class TailableProc(/
+TcpSocketRpc	./ucoin.py	/^class TcpSocketRpc(/
+TodoIssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class TodoIssueTracker(/
+TrailingWhitespaceIssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class TrailingWhitespaceIssueTracker(/
+TxTests	./src/lightning/external/libwally-core/src/swig_python/contrib/reconcile_sigs.py	/^class TxTests(/
+TxTests	./src/lightning/external/libwally-core/src/swig_python/contrib/tx.py	/^class TxTests(/
+UcoinD	./ucoind.py	/^class UcoinD(/
+UcoinNode	./ucoind.py	/^class UcoinNode(/
+UcoinRpc	./ucoin.py	/^class UcoinRpc(/
+UnixDomainSocketRpc	./src/lightning/contrib/pylightning/lightning/lightning.py	/^class UnixDomainSocketRpc(/
+UnlockWallet	./rpc_pb2.py	/^    def UnlockWallet(/
+UnlockWallet	./rpc_pb2.py	/^    def UnlockWallet(/
+UnlockWallet	./rpc_pb2.py	/^    def UnlockWallet(/
+UnlockWallet	./rpc_pb2_grpc.py	/^  def UnlockWallet(/
+UpdateChannelPolicy	./rpc_pb2.py	/^    def UpdateChannelPolicy(/
+UpdateChannelPolicy	./rpc_pb2.py	/^    def UpdateChannelPolicy(/
+UpdateChannelPolicy	./rpc_pb2.py	/^    def UpdateChannelPolicy(/
+UpdateChannelPolicy	./rpc_pb2_grpc.py	/^  def UpdateChannelPolicy(/
+Utf8BomIssueTracker	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^class Utf8BomIssueTracker(/
+VerifyMessage	./rpc_pb2.py	/^    def VerifyMessage(/
+VerifyMessage	./rpc_pb2.py	/^    def VerifyMessage(/
+VerifyMessage	./rpc_pb2.py	/^    def VerifyMessage(/
+VerifyMessage	./rpc_pb2_grpc.py	/^  def VerifyMessage(/
+Version	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^class Version:/
+Version	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^class Version:/
+WalletBalance	./rpc_pb2.py	/^    def WalletBalance(/
+WalletBalance	./rpc_pb2.py	/^    def WalletBalance(/
+WalletBalance	./rpc_pb2.py	/^    def WalletBalance(/
+WalletBalance	./rpc_pb2_grpc.py	/^  def WalletBalance(/
+WalletUnlockerServicer	./rpc_pb2.py	/^  class WalletUnlockerServicer(/
+WalletUnlockerServicer	./rpc_pb2_grpc.py	/^class WalletUnlockerServicer(/
+WalletUnlockerStub	./rpc_pb2.py	/^  class WalletUnlockerStub(/
+WalletUnlockerStub	./rpc_pb2_grpc.py	/^class WalletUnlockerStub(/
+WindowsItem	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^class WindowsItem:/
+WindowsItem	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^class WindowsItem:/
+Wordlist	./src/lightning/external/libwally-core/src/test/test_wordlist.py	/^class Wordlist:/
+WordlistTests	./src/lightning/external/libwally-core/src/test/test_wordlist.py	/^class WordlistTests(/
+__getattr__	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def __getattr__(/
+__getattr__	./src/lightning/tests/utils.py	/^    def __getattr__(/
+__getattr__	./ucoin.py	/^    def __getattr__(/
+__getattr__	./utils.py	/^    def __getattr__(/
+__init__	./eclair.py	/^    def __init__(/
+__init__	./eclair.py	/^    def __init__(/
+__init__	./eclair.py	/^    def __init__(/
+__init__	./lightningd.py	/^    def __init__(/
+__init__	./lightningd.py	/^    def __init__(/
+__init__	./lnaddr.py	/^    def __init__(/
+__init__	./lnd.py	/^    def __init__(/
+__init__	./lnd.py	/^    def __init__(/
+__init__	./lnd.py	/^    def __init__(/
+__init__	./rpc_pb2.py	/^    def __init__(/
+__init__	./rpc_pb2.py	/^    def __init__(/
+__init__	./rpc_pb2_grpc.py	/^  def __init__(/
+__init__	./rpc_pb2_grpc.py	/^  def __init__(/
+__init__	./src/lightning/contrib/pylightning/lightning/__init__.py	1
+__init__	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def __init__(/
+__init__	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def __init__(/
+__init__	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^    def __init__(/
+__init__	./src/lightning/external/libwally-core/src/test/test_base58.py	/^    def __init__(/
+__init__	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^    def __init__(/
+__init__	./src/lightning/external/libwally-core/src/test/test_wordlist.py	/^    def __init__(/
+__init__	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/__init__.py	1
+__init__	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/wrap.py	/^    def __init__(/
+__init__	./src/lightning/tests/test_lightningd.py	/^    def __init__(/
+__init__	./src/lightning/tests/utils.py	/^    def __init__(/
+__init__	./src/lightning/tests/utils.py	/^    def __init__(/
+__init__	./src/lightning/tests/utils.py	/^    def __init__(/
+__init__	./src/lightning/tests/utils.py	/^    def __init__(/
+__init__	./src/lightning/tests/utils.py	/^    def __init__(/
+__init__	./src/lightning/tools/generate-wire.py	/^    def __init__(/
+__init__	./src/lightning/tools/generate-wire.py	/^    def __init__(/
+__init__	./src/lightning/tools/generate-wire.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def __init__(/
+__init__	./test.py	/^    def __init__(/
+__init__	./ucoin.py	/^    def __init__(/
+__init__	./ucoind.py	/^    def __init__(/
+__init__	./ucoind.py	/^    def __init__(/
+__init__	./utils.py	/^    def __init__(/
+__init__	./utils.py	/^    def __init__(/
+__init__	./utils.py	/^    def __init__(/
+__init__	./utils.py	/^    def __init__(/
+__str__	./lnaddr.py	/^    def __str__(/
+_build_py	./src/lightning/external/libwally-core/setup.py	/^    class _build_py(/
+_call	./eclair.py	/^    def _call(/
+_do_test_sha_vectors	./src/lightning/external/libwally-core/src/test/test_hash.py	/^    def _do_test_sha_vectors(/
+_failable_malloc	./src/lightning/external/libwally-core/src/test/util.py	/^def _failable_malloc(/
+_fake_ec_nonce_fn	./src/lightning/external/libwally-core/src/test/util.py	/^def _fake_ec_nonce_fn(/
+_generate_cordovajs	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/js.py	/^def _generate_cordovajs(/
+_generate_java	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/java.py	/^def _generate_java(/
+_generate_nan	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/nan.py	/^def _generate_nan(/
+_generate_nodejs	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/js.py	/^def _generate_nodejs(/
+_generate_swift	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/swift.py	/^def _generate_swift(/
+_get_storage_client	./cli.py	/^def _get_storage_client(/
+_guess_type	./src/lightning/tools/generate-wire.py	/^    def _guess_type(/
+_pbkdf2_hmac_sha_malloc_fail	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^    def _pbkdf2_hmac_sha_malloc_fail(/
+_readobj	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def _readobj(/
+_readobj	./ucoin.py	/^    def _readobj(/
+_typesize	./src/lightning/tools/generate-wire.py	/^    def _typesize(/
+_writeobj	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def _writeobj(/
+_writeobj	./ucoin.py	/^    def _writeobj(/
+abi_check	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	1
+addField	./src/lightning/tools/generate-wire.py	/^    def addField(/
+add_LightningServicer_to_server	./rpc_pb2.py	/^  def add_LightningServicer_to_server(/
+add_LightningServicer_to_server	./rpc_pb2_grpc.py	/^def add_LightningServicer_to_server(/
+add_WalletUnlockerServicer_to_server	./rpc_pb2.py	/^  def add_WalletUnlockerServicer_to_server(/
+add_WalletUnlockerServicer_to_server	./rpc_pb2_grpc.py	/^def add_WalletUnlockerServicer_to_server(/
+add_truncate_check	./src/lightning/tools/generate-wire.py	/^    def add_truncate_check(/
+addfunds	./eclair.py	/^    def addfunds(/
+addfunds	./lightningd.py	/^    def addfunds(/
+addfunds	./lnd.py	/^    def addfunds(/
+addfunds	./ucoind.py	/^    def addfunds(/
+aesenc4x1	./src/lnd/pkg/dep/sources/https---github.com-Yawning-aez/aez_amd64.py	/^def aesenc4x1(/
+aesenc4x1	./src/lnd/src/github.com/lightningnetwork/lnd/vendor/github.com/Yawning/aez/aez_amd64.py	/^def aesenc4x1(/
+aesenc4x2	./src/lnd/pkg/dep/sources/https---github.com-Yawning-aez/aez_amd64.py	/^def aesenc4x2(/
+aesenc4x2	./src/lnd/src/github.com/lightningnetwork/lnd/vendor/github.com/Yawning/aez/aez_amd64.py	/^def aesenc4x2(/
+aesenc4x4	./src/lnd/pkg/dep/sources/https---github.com-Yawning-aez/aez_amd64.py	/^def aesenc4x4(/
+aesenc4x4	./src/lnd/src/github.com/lightningnetwork/lnd/vendor/github.com/Yawning/aez/aez_amd64.py	/^def aesenc4x4(/
+aesenc4x8	./src/lnd/pkg/dep/sources/https---github.com-Yawning-aez/aez_amd64.py	/^def aesenc4x8(/
+aesenc4x8	./src/lnd/src/github.com/lightningnetwork/lnd/vendor/github.com/Yawning/aez/aez_amd64.py	/^def aesenc4x8(/
+aez_amd64	./src/lnd/pkg/dep/sources/https---github.com-Yawning-aez/aez_amd64.py	1
+aez_amd64	./src/lnd/src/github.com/lightningnetwork/lnd/vendor/github.com/Yawning/aez/aez_amd64.py	1
+allnodes	./eclair.py	/^    def allnodes(/
+annotations_pb2	./google/api/annotations_pb2.py	1
+annotations_pb2_grpc	./google/api/annotations_pb2_grpc.py	1
+apply_template	./src/lightning/external/libsodium/regen-msvc/regen-msvc.py	/^def apply_template(/
+apply_template	./src/ptarmigan/ucoin/libs/libsodium/regen-msvc/regen-msvc.py	/^def apply_template(/
+as_hex	./src/lightning/external/libwally-core/tools/wordlist_cc.py	/^def as_hex(/
+basetype	./src/lightning/tools/generate-wire.py	/^    def basetype(/
+bech32	./bech32.py	1
+bech32_create_checksum	./bech32.py	/^def bech32_create_checksum(/
+bech32_decode	./bech32.py	/^def bech32_decode(/
+bech32_encode	./bech32.py	/^def bech32_encode(/
+bech32_hrp_expand	./bech32.py	/^def bech32_hrp_expand(/
+bech32_polymod	./bech32.py	/^def bech32_polymod(/
+bech32_verify_checksum	./bech32.py	/^def bech32_verify_checksum(/
+bench_invoice	./src/lightning/tests/benchmark.py	/^    def bench_invoice(/
+benchmark	./src/lightning/tests/benchmark.py	1
+beta_create_Lightning_server	./rpc_pb2.py	/^  def beta_create_Lightning_server(/
+beta_create_Lightning_stub	./rpc_pb2.py	/^  def beta_create_Lightning_stub(/
+beta_create_WalletUnlocker_server	./rpc_pb2.py	/^  def beta_create_WalletUnlocker_server(/
+beta_create_WalletUnlocker_stub	./rpc_pb2.py	/^  def beta_create_WalletUnlocker_stub(/
+bind_fn	./src/lightning/external/libwally-core/src/test/util.py	/^    def bind_fn(/
+bip32	./src/lightning/external/libwally-core/src/swig_python/contrib/bip32.py	1
+bitarray_to_u5	./lnaddr.py	/^def bitarray_to_u5(/
+bitcoind	./src/lightning/tests/benchmark.py	/^def bitcoind(/
+bitcoind	./src/lightning/tests/fixtures.py	/^def bitcoind(/
+bitcoind	./test.py	/^def bitcoind(/
+block_sync	./eclair.py	/^    def block_sync(/
+block_sync	./lightningd.py	/^    def block_sync(/
+block_sync	./lnd.py	/^    def block_sync(/
+block_sync	./ucoind.py	/^    def block_sync(/
+btcd	./test.py	/^def btcd(/
+build_libwallycore	./src/lightning/external/libwally-core/setup.py	/^        def build_libwallycore(/
+build_shared_libraries	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def build_shared_libraries(/
+c_char_p_p_class	./src/lightning/external/libwally-core/src/test/util.py	/^class c_char_p_p_class(/
+c_ulong_p_class	./src/lightning/external/libwally-core/src/test/util.py	/^class c_ulong_p_class(/
+call	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def call(/
+call	./src/lightning/external/libwally-core/setup.py	/^            def call(/
+call	./ucoin.py	/^    def call(/
+callback	./utils.py	/^        def callback(/
+cbufferize	./src/lightning/external/libwally-core/src/test/test_sign.py	/^    def cbufferize(/
+channel	./eclair.py	/^    def channel(/
+channels	./eclair.py	/^    def channels(/
+check	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^    def check(/
+check-files	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	1
+checkBadGossipOrder	./src/lightning/tests/fixtures.py	/^def checkBadGossipOrder(/
+checkBadGossipOrder	./src/lightning/tests/test_lightningd.py	/^    def checkBadGossipOrder(/
+checkLenField	./src/lightning/tools/generate-wire.py	/^    def checkLenField(/
+checkReconnect	./src/lightning/tests/fixtures.py	/^def checkReconnect(/
+checkReconnect	./src/lightning/tests/test_lightningd.py	/^    def checkReconnect(/
+check_abi_tools_are_installed	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def check_abi_tools_are_installed(/
+check_balances	./src/lightning/tests/test_lightningd.py	/^        def check_balances(/
+check_billboard	./src/lightning/tests/test_lightningd.py	/^        def check_billboard(/
+check_channel	./eclair.py	/^    def check_channel(/
+check_channel	./lightningd.py	/^    def check_channel(/
+check_channel	./lnd.py	/^    def check_channel(/
+check_channel	./ucoind.py	/^    def check_channel(/
+check_channels	./test.py	/^def check_channels(/
+check_file_for_issue	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def check_file_for_issue(/
+check_file_for_issue	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def check_file_for_issue(/
+check_file_for_issue	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def check_file_for_issue(/
+check_file_for_issue	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def check_file_for_issue(/
+check_file_line	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def check_file_line(/
+check_files	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def check_files(/
+check_for_abi_changes	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def check_for_abi_changes(/
+check_gossip	./src/lightning/tests/test_lightningd.py	/^        def check_gossip(/
+check_repo_path	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def check_repo_path(/
+check_repo_path	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def check_repo_path(/
+cleanup_worktree	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def cleanup_worktree(/
+cli	./cli.py	/^def cli(/
+cli	./cli.py	1
+close	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def close(/
+close	./ucoin.py	/^    def close(/
+cmd_line	./src/lightning/tests/utils.py	/^    def cmd_line(/
+compare_keys	./src/lightning/external/libwally-core/src/swig_python/contrib/bip32.py	/^    def compare_keys(/
+compare_keys	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def compare_keys(/
+conf	./src/lightning/external/libwally-core/docs/source/conf.py	1
+confirm_channel	./test.py	/^def confirm_channel(/
+connect	./eclair.py	/^    def connect(/
+connect	./lightningd.py	/^    def connect(/
+connect	./lnd.py	/^    def connect(/
+connect	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def connect(/
+connect	./src/lightning/tests/test_lightningd.py	/^    def connect(/
+connect	./ucoin.py	/^    def connect(/
+connect	./ucoind.py	/^    def connect(/
+convertbits	./bech32.py	/^def convertbits(/
+count_active	./src/lightning/tests/test_gossip.py	/^    def count_active(/
+count_active	./src/lightning/tests/test_lightningd.py	/^        def count_active(/
+count_non_public	./src/lightning/tests/test_lightningd.py	/^        def count_non_public(/
+create_master_pub_priv	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def create_master_pub_priv(/
+db_manip	./src/lightning/tests/utils.py	/^    def db_manip(/
+db_query	./src/lightning/tests/utils.py	/^    def db_query(/
+decode	./bech32.py	/^def decode(/
+decode	./src/lightning/external/libwally-core/src/test/test_base58.py	/^    def decode(/
+decode	./src/lightning/external/libwally-core/src/test/test_bech32.py	/^    def decode(/
+decodepay	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def decodepay(/
+decodepay	./ucoin.py	/^    def decodepay(/
+decorator	./src/lightning/external/libwally-core/src/test/util.py	/^    def decorator(/
+decorator	./src/lightning/external/libwally-core/src/test/util.py	/^    def decorator(/
+delinvoice	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def delinvoice(/
+delinvoice	./ucoin.py	/^    def delinvoice(/
+derive_key	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def derive_key(/
+derive_key_by_path	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def derive_key_by_path(/
+dev_blockheight	./ucoin.py	/^    def dev_blockheight(/
+dev_crash	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_crash(/
+dev_crash	./ucoin.py	/^    def dev_crash(/
+dev_fail	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_fail(/
+dev_fail	./ucoin.py	/^    def dev_fail(/
+dev_forget_channel	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_forget_channel(/
+dev_forget_channel	./ucoin.py	/^    def dev_forget_channel(/
+dev_memdump	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_memdump(/
+dev_memdump	./ucoin.py	/^    def dev_memdump(/
+dev_memleak	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_memleak(/
+dev_memleak	./ucoin.py	/^    def dev_memleak(/
+dev_ping	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_ping(/
+dev_ping	./ucoin.py	/^    def dev_ping(/
+dev_query_scids	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_query_scids(/
+dev_query_scids	./ucoin.py	/^    def dev_query_scids(/
+dev_reenable_commit	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_reenable_commit(/
+dev_reenable_commit	./ucoin.py	/^    def dev_reenable_commit(/
+dev_rescan_outputs	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_rescan_outputs(/
+dev_rescan_outputs	./ucoin.py	/^    def dev_rescan_outputs(/
+dev_rhash	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_rhash(/
+dev_rhash	./ucoin.py	/^    def dev_rhash(/
+dev_setfees	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_setfees(/
+dev_setfees	./ucoin.py	/^    def dev_setfees(/
+dev_sign_last_tx	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def dev_sign_last_tx(/
+dev_sign_last_tx	./ucoin.py	/^    def dev_sign_last_tx(/
+die	./cli.py	/^def die(/
+directory	./src/lightning/tests/fixtures.py	/^def directory(/
+disconnect	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def disconnect(/
+disconnect	./ucoin.py	/^    def disconnect(/
+doHMAC	./src/lightning/external/libwally-core/src/test/test_hmac.py	/^    def doHMAC(/
+do_hash	./src/lightning/external/libwally-core/src/test/test_hash.py	/^    def do_hash(/
+do_pay	./src/lightning/tests/benchmark.py	/^    def do_pay(/
+do_pay	./src/lightning/tests/benchmark.py	/^    def do_pay(/
+do_pay	./src/lightning/tests/benchmark.py	/^    def do_pay(/
+do_test_tx	./src/lightning/external/libwally-core/src/swig_python/contrib/reconcile_sigs.py	/^    def do_test_tx(/
+do_test_vector	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def do_test_vector(/
+doubleBlock	./src/lnd/pkg/dep/sources/https---github.com-Yawning-aez/aez_amd64.py	/^def doubleBlock(/
+doubleBlock	./src/lnd/src/github.com/lightningnetwork/lnd/vendor/github.com/Yawning/aez/aez_amd64.py	/^def doubleBlock(/
+eclair	./eclair.py	1
+encode	./bech32.py	/^def encode(/
+encode	./src/lightning/external/libwally-core/src/test/test_base58.py	/^    def encode(/
+encode_fallback	./lnaddr.py	/^def encode_fallback(/
+executor	./src/lightning/tests/benchmark.py	/^def executor(/
+executor	./src/lightning/tests/fixtures.py	/^def executor(/
+ext_key	./src/lightning/external/libwally-core/src/test/util.py	/^class ext_key(/
+extract_docs	./src/lightning/external/libwally-core/docs/source/conf.py	/^def extract_docs(/
+fake_bitcoind_fail	./src/lightning/tests/test_lightningd.py	/^    def fake_bitcoind_fail(/
+fake_bitcoind_unfail	./src/lightning/tests/test_lightningd.py	/^    def fake_bitcoind_unfail(/
+find_message	./src/lightning/tools/generate-wire.py	/^def find_message(/
+find_message_with_option	./src/lightning/tools/generate-wire.py	/^def find_message_with_option(/
+fixtures	./src/lightning/tests/fixtures.py	1
+free	./src/lightning/external/libwally-core/src/test/test_wordlist.py	/^    def free(/
+from_priv	./src/lightning/external/libwally-core/src/test/test_bip38.py	/^    def from_priv(/
+fund_channel	./src/lightning/tests/test_lightningd.py	/^    def fund_channel(/
+fund_channel	./src/lightning/tests/utils.py	/^    def fund_channel(/
+fund_from_to_payer	./src/lightning/tests/test_lightningd.py	/^        def fund_from_to_payer(/
+fundchannel	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def fundchannel(/
+fundchannel	./ucoin.py	/^    def fundchannel(/
+fundwallet	./src/lightning/tests/utils.py	/^    def fundwallet(/
+generate	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^    def generate(/
+generate	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/java.py	/^def generate(/
+generate	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/js.py	/^def generate(/
+generate	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/nan.py	/^def generate(/
+generate	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/swift.py	/^def generate(/
+generate-wire	./src/lightning/tools/generate-wire.py	1
+generate_block	./src/lightning/tests/utils.py	/^    def generate_block(/
+generate_until	./test.py	/^def generate_until(/
+getCrashLog	./src/lightning/tests/fixtures.py	/^def getCrashLog(/
+getCrashLog	./src/lightning/tests/test_lightningd.py	/^    def getCrashLog(/
+getValgrindErrors	./src/lightning/tests/fixtures.py	/^def getValgrindErrors(/
+getValgrindErrors	./src/lightning/tests/test_lightningd.py	/^    def getValgrindErrors(/
+get_abi_compatibility_report	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def get_abi_compatibility_report(/
+get_abi_dump_for_ref	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def get_abi_dump_for_ref(/
+get_abi_dumps_from_shared_libraries	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def get_abi_dumps_from_shared_libraries(/
+get_cbc_cases	./src/lightning/external/libwally-core/src/test/test_aes.py	/^    def get_cbc_cases(/
+get_clean_worktree_for_git_revision	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def get_clean_worktree_for_git_revision(/
+get_doc_lines	./src/lightning/external/libwally-core/docs/source/conf.py	/^def get_doc_lines(/
+get_next_port	./src/lightning/tests/test_lightningd.py	/^    def get_next_port(/
+get_node	./src/lightning/tests/test_lightningd.py	/^    def get_node(/
+get_node	./test.py	/^    def get_node(/
+get_nodes	./src/lightning/tests/test_lightningd.py	/^    def get_nodes(/
+get_sign_cases	./src/lightning/external/libwally-core/src/test/test_sign.py	/^    def get_sign_cases(/
+get_test_key	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def get_test_key(/
+get_test_master_key	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def get_test_master_key(/
+get_version	./cli.py	/^def get_version(/
+get_wordlist	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def get_wordlist(/
+getactivechannels	./src/lightning/tests/utils.py	/^    def getactivechannels(/
+getaddress	./eclair.py	/^    def getaddress(/
+getaddress	./lightningd.py	/^    def getaddress(/
+getaddress	./ucoind.py	/^    def getaddress(/
+getchannels	./eclair.py	/^    def getchannels(/
+getchannels	./lightningd.py	/^    def getchannels(/
+getchannels	./lnd.py	/^    def getchannels(/
+getchannels	./ucoind.py	/^    def getchannels(/
+getinfo	./lightningd.py	/^    def getinfo(/
+getinfo	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def getinfo(/
+getinfo	./ucoin.py	/^    def getinfo(/
+getinfo	./ucoind.py	/^    def getinfo(/
+getlog	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def getlog(/
+getlog	./ucoin.py	/^    def getlog(/
+getnodes	./eclair.py	/^    def getnodes(/
+getnodes	./lightningd.py	/^    def getnodes(/
+getnodes	./lnd.py	/^    def getnodes(/
+getnodes	./ucoind.py	/^    def getnodes(/
+getpeer	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def getpeer(/
+getpeer	./ucoin.py	/^    def getpeer(/
+getroute	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def getroute(/
+getroute	./ucoin.py	/^    def getroute(/
+give_funds	./src/lightning/tests/test_lightningd.py	/^    def give_funds(/
+gossip_is_synced	./test.py	/^def gossip_is_synced(/
+group_tests	./cli.py	/^def group_tests(/
+h	./src/lightning/external/libwally-core/src/test/util.py	/^def h(/
+has_array_helper	./src/lightning/tools/generate-wire.py	/^    def has_array_helper(/
+has_array_helper	./src/lightning/tools/generate-wire.py	/^    def has_array_helper(/
+help	./eclair.py	/^    def help(/
+help	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def help(/
+help	./ucoin.py	/^    def help(/
+html	./cli.py	/^def html(/
+http_pb2	./google/api/http_pb2.py	1
+http_pb2_grpc	./google/api/http_pb2_grpc.py	1
+id	./eclair.py	/^    def id(/
+id	./lightningd.py	/^    def id(/
+id	./lnd.py	/^    def id(/
+id	./ucoind.py	/^    def id(/
+idfn	./test.py	/^def idfn(/
+info	./eclair.py	/^    def info(/
+info	./lightningd.py	/^    def info(/
+info	./lnd.py	/^    def info(/
+info	./ucoind.py	/^    def info(/
+int_fn_wrapper	./src/lightning/external/libwally-core/src/test/util.py	/^    def int_fn_wrapper(/
+internal_only	./src/lightning/external/libwally-core/src/test/util.py	/^def internal_only(/
+invoice	./eclair.py	/^    def invoice(/
+invoice	./lightningd.py	/^    def invoice(/
+invoice	./lnd.py	/^    def invoice(/
+invoice	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def invoice(/
+invoice	./ucoin.py	/^    def invoice(/
+invoice	./ucoind.py	/^    def invoice(/
+is_array	./src/lightning/tools/generate-wire.py	/^    def is_array(/
+is_assignable	./src/lightning/tools/generate-wire.py	/^    def is_assignable(/
+is_assignable	./src/lightning/tools/generate-wire.py	/^    def is_assignable(/
+is_channel_active	./src/lightning/tests/utils.py	/^    def is_channel_active(/
+is_in_log	./src/lightning/tests/utils.py	/^    def is_in_log(/
+is_in_log	./utils.py	/^    def is_in_log(/
+is_p2pkh	./lnaddr.py	/^def is_p2pkh(/
+is_p2sh	./lnaddr.py	/^def is_p2sh(/
+is_p2wpkh	./src/lightning/tests/test_lightningd.py	/^        def is_p2wpkh(/
+is_padding	./src/lightning/tools/generate-wire.py	/^    def is_padding(/
+is_valid	./src/lightning/external/libwally-core/src/test/test_wordlist.py	/^    def is_valid(/
+is_variable_size	./src/lightning/tools/generate-wire.py	/^    def is_variable_size(/
+issue_with_line	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def issue_with_line(/
+issue_with_line	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def issue_with_line(/
+issue_with_line	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def issue_with_line(/
+issue_with_line	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def issue_with_line(/
+issue_with_line	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def issue_with_line(/
+java	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/java.py	1
+js	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/js.py	1
+kill	./src/lightning/tests/utils.py	/^    def kill(/
+killall	./src/lightning/tests/test_lightningd.py	/^    def killall(/
+killall	./test.py	/^    def killall(/
+lightning	./src/lightning/contrib/pylightning/lightning/lightning.py	1
+lightningd	./lightningd.py	1
+list_languages	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^    def list_languages(/
+listchannels	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def listchannels(/
+listchannels	./ucoin.py	/^    def listchannels(/
+listfunds	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def listfunds(/
+listfunds	./ucoin.py	/^    def listfunds(/
+listinvoices	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def listinvoices(/
+listinvoices	./ucoin.py	/^    def listinvoices(/
+listnodes	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def listnodes(/
+listnodes	./ucoin.py	/^    def listnodes(/
+listpayments	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def listpayments(/
+listpayments	./ucoin.py	/^    def listpayments(/
+listpeers	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def listpeers(/
+listpeers	./ucoin.py	/^    def listpeers(/
+lnaddr	./lnaddr.py	1
+lnd	./lnd.py	1
+lndecode	./lnaddr.py	/^def lndecode(/
+lnencode	./lnaddr.py	/^def lnencode(/
+load_report	./cli.py	/^def load_report(/
+load_reports	./cli.py	/^def load_reports(/
+load_words	./src/lightning/external/libwally-core/src/test/util.py	/^def load_words(/
+main	./ptags.py	/^def main(/
+main	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^def main(/
+main	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/wrap.py	/^def main(/
+main	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^def main(/
+make	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	/^  def make(/
+make_cbuffer	./src/lightning/external/libwally-core/src/test/util.py	/^def make_cbuffer(/
+make_outbuf	./src/lightning/external/libwally-core/src/test/test_hash.py	/^    def make_outbuf(/
+malloc_fail	./src/lightning/external/libwally-core/src/test/util.py	/^def malloc_fail(/
+mkint	./src/lightning/external/libwally-core/src/test/util.py	/^    def mkint(/
+mkstr	./src/lightning/external/libwally-core/src/test/util.py	/^    def mkstr(/
+mnemonic	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	1
+nan	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/nan.py	1
+newaddr	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def newaddr(/
+newaddr	./ucoin.py	/^    def newaddr(/
+node_factory	./src/lightning/tests/benchmark.py	/^def node_factory(/
+node_factory	./src/lightning/tests/fixtures.py	/^def node_factory(/
+node_factory	./test.py	/^def node_factory(/
+node_has_route	./test.py	/^def node_has_route(/
+open_file	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/wrap.py	/^def open_file(/
+openchannel	./eclair.py	/^    def openchannel(/
+openchannel	./lightningd.py	/^    def openchannel(/
+openchannel	./lnd.py	/^    def openchannel(/
+openchannel	./src/lightning/tests/utils.py	/^    def openchannel(/
+openchannel	./ucoind.py	/^    def openchannel(/
+operations	./src/lightning/external/libwally-core/src/test/util.py	/^class operations(/
+output_file_issues	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def output_file_issues(/
+output_func	./src/lightning/external/libwally-core/docs/source/conf.py	/^def output_func(/
+output_issues	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def output_issues(/
+parse_fallback	./lnaddr.py	/^def parse_fallback(/
+path_to_c	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def path_to_c(/
+pay	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def pay(/
+pay	./src/lightning/tests/test_lightningd.py	/^    def pay(/
+pay	./ucoin.py	/^    def pay(/
+peers	./eclair.py	/^    def peers(/
+peers	./eclair.py	/^    def peers(/
+peers	./lightningd.py	/^    def peers(/
+peers	./lnd.py	/^    def peers(/
+peers	./ucoind.py	/^    def peers(/
+ping	./eclair.py	/^    def ping(/
+ping	./lightningd.py	/^    def ping(/
+ping	./lnd.py	/^    def ping(/
+ping	./ucoind.py	/^    def ping(/
+ping_tests	./src/lightning/tests/test_lightningd.py	/^    def ping_tests(/
+postprocess	./cli.py	/^def postprocess(/
+prepare	./src/lightning/external/libsodium/packaging/dotnet-core/prepare.py	1
+prepare	./src/ptarmigan/ucoin/libs/libsodium/packaging/dotnet-core/prepare.py	1
+printCrashLog	./src/lightning/tests/fixtures.py	/^def printCrashLog(/
+printCrashLog	./src/lightning/tests/test_lightningd.py	/^    def printCrashLog(/
+printValgrindErrors	./src/lightning/tests/fixtures.py	/^def printValgrindErrors(/
+printValgrindErrors	./src/lightning/tests/test_lightningd.py	/^    def printValgrindErrors(/
+print_fromwire	./src/lightning/tools/generate-wire.py	/^    def print_fromwire(/
+print_fromwire_array	./src/lightning/tools/generate-wire.py	/^    def print_fromwire_array(/
+print_printwire	./src/lightning/tools/generate-wire.py	/^    def print_printwire(/
+print_printwire_array	./src/lightning/tools/generate-wire.py	/^    def print_printwire_array(/
+print_towire	./src/lightning/tools/generate-wire.py	/^    def print_towire(/
+print_towire_array	./src/lightning/tools/generate-wire.py	/^    def print_towire_array(/
+ptags	./ptags.py	1
+pull_tagged	./lnaddr.py	/^def pull_tagged(/
+ratio_to_color	./cli.py	/^def ratio_to_color(/
+reconcile_sigs	./src/lightning/external/libwally-core/src/swig_python/contrib/reconcile_sigs.py	1
+regen-msvc	./src/lightning/external/libsodium/regen-msvc/regen-msvc.py	1
+regen-msvc	./src/ptarmigan/ucoin/libs/libsodium/regen-msvc/regen-msvc.py	1
+render_report	./cli.py	/^def render_report(/
+requests_retry_session	./eclair.py	/^def requests_retry_session(/
+restart	./eclair.py	/^    def restart(/
+restart	./lightningd.py	/^    def restart(/
+restart	./lnd.py	/^    def restart(/
+restart	./src/lightning/tests/utils.py	/^    def restart(/
+restart	./ucoind.py	/^    def restart(/
+rpc_call	./lightningd.py	/^        def rpc_call(/
+rpc_pb2	./rpc_pb2.py	1
+rpc_pb2_grpc	./rpc_pb2_grpc.py	1
+run	./src/lightning/external/libwally-core/setup.py	/^        def run(/
+run_main	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^def run_main(/
+run_main	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^def run_main(/
+save_log	./src/lightning/tests/utils.py	/^    def save_log(/
+send	./eclair.py	/^    def send(/
+send	./lightningd.py	/^    def send(/
+send	./lnd.py	/^    def send(/
+send	./ucoind.py	/^    def send(/
+sendpay	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def sendpay(/
+sendpay	./ucoin.py	/^    def sendpay(/
+setUp	./src/lightning/external/libwally-core/src/test/test_base58.py	/^    def setUp(/
+setUp	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def setUp(/
+setUp	./src/lightning/external/libwally-core/src/test/test_mnemonic.py	/^    def setUp(/
+setUp	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^    def setUp(/
+setUp	./src/lightning/external/libwally-core/src/test/test_wordlist.py	/^    def setUp(/
+setUp	./src/lightning/tests/test_lightningd.py	/^    def setUp(/
+set_fake_ec_nonce	./src/lightning/external/libwally-core/src/test/util.py	/^def set_fake_ec_nonce(/
+setup	./src/lightning/contrib/pylightning/setup.py	1
+setup	./src/lightning/external/libwally-core/setup.py	1
+setupBitcoind	./src/lightning/tests/test_lightningd.py	/^def setupBitcoind(/
+setup_logger	./src/ptarmigan/ucoin/libs/mbedtls/scripts/abi_check.py	/^    def setup_logger(/
+setup_logger	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def setup_logger(/
+shorten_amount	./lnaddr.py	/^def shorten_amount(/
+should_check_file	./src/ptarmigan/ucoin/libs/mbedtls/tests/scripts/check-files.py	/^    def should_check_file(/
+sign	./src/lightning/external/libwally-core/src/test/test_sign.py	/^    def sign(/
+split_options	./src/lightning/tests/test_lightningd.py	/^    def split_options(/
+start	./eclair.py	/^    def start(/
+start	./lightningd.py	/^    def start(/
+start	./lnd.py	/^    def start(/
+start	./src/lightning/tests/utils.py	/^    def start(/
+start	./src/lightning/tests/utils.py	/^    def start(/
+start	./src/lightning/tests/utils.py	/^    def start(/
+start	./src/lightning/tests/utils.py	/^    def start(/
+start	./ucoind.py	/^    def start(/
+start	./utils.py	/^    def start(/
+start	./utils.py	/^    def start(/
+start	./utils.py	/^    def start(/
+stop	./eclair.py	/^    def stop(/
+stop	./lightningd.py	/^    def stop(/
+stop	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def stop(/
+stop	./src/lightning/tests/utils.py	/^    def stop(/
+stop	./src/lightning/tests/utils.py	/^    def stop(/
+stop	./ucoin.py	/^    def stop(/
+stop	./ucoind.py	/^    def stop(/
+stop	./utils.py	/^    def stop(/
+string_fn_wrapper	./src/lightning/external/libwally-core/src/test/util.py	/^    def string_fn_wrapper(/
+subd_pid	./src/lightning/tests/utils.py	/^    def subd_pid(/
+swift	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/templates/swift.py	1
+sync_blockheight	./src/lightning/tests/test_lightningd.py	/^def sync_blockheight(/
+sync_blockheight	./test.py	/^def sync_blockheight(/
+tagged	./lnaddr.py	/^def tagged(/
+tagged_bytes	./lnaddr.py	/^def tagged_bytes(/
+tail	./src/lightning/tests/utils.py	/^    def tail(/
+tail	./utils.py	/^    def tail(/
+tearDown	./src/lightning/tests/test_lightningd.py	/^    def tearDown(/
+teardown_bitcoind	./src/lightning/tests/test_lightningd.py	/^def teardown_bitcoind(/
+test	./test.py	1
+test_288	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def test_288(/
+test_addfunds_from_block	./src/lightning/tests/test_lightningd.py	/^    def test_addfunds_from_block(/
+test_address	./src/lightning/tests/test_lightningd.py	/^    def test_address(/
+test_address_vectors	./src/lightning/external/libwally-core/src/test/test_base58.py	/^    def test_address_vectors(/
+test_aes	./src/lightning/external/libwally-core/src/test/test_aes.py	/^    def test_aes(/
+test_aes	./src/lightning/external/libwally-core/src/test/test_aes.py	1
+test_aes_cbc	./src/lightning/external/libwally-core/src/test/test_aes.py	/^    def test_aes_cbc(/
+test_all_langs	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def test_all_langs(/
+test_all_lookups	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def test_all_lookups(/
+test_announce_address	./src/lightning/tests/test_gossip.py	/^def test_announce_address(/
+test_autocleaninvoice	./src/lightning/tests/test_lightningd.py	/^    def test_autocleaninvoice(/
+test_bad_opening	./src/lightning/tests/test_lightningd.py	/^    def test_bad_opening(/
+test_balance	./src/lightning/tests/test_lightningd.py	/^    def test_balance(/
+test_base58	./src/lightning/external/libwally-core/src/test/test_base58.py	1
+test_base_dir	./src/lightning/tests/fixtures.py	/^def test_base_dir(/
+test_bech32	./src/lightning/external/libwally-core/src/test/test_bech32.py	1
+test_bech32_funding	./src/lightning/tests/test_lightningd.py	/^    def test_bech32_funding(/
+test_bip32	./src/lightning/external/libwally-core/src/swig_python/contrib/bip32.py	/^    def test_bip32(/
+test_bip32	./src/lightning/external/libwally-core/src/test/test_bip32.py	1
+test_bip32_vectors	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def test_bip32_vectors(/
+test_bip38	./src/lightning/external/libwally-core/src/test/test_bip38.py	/^    def test_bip38(/
+test_bip38	./src/lightning/external/libwally-core/src/test/test_bip38.py	1
+test_bip38_invalid	./src/lightning/external/libwally-core/src/test/test_bip38.py	/^    def test_bip38_invalid(/
+test_bip39	./src/lightning/external/libwally-core/src/test/test_bip39.py	1
+test_bip39_vectors	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def test_bip39_vectors(/
+test_bip39_wordlists	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def test_bip39_wordlists(/
+test_bitcoin_failure	./src/lightning/tests/test_lightningd.py	/^    def test_bitcoin_failure(/
+test_blockchaintrack	./src/lightning/tests/test_lightningd.py	/^    def test_blockchaintrack(/
+test_channel_persistence	./src/lightning/tests/test_lightningd.py	/^    def test_channel_persistence(/
+test_channel_reenable	./src/lightning/tests/test_lightningd.py	/^    def test_channel_reenable(/
+test_cli	./src/lightning/tests/test_lightningd.py	/^    def test_cli(/
+test_closing	./src/lightning/tests/test_closing.py	1
+test_closing	./src/lightning/tests/test_lightningd.py	/^    def test_closing(/
+test_closing_different_fees	./src/lightning/tests/test_lightningd.py	/^    def test_closing_different_fees(/
+test_closing_id	./src/lightning/tests/test_closing.py	/^def test_closing_id(/
+test_closing_negotiation_reconnect	./src/lightning/tests/test_lightningd.py	/^    def test_closing_negotiation_reconnect(/
+test_closing_torture	./src/lightning/tests/test_lightningd.py	/^    def test_closing_torture(/
+test_closing_while_disconnected	./src/lightning/tests/test_lightningd.py	/^    def test_closing_while_disconnected(/
+test_connect	./src/lightning/tests/test_lightningd.py	/^    def test_connect(/
+test_connect	./test.py	/^def test_connect(/
+test_connect_by_gossip	./src/lightning/tests/test_lightningd.py	/^    def test_connect_by_gossip(/
+test_connect_standard_addr	./src/lightning/tests/test_lightningd.py	/^    def test_connect_standard_addr(/
+test_db_upgrade	./src/lightning/tests/test_lightningd.py	/^    def test_db_upgrade(/
+test_decodepay	./src/lightning/tests/test_lightningd.py	/^    def test_decodepay(/
+test_direct_payment	./test.py	/^def test_direct_payment(/
+test_disconnect	./src/lightning/tests/test_lightningd.py	/^    def test_disconnect(/
+test_disconnect_fundee	./src/lightning/tests/test_lightningd.py	/^    def test_disconnect_fundee(/
+test_disconnect_funder	./src/lightning/tests/test_lightningd.py	/^    def test_disconnect_funder(/
+test_disconnect_half_signed	./src/lightning/tests/test_lightningd.py	/^    def test_disconnect_half_signed(/
+test_disconnectpeer	./src/lightning/tests/test_lightningd.py	/^    def test_disconnectpeer(/
+test_fee_limits	./src/lightning/tests/test_lightningd.py	/^    def test_fee_limits(/
+test_forget_channel	./src/lightning/tests/test_lightningd.py	/^    def test_forget_channel(/
+test_format_message	./src/lightning/external/libwally-core/src/test/test_sign.py	/^    def test_format_message(/
+test_forward	./src/lightning/tests/test_lightningd.py	/^    def test_forward(/
+test_forward_different_fees_and_cltv	./src/lightning/tests/test_lightningd.py	/^    def test_forward_different_fees_and_cltv(/
+test_forward_pad_fees_and_cltv	./src/lightning/tests/test_lightningd.py	/^    def test_forward_pad_fees_and_cltv(/
+test_forwarded_payment	./test.py	/^def test_forwarded_payment(/
+test_free_invalid	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def test_free_invalid(/
+test_from_bytes	./src/lightning/external/libwally-core/src/test/test_base58.py	/^    def test_from_bytes(/
+test_fundee_forget_funding_tx_unconfirmed	./src/lightning/tests/test_lightningd.py	/^    def test_fundee_forget_funding_tx_unconfirmed(/
+test_funding_all	./src/lightning/tests/test_lightningd.py	/^    def test_funding_all(/
+test_funding_change	./src/lightning/tests/test_lightningd.py	/^    def test_funding_change(/
+test_funding_fail	./src/lightning/tests/test_lightningd.py	/^    def test_funding_fail(/
+test_funding_toolarge	./src/lightning/tests/test_lightningd.py	/^    def test_funding_toolarge(/
+test_funding_while_offline	./src/lightning/tests/test_lightningd.py	/^    def test_funding_while_offline(/
+test_gossip	./src/lightning/tests/test_gossip.py	1
+test_gossip	./test.py	/^def test_gossip(/
+test_gossip_badsig	./src/lightning/tests/test_lightningd.py	/^    def test_gossip_badsig(/
+test_gossip_disable_channels	./src/lightning/tests/test_gossip.py	/^def test_gossip_disable_channels(/
+test_gossip_jsonrpc	./src/lightning/tests/test_lightningd.py	/^    def test_gossip_jsonrpc(/
+test_gossip_no_empty_announcements	./src/lightning/tests/test_lightningd.py	/^    def test_gossip_no_empty_announcements(/
+test_gossip_persistence	./src/lightning/tests/test_lightningd.py	/^    def test_gossip_persistence(/
+test_gossip_pruning	./src/lightning/tests/test_gossip.py	/^def test_gossip_pruning(/
+test_gossip_query_channel_range	./src/lightning/tests/test_lightningd.py	/^    def test_gossip_query_channel_range(/
+test_gossip_timestamp_filter	./src/lightning/tests/test_lightningd.py	/^    def test_gossip_timestamp_filter(/
+test_gossip_weirdalias	./src/lightning/tests/test_lightningd.py	/^    def test_gossip_weirdalias(/
+test_hash	./src/lightning/external/libwally-core/src/test/test_hash.py	1
+test_hash160_vectors	./src/lightning/external/libwally-core/src/test/test_hash.py	/^    def test_hash160_vectors(/
+test_hex	./src/lightning/external/libwally-core/src/test/test_hex.py	1
+test_hex_from_bytes	./src/lightning/external/libwally-core/src/test/test_hex.py	/^    def test_hex_from_bytes(/
+test_hex_to_bytes	./src/lightning/external/libwally-core/src/test/test_hex.py	/^    def test_hex_to_bytes(/
+test_hmac	./src/lightning/external/libwally-core/src/test/test_hmac.py	1
+test_htlc_in_timeout	./src/lightning/tests/test_lightningd.py	/^    def test_htlc_in_timeout(/
+test_htlc_out_timeout	./src/lightning/tests/test_lightningd.py	/^    def test_htlc_out_timeout(/
+test_htlc_sig_persistence	./src/lightning/tests/test_lightningd.py	/^    def test_htlc_sig_persistence(/
+test_invalid_args	./src/lightning/external/libwally-core/src/test/test_hash.py	/^    def test_invalid_args(/
+test_invalid_inputs	./src/lightning/external/libwally-core/src/test/test_sign.py	/^    def test_invalid_inputs(/
+test_invoice	./src/lightning/tests/benchmark.py	/^def test_invoice(/
+test_invoice	./src/lightning/tests/test_lightningd.py	/^    def test_invoice(/
+test_invoice_decode	./test.py	/^def test_invoice_decode(/
+test_invoice_expiry	./src/lightning/tests/test_lightningd.py	/^    def test_invoice_expiry(/
+test_invoice_preimage	./src/lightning/tests/test_lightningd.py	/^    def test_invoice_preimage(/
+test_invoice_weirdstring	./src/lightning/tests/test_lightningd.py	/^    def test_invoice_weirdstring(/
+test_io_logging	./src/lightning/tests/test_lightningd.py	/^    def test_io_logging(/
+test_key_from_parent_invalid	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def test_key_from_parent_invalid(/
+test_key_from_seed	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def test_key_from_seed(/
+test_lightningd	./src/lightning/tests/test_lightningd.py	1
+test_listconfigs	./src/lightning/tests/test_lightningd.py	/^    def test_listconfigs(/
+test_lockin_between_restart	./src/lightning/tests/test_lightningd.py	/^    def test_lockin_between_restart(/
+test_mnemonic	./src/lightning/external/libwally-core/src/test/test_mnemonic.py	/^    def test_mnemonic(/
+test_mnemonic	./src/lightning/external/libwally-core/src/test/test_mnemonic.py	1
+test_mnemonic_to_seed	./src/lightning/external/libwally-core/src/test/test_bip39.py	/^    def test_mnemonic_to_seed(/
+test_multiple_channels	./src/lightning/tests/test_lightningd.py	/^    def test_multiple_channels(/
+test_multirpc	./src/lightning/tests/test_lightningd.py	/^    def test_multirpc(/
+test_name	./src/lightning/tests/fixtures.py	/^def test_name(/
+test_names	./src/lightning/tests/test_lightningd.py	/^    def test_names(/
+test_onchain_all_dust	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_all_dust(/
+test_onchain_different_fees	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_different_fees(/
+test_onchain_dust_out	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_dust_out(/
+test_onchain_feechange	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_feechange(/
+test_onchain_first_commit	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_first_commit(/
+test_onchain_middleman	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_middleman(/
+test_onchain_timeout	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_timeout(/
+test_onchain_unwatch	./src/lightning/tests/test_lightningd.py	/^    def test_onchain_unwatch(/
+test_onchaind_replay	./src/lightning/tests/test_lightningd.py	/^    def test_onchaind_replay(/
+test_open_channel	./test.py	/^def test_open_channel(/
+test_pay	./src/lightning/tests/benchmark.py	/^def test_pay(/
+test_pay	./src/lightning/tests/test_lightningd.py	/^    def test_pay(/
+test_pay0	./src/lightning/tests/test_lightningd.py	/^    def test_pay0(/
+test_pay_disconnect	./src/lightning/tests/test_lightningd.py	/^    def test_pay_disconnect(/
+test_pay_optional_args	./src/lightning/tests/test_lightningd.py	/^    def test_pay_optional_args(/
+test_payment_duplicate_uncommitted	./src/lightning/tests/test_lightningd.py	/^    def test_payment_duplicate_uncommitted(/
+test_payment_failed_persistence	./src/lightning/tests/test_lightningd.py	/^    def test_payment_failed_persistence(/
+test_payment_success_persistence	./src/lightning/tests/test_lightningd.py	/^    def test_payment_success_persistence(/
+test_pbkdf2	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	1
+test_pbkdf2_hmac_sha	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^    def test_pbkdf2_hmac_sha(/
+test_pbkdf2_hmac_sha256_malloc	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^    def test_pbkdf2_hmac_sha256_malloc(/
+test_pbkdf2_hmac_sha512_malloc	./src/lightning/external/libwally-core/src/test/test_pbkdf2.py	/^    def test_pbkdf2_hmac_sha512_malloc(/
+test_peerinfo	./src/lightning/tests/test_lightningd.py	/^    def test_peerinfo(/
+test_penalty_inhtlc	./src/lightning/tests/test_lightningd.py	/^    def test_penalty_inhtlc(/
+test_penalty_outhtlc	./src/lightning/tests/test_lightningd.py	/^    def test_penalty_outhtlc(/
+test_permfail	./src/lightning/tests/test_lightningd.py	/^    def test_permfail(/
+test_permfail_htlc_in	./src/lightning/tests/test_lightningd.py	/^    def test_permfail_htlc_in(/
+test_permfail_htlc_out	./src/lightning/tests/test_lightningd.py	/^    def test_permfail_htlc_out(/
+test_permfail_new_commit	./src/lightning/tests/test_lightningd.py	/^    def test_permfail_new_commit(/
+test_ping	./src/lightning/tests/test_lightningd.py	/^    def test_ping(/
+test_public_derivation_identities	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def test_public_derivation_identities(/
+test_query_short_channel_id	./src/lightning/tests/test_lightningd.py	/^    def test_query_short_channel_id(/
+test_reconnect	./test.py	/^def test_reconnect(/
+test_reconnect_channel_peers	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_channel_peers(/
+test_reconnect_normal	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_normal(/
+test_reconnect_openingd	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_openingd(/
+test_reconnect_receiver_add	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_receiver_add(/
+test_reconnect_receiver_fulfill	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_receiver_fulfill(/
+test_reconnect_sender_add	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_sender_add(/
+test_reconnect_sender_add1	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_sender_add1(/
+test_reconnect_signed	./src/lightning/tests/test_lightningd.py	/^    def test_reconnect_signed(/
+test_report_routing_failure	./src/lightning/tests/test_lightningd.py	/^    def test_report_routing_failure(/
+test_rescan	./src/lightning/tests/test_lightningd.py	/^    def test_rescan(/
+test_routing_gossip	./src/lightning/tests/test_lightningd.py	/^    def test_routing_gossip(/
+test_routing_gossip_reconnect	./src/lightning/tests/test_lightningd.py	/^    def test_routing_gossip_reconnect(/
+test_script	./src/lightning/external/libwally-core/src/test/test_script.py	1
+test_script_push_from_bytes	./src/lightning/external/libwally-core/src/test/test_script.py	/^    def test_script_push_from_bytes(/
+test_scriptpubkey_p2pkh_from_bytes	./src/lightning/external/libwally-core/src/test/test_script.py	/^    def test_scriptpubkey_p2pkh_from_bytes(/
+test_scripttpubkey_get_type	./src/lightning/external/libwally-core/src/test/test_script.py	/^    def test_scripttpubkey_get_type(/
+test_scrypt	./src/lightning/external/libwally-core/src/test/test_scrypt.py	/^    def test_scrypt(/
+test_scrypt	./src/lightning/external/libwally-core/src/test/test_scrypt.py	1
+test_second_channel	./src/lightning/tests/test_lightningd.py	/^    def test_second_channel(/
+test_segwit_address	./src/lightning/external/libwally-core/src/test/test_bech32.py	/^    def test_segwit_address(/
+test_sendpay	./src/lightning/tests/test_lightningd.py	/^    def test_sendpay(/
+test_sendpay_cant_afford	./src/lightning/tests/test_lightningd.py	/^    def test_sendpay_cant_afford(/
+test_serialisation	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def test_serialisation(/
+test_sha_vectors	./src/lightning/external/libwally-core/src/test/test_hash.py	/^    def test_sha_vectors(/
+test_shutdown	./src/lightning/tests/test_lightningd.py	/^    def test_shutdown(/
+test_shutdown_awaiting_lockin	./src/lightning/tests/test_lightningd.py	/^    def test_shutdown_awaiting_lockin(/
+test_shutdown_reconnect	./src/lightning/tests/test_lightningd.py	/^    def test_shutdown_reconnect(/
+test_sign	./src/lightning/external/libwally-core/src/test/test_sign.py	1
+test_sign_and_verify	./src/lightning/external/libwally-core/src/test/test_sign.py	/^    def test_sign_and_verify(/
+test_single_hop	./src/lightning/tests/benchmark.py	/^def test_single_hop(/
+test_single_payment	./src/lightning/tests/benchmark.py	/^def test_single_payment(/
+test_start	./src/lightning/tests/benchmark.py	/^def test_start(/
+test_start	./test.py	/^def test_start(/
+test_to_bytes	./src/lightning/external/libwally-core/src/test/test_base58.py	/^    def test_to_bytes(/
+test_tx	./src/lightning/external/libwally-core/src/swig_python/contrib/reconcile_sigs.py	/^    def test_tx(/
+test_tx	./src/lightning/external/libwally-core/src/swig_python/contrib/tx.py	/^    def test_tx(/
+test_tx_input	./src/lightning/external/libwally-core/src/swig_python/contrib/tx.py	/^    def test_tx_input(/
+test_tx_output	./src/lightning/external/libwally-core/src/swig_python/contrib/tx.py	/^    def test_tx_output(/
+test_tx_set_output	./src/lightning/external/libwally-core/src/swig_python/contrib/tx.py	/^    def test_tx_set_output(/
+test_tx_witness	./src/lightning/external/libwally-core/src/swig_python/contrib/tx.py	/^    def test_tx_witness(/
+test_update_all_fees	./src/lightning/tests/test_lightningd.py	/^    def test_update_all_fees(/
+test_update_fee	./src/lightning/tests/test_lightningd.py	/^    def test_update_fee(/
+test_update_fee_reconnect	./src/lightning/tests/test_lightningd.py	/^    def test_update_fee_reconnect(/
+test_vectors	./src/lightning/external/libwally-core/src/test/test_hmac.py	/^    def test_vectors(/
+test_waitanyinvoice	./src/lightning/tests/test_lightningd.py	/^    def test_waitanyinvoice(/
+test_waitanyinvoice_reversed	./src/lightning/tests/test_lightningd.py	/^    def test_waitanyinvoice_reversed(/
+test_waitinvoice	./src/lightning/tests/test_lightningd.py	/^    def test_waitinvoice(/
+test_wally_witness_program_from_bytes	./src/lightning/external/libwally-core/src/test/test_script.py	/^    def test_wally_witness_program_from_bytes(/
+test_withdraw	./src/lightning/tests/test_lightningd.py	/^    def test_withdraw(/
+test_wordlist	./src/lightning/external/libwally-core/src/test/test_wordlist.py	/^    def test_wordlist(/
+test_wordlist	./src/lightning/external/libwally-core/src/test/test_wordlist.py	1
+to_entropy	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^    def to_entropy(/
+to_json	./src/lightning/tests/test_lightningd.py	/^def to_json(/
+to_mnemonic	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^    def to_mnemonic(/
+to_priv	./src/lightning/external/libwally-core/src/test/test_bip38.py	/^    def to_priv(/
+to_seed	./src/lightning/external/libwally-core/src/swig_python/contrib/mnemonic.py	/^    def to_seed(/
+treat_file	./ptags.py	/^def treat_file(/
+trim_to_bytes	./lnaddr.py	/^def trim_to_bytes(/
+try_pay	./src/lightning/tests/test_lightningd.py	/^        def try_pay(/
+tx	./src/lightning/external/libwally-core/src/swig_python/contrib/tx.py	1
+u5_to_bitarray	./lnaddr.py	/^def u5_to_bitarray(/
+ucoin	./ucoin.py	1
+ucoind	./ucoind.py	1
+unserialize_key	./src/lightning/external/libwally-core/src/test/test_bip32.py	/^    def unserialize_key(/
+unshorten_amount	./lnaddr.py	/^def unshorten_amount(/
+upload	./cli.py	/^def upload(/
+util	./src/lightning/external/libwally-core/src/test/util.py	1
+utils	./src/lightning/tests/utils.py	1
+utils	./utils.py	1
+wait	./src/lightning/tests/utils.py	/^    def wait(/
+wait_channel_active	./src/lightning/tests/utils.py	/^    def wait_channel_active(/
+wait_for	./src/lightning/tests/utils.py	/^def wait_for(/
+wait_for	./test.py	/^def wait_for(/
+wait_for_log	./src/lightning/tests/utils.py	/^    def wait_for_log(/
+wait_for_log	./utils.py	/^    def wait_for_log(/
+wait_for_logs	./src/lightning/tests/utils.py	/^    def wait_for_logs(/
+wait_for_routes	./src/lightning/tests/test_lightningd.py	/^    def wait_for_routes(/
+wait_forget_channels	./src/lightning/tests/test_lightningd.py	/^def wait_forget_channels(/
+wait_pay	./src/lightning/tests/test_lightningd.py	/^        def wait_pay(/
+waitanyinvoice	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def waitanyinvoice(/
+waitanyinvoice	./ucoin.py	/^    def waitanyinvoice(/
+waitinvoice	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def waitinvoice(/
+waitinvoice	./ucoin.py	/^    def waitinvoice(/
+waitsendpay	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def waitsendpay(/
+waitsendpay	./ucoin.py	/^    def waitsendpay(/
+withdraw	./src/lightning/contrib/pylightning/lightning/lightning.py	/^    def withdraw(/
+withdraw	./ucoin.py	/^    def withdraw(/
+wordlist_cc	./src/lightning/external/libwally-core/tools/wordlist_cc.py	1
+wrap	./src/lightning/external/libwally-core/src/wrap_js/makewrappers/wrap.py	1
+wrapped	./src/lightning/external/libwally-core/src/test/util.py	/^        def wrapped(/
+wrapped	./src/lightning/external/libwally-core/src/test/util.py	/^        def wrapped(/
+wrapper	./src/lightning/contrib/pylightning/lightning/lightning.py	/^        def wrapper(/
+wrapper	./ucoin.py	/^        def wrapper(/
+write_config	./src/lightning/tests/utils.py	/^def write_config(/
+write_config	./utils.py	/^def write_config(/

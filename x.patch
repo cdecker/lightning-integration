@@ -1,0 +1,43 @@
+diff --git a/Makefile b/Makefile
+index 550020e..b39a480 100644
+--- a/Makefile
++++ b/Makefile
+@@ -28,6 +28,7 @@ bin/eclair.jar: src/eclair
+ 
+ bin/lightningd: src/lightning
+ 	(cd src/lightning; git rev-parse HEAD) > src/lightning/version
++	cd src/lightning; ./configure
+ 	cd src/lightning; make DEVELOPER=1 NO_VALGRIND=1 CC=clang
+ 	cp src/lightning/lightningd/lightningd src/lightning/lightningd/lightning_* bin
+ 
+diff --git a/lightningd.py b/lightningd.py
+index 91a0613..8df4bed 100644
+--- a/lightningd.py
++++ b/lightningd.py
+@@ -167,3 +167,12 @@ class LightningNode(object):
+         time.sleep(5)
+         self.daemon.start()
+         time.sleep(1)
++
++    def check_route(self, node_id, amount):
++        try:
++            r = self.rpc.getroute(node_id, amount, 1.0)
++        except ValueError as e:
++            if (str(e).find("Could not find a route") > 0):
++                return False
++            raise
++        return True
+diff --git a/test.py b/test.py
+index 0178eb3..ad160b0 100644
+--- a/test.py
++++ b/test.py
+@@ -289,6 +289,9 @@ def test_direct_payment(bitcoind, node_factory, impls):
+     req = node2.invoice(amount)
+     dec = lndecode(req)
+ 
++    print("Waiting till the route is found")
++    wait_for(lambda: node1.check_route(node2.id(), amount), interval=1)
++
+     print("Decoded payment request", req, dec)
+     payment_key = node1.send(req)
+     assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)

@@ -205,6 +205,15 @@ class LndNode(object):
         self.daemon.start()
         self.rpc = LndRpc(self.daemon.rpc_port)
 
+    def check_route(self, node_id, amount):
+        try:
+            req = lnrpc.QueryRoutesRequest(pub_key=node_id, amt=int(amount/1000), num_routes=1)
+            r = self.rpc.stub.QueryRoutes(req)
+        except grpc._channel._Rendezvous as e:
+            if (str(e).find("unable to find a path to destination") > 0):
+                return False
+            raise
+        return True
 
 class LndRpc(object):
 

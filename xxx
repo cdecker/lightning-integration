@@ -1,0 +1,14 @@
+============================= test session starts ==============================
+platform linux -- Python 3.5.2, pytest-3.1.2, py-1.5.4, pluggy-0.4.0 -- /usr/bin/python3
+cachedir: .cache
+rootdir: /home/gondo/lightning-integration, inifile: pytest.ini
+plugins: json-0.4.0
+collecting ... collected 78 items
+
+test.py::test_direct_payment[eclair_eclair] 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! KeyboardInterrupt !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+to show a full traceback on KeyboardInterrupt use --fulltrace
+/usr/lib/python3.5/threading.py:297: KeyboardInterrupt
+============================= 69 tests deselected ==============================
+======================== 69 deselected in 4.02 seconds =========================
