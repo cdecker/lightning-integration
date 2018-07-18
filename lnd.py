@@ -64,6 +64,13 @@ class LndD(TailableProc):
 
         logging.info('LND started (pid: {})'.format(self.proc.pid))
 
+    def stop(self):
+        self.proc.terminate()
+        time.sleep(3)
+        if self.proc.poll() is None:
+            self.proc.kill()
+            self.proc.wait()
+
 
 class LndNode(object):
 
