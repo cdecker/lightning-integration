@@ -233,8 +233,8 @@ def test_gossip(node_factory, bitcoind, impls):
 
     # Wait for gossip to settle
     for n in nodes:
-        wait_for(lambda: len(n.getnodes()) == 5, interval=1, timeout=60)
-        wait_for(lambda: len(n.getchannels()) == 8, interval=1, timeout=60)
+        wait_for(lambda: len(n.getnodes()) == 5, interval=1, timeout=120)
+        wait_for(lambda: len(n.getchannels()) == 8, interval=1, timeout=120)
 
     # Now connect the first node to the line graph and the second one to the first
     node1.connect('localhost', nodes[0].daemon.port, nodes[0].id())
