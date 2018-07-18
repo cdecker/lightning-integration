@@ -75,7 +75,7 @@ def ratio_to_color(ratio):
 def load_reports(template):
     reports = []
     for fname in os.listdir("reports"):
-        with open(fname, 'r') as f:
+        with open(os.path.join("reports", fname), 'r') as f:
             report = json.loads(f.read())
             ratio = report['summary']['passed'] / report['summary']['num_tests']
             report['summary']['color'] = ratio_to_color(ratio)
