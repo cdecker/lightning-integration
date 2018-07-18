@@ -125,7 +125,13 @@ class LightningNode(object):
             if remote.id() == p['id']:
                 state = p['state'] if len(p['channels']) == 0 else p['channels'][0]['state']
                 self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, state))
-                return state == 'CHANNELD_NORMAL' and p['connected']
+                if state == 'CHANNELD_NORMAL' and p['connected']:
+                    # Make sure that gossipd sees a local channel_update for routing
+                    short_channel_id = p['short_channel_id'] if len(p['channels']) == 0 else p['channels'][0]['short_channel_id']
+                    if self.daemon.is_in_log("Received channel_update for channel {}\\([01]\\) .* \\(from apply_delayed_local_update\\)".format(short_channel_id)):
+                        return True
+                    self.logger.debug("Channel {} -> {} found but waiting for a local channel_update".format(self_id, remote_id))
+                return False
 
         self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
         return False
