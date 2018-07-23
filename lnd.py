@@ -169,9 +169,10 @@ class LndNode(object):
 
     def send(self, bolt11):
         dec = lndecode(bolt11)
+        min_final_cltv_expiry = 9 if dec.min_final_cltv_expiry is None else dec.min_final_cltv_expiry
         req = lnrpc.SendRequest(payment_hash_string=hexlify(dec.paymenthash),
                                 amt=int(dec.amount*10**8),
-                                final_cltv_delta=9,
+                                final_cltv_delta=min_final_cltv_expiry,
                                 dest=dec.pubkey.serialize(),
                                 dest_string=hexlify(dec.pubkey.serialize()))
 

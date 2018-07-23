@@ -238,6 +238,7 @@ class LnAddr(object):
         self.pubkey = None
         self.currency = currency
         self.amount = amount
+        self.min_final_cltv_expiry = None
 
     def __str__(self):
         return "LnAddr[{}, amount={}{} tags=[{}]]".format(
@@ -338,6 +339,9 @@ def lndecode(a):
                 continue
             addr.pubkey = secp256k1.PublicKey(flags=secp256k1.ALL_FLAGS)
             addr.pubkey.deserialize(trim_to_bytes(tagdata))
+
+        elif tag == 'c':
+            addr.min_final_cltv_expiry = tagdata.uint
         else:
             addr.unknown_tags.append((tag, tagdata))
 
