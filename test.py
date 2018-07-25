@@ -342,7 +342,7 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     # Make sure we have a path
     ids = [n.info()['id'] for n in nodes]
     route = [(ids[i-1], ids[i]) for i in range(1, len(ids))]
-    wait_for(lambda: node_has_route(nodes[0], route))
+    wait_for(lambda: node_has_route(nodes[0], route), timeout=120)
     sync_blockheight(bitcoind, nodes)
 
     src = nodes[0]
