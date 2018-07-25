@@ -173,3 +173,12 @@ class LightningNode(object):
         time.sleep(5)
         self.daemon.start()
         time.sleep(1)
+
+    def check_route(self, node_id, amount):
+        try:
+            r = self.rpc.getroute(node_id, amount, 1.0)
+        except ValueError as e:
+            if (str(e).find("Could not find a route") > 0):
+                return False
+            raise
+        return True

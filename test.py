@@ -349,6 +349,10 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
     dst = nodes[len(nodes)-1]
     amount = int(capacity / 10)
     req = dst.invoice(amount)
+
+    print("Waiting for a route to be found")
+    wait_for(lambda: src.check_route(dst.id(), amount), timeout=120)
+
     payment_key = src.send(req)
     dec = lndecode(req)
     assert(sha256(unhexlify(payment_key)).digest() == dec.paymenthash)
