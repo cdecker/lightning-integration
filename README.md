@@ -18,9 +18,10 @@ Please refer to the various compilation instructions and make sure that the stru
     bin
     ├── eclair-node.jar
     ├── lightningd
-    └── lnd
+    ├── lnd
+    └── ptarmd
 
-The binaries for `lightningd` and `lnd` should be pretty self-explanatory.
+The binaries for `lightningd`, `lnd` and [`ptarmd`](https://github.com/nayutaco/ptarmigan) should be pretty self-explanatory.
 The binary artifact for `eclair` is the `jar`-file containing all dependencies for the `eclair-node` subproject.
 It is usually called `eclair-node_X.Y.Z-SNAPSHOT-XXXXXX-capsule-fat.jar` and can be found in the `target` subdirectory.
 

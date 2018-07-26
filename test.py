@@ -5,6 +5,7 @@ from itertools import product
 from lightningd import LightningNode
 from lnaddr import lndecode
 from lnd import LndNode
+from ptarmd import PtarmNode
 from concurrent import futures
 from utils import BitcoinD, BtcD
 from bech32 import bech32_decode
@@ -18,7 +19,7 @@ import time
 
 TEST_DIR = tempfile.mkdtemp(prefix='lightning-')
 TEST_DEBUG = os.getenv("TEST_DEBUG", "0") == "1"
-impls = [EclairNode, LightningNode, LndNode]
+impls = [EclairNode, LightningNode, LndNode, PtarmNode]
 
 if TEST_DEBUG:
     logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
