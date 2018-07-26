@@ -57,6 +57,17 @@ class NodeFactory(object):
             n.daemon.stop()
 
 
+def transact_and_mine(btc):
+    """ Generate some transactions and blocks.
+
+    To make bitcoind's `estimatesmartfee` succeeded.
+    """
+    addr = btc.rpc.getnewaddress()
+    for i in range(10):
+        for j in range(10):
+            txid = btc.rpc.sendtoaddress(addr, 0.5)
+        btc.rpc.generate(1)
+
 @pytest.fixture()
 def bitcoind():
     btc = BitcoinD(bitcoin_dir=os.path.join(TEST_DIR, "bitcoind"), rpcport=28332)
@@ -70,6 +81,7 @@ def bitcoind():
     elif w_info['balance'] < 1:
         logging.debug("Insufficient balance, generating 1 block")
         btc.rpc.generate(1)
+    transact_and_mine(btc)
 
     yield btc
 
