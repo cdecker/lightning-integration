@@ -9,7 +9,7 @@ import time
 
 LIGHTNINGD_CONFIG = {
     "log-level": "debug",
-    "locktime-blocks": 6,
+    "watchtime-blocks": 6,
     "network": "regtest",
 }
 
