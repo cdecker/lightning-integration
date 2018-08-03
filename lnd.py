@@ -71,6 +71,7 @@ class LndD(TailableProc):
         if self.proc.poll() is None:
             self.proc.kill()
             self.proc.wait()
+        super().save_log()
 
 
 class LndNode(object):
