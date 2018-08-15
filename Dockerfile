@@ -84,5 +84,4 @@ RUN apt-get install -y \
 
 RUN make clients
 
-ENTRYPOINT py.test -v test.py
-
+ENTRYPOINT ["py.test", "-v", "test.py"]
