@@ -37,7 +37,8 @@ RUN apt-get update \
     python3-pip \
     python3 \
     python \
-    zlib1g-dev
+    zlib1g-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 # bitcoind
 RUN curl -Lo bitcoin.tar.gz https://github.com/bitcoin/bitcoin/archive/b641f60425674d737d77abd8c49929d953ea4154.tar.gz \
