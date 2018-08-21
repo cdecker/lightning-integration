@@ -54,8 +54,6 @@ RUN curl -Lo bitcoin.tar.gz https://github.com/bitcoin/bitcoin/archive/b641f6042
 RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
   && pip3 install -r /root/lightning-integration/requirements.txt
 
-WORKDIR /root/lightning-integration
-
 # lnd
 ENV GOPATH $HOME/.go
 ENV PATH $PATH:$GOPATH/bin
@@ -63,6 +61,5 @@ ENV PATH $PATH:$GOPATH/bin
 # eclair
 RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
-RUN make clients
-
-ENTRYPOINT ["py.test", "-v", "test.py"]
+WORKDIR /root/lightning-integration
+CMD ["make", "update", "clients", "test"]
