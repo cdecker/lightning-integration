@@ -67,5 +67,8 @@ RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/jav
 VOLUME /root/lightning-integration/reports
 VOLUME /root/lightning-integration/output
 
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+
 WORKDIR /root/lightning-integration
 CMD ["make", "update", "clients", "test"]
