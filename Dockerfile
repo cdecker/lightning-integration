@@ -1,27 +1,45 @@
 FROM ubuntu:bionic
 
-# Install bitcoind
 RUN apt-get update \
   && apt-get install -y software-properties-common \
   && add-apt-repository ppa:bitcoin/bitcoin \
   && apt-get update \
   && apt-get install -y \
-    build-essential \
-    libtool \
-    autotools-dev \
+    autoconf \
     automake \
-    pkg-config \
-    libssl-dev \
-    libevent-dev \
+    autotools-dev \
+    bc \
     bsdmainutils \
-    python3 \
-    libboost-all-dev \
-    miniupnpc \
-    libzmq3-dev \
-    libdb4.8-dev \
-    libdb4.8++-dev \
+    build-essential \
+    clang \
+    curl \
     git \
-    curl
+    golang \
+    jq \
+    libboost-all-dev \
+    libcurl4-openssl-dev \
+    libdb4.8++-dev \
+    libdb4.8-dev \
+    libev-dev \
+    libevent-dev \
+    libgmp-dev \
+    libjansson-dev \
+    libsecp256k1-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    libtool \
+    libzmq3-dev \
+    maven \
+    miniupnpc \
+    net-tools \
+    openjdk-8-jdk \
+    pkg-config \
+    python3-pip \
+    python3 \
+    python \
+    zlib1g-dev
+
+# bitcoind
 RUN curl -Lo bitcoin.tar.gz https://github.com/bitcoin/bitcoin/archive/b641f60425674d737d77abd8c49929d953ea4154.tar.gz \
   && tar -xzf bitcoin.tar.gz \
   && cd bitcoin-* \
@@ -32,55 +50,18 @@ RUN curl -Lo bitcoin.tar.gz https://github.com/bitcoin/bitcoin/archive/b641f6042
   && cd /root \
   && rm -rf bitcoin*
 
-# Install lightning-integration
-RUN apt-get install -y \
-  python3 \
-  python3-pip \
-  libsecp256k1-dev \
-  && git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
+# lightning-integration
+RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
   && pip3 install -r /root/lightning-integration/requirements.txt
 
 WORKDIR /root/lightning-integration
 
-# Install c-lightning dependencies
-RUN apt-get install -y \
-  autoconf \
-  automake \
-  build-essential \
-  git \
-  libtool \
-  libgmp-dev \
-  libsqlite3-dev \
-  python \
-  python3 \
-  net-tools \
-  zlib1g-dev \
-  clang
-
-# Install lnd dependencies
+# lnd
 ENV GOPATH $HOME/.go
 ENV PATH $PATH:$GOPATH/bin
-RUN apt-get install -y golang
 
-# Install eclair dependencies
-RUN apt-get install -y \
-  openjdk-8-jdk \
-  maven \
-  && update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
-
-# Install ptarmigan dependencies
-RUN apt-get install -y \
-  git \
-  autoconf \
-  pkg-config \
-  libcurl4-openssl-dev \
-  libjansson-dev \
-  libev-dev \
-  libboost-all-dev \
-  build-essential \
-  libtool \
-  jq \
-  bc
+# eclair
+RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
 RUN make clients
 
