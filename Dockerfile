@@ -53,7 +53,9 @@ RUN curl -Lo bitcoin.tar.gz https://github.com/bitcoin/bitcoin/archive/b641f6042
 
 # lightning-integration
 RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
-  && pip3 install -r /root/lightning-integration/requirements.txt
+  && ln -sf /usr/bin/python3 /usr/bin/python \
+  && ln -sf /usr/bin/pip3 /usr/bin/pip \
+  && pip install -r /root/lightning-integration/requirements.txt
 
 # lnd
 ENV GOPATH $HOME/.go
