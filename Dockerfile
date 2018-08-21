@@ -62,5 +62,8 @@ ENV PATH $PATH:$GOPATH/bin
 # eclair
 RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
+VOLUME /root/lightning-integration/reports
+VOLUME /root/lightning-integration/output
+
 WORKDIR /root/lightning-integration
 CMD ["make", "update", "clients", "test"]
