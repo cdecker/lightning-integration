@@ -1,5 +1,4 @@
 FROM ubuntu:bionic
-WORKDIR /root
 
 # Install bitcoind
 RUN apt-get update \
@@ -38,8 +37,8 @@ RUN apt-get install -y \
   python3 \
   python3-pip \
   libsecp256k1-dev \
-  && git clone https://github.com/cdecker/lightning-integration.git \
-  && pip3 install -r lightning-integration/requirements.txt
+  && git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
+  && pip3 install -r /root/lightning-integration/requirements.txt
 
 WORKDIR /root/lightning-integration
 
