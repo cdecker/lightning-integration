@@ -21,16 +21,17 @@ RUN apt-get update \
     libzmq3-dev \
     libdb4.8-dev \
     libdb4.8++-dev \
-    git
-RUN git clone https://github.com/bitcoin/bitcoin.git \
-  && cd bitcoin \
-  && git checkout b641f60425674d737d77abd8c49929d953ea4154 \
+    git \
+    curl
+RUN curl -Lo bitcoin.tar.gz https://github.com/bitcoin/bitcoin/archive/b641f60425674d737d77abd8c49929d953ea4154.tar.gz \
+  && tar -xzf bitcoin.tar.gz \
+  && cd bitcoin-* \
   && ./autogen.sh \
   && ./configure \
   && make \
   && make install \
   && cd /root \
-  && rm -rf bitcoin
+  && rm -rf bitcoin*
 
 # Install lightning-integration
 RUN apt-get install -y \
