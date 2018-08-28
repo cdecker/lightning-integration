@@ -28,7 +28,9 @@ class LightningD(TailableProc):
 
             # The following are temporary workarounds
             '--cltv-final=8',
-            '--dev-override-fee-rates={0}/{0}/{0}'.format(12*1000),  # Fix fee in sat/kw
+            '--bitcoin-rpcport=28332',
+            '--bitcoin-rpcuser=rpcuser',
+            '--bitcoin-rpcpassword=rpcpass',
         ]
         self.cmd_line += [
             "--{}={}".format(k, v) for k, v in LIGHTNINGD_CONFIG.items()
