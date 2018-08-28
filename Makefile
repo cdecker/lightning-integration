@@ -46,7 +46,7 @@ bin/ptarmd: src/ptarmigan
 	cp src/ptarmigan/install/routing bin
 
 bin/lnd: src/lnd
-	(cd src/lnd; git rev-parse HEAD) > src/lnd/version
+	(cd ${GOPATH}/src/github.com/lightningnetwork/lnd; git rev-parse HEAD) > src/lnd/version
 	go get -u github.com/golang/dep/cmd/dep
 	cd ${GOPATH}/src/github.com/lightningnetwork/lnd; ${GOPATH}/bin/dep ensure; go install . ./cmd/...
 	cp ${GOPATH}/bin/lnd ${GOPATH}/bin/lncli bin/

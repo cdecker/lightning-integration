@@ -44,7 +44,8 @@ class LndD(TailableProc):
             '--bitcoind.rpchost=127.0.0.1:{}'.format(BITCOIND_CONFIG.get('rpcport', 18332)),
             '--bitcoind.rpcuser=rpcuser',
             '--bitcoind.rpcpass=rpcpass',
-            '--bitcoind.zmqpath=tcp://127.0.0.1:29000',
+            '--bitcoind.zmqpubrawblock=tcp://127.0.0.1:29000',
+            '--bitcoind.zmqpubrawtx=tcp://127.0.0.1:29000',
             '--configfile={}'.format(os.path.join(lightning_dir, self.CONF_NAME)),
             '--no-macaroons',
             '--nobootstrap',
@@ -70,6 +71,7 @@ class LndD(TailableProc):
         if self.proc.poll() is None:
             self.proc.kill()
             self.proc.wait()
+        super().save_log()
 
 
 class LndNode(object):
