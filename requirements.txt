@@ -12,3 +12,4 @@ google-cloud-storage==1.8.0
 click==6.7
 staticjinja==0.3.5
 pytest-rerunfailures==4.1
+pytest-timeout==1.2.0
