@@ -9,5 +9,6 @@ bitstring==3.1.5
 base58==0.2.5
 secp256k1==0.13.2
 google-cloud-storage==1.8.0
-pytest-rerunfailures==3.1
+click==6.7
 staticjinja==0.3.5
+pytest-rerunfailures==4.1
