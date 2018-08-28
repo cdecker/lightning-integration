@@ -7,22 +7,18 @@ import threading
 import time
 import os
 import collections
+import json
+import base64
+import requests
+
 
 BITCOIND_CONFIG = collections.OrderedDict([
-    ("rpcuser", "rpcuser"),
-    ("rpcpassword", "rpcpass"),
-    ("printtoconsole", 1),
     ("server", 1),
-    ("regtest", 1),
-    ("txindex", 1),
-    ("zmqpubrawblock", "tcp://127.0.0.1:29000"),
-    ("zmqpubrawtx", "tcp://127.0.0.1:29000"),
     ("deprecatedrpc", "addwitnessaddress"),
     ("addresstype", "p2sh-segwit"),
     ("deprecatedrpc", "signrawtransaction"),
-    ("regtest", {
-        "rpcport": 28332,
-    }),
+    ("rpcuser", "rpcuser"),
+    ("rpcpassword", "rpcpass"),
 ])
 
 
@@ -145,30 +141,49 @@ class TailableProc(object):
                 pos += 1
 
 
-class SimpleBitcoinProxy:
-    """Wrapper for BitcoinProxy to reconnect.
+class BitcoinRpc(object):
+    def __init__(self, url=None, rpcport=8332, rpcuser=None, rpcpassword=None):
+        self.url = url if url else "http://localhost:{}".format(rpcport)
+        authpair = "%s:%s" % (rpcuser, rpcpassword)
+        authpair = authpair.encode('utf8')
+        self.auth_header = b"Basic " + base64.b64encode(authpair)
+        self.__id_count = 0
 
-    Long wait times between calls to the Bitcoin RPC could result in
-    `bitcoind` closing the connection, so here we just create
-    throwaway connections. This is easier than to reach into the RPC
-    library to close, reopen and reauth upon failure.
-    """
-    def __init__(self, conf_file=None):
-        self.conf_file = conf_file
+    def _call(self, service_name, *args):
+        self.__id_count += 1
+
+        r = requests.post(self.url,
+                          data=json.dumps({
+                              'version': '1.1',
+                              'method': service_name,
+                              'params': args,
+                              'id': self.__id_count}),
+                          headers={
+                              # 'Host': self.__url.hostname,
+                              'Authorization': self.auth_header,
+                              'Content-type': 'application/json'
+                          })
+
+        response = r.json()
+        if response['error'] is not None:
+            raise ValueError(response['error'])
+        elif 'result' not in response:
+            raise ValueError({
+                'code': -343, 'message': 'missing JSON-RPC result'})
+        else:
+            return response['result']
 
     def __getattr__(self, name):
-        if name.startswith('__') and name.endswith('__'):
-            # Python internal stuff
-            raise AttributeError
+        if name in self.__dict__:
+            return self.__dict__[name]
 
         # Create a callable to do the actual call
-        def callback(*args):
-            return BitcoinProxy(btc_conf_file=self.conf_file)._call(name, *args)
+        f = lambda *args: self._call(name, *args)
 
         # Make debuggers show <function bitcoin.rpc.name> rather than <function
         # bitcoin.rpc.<lambda>>
-        callback.__name__ = name
-        return callback
+        f.__name__ = name
+        return f
 
 
 class BitcoinD(TailableProc):
@@ -194,13 +209,20 @@ class BitcoinD(TailableProc):
             '-conf={}'.format(conf_file),
             '-regtest',
             '-logtimestamps',
+            '-rpcport={}'.format(rpcport),
+            '-printtoconsole=1'
+            '-debug',
+            '-rpcuser=rpcuser',
+            '-rpcpassword=rpcpass',
+            '-zmqpubrawblock=tcp://127.0.0.1:29000',
+            '-zmqpubrawtx=tcp://127.0.0.1:29000',
         ]
         BITCOIND_CONFIG['rpcport'] = rpcport
         write_config(
             os.path.join(bitcoin_dir, self.CONF_NAME), BITCOIND_CONFIG)
         write_config(
             os.path.join(regtestdir, self.CONF_NAME), BITCOIND_CONFIG)
-        self.rpc = SimpleBitcoinProxy(conf_file=conf_file)
+        self.rpc = BitcoinRpc(rpcport=rpcport, rpcuser='rpcuser', rpcpassword='rpcpass')
 
     def start(self):
         super().start()
