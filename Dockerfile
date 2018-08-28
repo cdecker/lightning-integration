@@ -17,6 +17,7 @@ RUN apt-get update \
     golang \
     jq \
     libboost-all-dev \
+    wget \
     libcurl4-openssl-dev \
     libdb4.8++-dev \
     libdb4.8-dev \
@@ -40,16 +41,23 @@ RUN apt-get update \
     zlib1g-dev \
   && rm -rf /var/lib/apt/lists/*
 
-# bitcoind
-RUN curl -Lo bitcoin.tar.gz https://github.com/bitcoin/bitcoin/archive/b641f60425674d737d77abd8c49929d953ea4154.tar.gz \
-  && tar -xzf bitcoin.tar.gz \
-  && cd bitcoin-* \
-  && ./autogen.sh \
-  && ./configure \
-  && make \
-  && make install \
-  && cd /root \
-  && rm -rf bitcoin*
+ARG BITCOIN_VERSION=0.16.0
+ENV BITCOIN_TARBALL bitcoin-$BITCOIN_VERSION-x86_64-linux-gnu.tar.gz
+ENV BITCOIN_URL https://bitcoincore.org/bin/bitcoin-core-$BITCOIN_VERSION/$BITCOIN_TARBALL
+ENV BITCOIN_ASC_URL https://bitcoincore.org/bin/bitcoin-core-$BITCOIN_VERSION/SHA256SUMS.asc
+ENV BITCOIN_PGP_KEY 01EA5486DE18A882D4C2684590C8019E36C2E964
+
+RUN cd /tmp \
+    && wget -qO $BITCOIN_TARBALL "$BITCOIN_URL" \
+    && gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$BITCOIN_PGP_KEY" \
+    && wget -qO bitcoin.asc "$BITCOIN_ASC_URL" \
+    && gpg --verify bitcoin.asc \
+    && grep $BITCOIN_TARBALL bitcoin.asc | tee SHA256SUMS.asc \
+    && sha256sum -c SHA256SUMS.asc \
+    && BD=bitcoin-$BITCOIN_VERSION/bin \
+    && tar -xzvf $BITCOIN_TARBALL \
+    && cp bitcoin-$BITCOIN_VERSION/bin/bitcoin* /usr/bin/ \
+    && rm -rf $BITCOIN_TARBALL bitcoin-$BITCOIN_VERSION
 
 # lightning-integration
 RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
