@@ -39,8 +39,6 @@ def postprocess():
     with open(os.path.join('reports', report['id'] + ".json"), "w") as f:
         f.write(json.dumps(report))
 
-    upload(report['id'] + ".json", json.dumps(report))
-
 
 def group_tests(report):
     tests = report['tests']
@@ -122,10 +120,17 @@ def _get_storage_client():
     return storage.Client(project=os.getenv("GCP_PROJECT"))
 
 
-def upload(filename, contents):
+@click.command()
+@click.argument('report_id')
+def upload(report_id):
+    filename = report_id + '.json'
+
     client = _get_storage_client()
     bucket = client.bucket(os.getenv('GCP_STORAGE_BUCKET'))
     blob = bucket.blob(filename)
+
+    with open(os.path.join("reports", filename)) as f:
+        contents = f.read()
 
     blob.upload_from_string(
         contents,
@@ -138,4 +143,5 @@ def upload(filename, contents):
 if __name__ == '__main__':
     cli.add_command(html)
     cli.add_command(postprocess)
+    cli.add_command(upload)
     cli()
