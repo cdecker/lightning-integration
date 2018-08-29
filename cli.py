@@ -31,7 +31,8 @@ def postprocess():
     if not os.path.exists('report.json'):
         die("No report found to process")
     report = json.load(open('report.json'))['report']
-    report['versions'] = OrderedDict(sorted({i: get_version(i) for i in ['eclair', 'lightning', 'lnd']}.items()))
+    impls = ['eclair', 'lightning', 'lnd', 'ptarmigan']
+    report['versions'] = OrderedDict(sorted({i: get_version(i) for i in impls}.items()))
 
     # Any unique random id would do really
     version_string = "_".join([k + "-" + v for k, v in report['versions'].items()])
