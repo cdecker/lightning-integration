@@ -66,8 +66,7 @@ test:
 	python cli.py postprocess
 
 site:
-	rm -rf output; rm templates/*.json || true
-	mkdir output
+	rm -rf output/*; rm templates/*.json || true
 	cp reports/* templates/
 	python cli.py html
 
