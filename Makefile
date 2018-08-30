@@ -62,7 +62,7 @@ clients: bin/lightningd bin/lnd bin/eclair.jar bin/ptarmd
 
 test:
 	# Failure is always an option
-	py.test -v test.py --tb=short --color=yes --json=report.json --reruns=3 || true
+	py.test -v test.py --tb=short --color=yes --json=report.json --reruns=3 --timeout=300 || true
 	python cli.py postprocess
 
 site:
