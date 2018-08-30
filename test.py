@@ -84,7 +84,12 @@ def bitcoind():
     elif w_info['balance'] < 1:
         logging.debug("Insufficient balance, generating 1 block")
         btc.rpc.generate(1)
-    transact_and_mine(btc)
+
+    # Mock `estimatesmartfee` to make c-lightning happy
+    def mock_estimatesmartfee(r):
+        return {"id": r['id'], "error": None, "result": {"feerate": 0.00100001, "blocks": r['params'][0]}}
+
+    btc.mock_rpc('estimatesmartfee', mock_estimatesmartfee)
 
     yield btc
 
