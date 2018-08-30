@@ -11,6 +11,7 @@ import os
 import psutil
 import re
 import requests
+import shutil
 import time
 
 
@@ -47,13 +48,15 @@ class EclairD(TailableProc):
         self.cmd_line = [
             '/usr/lib/jvm/java-8-openjdk-amd64/bin/java',
             '-Declair.datadir={}'.format(lightning_dir),
-            '-Declair.printToConsole=true',
+            '-Dlogback.configurationFile={}'.format(os.path.join(lightning_dir, 'logback.xml')),
             '-jar',
             'bin/eclair.jar'
         ]
 
         if not os.path.exists(lightning_dir):
             os.makedirs(lightning_dir)
+
+        shutil.copyfile('logback.xml', os.path.join(lightning_dir, "logback.xml"))
 
         # Adapt the config and store it
         with open('src/eclair/eclair-core/src/main/resources/reference.conf') as f:

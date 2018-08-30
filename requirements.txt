@@ -13,3 +13,5 @@ click==6.7
 staticjinja==0.3.5
 pytest-rerunfailures==4.1
 pytest-timeout==1.2.0
+flask==1.0.2
+ephemeral-port-reserve==1.1.0

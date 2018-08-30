@@ -1,4 +1,5 @@
 from bitcoin.rpc import RawProxy as BitcoinProxy
+from ephemeral_port_reserve import reserve
 
 import logging
 import re
@@ -19,6 +20,7 @@ BITCOIND_CONFIG = collections.OrderedDict([
     ("deprecatedrpc", "signrawtransaction"),
     ("rpcuser", "rpcuser"),
     ("rpcpassword", "rpcpass"),
+    ("listen", 0)
 ])
 
 
@@ -33,6 +35,7 @@ def write_dict(f, opts):
             write_dict(f, v)
         else:
             f.write("{}={}\n".format(k, v))
+
 
 class TailableProc(object):
     """A monitorable process that we can start, stop and tail.
@@ -190,12 +193,17 @@ class BitcoinD(TailableProc):
 
     CONF_NAME = 'bitcoin.conf'
 
-    def __init__(self, bitcoin_dir="/tmp/bitcoind-test", rpcport=18332):
+    def __init__(self, bitcoin_dir="/tmp/bitcoind-test", rpcport=None):
         super().__init__(bitcoin_dir, 'bitcoind')
 
+        if rpcport is None:
+            rpcport = reserve()
+
         self.bitcoin_dir = bitcoin_dir
-        self.rpcport = rpcport
+
         self.prefix = 'bitcoind'
+        BITCOIND_CONFIG['rpcport'] = rpcport
+        self.rpcport = rpcport
 
         regtestdir = os.path.join(bitcoin_dir, 'regtest')
         if not os.path.exists(regtestdir):

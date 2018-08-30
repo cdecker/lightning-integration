@@ -1,4 +1,5 @@
 from binascii import unhexlify, hexlify
+from btcproxy import ProxiedBitcoinD
 from eclair import EclairNode
 from hashlib import sha256
 from itertools import product
@@ -69,9 +70,10 @@ def transact_and_mine(btc):
             txid = btc.rpc.sendtoaddress(addr, 0.5)
         btc.rpc.generate(1)
 
+
 @pytest.fixture()
 def bitcoind():
-    btc = BitcoinD(bitcoin_dir=os.path.join(TEST_DIR, "bitcoind"), rpcport=28332)
+    btc = ProxiedBitcoinD(bitcoin_dir=os.path.join(TEST_DIR, "bitcoind"), proxyport=28332)
     btc.start()
     bch_info = btc.rpc.getblockchaininfo()
     w_info = btc.rpc.getwalletinfo()
@@ -88,7 +90,7 @@ def bitcoind():
 
     try:
         btc.rpc.stop()
-    except:
+    except Exception:
         btc.proc.kill()
     btc.proc.wait()
 
