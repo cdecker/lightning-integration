@@ -55,7 +55,6 @@ class ProxiedBitcoinD(BitcoinD):
                 "error": e.error,
                 "id": r['id']
             }
-        print(reply)
         return reply
 
     def proxy(self):
