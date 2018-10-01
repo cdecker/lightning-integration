@@ -80,7 +80,7 @@ class LndNode(object):
 
     displayName = 'lnd'
 
-    def __init__(self, lightning_dir, lightning_port, bitcoind, executor=None, node_id=0):
+    def __init__(self, lightning_dir, lightning_port, bitcoind, executor=None, node_id=0, **kwargs):
         self.bitcoin = bitcoind
         self.executor = executor
         self.daemon = LndD(lightning_dir, bitcoind, port=lightning_port)

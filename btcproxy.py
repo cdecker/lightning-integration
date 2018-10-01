@@ -46,7 +46,7 @@ class ProxiedBitcoinD(BitcoinD):
 
         try:
             reply = {
-                "result": brpc._call(r['method'], *r['params']),
+                "result": brpc._call(r['method'], *r.get('params',[])),
                 "error": None,
                 "id": r['id']
             }

@@ -1,6 +1,7 @@
 from btcproxy import ProxiedBitcoinD
 from ephemeral_port_reserve import reserve
 from concurrent import futures
+from electrumutils import ElectrumX
 
 import os
 import pytest
@@ -21,13 +22,21 @@ __attempts = {}
 class NodeFactory(object):
     """A factory to setup and start `lightningd` daemons.
     """
-    def __init__(self, testname, executor, bitcoind, btcd):
+    def __init__(self, testname, executor, bitcoind, btcd, electrumx_directory):
         self.testname = testname
         self.next_id = 1
         self.nodes = []
         self.executor = executor
         self.bitcoind = bitcoind
         self.btcd = btcd
+        self.electrumx = None
+        self.electrumx_directory = electrumx_directory
+
+    def get_electrumx(self):
+        if self.electrumx is None:
+            self.electrumx = ElectrumX(self.electrumx_directory, self.bitcoind)
+            self.electrumx.start()
+        return self.electrumx
 
     def get_node(self, implementation):
         node_id = self.next_id
@@ -38,7 +47,8 @@ class NodeFactory(object):
         port = reserve()
 
         node = implementation(lightning_dir, port, self.bitcoind,
-                              executor=self.executor, node_id=node_id)
+                              executor=self.executor, node_id=node_id,
+                              get_electrumx=self.get_electrumx)
         self.nodes.append(node)
 
         node.btcd = self.btcd
@@ -46,6 +56,9 @@ class NodeFactory(object):
         return node
 
     def killall(self):
+        if self.electrumx:
+            self.electrumx.kill()
+            self.electrumx.wait()
         for n in self.nodes:
             n.daemon.stop()
 
@@ -67,7 +80,7 @@ def directory(request, test_base_dir, test_name):
 
     # This uses the status set in conftest.pytest_runtest_makereport to
     # determine whether we succeeded or failed.
-    if not request.node.has_errors and request.node.rep_call.outcome == 'passed':
+    if not request.node.has_errors and hasattr(request.node, 'rep_call') and request.node.rep_call.outcome == 'passed':
         shutil.rmtree(directory)
     else:
         logging.debug("Test execution failed, leaving the test directory {} intact.".format(directory))
@@ -106,7 +119,7 @@ def bitcoind(directory):
 
     # Mock `estimatesmartfee` to make c-lightning happy
     def mock_estimatesmartfee(r):
-        return {"id": r['id'], "error": None, "result": {"feerate": 0.00100001, "blocks": r['params'][0]}}
+        return {"id": r['id'], "error": None, "result": {"feerate": 0.00100001, "blocks": r.get('params',[0])[0]}}
 
     btc.mock_rpc('estimatesmartfee', mock_estimatesmartfee)
 
@@ -134,11 +147,9 @@ def btcd():
 
 
 @pytest.fixture
-def node_factory(request, bitcoind):
+def node_factory(request, bitcoind, directory):
     executor = futures.ThreadPoolExecutor(max_workers=20)
-    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind, None)
+    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind, None, electrumx_directory=directory)
     yield node_factory
     node_factory.killall()
     executor.shutdown(wait=False)
-
-
