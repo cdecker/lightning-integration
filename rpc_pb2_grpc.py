@@ -30,6 +30,11 @@ class WalletUnlockerStub(object):
         request_serializer=rpc__pb2.UnlockWalletRequest.SerializeToString,
         response_deserializer=rpc__pb2.UnlockWalletResponse.FromString,
         )
+    self.ChangePassword = channel.unary_unary(
+        '/lnrpc.WalletUnlocker/ChangePassword',
+        request_serializer=rpc__pb2.ChangePasswordRequest.SerializeToString,
+        response_deserializer=rpc__pb2.ChangePasswordResponse.FromString,
+        )
 
 
 class WalletUnlockerServicer(object):
@@ -80,6 +85,15 @@ class WalletUnlockerServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def ChangePassword(self, request, context):
+    """* lncli: `changepassword`
+    ChangePassword changes the password of the encrypted wallet. This will
+    automatically unlock the wallet database if successful.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_WalletUnlockerServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -97,6 +111,11 @@ def add_WalletUnlockerServicer_to_server(servicer, server):
           servicer.UnlockWallet,
           request_deserializer=rpc__pb2.UnlockWalletRequest.FromString,
           response_serializer=rpc__pb2.UnlockWalletResponse.SerializeToString,
+      ),
+      'ChangePassword': grpc.unary_unary_rpc_method_handler(
+          servicer.ChangePassword,
+          request_deserializer=rpc__pb2.ChangePasswordRequest.FromString,
+          response_serializer=rpc__pb2.ChangePasswordResponse.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
@@ -149,11 +168,6 @@ class LightningStub(object):
         request_serializer=rpc__pb2.NewAddressRequest.SerializeToString,
         response_deserializer=rpc__pb2.NewAddressResponse.FromString,
         )
-    self.NewWitnessAddress = channel.unary_unary(
-        '/lnrpc.Lightning/NewWitnessAddress',
-        request_serializer=rpc__pb2.NewWitnessAddressRequest.SerializeToString,
-        response_deserializer=rpc__pb2.NewAddressResponse.FromString,
-        )
     self.SignMessage = channel.unary_unary(
         '/lnrpc.Lightning/SignMessage',
         request_serializer=rpc__pb2.SignMessageRequest.SerializeToString,
@@ -194,6 +208,11 @@ class LightningStub(object):
         request_serializer=rpc__pb2.ListChannelsRequest.SerializeToString,
         response_deserializer=rpc__pb2.ListChannelsResponse.FromString,
         )
+    self.ClosedChannels = channel.unary_unary(
+        '/lnrpc.Lightning/ClosedChannels',
+        request_serializer=rpc__pb2.ClosedChannelsRequest.SerializeToString,
+        response_deserializer=rpc__pb2.ClosedChannelsResponse.FromString,
+        )
     self.OpenChannelSync = channel.unary_unary(
         '/lnrpc.Lightning/OpenChannelSync',
         request_serializer=rpc__pb2.OpenChannelRequest.SerializeToString,
@@ -209,6 +228,11 @@ class LightningStub(object):
         request_serializer=rpc__pb2.CloseChannelRequest.SerializeToString,
         response_deserializer=rpc__pb2.CloseStatusUpdate.FromString,
         )
+    self.AbandonChannel = channel.unary_unary(
+        '/lnrpc.Lightning/AbandonChannel',
+        request_serializer=rpc__pb2.AbandonChannelRequest.SerializeToString,
+        response_deserializer=rpc__pb2.AbandonChannelResponse.FromString,
+        )
     self.SendPayment = channel.stream_stream(
         '/lnrpc.Lightning/SendPayment',
         request_serializer=rpc__pb2.SendRequest.SerializeToString,
@@ -217,6 +241,16 @@ class LightningStub(object):
     self.SendPaymentSync = channel.unary_unary(
         '/lnrpc.Lightning/SendPaymentSync',
         request_serializer=rpc__pb2.SendRequest.SerializeToString,
+        response_deserializer=rpc__pb2.SendResponse.FromString,
+        )
+    self.SendToRoute = channel.stream_stream(
+        '/lnrpc.Lightning/SendToRoute',
+        request_serializer=rpc__pb2.SendToRouteRequest.SerializeToString,
+        response_deserializer=rpc__pb2.SendResponse.FromString,
+        )
+    self.SendToRouteSync = channel.unary_unary(
+        '/lnrpc.Lightning/SendToRouteSync',
+        request_serializer=rpc__pb2.SendToRouteRequest.SerializeToString,
         response_deserializer=rpc__pb2.SendResponse.FromString,
         )
     self.AddInvoice = channel.unary_unary(
@@ -384,14 +418,6 @@ class LightningServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
-  def NewWitnessAddress(self, request, context):
-    """*
-    NewWitnessAddress creates a new witness address under control of the local wallet.
-    """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
-
   def SignMessage(self, request, context):
     """* lncli: `signmessage`
     SignMessage signs a message with this node's private key. The returned
@@ -473,6 +499,15 @@ class LightningServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def ClosedChannels(self, request, context):
+    """* lncli: `closedchannels`
+    ClosedChannels returns a description of all the closed channels that 
+    this node was a participant in.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def OpenChannelSync(self, request, context):
     """*
     OpenChannelSync is a synchronous version of the OpenChannel RPC call. This
@@ -510,6 +545,17 @@ class LightningServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def AbandonChannel(self, request, context):
+    """* lncli: `abandonchannel`
+    AbandonChannel removes all channel state from the database except for a
+    close summary. This method can be used to get rid of permanently unusable
+    channels due to bugs fixed in newer versions of lnd. Only available
+    when in debug builds of lnd.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def SendPayment(self, request_iterator, context):
     """* lncli: `sendpayment`
     SendPayment dispatches a bi-directional streaming RPC for sending payments
@@ -532,6 +578,26 @@ class LightningServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def SendToRoute(self, request_iterator, context):
+    """* lncli: `sendtoroute`
+    SendToRoute is a bi-directional streaming RPC for sending payment through
+    the Lightning Network. This method differs from SendPayment in that it
+    allows users to specify a full route manually. This can be used for things
+    like rebalancing, and atomic swaps.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+  def SendToRouteSync(self, request, context):
+    """*
+    SendToRouteSync is a synchronous version of SendToRoute. It Will block
+    until the payment either fails or succeeds.
+    """
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
   def AddInvoice(self, request, context):
     """* lncli: `addinvoice`
     AddInvoice attempts to add a new invoice to the invoice database. Any
@@ -545,7 +611,14 @@ class LightningServicer(object):
   def ListInvoices(self, request, context):
     """* lncli: `listinvoices`
     ListInvoices returns a list of all the invoices currently stored within the
-    database. Any active debug invoices are ignored.
+    database. Any active debug invoices are ignored. It has full support for
+    paginated responses, allowing users to query for specific invoices through
+    their add_index. This can be done by using either the first_index_offset or
+    last_index_offset fields included in the response as the index_offset of the
+    next request. The reversed flag is set by default in order to paginate
+    backwards. If you wish to paginate forwards, you must explicitly set the
+    flag to false. If none of the parameters are specified, then the last 100
+    invoices will be returned.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -563,8 +636,15 @@ class LightningServicer(object):
 
   def SubscribeInvoices(self, request, context):
     """*
-    SubscribeInvoices returns a uni-directional stream (sever -> client) for
-    notifying the client of newly added/settled invoices.
+    SubscribeInvoices returns a uni-directional stream (server -> client) for
+    notifying the client of newly added/settled invoices. The caller can
+    optionally specify the add_index and/or the settle_index. If the add_index
+    is specified, then we'll first start by sending add invoice events for all
+    invoices with an add_index greater than the specified value.  If the
+    settle_index is specified, the next, we'll send out all settle events for
+    invoices with a settle_index greater than the specified value.  One or both
+    of these fields can be set. If no fields are set, then we'll only send out
+    the latest add/settle events.
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -756,11 +836,6 @@ def add_LightningServicer_to_server(servicer, server):
           request_deserializer=rpc__pb2.NewAddressRequest.FromString,
           response_serializer=rpc__pb2.NewAddressResponse.SerializeToString,
       ),
-      'NewWitnessAddress': grpc.unary_unary_rpc_method_handler(
-          servicer.NewWitnessAddress,
-          request_deserializer=rpc__pb2.NewWitnessAddressRequest.FromString,
-          response_serializer=rpc__pb2.NewAddressResponse.SerializeToString,
-      ),
       'SignMessage': grpc.unary_unary_rpc_method_handler(
           servicer.SignMessage,
           request_deserializer=rpc__pb2.SignMessageRequest.FromString,
@@ -801,6 +876,11 @@ def add_LightningServicer_to_server(servicer, server):
           request_deserializer=rpc__pb2.ListChannelsRequest.FromString,
           response_serializer=rpc__pb2.ListChannelsResponse.SerializeToString,
       ),
+      'ClosedChannels': grpc.unary_unary_rpc_method_handler(
+          servicer.ClosedChannels,
+          request_deserializer=rpc__pb2.ClosedChannelsRequest.FromString,
+          response_serializer=rpc__pb2.ClosedChannelsResponse.SerializeToString,
+      ),
       'OpenChannelSync': grpc.unary_unary_rpc_method_handler(
           servicer.OpenChannelSync,
           request_deserializer=rpc__pb2.OpenChannelRequest.FromString,
@@ -816,6 +896,11 @@ def add_LightningServicer_to_server(servicer, server):
           request_deserializer=rpc__pb2.CloseChannelRequest.FromString,
           response_serializer=rpc__pb2.CloseStatusUpdate.SerializeToString,
       ),
+      'AbandonChannel': grpc.unary_unary_rpc_method_handler(
+          servicer.AbandonChannel,
+          request_deserializer=rpc__pb2.AbandonChannelRequest.FromString,
+          response_serializer=rpc__pb2.AbandonChannelResponse.SerializeToString,
+      ),
       'SendPayment': grpc.stream_stream_rpc_method_handler(
           servicer.SendPayment,
           request_deserializer=rpc__pb2.SendRequest.FromString,
@@ -824,6 +909,16 @@ def add_LightningServicer_to_server(servicer, server):
       'SendPaymentSync': grpc.unary_unary_rpc_method_handler(
           servicer.SendPaymentSync,
           request_deserializer=rpc__pb2.SendRequest.FromString,
+          response_serializer=rpc__pb2.SendResponse.SerializeToString,
+      ),
+      'SendToRoute': grpc.stream_stream_rpc_method_handler(
+          servicer.SendToRoute,
+          request_deserializer=rpc__pb2.SendToRouteRequest.FromString,
+          response_serializer=rpc__pb2.SendResponse.SerializeToString,
+      ),
+      'SendToRouteSync': grpc.unary_unary_rpc_method_handler(
+          servicer.SendToRouteSync,
+          request_deserializer=rpc__pb2.SendToRouteRequest.FromString,
           response_serializer=rpc__pb2.SendResponse.SerializeToString,
       ),
       'AddInvoice': grpc.unary_unary_rpc_method_handler(
