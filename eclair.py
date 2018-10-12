@@ -46,7 +46,7 @@ class EclairD(TailableProc):
         self.prefix = 'eclair'
 
         self.cmd_line = [
-            '/usr/lib/jvm/java-8-openjdk-amd64/bin/java',
+            'java',
             '-Declair.datadir={}'.format(lightning_dir),
             '-Dlogback.configurationFile={}'.format(os.path.join(lightning_dir, 'logback.xml')),
             '-jar',

@@ -16,7 +16,7 @@ In order for the tests to run you'll need to compile the various clients and mov
 Please refer to the various compilation instructions and make sure that the structure matches the following diagram:
 
     bin
-    ├── eclair-node.jar
+    ├── eclair.jar
     ├── lightningd
     ├── lnd
     └── ptarmd
