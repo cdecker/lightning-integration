@@ -7,7 +7,7 @@ src/eclair:
 	git clone https://github.com/ACINQ/eclair.git src/eclair
 
 src/lightning:
-	git clone https://github.com/ElementsProject/lightning.git src/lightning
+	git clone --recurse-submodules https://github.com/ElementsProject/lightning.git src/lightning
 
 src/lnd:
 	git clone https://github.com/lightningnetwork/lnd ${GOPATH}/src/github.com/lightningnetwork/lnd
