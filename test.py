@@ -1,6 +1,7 @@
 from binascii import unhexlify, hexlify
 from btcproxy import ProxiedBitcoinD
 from eclair import EclairNode
+from ephemeral_port_reserve import reserve
 from hashlib import sha256
 from itertools import product
 from lightningd import LightningNode
@@ -11,6 +12,8 @@ from concurrent import futures
 from utils import BitcoinD, BtcD
 from bech32 import bech32_decode
 
+from fixtures import *
+
 import logging
 import os
 import pytest
@@ -18,45 +21,11 @@ import sys
 import tempfile
 import time
 
-TEST_DIR = tempfile.mkdtemp(prefix='lightning-')
-TEST_DEBUG = os.getenv("TEST_DEBUG", "0") == "1"
 impls = [EclairNode, LightningNode, LndNode, PtarmNode]
 
 if TEST_DEBUG:
     logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
 logging.info("Tests running in '%s'", TEST_DIR)
-
-
-class NodeFactory(object):
-    """A factory to setup and start `lightningd` daemons.
-    """
-    def __init__(self, testname, executor, btc, btcd):
-        self.testname = testname
-        self.next_id = 1
-        self.nodes = []
-        self.executor = executor
-        self.btc = btc
-        self.btcd = btcd
-
-    def get_node(self, implementation):
-        node_id = self.next_id
-        self.next_id += 1
-
-        lightning_dir = os.path.join(
-            TEST_DIR, self.testname, "node-{}/".format(node_id))
-        port = 16330+node_id
-
-        node = implementation(lightning_dir, port, self.btc,
-                              executor=self.executor, node_id=node_id)
-        self.nodes.append(node)
-
-        node.btcd = self.btcd
-        node.daemon.start()
-        return node
-
-    def killall(self):
-        for n in self.nodes:
-            n.daemon.stop()
 
 
 def transact_and_mine(btc):
@@ -69,58 +38,6 @@ def transact_and_mine(btc):
         for j in range(10):
             txid = btc.rpc.sendtoaddress(addr, 0.5)
         btc.rpc.generate(1)
-
-
-@pytest.fixture()
-def bitcoind():
-    btc = ProxiedBitcoinD(bitcoin_dir=os.path.join(TEST_DIR, "bitcoind"), proxyport=28332)
-    btc.start()
-    bch_info = btc.rpc.getblockchaininfo()
-    w_info = btc.rpc.getwalletinfo()
-    # Make sure we have segwit and some funds
-    if bch_info['blocks'] < 120:
-        logging.debug("SegWit not active, generating some more blocks")
-        btc.rpc.generate(120 - bch_info['blocks'])
-    elif w_info['balance'] < 1:
-        logging.debug("Insufficient balance, generating 1 block")
-        btc.rpc.generate(1)
-
-    # Mock `estimatesmartfee` to make c-lightning happy
-    def mock_estimatesmartfee(r):
-        return {"id": r['id'], "error": None, "result": {"feerate": 0.00100001, "blocks": r['params'][0]}}
-
-    btc.mock_rpc('estimatesmartfee', mock_estimatesmartfee)
-
-    yield btc
-
-    try:
-        btc.rpc.stop()
-    except Exception:
-        btc.proc.kill()
-    btc.proc.wait()
-
-
-@pytest.fixture(scope="module")
-def btcd():
-    btcd = BtcD()
-    btcd.start()
-
-    yield btcd
-
-    try:
-        btcd.rpc.stop()
-    except:
-        btcd.proc.kill()
-    btcd.proc.wait()
-
-
-@pytest.fixture
-def node_factory(request, bitcoind):
-    executor = futures.ThreadPoolExecutor(max_workers=20)
-    node_factory = NodeFactory(request._pyfuncitem.name, executor, bitcoind, None)
-    yield node_factory
-    node_factory.killall()
-    executor.shutdown(wait=False)
 
 
 def wait_for(success, timeout=30, interval=1):

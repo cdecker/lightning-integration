@@ -3,6 +3,7 @@ from lnaddr import lndecode
 from utils import TailableProc, BITCOIND_CONFIG
 import rpc_pb2_grpc as lnrpc_grpc
 import rpc_pb2 as lnrpc
+from ephemeral_port_reserve import reserve
 
 
 import grpc
@@ -20,13 +21,13 @@ class LndD(TailableProc):
 
     CONF_NAME = 'lnd.conf'
 
-    def __init__(self, lightning_dir, bitcoin_dir, port):
+    def __init__(self, lightning_dir, bitcoind, port):
         super().__init__(lightning_dir, 'lnd({})'.format(port))
         self.lightning_dir = lightning_dir
-        self.bitcoin_dir = bitcoin_dir
+        self.bitcoind = bitcoind
         self.port = port
-        self.rpc_port = str(10000 + port)
-        self.rest_port = str(20000 + port)
+        self.rpc_port = str(reserve())
+        self.rest_port = str(reserve())
         self.prefix = 'lnd'
 
         self.cmd_line = [
@@ -44,8 +45,8 @@ class LndD(TailableProc):
             '--bitcoind.rpchost=127.0.0.1:{}'.format(BITCOIND_CONFIG.get('rpcport', 18332)),
             '--bitcoind.rpcuser=rpcuser',
             '--bitcoind.rpcpass=rpcpass',
-            '--bitcoind.zmqpubrawblock=tcp://127.0.0.1:29000',
-            '--bitcoind.zmqpubrawtx=tcp://127.0.0.1:29001',
+            '--bitcoind.zmqpubrawblock=tcp://127.0.0.1:{}'.format(self.bitcoind.zmqpubrawblock_port),
+            '--bitcoind.zmqpubrawtx=tcp://127.0.0.1:{}'.format(self.bitcoind.zmqpubrawtx_port),
             '--configfile={}'.format(os.path.join(lightning_dir, self.CONF_NAME)),
             '--no-macaroons',
             '--nobootstrap',
@@ -79,11 +80,11 @@ class LndNode(object):
 
     displayName = 'lnd'
 
-    def __init__(self, lightning_dir, lightning_port, btc, executor=None, node_id=0):
-        self.bitcoin = btc
+    def __init__(self, lightning_dir, lightning_port, bitcoind, executor=None, node_id=0):
+        self.bitcoin = bitcoind
         self.executor = executor
-        self.daemon = LndD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
-        self.rpc = LndRpc(lightning_port+10000)
+        self.daemon = LndD(lightning_dir, bitcoind, port=lightning_port)
+        self.rpc = LndRpc(self.daemon.rpc_port)
         self.logger = logging.getLogger('lnd-node({})'.format(lightning_port))
         self.myid = None
         self.node_id = node_id

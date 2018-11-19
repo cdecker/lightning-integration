@@ -204,6 +204,8 @@ class BitcoinD(TailableProc):
         self.prefix = 'bitcoind'
         BITCOIND_CONFIG['rpcport'] = rpcport
         self.rpcport = rpcport
+        self.zmqpubrawblock_port = reserve()
+        self.zmqpubrawtx_port = reserve()
 
         regtestdir = os.path.join(bitcoin_dir, 'regtest')
         if not os.path.exists(regtestdir):
@@ -222,8 +224,8 @@ class BitcoinD(TailableProc):
             '-debug',
             '-rpcuser=rpcuser',
             '-rpcpassword=rpcpass',
-            '-zmqpubrawblock=tcp://127.0.0.1:29000',
-            '-zmqpubrawtx=tcp://127.0.0.1:29001',
+            '-zmqpubrawblock=tcp://127.0.0.1:{}'.format(self.zmqpubrawblock_port),
+            '-zmqpubrawtx=tcp://127.0.0.1:{}'.format(self.zmqpubrawtx_port),
         ]
         BITCOIND_CONFIG['rpcport'] = rpcport
         write_config(

@@ -1,9 +1,9 @@
 from binascii import hexlify
+from ephemeral_port_reserve import reserve
 from lnaddr import lndecode
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from utils import TailableProc
-
 
 import json
 import logging
@@ -37,12 +37,12 @@ def requests_retry_session(
 
 class EclairD(TailableProc):
 
-    def __init__(self, lightning_dir, bitcoin_dir, port):
+    def __init__(self, lightning_dir, bitcoind, port):
         TailableProc.__init__(self, lightning_dir, "eclair({})".format(port))
         self.lightning_dir = lightning_dir
-        self.bitcoin_dir = bitcoin_dir
+        self.bitcoind = bitcoind
         self.port = port
-        self.rpc_port = str(10000 + port)
+        self.rpc_port = str(reserve())
         self.prefix = 'eclair'
 
         self.cmd_line = [
@@ -67,11 +67,13 @@ class EclairD(TailableProc):
             ('enabled = false', 'enabled = true'),
             ('password = ""', 'password = "rpcpass"'),
             ('9735', str(port)),
-            ('18332', str(28332)),
+            ('18332', str(self.bitcoind.rpcport)),
             ('8080', str(self.rpc_port)),
             ('"test"', '"regtest"'),
             ('"foo"', '"rpcuser"'),
             ('"bar"', '"rpcpass"'),
+            ('zmqblock = "tcp://127.0.0.1:29000"', 'zmqblock = "tcp://127.0.0.1:{}"'.format(self.bitcoind.zmqpubrawblock_port)),
+            ('zmqtx = "tcp://127.0.0.1:29000"', 'zmqtx = "tcp://127.0.0.1:{}"'.format(self.bitcoind.zmqpubrawtx_port)),
         ]
 
         for old, new in replacements:
@@ -82,7 +84,7 @@ class EclairD(TailableProc):
 
     def start(self):
         TailableProc.start(self)
-        self.wait_for_log("connected to tcp://127.0.0.1:29000")
+        self.wait_for_log("connected to tcp://127.0.0.1:")
 
         # And let's also remember the address
         exp = 'initial wallet address=([a-zA-Z0-9]+)'
@@ -118,7 +120,7 @@ class EclairNode(object):
                  node_id=0):
         self.bitcoin = btc
         self.executor = executor
-        self.daemon = EclairD(lightning_dir, btc.bitcoin_dir,
+        self.daemon = EclairD(lightning_dir, self.bitcoin,
                               port=lightning_port)
         self.rpc = EclairRpc(
             'http://localhost:{}'.format(self.daemon.rpc_port))

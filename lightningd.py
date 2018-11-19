@@ -16,13 +16,14 @@ LIGHTNINGD_CONFIG = {
 
 class LightningD(TailableProc):
 
-    def __init__(self, lightning_dir, bitcoin_dir, port=9735):
+    def __init__(self, lightning_dir, bitcoind, port=9735):
         TailableProc.__init__(self, lightning_dir)
         self.lightning_dir = lightning_dir
         self.port = port
+        self.bitcoind = bitcoind
         self.cmd_line = [
             'bin/lightningd',
-            '--bitcoin-datadir={}'.format(bitcoin_dir),
+            '--bitcoin-datadir={}'.format(self.bitcoind.bitcoin_dir),
             '--lightning-dir={}'.format(lightning_dir),
             '--addr=127.0.0.1:{}'.format(port),
             '--dev-broadcast-interval=500',
@@ -30,7 +31,7 @@ class LightningD(TailableProc):
 
             # The following are temporary workarounds
             '--cltv-final=8',
-            '--bitcoin-rpcport=28332',
+            '--bitcoin-rpcport={}'.format(self.bitcoind.rpcport),
             '--bitcoin-rpcuser=rpcuser',
             '--bitcoin-rpcpassword=rpcpass',
         ]
@@ -60,7 +61,7 @@ class LightningNode(object):
     def __init__(self, lightning_dir, lightning_port, btc, executor=None, node_id=0):
         self.bitcoin = btc
         self.executor = executor
-        self.daemon = LightningD(lightning_dir, btc.bitcoin_dir,
+        self.daemon = LightningD(lightning_dir, self.bitcoin,
                                  port=lightning_port)
         socket_path = os.path.join(lightning_dir, "lightning-rpc").format(
             node_id)
