@@ -30,7 +30,6 @@ RUN apt-get update \
     libssl-dev \
     libtool \
     libzmq3-dev \
-    maven \
     miniupnpc \
     net-tools \
     openjdk-8-jdk \
@@ -58,6 +57,13 @@ RUN cd /tmp \
     && tar -xzvf $BITCOIN_TARBALL \
     && cp bitcoin-$BITCOIN_VERSION/bin/bitcoin* /usr/bin/ \
     && rm -rf $BITCOIN_TARBALL bitcoin-$BITCOIN_VERSION
+
+RUN cd /tmp \
+    && wget -O mvn.tar.gz https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz \
+    && tar -xzf mvn.tar.gz \
+    && rm mvn.tar.gz \
+    && mv apache-maven-3.6.0 /usr/local/maven \
+    && ln -s /usr/local/maven/bin/mvn /usr/local/bin
 
 # lightning-integration
 RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
