@@ -223,7 +223,7 @@ class BitcoinD(TailableProc):
             '-rpcuser=rpcuser',
             '-rpcpassword=rpcpass',
             '-zmqpubrawblock=tcp://127.0.0.1:29000',
-            '-zmqpubrawtx=tcp://127.0.0.1:29000',
+            '-zmqpubrawtx=tcp://127.0.0.1:29001',
         ]
         BITCOIND_CONFIG['rpcport'] = rpcport
         write_config(

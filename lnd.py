@@ -45,11 +45,12 @@ class LndD(TailableProc):
             '--bitcoind.rpcuser=rpcuser',
             '--bitcoind.rpcpass=rpcpass',
             '--bitcoind.zmqpubrawblock=tcp://127.0.0.1:29000',
-            '--bitcoind.zmqpubrawtx=tcp://127.0.0.1:29000',
+            '--bitcoind.zmqpubrawtx=tcp://127.0.0.1:29001',
             '--configfile={}'.format(os.path.join(lightning_dir, self.CONF_NAME)),
             '--no-macaroons',
             '--nobootstrap',
-            '--noencryptwallet',
+            '--noseedbackup',
+            '--trickledelay=500'
         ]
 
         if not os.path.exists(lightning_dir):
