@@ -25,6 +25,8 @@ class LightningD(TailableProc):
             '--bitcoin-datadir={}'.format(bitcoin_dir),
             '--lightning-dir={}'.format(lightning_dir),
             '--addr=127.0.0.1:{}'.format(port),
+            '--dev-broadcast-interval=500',
+            '--dev-bitcoind-poll=1',
 
             # The following are temporary workarounds
             '--cltv-final=8',
@@ -119,25 +121,45 @@ class LightningNode(object):
         except:
             return False
 
-    def check_channel(self, remote):
+    def check_channel(self, remote, require_both=False):
         """ Make sure that we have an active channel with remote
         """
         remote_id = remote.id()
         self_id = self.id()
+        peer = None
         for p in self.rpc.listpeers()['peers']:
             if remote.id() == p['id']:
-                state = p['state'] if len(p['channels']) == 0 else p['channels'][0]['state']
-                self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, state))
-                if state == 'CHANNELD_NORMAL' and p['connected']:
-                    # Make sure that gossipd sees a local channel_update for routing
-                    short_channel_id = p['short_channel_id'] if len(p['channels']) == 0 else p['channels'][0]['short_channel_id']
-                    if self.daemon.is_in_log("Received channel_update for channel {}\\([01]\\) .* \\(from apply_delayed_local_update\\)".format(short_channel_id)):
-                        return True
-                    self.logger.debug("Channel {} -> {} found but waiting for a local channel_update".format(self_id, remote_id))
-                return False
+                peer = p
+                break
+        if not peer:
+            self.logger.debug('Peer {} not found in listpeers'.format(remote))
+            return False
 
-        self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
-        return False
+        if len(peer['channels']) < 1:
+            self.logger.debug('Peer {} has no channel open with us'.format(remote))
+            return False
+
+        state = p['channels'][0]['state']
+        self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, state))
+
+        if state != 'CHANNELD_NORMAL' or not p['connected']:
+            self.logger.debug('Channel with peer {} is not in state normal ({}) or peer is not connected ({})'.format(
+                remote_id, state, p['connected']))
+            return False
+
+        # Make sure that gossipd sees a local channel_update for routing
+        scid = p['channels'][0]['short_channel_id']
+
+        channels = self.rpc.listchannels(scid)['channels']
+
+        if not require_both and len(channels) >= 1:
+            return channels[0]['active']
+
+        if len(channels) != 2:
+            self.logger.debug('Waiting for both channel directions to be announced: 2 != {}'.format(len(channels)))
+            return False
+
+        return channels[0]['active'] and channels[1]['active']
 
     def getchannels(self):
         result = []
