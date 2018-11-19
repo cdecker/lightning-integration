@@ -1,3 +1,9 @@
+PYTEST_OPTS=--timeout=600 -v --reruns=3
+ifneq ($(PYTEST_PAR),)
+PYTEST_OPTS += -n=$(PYTEST_PAR)
+else
+PYTEST_OPTS += -x
+endif
 
 
 GOPATH = $(shell pwd)/src/lnd
@@ -62,7 +68,7 @@ clients: bin/lightningd bin/lnd bin/eclair.jar bin/ptarmd
 
 test:
 	# Failure is always an option
-	py.test -v test.py --tb=short --color=yes --json=report.json --reruns=3 --timeout=300 || true
+	py.test -v test.py ${PYTEST_OPTS} --json=report.json || true
 	python cli.py postprocess
 
 site:
