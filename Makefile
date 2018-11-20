@@ -1,8 +1,6 @@
 PYTEST_OPTS=--timeout=600 -v --reruns=3
 ifneq ($(PYTEST_PAR),)
 PYTEST_OPTS += -n=$(PYTEST_PAR)
-else
-PYTEST_OPTS += -x
 endif
 
 
