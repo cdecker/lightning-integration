@@ -3,9 +3,8 @@ ifneq ($(PYTEST_PAR),)
 PYTEST_OPTS += -n=$(PYTEST_PAR)
 endif
 
-
-GOPATH = $(shell pwd)/src/lnd
 PWD = $(shell pwd)
+GO111MODULE = on
 
 src/eclair:
 	git clone https://github.com/ACINQ/eclair.git src/eclair
@@ -14,7 +13,7 @@ src/lightning:
 	git clone --recurse-submodules https://github.com/ElementsProject/lightning.git src/lightning
 
 src/lnd:
-	git clone https://github.com/lightningnetwork/lnd ${GOPATH}/src/github.com/lightningnetwork/lnd
+	git clone https://github.com/lightningnetwork/lnd src/lnd
 
 src/ptarmigan:
 	git clone https://github.com/nayutaco/ptarmigan.git src/ptarmigan
@@ -25,10 +24,8 @@ update: src/eclair src/lightning src/lnd src/ptarmigan
 
 	cd src/eclair && git stash; git pull origin master
 	cd src/lightning && git stash; git pull origin master
-	cd ${GOPATH}/src/github.com/lightningnetwork/lnd && git stash; git pull origin master
+	cd src/lnd && git stash; git pull origin master
 	cd src/ptarmigan && git stash; git pull origin development
-
-	#cd src/eclair; git apply ${PWD}/src/eclair/*.patch
 
 bin/eclair.jar: src/eclair
 	(cd src/eclair; git rev-parse HEAD) > src/eclair/version
@@ -50,10 +47,12 @@ bin/ptarmd: src/ptarmigan
 	cp src/ptarmigan/install/routing bin
 
 bin/lnd: src/lnd
-	(cd ${GOPATH}/src/github.com/lightningnetwork/lnd; git rev-parse HEAD) > src/lnd/version
-	go get -u github.com/golang/dep/cmd/dep
-	cd ${GOPATH}/src/github.com/lightningnetwork/lnd; ${GOPATH}/bin/dep ensure; go install . ./cmd/...
-	cp ${GOPATH}/bin/lnd ${GOPATH}/bin/lncli bin/
+	(cd src/lnd; git rev-parse HEAD) > src/lnd/version
+	cd src/lnd \
+	&& go mod vendor \
+	&& go build -v github.com/lightningnetwork/lnd \
+	&& go build -v github.com/lightningnetwork/lnd/cmd/lncli
+	cp src/lnd/lnd src/lnd/lncli bin/
 
 clean:
 	rm src/lnd/version src/lightning/version src/eclair/version src/ptarmigan/version || true
