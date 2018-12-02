@@ -63,7 +63,7 @@ clean:
 
 clients: bin/lightningd bin/lnd bin/eclair.jar bin/ptarmd
 
-test:
+test: clients
 	# Failure is always an option
 	py.test -v test.py ${PYTEST_OPTS} --json=report.json || true
 	python cli.py postprocess
@@ -81,3 +81,7 @@ push:
 	git add .;\
 	git commit --quiet -m "Deploy to GitHub Pages";\
 	git push --force "git@github.com:cdecker/lightning-integration.git" master:gh-pages
+
+builder:
+	docker build -t cdecker/lightning-integration:latest - <Dockerfile
+	docker push cdecker/lightning-integration:latest

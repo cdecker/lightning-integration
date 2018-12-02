@@ -14,7 +14,6 @@ RUN apt-get update \
     clang \
     curl \
     git \
-    golang \
     jq \
     libboost-all-dev \
     wget \
@@ -59,11 +58,20 @@ RUN cd /tmp \
     && rm -rf $BITCOIN_TARBALL bitcoin-$BITCOIN_VERSION
 
 RUN cd /tmp \
-    && wget -O mvn.tar.gz https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz \
+    && wget -qO mvn.tar.gz https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz \
     && tar -xzf mvn.tar.gz \
     && rm mvn.tar.gz \
     && mv apache-maven-3.6.0 /usr/local/maven \
     && ln -s /usr/local/maven/bin/mvn /usr/local/bin
+
+RUN cd /tmp \
+    && wget -q https://dl.google.com/go/go1.11.linux-amd64.tar.gz \
+    && tar -xf go1.11.linux-amd64.tar.gz \
+    && mv go /usr/local \
+    && rm go1.11.linux-amd64.tar.gz \
+    && ln -s /usr/local/go/bin/go /usr/bin/
+
+ENV GOROOT=/usr/local/go
 
 # lightning-integration
 RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
