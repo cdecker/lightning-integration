@@ -220,6 +220,6 @@ class LndRpc(object):
 
     def __init__(self, rpc_port):
         self.port = rpc_port
-        cred = grpc.ssl_channel_credentials(open('tls.cert').read())
+        cred = grpc.ssl_channel_credentials(open('tls.cert', 'rb').read())
         channel = grpc.secure_channel('localhost:{}'.format(rpc_port), cred)
         self.stub = lnrpc_grpc.LightningStub(channel)
