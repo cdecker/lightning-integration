@@ -37,7 +37,30 @@ RUN apt-get update \
     python3 \
     python \
     zlib1g-dev \
+    # ElectrumX
+    librocksdb-dev \
+    liblz4-dev \
+    libsnappy-dev \
+    libbz2-dev \
+    libgflags-dev \
   && rm -rf /var/lib/apt/lists/*
+
+# ElecctrumX dependencies
+RUN pip3 install \
+    https://github.com/twmht/python-rocksdb/archive/98910c2dce41c02aaa1745ae09e9d5fcdde34bdd.tar.gz \
+    aiohttp==3.4.4 \
+    pylru==1.1.0 \
+    aiorpcx==0.10.1
+
+ENV ELECTRUMX_VERSION 2ef5d960073937a5c2a33e6fe6d4e24777b4ec30
+ENV ELECTRUMX_URL https://github.com/kyuupichan/electrumx/archive/${ELECTRUMX_VERSION}.tar.gz
+ENV ELECTRUMX_TARBALL electrumx-${ELECTRUMX_VERSION}.tar.gz
+RUN cd /tmp \
+    && wget -qO $ELECTRUMX_TARBALL $ELECTRUMX_URL \
+    && echo "8b829ca78a647db7d7da1d43722036d899a52c780837aac392d54ce0e7188b67 $ELECTRUMX_TARBALL" | sha256sum -c \
+    # Don't install dependencies since Plyval would be installed but we have Python-RocksDB instead
+    && pip3 install --no-deps $ELECTRUMX_TARBALL \
+    && rm $ELECTRUMX_TARBALL
 
 ARG BITCOIN_VERSION=0.16.3
 ENV BITCOIN_TARBALL bitcoin-$BITCOIN_VERSION-x86_64-linux-gnu.tar.gz
