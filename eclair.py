@@ -185,7 +185,7 @@ class EclairNode(object):
 
     def invoice(self, amount):
         req = self.rpc._call("receive", [amount, "invoice1"])
-        print(req)
+        logging.debug(req)
         return req
 
     def send(self, req):

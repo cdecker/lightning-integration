@@ -91,6 +91,7 @@ VOLUME /root/lightning-integration/output
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
+ENV TEST_DEBUG=0
 
 WORKDIR /root/lightning-integration
 CMD ["make", "update", "clients", "test"]

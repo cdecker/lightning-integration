@@ -174,7 +174,6 @@ class LightningNode(object):
     def invoice(self, amount):
         invoice = self.rpc.invoice(amount, "invoice%d" % (self.invoice_count), "description")
         self.invoice_count += 1
-        print(invoice)
         return invoice['bolt11']
 
     def send(self, req):
