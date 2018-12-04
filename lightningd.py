@@ -123,7 +123,12 @@ class LightningNode(object):
             return False
 
     def check_channel(self, remote, require_both=False):
-        """ Make sure that we have an active channel with remote
+        """Make sure that we have an active channel with remote
+
+        `require_both` must be False unless the other side supports
+        sending a `channel_announcement` and `channel_update` on
+        `funding_locked`. This doesn't work for eclair for example.
+
         """
         remote_id = remote.id()
         self_id = self.id()

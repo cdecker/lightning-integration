@@ -110,8 +110,8 @@ def confirm_channel(bitcoind, n1, n2):
     print("Waiting for channel {} -> {} to confirm".format(n1.id(), n2.id()))
     assert n1.id() in n2.peers()
     assert n2.id() in n1.peers()
-    for i in range(30):
-        time.sleep(1)
+    for i in range(10):
+        time.sleep(2)
         if n1.check_channel(n2) and n2.check_channel(n1):
             print("Channel {} -> {} confirmed".format(n1.id(), n2.id()))
             return True
