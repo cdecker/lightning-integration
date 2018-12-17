@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lightning Integration Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="screen">
+    <style>
+      body {
+	  background-color: #f5f8fa;
+      }
+      h1, h2, h3, h4 {
+	  padding-bottom: 9px;
+	  margin: 40px 0 20px;
+	  border-bottom: 1px solid #eee;
+      }
+
+      h1 > a {
+	  color: inherit;
+      }
+      .container {
+	  width: 800px;
+	  margin-top: 1em;
+	  background-color: #FFFFFF;
+	  border-radius: 0.25rem;
+	  padding: 0.75rem 1.25rem;
+	  border: 1px solid rgba(0, 0, 0, 0.125);
+      }
+
+      thead {
+	  border: none;
+      }
+      td, th {
+	  font-size: 0.95em;
+      }
+      td > span.badge {
+	  padding: 0.5em;
+      }
+      td.result {
+	  text-align: center;
+      }
+    </style>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-header">
+Lightning Integration Tests <a href="https://github.com/cdecker/lightning-integration"><i class="fa fa-github" aria-hidden="true"></i></a>
+
+</h1>
+      
+
+<p>
+  This page shows the latest integration test results for the three Lightning implementations.
+  We test the latest versions of <a href="https://github.com/ACINQ/eclair">eclair</a>, <a href="https://github.com/ElementsProject/lightning">c-lightning</a>, and <a href="https://github.com/lightningnetwork/lnd">lnd</a> against each other in a number of scenarios and see if they can cooperate.
+</p>
+<p>
+  Below is a table of the latest test runs, with their respective scores.
+  Click on the ID link to see the detailed test results for that run.
+</p>
+
+<table class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Date/Time</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><a href="839f03c1c2f0b88a2b6b0388c091084e94ebd917ebfbfbc0380f10c7a654cd65.html">839f03c</a></td>
+      <td>2018-12-11 21:54:18</td>
+      <td>
+	<span class="badge badge-warning">
+	  140 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="1e6bb85b4235643bb015219c7647fde1bb5b45d7e38bee717bb02ff54cda20c6.html">1e6bb85</a></td>
+      <td>2018-12-10 23:13:27</td>
+      <td>
+	<span class="badge badge-warning">
+	  138 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="da273b4ea126af7756b420bc297789ee1af8a5b6a4c4efac8f52eb89d1e229c6.html">da273b4</a></td>
+      <td>2018-12-04 18:20:36</td>
+      <td>
+	<span class="badge badge-warning">
+	  138 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="77f3f3745bfb94d2e18ced81ce480cfe658419bf29531c36007845e84f81aab6.html">77f3f37</a></td>
+      <td>2018-12-03 23:44:28</td>
+      <td>
+	<span class="badge badge-warning">
+	  136 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="ac493c8852bf6c218b9c2638db918befeaae6cfa1458f621571bffd0534a9ff4.html">ac493c8</a></td>
+      <td>2018-12-02 15:56:13</td>
+      <td>
+	<span class="badge badge-warning">
+	  139 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="0b718d885dc8c956232d6c3b17bec9ca4e4028d416be2ac68adc2caa95005975.html">0b718d8</a></td>
+      <td>2018-11-28 21:24:02</td>
+      <td>
+	<span class="badge badge-warning">
+	  140 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="f1c1643c530b549266e5b7b94c43773f48f1ab1c8acbad7f3fc7193afd55f1ed.html">f1c1643</a></td>
+      <td>2018-11-27 16:25:27</td>
+      <td>
+	<span class="badge badge-warning">
+	  138 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="7e661cbb1a200b00d8f67e1b0d3cd1c104676995f5ebaf7e9563c84d34db45d5.html">7e661cb</a></td>
+      <td>2018-11-21 20:29:38</td>
+      <td>
+	<span class="badge badge-success">
+	  149 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="f63181a010237cac3dfcb432d0b238d63c48002c1b56dd472ad94ff0ede05138.html">f63181a</a></td>
+      <td>2018-11-20 13:03:59</td>
+      <td>
+	<span class="badge badge-success">
+	  149 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="0dbcc900f6732cc0e9d1ff6ad1f85c6b7e34f1450627324d275dbad664c9bff1.html">0dbcc90</a></td>
+      <td>2018-11-19 20:54:55</td>
+      <td>
+	<span class="badge badge-warning">
+	  143 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="1b8a833d0e3d21f1b3b96f60d391077f2c6e7fe6129da336741cdfd44aa2559a.html">1b8a833</a></td>
+      <td>2018-09-03 16:48:46</td>
+      <td>
+	<span class="badge badge-warning">
+	  128 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="27d9e54e5c6b599d6e8f7eb23e7556b8398ce6b085e0ba3d7c4f17f2fd7ef671.html">27d9e54</a></td>
+      <td>2018-09-03 02:14:36</td>
+      <td>
+	<span class="badge badge-warning">
+	  127 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="652cdf8a07231ab8da21c7f7b2e7bd805fac409f0d6293c14eb5707891e9f6aa.html">652cdf8</a></td>
+      <td>2018-08-31 14:09:41</td>
+      <td>
+	<span class="badge badge-warning">
+	  128 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="21c541b45db676138d085068904204ce618213a3b1840807527a2ba344056ebc.html">21c541b</a></td>
+      <td>2018-08-30 17:32:07</td>
+      <td>
+	<span class="badge badge-warning">
+	  131 / 152
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="e05363fe71cb53feee76d05abf414da920bb3cf28060941026a128a90af0c87b.html">e05363f</a></td>
+      <td>2017-12-22 13:42:53</td>
+      <td>
+	<span class="badge badge-success">
+	  75 / 75
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="f5fa74e3adb19c56e191ae70d7a4d233e09f8863006870da7f9590b7ab03c1e0.html">f5fa74e</a></td>
+      <td>2017-12-06 17:32:45</td>
+      <td>
+	<span class="badge badge-success">
+	  75 / 75
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="8100d3ac5b67d271b485476cd7e6153e9776ed341201433eabc285dc1abc212a.html">8100d3a</a></td>
+      <td>2017-11-17 21:11:28</td>
+      <td>
+	<span class="badge badge-success">
+	  75 / 75
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="de3cbef6d61ec06e46743a4ddfe691b85aba86d0172ec2ac1be4445aed6b62da.html">de3cbef</a></td>
+      <td>2017-11-15 14:00:01</td>
+      <td>
+	<span class="badge badge-success">
+	  72 / 75
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="732bcbb1139cb0b5a45c18cc6564dc0113481a48029606e9991c9c77125917d5.html">732bcbb</a></td>
+      <td>2017-11-10 15:23:34</td>
+      <td>
+	<span class="badge badge-warning">
+	  61 / 66
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="9175bda8aa50d37257d21d582f979cef414668457079f3ead0317d5abc3099d5.html">9175bda</a></td>
+      <td>2017-11-09 00:25:18</td>
+      <td>
+	<span class="badge badge-warning">
+	  54 / 66
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="7f4427116da10d17f4139438aff52a59da3670eedfe0dc0161ccd741606b6f30.html">7f44271</a></td>
+      <td>2017-11-07 20:21:28</td>
+      <td>
+	<span class="badge badge-warning">
+	  46 / 66
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="2d1967e0d3fbe290e65602cec671dd9fd824faba2355f1949b0dcf94fd2d1718.html">2d1967e</a></td>
+      <td>2017-10-30 12:38:37</td>
+      <td>
+	<span class="badge badge-warning">
+	  41 / 66
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="7737312c288a26952607361202f17f72330b3177a3a8d10231d6cb00b93beb18.html">7737312</a></td>
+      <td>2017-09-25 14:48:53</td>
+      <td>
+	<span class="badge badge-warning">
+	  44 / 66
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="1ab19ffde3f4e0329c86c2b3513b74538a47282711b908f7e7d21cd83073193b.html">1ab19ff</a></td>
+      <td>2017-09-16 20:50:16</td>
+      <td>
+	<span class="badge badge-warning">
+	  26 / 39
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="8f69ab048dc589e27ec64f658f2ead281d7a0a4665363a1b2ca567de6ce4524a.html">8f69ab0</a></td>
+      <td>2017-08-28 23:30:38</td>
+      <td>
+	<span class="badge badge-warning">
+	  29 / 39
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="97839c27a65bd75d0ae86e2cc98f6e8d4b27ba72e6338bcac8dd4c1307d0f9e0.html">97839c2</a></td>
+      <td>2017-08-23 22:58:51</td>
+      <td>
+	<span class="badge badge-warning">
+	  21 / 39
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="baf39e469787390145836e360e94943772b46f58bff9642e91442fad3b2361f3.html">baf39e4</a></td>
+      <td>2017-08-20 13:58:15</td>
+      <td>
+	<span class="badge badge-warning">
+	  21 / 30
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="07f1821c5629d6eaf2df351ce27fc9c30cdd4fb0d3e8fb6fe76ffe1194bc28b7.html">07f1821</a></td>
+      <td>2017-08-16 22:42:57</td>
+      <td>
+	<span class="badge badge-warning">
+	  18 / 30
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="55e9c14d4944c5c0277885eaa04c2ecb6aab85d6a70e94885bbbec2fec7c9851.html">55e9c14</a></td>
+      <td>2017-08-16 15:06:27</td>
+      <td>
+	<span class="badge badge-warning">
+	  17 / 21
+	</span>
+      </td>
+    </tr>
+    
+    <tr>
+      <td><a href="ece062dbbb45b913af4c287b4c3a77d46bd722f10c7771eb74516249e113c360.html">ece062d</a></td>
+      <td>2017-08-11 12:42:42</td>
+      <td>
+	<span class="badge badge-warning">
+	  16 / 21
+	</span>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+<p>
+  Notice that the results are still not stable and compatibility may be
+  broken from time to time as implementations move closer to being spec
+  compliant, or as we add new scenarios.
+</p>
+
+    </div>
+  </body>
+</html>
