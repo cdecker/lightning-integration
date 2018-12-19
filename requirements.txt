@@ -16,3 +16,4 @@ pytest-timeout==1.2.0
 flask==1.0.2
 ephemeral-port-reserve==1.1.0
 CherryPy==17.3.0
+pytest-xdist==1.25.0

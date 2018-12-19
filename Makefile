@@ -1,4 +1,4 @@
-PYTEST_OPTS=--timeout=600 -v --reruns=3
+PYTEST_OPTS=--timeout=600 --timeout-method=thread -v
 ifneq ($(PYTEST_PAR),)
 PYTEST_OPTS += -n=$(PYTEST_PAR)
 endif
