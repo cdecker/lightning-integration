@@ -13,7 +13,7 @@ import socket
 class PtarmD(TailableProc):
 
     def __init__(self, lightning_dir, bitcoin_dir, port=9735):
-        TailableProc.__init__(self, lightning_dir)
+        TailableProc.__init__(self, lightning_dir, 'ptarmd({}).format(port)')
         self.lightning_dir = lightning_dir
         self.port = port
         self.cmd_line = [
@@ -49,7 +49,6 @@ class PtarmNode(object):
         self.executor = executor
         self.daemon = PtarmD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
         self.rpc = PtarmRpc('127.0.0.1', lightning_port+1234)
-        self.logger = logging.getLogger('ptarm-node({})'.format(lightning_port))
         self.myid = None
         self.node_id = node_id
         self.bitcoind = None
