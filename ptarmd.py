@@ -6,7 +6,6 @@ import os
 import time
 import subprocess
 import re
-import sys
 import socket
 
 
@@ -44,10 +43,15 @@ class PtarmNode(object):
 
     displayName = 'ptarmigan'
 
-    def __init__(self, lightning_dir, lightning_port, btc, executor=None, node_id=0):
+    def __init__(self, lightning_dir, lightning_port, btc, executor=None,
+                 node_id=0):
         self.bitcoin = btc
         self.executor = executor
-        self.daemon = PtarmD(lightning_dir, btc.bitcoin_dir, port=lightning_port)
+        self.daemon = PtarmD(
+            lightning_dir,
+            btc.bitcoin_dir,
+            port=lightning_port
+        )
         self.rpc = PtarmRpc('127.0.0.1', lightning_port+1234)
         self.myid = None
         self.node_id = node_id
@@ -62,7 +66,7 @@ class PtarmNode(object):
 
     def peers(self):
         r = self.rpc.getinfo()
-        return  [p['node_id'] for p in r['peers']]
+        return [p['node_id'] for p in r['peers']]
 
     def getinfo(self):
         raise NotImplementedError()
@@ -76,7 +80,16 @@ class PtarmNode(object):
         # Make sure we have a connection already
         if node_id not in self.peers():
             raise ValueError("Must connect to node before opening a channel")
-        return self.rpc.fundchannel(node_id, self.peer_host, self.peer_port, self.txid, self.vout, satoshis, self.push_sat, self.feerate_per_kw)
+        return self.rpc.fundchannel(
+            node_id,
+            self.peer_host,
+            self.peer_port,
+            self.txid,
+            self.vout,
+            satoshis,
+            self.push_sat,
+            self.feerate_per_kw
+        )
 
     def getaddress(self):
         raise NotImplementedError()
@@ -90,7 +103,10 @@ class PtarmNode(object):
         self.vout = listunspent[0]['vout']
 
         # Lock vout to not be used for other transactions.
-        assert bitcoind.rpc.lockunspent(False, [{"txid": self.txid, "vout":  self.vout}])
+        assert bitcoind.rpc.lockunspent(
+            False,
+            [{"txid": self.txid, "vout":  self.vout}]
+        )
 
         time.sleep(1)
         bitcoind.rpc.generate(1)
@@ -101,10 +117,9 @@ class PtarmNode(object):
         Returns true if the node is reachable via RPC, false otherwise.
         """
         try:
-            #self.rpc.help()
             self.rpc.getinfo()
             return True
-        except:
+        except Exception:
             return False
 
     def check_channel(self, remote):
@@ -117,15 +132,24 @@ class PtarmNode(object):
                 continue
             if remote.id() == p['node_id']:
                 state = p['status']
-                self.logger.debug("Channel {} -> {} state: {}".format(self_id, remote_id, state))
+                self.logger.debug("Channel {} -> {} state: {}".format(
+                    self_id,
+                    remote_id, state
+                ))
                 return state == 'established'
 
-        self.logger.warning("Channel {} -> {} not found".format(self_id, remote_id))
+        self.logger.warning("Channel {} -> {} not found".format(
+            self_id,
+            remote_id
+        ))
         return False
 
     def getchannels(self):
-        proc = subprocess.run(['{}/bin/showdb'.format(os.getcwd()), '-c'], \
-            stdout=subprocess.PIPE, cwd=self.daemon.lightning_dir)
+        proc = subprocess.run(
+            ['{}/bin/showdb'.format(os.getcwd()), '-c'],
+            stdout=subprocess.PIPE,
+            cwd=self.daemon.lightning_dir
+        )
         decoder = json.JSONDecoder()
         objs, _ = decoder.raw_decode(proc.stdout.decode("UTF-8"))
         result = []
@@ -142,19 +166,26 @@ class PtarmNode(object):
         """
         nodes = set()
 
-        # Get a list of node ids from `node_announcement`s.
-        # but it always includes my node id even if my node has no relevant channels.
-        proc = subprocess.run(['{}/bin/showdb'.format(os.getcwd()), '-n'], \
-            stdout=subprocess.PIPE, cwd=self.daemon.lightning_dir)
+        # Get a list of node ids from `node_announcement`s. but it
+        # always includes my node id even if my node has no relevant
+        # channels.
+        proc = subprocess.run(
+            ['{}/bin/showdb'.format(os.getcwd()), '-n'],
+            stdout=subprocess.PIPE,
+            cwd=self.daemon.lightning_dir
+        )
         objs, _ = json.JSONDecoder().raw_decode(proc.stdout.decode("UTF-8"))
         if 'node_announcement_list' not in objs:
             return set()
-        nodes =  set([n['node'] for n in objs['node_announcement_list']])
+        nodes = set([n['node'] for n in objs['node_announcement_list']])
 
         # Get a list of `channel_announcement`s,
         # and discard my node id from `nodes` if it has no relevant channels.
-        proc = subprocess.run(['{}/bin/showdb'.format(os.getcwd()), '-c'], \
-            stdout=subprocess.PIPE, cwd=self.daemon.lightning_dir)
+        proc = subprocess.run(
+            ['{}/bin/showdb'.format(os.getcwd()), '-c'],
+            stdout=subprocess.PIPE,
+            cwd=self.daemon.lightning_dir
+        )
         objs, _ = json.JSONDecoder().raw_decode(proc.stdout.decode("UTF-8"))
         if 'channel_announcement_list' not in objs:
             return set()
@@ -209,8 +240,15 @@ class PtarmNode(object):
         time.sleep(1)
 
     def check_route(self, node_id, amount):
-        proc = subprocess.run(['{}/bin/routing'.format(os.getcwd()), '-s', self.id(), '-r', node_id, '-a', str(amount)], \
-            stdout=subprocess.PIPE, cwd=self.daemon.lightning_dir)
+        proc = subprocess.run([
+            '{}/bin/routing'.format(os.getcwd()),
+            '-s',
+            self.id(),
+            '-r',
+            node_id,
+            '-a',
+            str(amount)
+        ], stdout=subprocess.PIPE, cwd=self.daemon.lightning_dir)
         return proc.returncode == 0
 
 
@@ -306,7 +344,16 @@ class PtarmRpc(TcpSocketRpc):
         payload = [peer_id, '127.0.0.1', port]
         return self.call("connect", payload)
 
-    def fundchannel(self, peer_id, peer_host, peer_port, txid, txindex, funding_sat, push_sat, feerate_per_kw):
-        payload = [peer_id, peer_host, peer_port, txid, txindex, funding_sat, push_sat, feerate_per_kw]
+    def fundchannel(self, peer_id, peer_host, peer_port, txid, txindex,
+                    funding_sat, push_sat, feerate_per_kw):
+        payload = [
+            peer_id,
+            peer_host,
+            peer_port,
+            txid,
+            txindex,
+            funding_sat,
+            push_sat,
+            feerate_per_kw
+        ]
         return self.call("fund", payload)
-
