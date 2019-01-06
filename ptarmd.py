@@ -63,6 +63,7 @@ class PtarmNode(object):
         self.peer_node_id = None
         self.push_sat = 0
         self.feerate_per_kw = 12*1000
+        self.logger = self.daemon.logger
 
     def peers(self):
         r = self.rpc.getinfo()
