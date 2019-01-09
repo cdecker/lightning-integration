@@ -222,7 +222,8 @@ class PtarmNode(object):
         self.peer_host = host
         self.peer_port = port
         self.peer_node_id = node_id
-        return self.rpc.connect(node_id, host, port)
+        initial_routing_sync = 1
+        return self.rpc.connect(node_id, host, port, initial_routing_sync)
 
     def info(self):
         r = self.rpc.getinfo()
@@ -341,8 +342,8 @@ class PtarmRpc(TcpSocketRpc):
         payload = [bolt11, 0]
         return self.call("routepay", payload)
 
-    def connect(self, peer_id, host=None, port=None):
-        payload = [peer_id, '127.0.0.1', port]
+    def connect(self, peer_id, host=None, port=None, initial_routing_sync=None):
+        payload = [peer_id, '127.0.0.1', port, initial_routing_sync]
         return self.call("connect", payload)
 
     def fundchannel(self, peer_id, peer_host, peer_port, txid, txindex,
