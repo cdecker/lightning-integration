@@ -210,13 +210,16 @@ class PtarmNode(object):
         return r['bolt11']
 
     def send(self, req):
-        if self.rpc.pay(req) != 'start payment':
-            raise ValueError('Unable to start payment')
+        self.rpc.pay(req)  # Will raise on error, but no useful info
+
+        # Grab the preimage from the logs
         line = self.daemon.wait_for_log("p_payment_preimage:", offset=100)
         pp = re.search('[0-9a-f]{64}', line)
-        if pp:
-            return pp.group()
-        return ''
+        if not pp:
+            raise ValueError(
+                "Could not parse preimage from logs: {}".format(line)
+            )
+        return pp.group()
 
     def connect(self, host, port, node_id):
         self.peer_host = host
