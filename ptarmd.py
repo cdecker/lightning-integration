@@ -211,7 +211,7 @@ class PtarmNode(object):
 
     def send(self, req):
         if self.rpc.pay(req) != 'start payment':
-            return ''
+            raise ValueError('Unable to start payment')
         line = self.daemon.wait_for_log("p_payment_preimage:", offset=100)
         pp = re.search('[0-9a-f]{64}', line)
         if pp:
