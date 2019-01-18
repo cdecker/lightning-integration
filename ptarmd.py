@@ -137,7 +137,7 @@ class PtarmNode(object):
                     self_id,
                     remote_id, state
                 ))
-                return state == 'established'
+                return state == 'normal operation'
 
         self.logger.warning("Channel {} -> {} not found".format(
             self_id,
