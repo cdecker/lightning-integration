@@ -28,6 +28,7 @@ class LightningD(TailableProc):
             '--addr=127.0.0.1:{}'.format(port),
             '--dev-broadcast-interval=500',
             '--dev-bitcoind-poll=1',
+            '--plugin-dir=src/lightning/plugins',
 
             # The following are temporary workarounds
             '--cltv-final=8',
