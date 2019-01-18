@@ -216,7 +216,7 @@ class EclairNode(object):
 
     def check_route(self, node_id, amount):
         try:
-            r = self.rpc._call("findroute", [node_id])
+            r = self.rpc._call("findroute", [node_id, amount])
         except ValueError as e:
             if (str(e).find("command failed: route not found") > 0):
                 return False
