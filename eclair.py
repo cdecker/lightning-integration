@@ -214,6 +214,12 @@ class EclairNode(object):
         self.daemon.start()
         time.sleep(1)
 
+    def stop(self):
+        self.daemon.stop()
+
+    def start(self):
+        self.daemon.start()
+
     def check_route(self, node_id, amount):
         try:
             r = self.rpc._call("findroute", [node_id, amount])

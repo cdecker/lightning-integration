@@ -206,6 +206,13 @@ class LndNode(object):
         self.daemon.start()
         self.rpc = LndRpc(self.daemon.rpc_port)
 
+    def stop(self):
+        self.daemon.stop()
+
+    def start(self):
+        self.daemon.start()
+        self.rpc = LndRpc(self.daemon.rpc_port)
+
     def check_route(self, node_id, amount):
         try:
             req = lnrpc.QueryRoutesRequest(pub_key=node_id, amt=int(amount/1000), num_routes=1)
