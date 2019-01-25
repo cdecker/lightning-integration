@@ -244,6 +244,12 @@ class PtarmNode(object):
         self.daemon.start()
         time.sleep(1)
 
+    def stop(self):
+        self.daemon.stop()
+
+    def start(self):
+        self.daemon.start()
+
     def check_route(self, node_id, amount):
         proc = subprocess.run([
             '{}/bin/routing'.format(os.getcwd()),

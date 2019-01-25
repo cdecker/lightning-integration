@@ -205,6 +205,12 @@ class LightningNode(object):
         self.daemon.start()
         time.sleep(1)
 
+    def stop(self):
+        self.daemon.stop()
+
+    def start(self):
+        self.daemon.start()
+
     def check_route(self, node_id, amount):
         try:
             r = self.rpc.getroute(node_id, amount, 1.0)
