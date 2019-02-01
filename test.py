@@ -376,6 +376,6 @@ def test_reconnect_across_channel_open(bitcoind, node_factory, impls):
         time.sleep(1)
 
     node1.start()
-    wait_for(lambda: node1.check_channel(node2))
-    wait_for(lambda: node2.check_channel(node1))
+    wait_for(lambda: node1.check_channel(node2), timeout=120)
+    wait_for(lambda: node2.check_channel(node1), timeout=120)
     sync_blockheight(bitcoind, [node1, node2])
