@@ -64,7 +64,7 @@ class EclairD(TailableProc):
 
         replacements = [
             ('"testnet"', '"regtest"'),
-            ('enabled = false', 'enabled = true'),
+            ('enabled = false // disabled by default for security reasons', 'enabled = true'),
             ('password = ""', 'password = "rpcpass"'),
             ('9735', str(port)),
             ('18332', str(self.bitcoind.rpcport)),
