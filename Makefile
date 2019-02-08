@@ -1,4 +1,4 @@
-PYTEST_OPTS=--timeout=600 --timeout-method=thread -v
+PYTEST_OPTS=--timeout=600 --timeout-method=thread -v -p no:logging
 ifneq ($(PYTEST_PAR),)
 PYTEST_OPTS += -n=$(PYTEST_PAR)
 endif
