@@ -19,7 +19,7 @@ class PtarmD(TailableProc):
             'bin/ptarmd',
             '-d', lightning_dir,
             '-p', str(port),
-            '-a' '127.0.0.1',
+            '-a' '1.1.1.1',  # public, but not owned by us, can't use gossip to connect
             '-c', '{}/bitcoin.conf'.format(bitcoin_dir),
             '--rpcport', str(port+1234),
         ]
