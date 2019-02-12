@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Lightning Integration Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" media="screen">
+    <style>
+      body {
+	  background-color: #f5f8fa;
+      }
+      h1, h2, h3, h4 {
+	  padding-bottom: 9px;
+	  margin: 40px 0 20px;
+	  border-bottom: 1px solid #eee;
+      }
+
+      h1 > a {
+	  color: inherit;
+      }
+      .container {
+	  width: 800px;
+	  margin-top: 1em;
+	  background-color: #FFFFFF;
+	  border-radius: 0.25rem;
+	  padding: 0.75rem 1.25rem;
+	  border: 1px solid rgba(0, 0, 0, 0.125);
+      }
+
+      thead {
+	  border: none;
+      }
+      td, th {
+	  font-size: 0.95em;
+      }
+      td > span.badge {
+	  padding: 0.5em;
+      }
+      td.result {
+	  text-align: center;
+      }
+    </style>
+    <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-header">
+Test Run 6b41905
+<a href="https://github.com/cdecker/lightning-integration/blob/master/reports/6b41905ccadae20baaf71727aed64fba4fdc4bd8da61def2d2a506ee644907f7.json">
+  <i class="fa fa-github" aria-hidden="true"></i>
+</a>
+</h1>
+      
+
+<a href="index.html"> &laquo; Back to overview</a>
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Client</th>
+      <th>Commit</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>eclair</td>
+      <td>1da00173117ea862acb02409cd6082f7614542b9</td>
+    
+    <tr>
+      <td>lightning</td>
+      <td>0da40540453712b836b2a2a5383c8625137964c7</td>
+    
+    <tr>
+      <td>lnd</td>
+      <td>fc869d4a4c48abb894cd32a1d7b51f21c0470fc1</td>
+    
+    <tr>
+      <td>ptarmigan</td>
+      <td>cbce0d14de5546e30fdda90ec18fc42d9ebae92d</td>
+    
+  </tbody>
+</table>
+
+
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Test</th>
+      <th>Configuration</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>test_connect</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-success">16/16</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_direct_payment</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-warning">14/16</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_forwarded_payment</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-warning">44/64</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>eclair lightning lnd</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>eclair lnd lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lightning lightning lnd</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lightning lnd lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd eclair lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lightning eclair</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lightning lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lightning lnd</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lnd lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning eclair</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning lnd</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_gossip</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-success">16/16</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_invoice_decode</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-success">4/4</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>EclairNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>LightningNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>LndNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>PtarmNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_open_channel</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-warning">15/16</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_reconnect</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-warning">13/16</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lightning lnd</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_reconnect_across_channel_open</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-warning">12/16</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>eclair ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lightning</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lightning ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd eclair</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>lnd lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>lnd ptarmigan</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan eclair</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan lightning</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>ptarmigan lnd</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="danger">
+      <td>&nbsp;</td>
+      <td>ptarmigan ptarmigan</td>
+      <td class="result"><span class="badge badge-danger">failed</span></td>
+    </tr>
+
+    
+    
+    <tr>
+      <td>test_start</td>
+      <td>&nbsp;</td>
+      <td class="result"><span class="badge badge-success">4/4</span></td>
+    </tr>
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>EclairNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>LightningNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>LndNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    <tr class="success">
+      <td>&nbsp;</td>
+      <td>PtarmNode</td>
+      <td class="result"><span class="badge badge-success">passed</span></td>
+    </tr>
+
+    
+    
+  </tbody>
+</table>
+
+
+
+    </div>
+  </body>
+</html>
