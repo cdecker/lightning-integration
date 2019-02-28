@@ -31,7 +31,6 @@ class LightningD(TailableProc):
             '--plugin-dir=src/lightning/plugins',
 
             # The following are temporary workarounds
-            '--cltv-final=8',
             '--bitcoin-rpcport={}'.format(self.bitcoind.rpcport),
             '--bitcoin-rpcuser=rpcuser',
             '--bitcoin-rpcpassword=rpcpass',

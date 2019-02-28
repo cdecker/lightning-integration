@@ -55,7 +55,5 @@ In the console you have a python REPL that has access to the context of the curr
 
 The following changes to the default configuration are used to ensure compatibility. Possibly the default configurations should be compatible, but that is not always possible to do in a timely fashion.
 
- - c-lightning:
-   - `--cltv-final` is set to 8 (while default is 6) because of the final hop delta enforcement by eclair (see issue #16)
  - lnd
    - `--bitcoin.defaultremotedelay=144` since c-lightning will not allow large `to_self_delay`s (see lightningnetwork/lnd#788 and ElementsProject/lightning#1110)
