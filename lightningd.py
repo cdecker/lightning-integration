@@ -105,11 +105,12 @@ class LightningNode(object):
 
     def addfunds(self, bitcoind, satoshis):
         addr = self.getaddress()
+        btc_addr = bitcoind.rpc.getnewaddress()
         txid = bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
         bitcoind.rpc.getrawtransaction(txid)
         while len(self.rpc.listfunds()['outputs']) == 0:
             time.sleep(1)
-            bitcoind.rpc.generate(1)
+            bitcoind.rpc.generatetoaddress(1, btc_addr)
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running

@@ -110,7 +110,7 @@ class PtarmNode(object):
         )
 
         time.sleep(1)
-        bitcoind.rpc.generate(1)
+        bitcoind.rpc.generatetoaddress(1, addr)
 
     def ping(self):
         """ Simple liveness test to see if the node is up and running

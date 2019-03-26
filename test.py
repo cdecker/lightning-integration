@@ -37,7 +37,7 @@ def transact_and_mine(btc):
     for i in range(10):
         for j in range(10):
             txid = btc.rpc.sendtoaddress(addr, 0.5)
-        btc.rpc.generate(1)
+        btc.rpc.generatetoaddress(1, addr)
 
 
 def wait_for(success, timeout=30, interval=1):
@@ -64,11 +64,12 @@ def generate_until(btc, success, blocks=30, interval=1):
     be delayed and we don't want to add a long waiting time to all
     tests just because some are slow.
     """
+    addr = btc.rpc.getnewaddress()
     for i in range(blocks):
         time.sleep(interval)
         if success():
             return
-        btc.rpc.generate(1)
+        btc.rpc.generatetoaddress(1, addr)
     time.sleep(interval)
     if not success():
         raise ValueError("Generated %d blocks, but still no success", blocks)
@@ -91,7 +92,8 @@ def test_connect(node_factory, bitcoind, impls):
     node2 = node_factory.get_node(implementation=impls[1])
 
     # Needed by lnd in order to have at least one block in the last 2 hours
-    bitcoind.rpc.generate(1)
+    addr = bitcoind.rpc.getnewaddress()
+    bitcoind.rpc.generatetoaddress(1, addr)
 
     print("Connecting {}@{}:{} -> {}@{}:{}".format(
         node1.id(), 'localhost', node1.daemon.port,
@@ -110,12 +112,13 @@ def confirm_channel(bitcoind, n1, n2):
     print("Waiting for channel {} -> {} to confirm".format(n1.id(), n2.id()))
     assert n1.id() in n2.peers()
     assert n2.id() in n1.peers()
+    addr = bitcoind.rpc.getnewaddress()
     for i in range(10):
         time.sleep(2)
         if n1.check_channel(n2) and n2.check_channel(n1):
             print("Channel {} -> {} confirmed".format(n1.id(), n2.id()))
             return True
-        bhash = bitcoind.rpc.generate(1)[0]
+        bhash = bitcoind.rpc.generatetoaddress(1, addr)[0]
         n1.block_sync(bhash)
         n2.block_sync(bhash)
 
@@ -136,8 +139,9 @@ def test_open_channel(bitcoind, node_factory, impls):
     node1.addfunds(bitcoind, 2 * 10**7)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, 10**7)
+    addr = bitcoind.rpc.getnewaddress()
     time.sleep(1)
-    bitcoind.rpc.generate(2)
+    bitcoind.rpc.generatetoaddress(2, addr)
 
     assert confirm_channel(bitcoind, node1, node2)
 
@@ -145,7 +149,7 @@ def test_open_channel(bitcoind, node_factory, impls):
     assert(node2.check_channel(node1))
 
     # Generate some more, to reach the announcement depth
-    bitcoind.rpc.generate(4)
+    bitcoind.rpc.generatetoaddress(4, addr)
 
 
 @pytest.mark.parametrize("impls", product(impls, repeat=2), ids=idfn)
@@ -165,7 +169,8 @@ def test_gossip(node_factory, bitcoind, impls):
         assert confirm_channel(bitcoind, n1, n2)
 
     time.sleep(5)
-    bitcoind.rpc.generate(30)
+    addr = bitcoind.rpc.getnewaddress()
+    bitcoind.rpc.generatetoaddress(30, addr)
     time.sleep(5)
 
     # Wait for gossip to settle
@@ -214,7 +219,8 @@ def test_direct_payment(bitcoind, node_factory, impls):
 
     node1.addfunds(bitcoind, 2*capacity)
     time.sleep(5)
-    bitcoind.rpc.generate(10)
+    addr = bitcoind.rpc.getnewaddress()
+    bitcoind.rpc.generatetoaddress(10, addr)
     time.sleep(5)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
@@ -273,7 +279,8 @@ def test_forwarded_payment(bitcoind, node_factory, impls):
         nodes[i].openchannel(nodes[i+1].id(), 'localhost', nodes[i+1].daemon.port, capacity)
         assert confirm_channel(bitcoind, nodes[i], nodes[i+1])
 
-    bitcoind.rpc.generate(6)
+    addr = bitcoind.rpc.getnewaddress()
+    bitcoind.rpc.generatetoaddress(6, addr)
     sync_blockheight(bitcoind, nodes)
 
     # Make sure we have a path
@@ -308,13 +315,15 @@ def test_reconnect(bitcoind, node_factory, impls):
 
     node1.addfunds(bitcoind, 2*capacity)
     time.sleep(5)
-    bitcoind.rpc.generate(10)
+    addr = bitcoind.rpc.getnewaddress()
+    bitcoind.rpc.generatetoaddress(10, addr)
     time.sleep(5)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
 
+    addr = bitcoind.rpc.getnewaddress()
     for i in range(30):
-        node1.bitcoin.rpc.generate(1)
+        node1.bitcoin.rpc.generatetoaddress(1, addr)
         time.sleep(1)
 
     wait_for(lambda: node1.check_channel(node2))
@@ -359,20 +368,21 @@ def test_reconnect_across_channel_open(bitcoind, node_factory, impls):
     wait_for(lambda: node2.peers(), interval=1)
 
     node1.addfunds(bitcoind, 2*capacity)
+    addr = bitcoind.rpc.getnewaddress()
     time.sleep(5)
-    bitcoind.rpc.generate(10)
+    bitcoind.rpc.generatetoaddress(10, addr)
     time.sleep(5)
 
     node1.openchannel(node2.id(), 'localhost', node2.daemon.port, capacity)
 
     for i in range(5):
-        node1.bitcoin.rpc.generate(1)
+        node1.bitcoin.rpc.generatetoaddress(1, addr)
         time.sleep(1)
 
     node1.stop()
 
     for i in range(25):
-        node1.bitcoin.rpc.generate(1)
+        node1.bitcoin.rpc.generatetoaddress(1, addr)
         time.sleep(1)
 
     node1.start()

@@ -21,7 +21,6 @@ BITCOIND_CONFIG = collections.OrderedDict([
     ("rpcuser", "rpcuser"),
     ("rpcpassword", "rpcpass"),
     ("listen", 0),
-    ("deprecatedrpc", "generate")
 ])
 
 

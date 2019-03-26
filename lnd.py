@@ -128,9 +128,10 @@ class LndNode(object):
     def addfunds(self, bitcoind, satoshis):
         req = lnrpc.NewAddressRequest(type=1)
         addr = self.rpc.stub.NewAddress(req).address
+        btc_addr = bitcoind.rpc.getnewaddress()
         bitcoind.rpc.sendtoaddress(addr, float(satoshis) / 10**8)
         self.daemon.wait_for_log("Inserting unconfirmed transaction")
-        bitcoind.rpc.generate(1)
+        bitcoind.rpc.generatetoaddress(1, btc_addr)
         self.daemon.wait_for_log("Marking unconfirmed transaction")
 
         # The above still doesn't mean the wallet balance is updated,
