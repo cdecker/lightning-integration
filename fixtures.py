@@ -96,13 +96,14 @@ def bitcoind(directory):
     btc.start()
     bch_info = btc.rpc.getblockchaininfo()
     w_info = btc.rpc.getwalletinfo()
+    addr = btc.rpc.getnewaddress()
     # Make sure we have segwit and some funds
     if bch_info['blocks'] < 120:
         logging.debug("SegWit not active, generating some more blocks")
-        btc.rpc.generate(120 - bch_info['blocks'])
+        btc.rpc.generatetoaddress(120 - bch_info['blocks'], addr)
     elif w_info['balance'] < 1:
         logging.debug("Insufficient balance, generating 1 block")
-        btc.rpc.generate(1)
+        btc.rpc.generatetoaddress(1, addr)
 
     # Mock `estimatesmartfee` to make c-lightning happy
     def mock_estimatesmartfee(r):
