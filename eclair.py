@@ -74,6 +74,7 @@ class EclairD(TailableProc):
             ('"bar"', '"rpcpass"'),
             ('zmqblock = "tcp://127.0.0.1:29000"', 'zmqblock = "tcp://127.0.0.1:{}"'.format(self.bitcoind.zmqpubrawblock_port)),
             ('zmqtx = "tcp://127.0.0.1:29000"', 'zmqtx = "tcp://127.0.0.1:{}"'.format(self.bitcoind.zmqpubrawtx_port)),
+            ('use-old-api = false', 'use-old-api = true'),
         ]
 
         for old, new in replacements:
