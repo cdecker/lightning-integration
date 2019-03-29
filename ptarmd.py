@@ -20,6 +20,7 @@ class PtarmD(TailableProc):
             '-d', lightning_dir,
             '-p', str(port),
             '-c', '{}/bitcoin.conf'.format(bitcoin_dir),
+            '--network', 'regtest',
             '--rpcport', str(port+1234),
         ]
         self.prefix = 'ptarmd'
@@ -29,7 +30,7 @@ class PtarmD(TailableProc):
 
     def start(self):
         TailableProc.start(self)
-        self.wait_for_log("start bitcoin testnet/regtest", offset=100)
+        self.wait_for_log("start ptarmigan node.", offset=100)
         time.sleep(3)
         logging.info("PtarmD started")
 
