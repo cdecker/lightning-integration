@@ -17,7 +17,7 @@ src/lnd:
 
 src/ptarmigan:
 	git clone https://github.com/nayutaco/ptarmigan.git src/ptarmigan
-	cd src/ptarmigan/; git checkout development
+	cd src/ptarmigan
 
 update: src/eclair src/lightning src/lnd src/ptarmigan
 	rm src/eclair/version src/lightning/version src/lnd/version src/ptarmigan/version || true
@@ -25,7 +25,7 @@ update: src/eclair src/lightning src/lnd src/ptarmigan
 	cd src/eclair && git stash; git pull origin master
 	cd src/lightning && git stash; git pull origin master
 	cd src/lnd && git stash; git pull origin master
-	cd src/ptarmigan && git stash; git pull origin development
+	cd src/ptarmigan && git stash; git pull origin master
 
 bin/eclair.jar: src/eclair
 	(cd src/eclair; git rev-parse HEAD) > src/eclair/version
