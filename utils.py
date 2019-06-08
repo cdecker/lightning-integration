@@ -15,6 +15,7 @@ import requests
 
 BITCOIND_CONFIG = collections.OrderedDict([
     ("server", 1),
+    ("txindex", 1),
     ("deprecatedrpc", "addwitnessaddress"),
     ("addresstype", "p2sh-segwit"),
     ("deprecatedrpc", "signrawtransaction"),
