@@ -81,6 +81,10 @@ push:
 	git commit --quiet -m "Deploy to GitHub Pages";\
 	git push --force "git@github.com:cdecker/lightning-integration.git" master:gh-pages
 
+docker-build:
+	docker build --tag=lnintegration .
+docker-run: docker-build
+	docker run lnintegration
 builder:
 	docker build -t cdecker/lightning-integration:latest - <Dockerfile
 	docker push cdecker/lightning-integration:latest
