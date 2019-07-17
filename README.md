@@ -57,3 +57,21 @@ The following changes to the default configuration are used to ensure compatibil
 
  - lnd
    - `--bitcoin.defaultremotedelay=144` since c-lightning will not allow large `to_self_delay`s (see lightningnetwork/lnd#788 and ElementsProject/lightning#1110)
+
+## Run with docker
+
+To build things in a local docker container:
+
+	docker build --tag=lnintegration .
+
+or
+
+	make docker-build
+
+To both build and run that local docker container:
+
+	docker build --tag=lnintegration . && docker run lnintegration
+
+or
+
+	make docker-run
