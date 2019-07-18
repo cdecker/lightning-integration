@@ -25,6 +25,7 @@ RUN apt-get update \
     libgmp-dev \
     libjansson-dev \
     libsecp256k1-dev \
+    libsodium-dev \
     libsqlite3-dev \
     libssl-dev \
     libtool \
@@ -33,9 +34,10 @@ RUN apt-get update \
     net-tools \
     openjdk-8-jdk \
     pkg-config \
-    python3-pip \
-    python3 \
     python \
+    python3 \
+    python3-mako \
+    python3-pip \
     zlib1g-dev \
   && rm -rf /var/lib/apt/lists/*
 
