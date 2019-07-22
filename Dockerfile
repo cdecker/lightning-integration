@@ -67,10 +67,10 @@ RUN cd /tmp \
     && ln -s /usr/local/maven/bin/mvn /usr/local/bin
 
 RUN cd /tmp \
-    && wget -q https://dl.google.com/go/go1.11.linux-amd64.tar.gz \
-    && tar -xf go1.11.linux-amd64.tar.gz \
+    && wget -q https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz \
+    && tar -xf go1.12.7.linux-amd64.tar.gz \
     && mv go /usr/local \
-    && rm go1.11.linux-amd64.tar.gz \
+    && rm go1.12.7.linux-amd64.tar.gz \
     && ln -s /usr/local/go/bin/go /usr/bin/
 
 ENV GOROOT=/usr/local/go
@@ -80,10 +80,6 @@ RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightni
   && ln -sf /usr/bin/python3 /usr/bin/python \
   && ln -sf /usr/bin/pip3 /usr/bin/pip \
   && pip install -r /root/lightning-integration/requirements.txt
-
-# lnd
-ENV GOPATH $HOME/.go
-ENV PATH $PATH:$GOPATH/bin
 
 # eclair
 RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
