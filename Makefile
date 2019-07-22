@@ -17,7 +17,6 @@ src/lnd:
 
 src/ptarmigan:
 	git clone https://github.com/nayutaco/ptarmigan.git src/ptarmigan
-	cd src/ptarmigan
 
 update: src/eclair src/lightning src/lnd src/ptarmigan
 	rm src/eclair/version src/lightning/version src/lnd/version src/ptarmigan/version || true
