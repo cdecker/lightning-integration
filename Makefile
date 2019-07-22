@@ -50,8 +50,8 @@ bin/lnd: src/lnd
 	(cd src/lnd; git rev-parse HEAD) > src/lnd/version
 	cd src/lnd \
 	&& go mod vendor \
-	&& go build -v -o lnd cmd/lnd/main.go \
-	&& go build -v -o lncli github.com/lightningnetwork/lnd/cmd/lncli
+	&& go build -v -mod=vendor -o lnd cmd/lnd/main.go \
+	&& go build -v -mod=vendor -o lncli github.com/lightningnetwork/lnd/cmd/lncli
 	cp src/lnd/lnd src/lnd/lncli bin/
 
 clean:
