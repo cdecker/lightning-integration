@@ -92,4 +92,5 @@ ENV LANG C.UTF-8
 ENV TEST_DEBUG=0
 
 WORKDIR /root/lightning-integration
+COPY Makefile /root/lightning-integration/Makefile
 CMD ["make", "update", "clients", "test"]
