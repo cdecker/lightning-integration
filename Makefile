@@ -25,6 +25,9 @@ src/lnd:
 src/ptarmigan:
 	git clone https://github.com/nayutaco/ptarmigan.git src/ptarmigan
 
+src/rust-lightning-bitcoinrpc:
+	git clone https://github.com/jtimon/rust-lightning-bitcoinrpc.git src/rust-lightning-bitcoinrpc
+
 update-eclair: src/eclair
 	rm src/eclair/version || true
 	cd src/eclair && git stash; git pull origin master
@@ -41,7 +44,10 @@ update-ptarmigan: src/ptarmigan
 	rm src/ptarmigan/version || true
 	cd src/ptarmigan && git stash; git pull origin master
 
-update: update-eclair update-clightning update-lnd update-ptarmigan
+update-rust-lightning: src/rust-lightning-bitcoinrpc
+	cd src/rust-lightning-bitcoinrpc && git stash; git checkout simpler-argman
+
+update: update-eclair update-clightning update-lnd update-ptarmigan update-rust-lightning
 
 bin/eclair.jar: src/eclair
 	(cd src/eclair; git rev-parse HEAD) > src/eclair/version
@@ -70,14 +76,19 @@ bin/lnd: src/lnd
 	&& go build -v -mod=vendor -o lncli github.com/lightningnetwork/lnd/cmd/lncli
 	cp src/lnd/lnd src/lnd/lncli bin/
 
+bin/rust-lightning-bitcoinrpc: src/rust-lightning-bitcoinrpc
+	cd src/rust-lightning-bitcoinrpc; cargo build --release -j ${NPROC}
+	cp src/rust-lightning-bitcoinrpc/target/release/rust-lightning-bitcoinrpc bin/
+
 clean:
 	rm src/lnd/version src/lightning/version src/eclair/version src/ptarmigan/version || true
 	rm bin/* || true
 	cd src/lightning; make clean
 	cd src/eclair; mvn clean
 	cd src/ptarmigan; make distclean
+	cd src/rust-lightning-bitcoinrpc; cargo clean
 
-clients: bin/lightningd bin/lnd bin/eclair.jar bin/ptarmd
+clients: bin/lightningd bin/lnd bin/eclair.jar bin/ptarmd bin/rust-lightning-bitcoinrpc
 
 test: clients
 	# Failure is always an option
