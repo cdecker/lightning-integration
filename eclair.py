@@ -67,7 +67,7 @@ class EclairD(TailableProc):
             ('enabled = false // disabled by default for security reasons', 'enabled = true'),
             ('password = ""', 'password = "rpcpass"'),
             ('9735', str(port)),
-            ('18332', str(self.bitcoind.rpcport)),
+            ('8332', str(self.bitcoind.rpcport)),
             ('8080', str(self.rpc_port)),
             ('"test"', '"regtest"'),
             ('"foo"', '"rpcuser"'),
