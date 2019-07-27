@@ -1,8 +1,16 @@
 language: bash
 services: docker
 
-build:
-  - docker build -t lnintegration .
+before_script:
+  - docker build -t lnintegration . > build.log 2>&1
+  - while sleep 5m; do echo "=====[ $SECONDS seconds, lnintegration still building... ]====="; done &
+  - time docker run --rm -v $PWD/build:/build lnintegration >> build.log 2>&1
+  # Killing background sleep loop
+  - kill %1
+
+after_failure:
+  # dump the last 2000 lines of our build, and hope the error is in that!
+  - tail --lines=2000 build.log
 
 after_success:
   # Log that the build worked, because we all need some good news
