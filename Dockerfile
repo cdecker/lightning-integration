@@ -75,21 +75,23 @@ RUN cd /tmp \
 
 ENV GOROOT=/usr/local/go
 
-# lightning-integration
-RUN git clone https://github.com/cdecker/lightning-integration.git /root/lightning-integration \
-  && ln -sf /usr/bin/python3 /usr/bin/python \
-  && ln -sf /usr/bin/pip3 /usr/bin/pip \
-  && pip install -r /root/lightning-integration/requirements.txt
-
 # eclair
 RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
 VOLUME /root/lightning-integration/reports
 VOLUME /root/lightning-integration/output
 
+WORKDIR /root/lightning-integration
+
+# lightning-integration
+COPY requirements.txt /root/lightning-integration/requirements.txt
+RUN ln -sf /usr/bin/python3 /usr/bin/python \
+  && ln -sf /usr/bin/pip3 /usr/bin/pip \
+  && pip install -r /root/lightning-integration/requirements.txt
+
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 ENV TEST_DEBUG=0
 
-WORKDIR /root/lightning-integration
+COPY . /root/lightning-integration/
 CMD ["make", "update", "clients", "test"]
