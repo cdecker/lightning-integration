@@ -63,7 +63,7 @@ class EclairD(TailableProc):
             config = f.read()
 
         replacements = [
-            ('"testnet"', '"regtest"'),
+            ('chain = "mainnet"', 'chain = "regtest"'),
             ('enabled = false // disabled by default for security reasons', 'enabled = true'),
             ('password = ""', 'password = "rpcpass"'),
             ('9735', str(port)),
@@ -131,11 +131,11 @@ class EclairNode(object):
         return [p['nodeId'] for p in self.rpc.peers()]
 
     def id(self):
-        info = self.rpc._call("getinfo", [])
+        info = self.rpc._call("getinfo", {})
         return info['nodeId']
 
     def openchannel(self, node_id, host, port, satoshis):
-        r = self.rpc._call('open', [node_id, satoshis, 0])
+        r = self.rpc._call('open', {"nodeId": node_id, "fundingSatoshis": satoshis, "pushMsat": 0})
         return r
 
     def getaddress(self):
@@ -176,7 +176,7 @@ class EclairNode(object):
 
     def getchannels(self):
         channels = []
-        for c in self.rpc._call('allchannels', []):
+        for c in self.rpc._call('channels', {}):
             channels.append((c['a'], c['b']))
             channels.append((c['b'], c['a']))
         return channels
@@ -185,25 +185,35 @@ class EclairNode(object):
         return set([n['nodeId'] for n in self.rpc.allnodes()])
 
     def invoice(self, amount):
-        req = self.rpc._call("receive", [amount, "invoice1"])
+        req = self.rpc._call("createinvoice", {"amountMsat": amount, "description": "invoice1"})
         logging.debug(req)
-        return req
+        return req['serialized']
 
     def send(self, req):
-        result = self.rpc._call("send", [req])
+        details = self.parse_invoice(req)
+        payment_hash = details['paymentHash']
+        payment_id = self.rpc._call("payinvoice", {"invoice": req})
+        for i in range(100):
+            result = self.rpc._call('getsentinfo', {'paymentHash': payment_hash, 'id': payment_id})[0]
+            if result['status'] == 'SUCCEEDED':
+                break
+            time.sleep(1)
         if 'failures' in result:
             raise ValueError("Failed to send payment: {}".format(result))
         else:
-            return result['paymentPreimage']
+            return result['preimage']
+
+    def parse_invoice(self, invoice):
+        return self.rpc._call('parseinvoice', {'invoice': invoice})
 
     def connect(self, host, port, node_id):
-        return self.rpc._call('connect', [node_id, host, port])
+        return self.rpc._call('connect', {'nodeId': node_id, 'host': host, 'port': port})
 
     def block_sync(self, blockhash):
         time.sleep(1)
 
     def info(self):
-        r = self.rpc._call('getinfo', [])
+        r = self.rpc._call('getinfo', {})
         return {
             'id': r['nodeId'],
             'blockheight': r['blockHeight'],
@@ -223,7 +233,7 @@ class EclairNode(object):
 
     def check_route(self, node_id, amount):
         try:
-            r = self.rpc._call("findroute", [node_id, amount])
+            r = self.rpc._call("findroutetonode", {"nodeId": node_id, "amountMsat": amount})
         except ValueError as e:
             if (str(e).find("command failed: route not found") > 0):
                 return False
@@ -237,11 +247,12 @@ class EclairRpc(object):
         # self.session = requests_retry_session(retries=10, session=requests.Session())
 
     def _call(self, method, params):
-        headers = {'Content-type': 'application/json'}
-        data = json.dumps({'method': method, 'params': params})
+        #headers = {'Content-type': 'multipart/form-data'}
+        headers = {}
         logging.info("Calling {} with params={}".format(method, json.dumps(params, indent=4, sort_keys=True)))
+        url = "{}/{}".format(self.url, method)
         with requests_retry_session(retries=10, session=requests.Session()) as s:
-            reply = s.post(self.url, data=data, headers=headers, auth=('user', 'rpcpass'))
+            reply = s.post(url, data=params, headers=headers, auth=('user', 'rpcpass'))
         if reply.status_code != 200:
             raise ValueError("Server returned an unknown error: {} ({})".format(
                 reply.status_code, reply.text))
@@ -249,21 +260,21 @@ class EclairRpc(object):
         logging.debug("Method {} returned {}".format(method, json.dumps(reply.json(), indent=4, sort_keys=True)))
         if 'error' in reply.json():
             raise ValueError('Error calling {}: {}'.format(
-                method, reply.json()['error']))
+                method, reply.json()))
         else:
-            return reply.json()['result']
+            return reply.json()
 
     def peers(self):
-        return self._call('peers', [])
+        return self._call('peers', {})
 
     def channels(self):
-        return [c['channelId'] for c in self._call('channels', [])]
+        return [c['channelId'] for c in self._call('channels', {})]
 
     def channel(self, cid):
-        return self._call('channel', [cid])
+        return self._call('channel', {'channelId': cid})
 
     def allnodes(self):
-        return self._call('allnodes', [])
+        return self._call('allnodes', {})
 
     def help(self):
-        return self._call('help', [])
+        return self._call('getinfo', {})
