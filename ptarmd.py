@@ -212,14 +212,24 @@ class PtarmNode(object):
     def send(self, req):
         self.rpc.pay(req)  # Will raise on error, but no useful info
 
-        # Grab the preimage from the logs
-        line = self.daemon.wait_for_log("p_payment_preimage:", offset=100)
-        pp = re.search('[0-9a-f]{64}', line)
-        if not pp:
+        # Grab the preimage from listpayment
+        preimage = None
+        for i in range(5):
+            r = self.rpc.listpayment()
+            for pay in r:
+                if pay['invoice'] == req:
+                    if ('preimage' in pay) and (len(pay['preimage']) != 0):
+                        preimage = pay['preimage']
+                        break
+            if preimage is None:
+                time.sleep(1)
+                continue
+            break
+        if preimage is None:
             raise ValueError(
-                "Could not parse preimage from logs: {}".format(line)
+                "Could not found preimage from listpayment"
             )
-        return pp.group()
+        return preimage
 
     def connect(self, host, port, node_id):
         self.peer_host = host
@@ -346,6 +356,9 @@ class PtarmRpc(TcpSocketRpc):
 
     def getinfo(self):
         return self.call("getinfo")
+
+    def listpayment(self):
+        return self.call("listpayment")
 
     def pay(self, bolt11, msatoshi=None, description=None, riskfactor=None):
         payload = [bolt11, 0]
