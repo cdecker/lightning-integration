@@ -1,8 +1,15 @@
 language: bash
 services: docker
 
-build:
+before_script:
   - docker build -t lnintegration .
+  - docker run --rm -d -v $PWD/build:/build --name lnintegration lnintegration
+  - for i in {1..10}; do echo "=====[ $SECONDS seconds, lnintegration still running... ]=====" ; docker logs lnintegration --tail 10 ; sleep 60; done;
+  - echo "exiting as success after 10 minutes without failing"
+
+after_failure:
+  # dump the last 2000 lines of our run, and hope the error is in that!
+  - docker logs lnintegration --tail 2000
 
 after_success:
   # Log that the build worked, because we all need some good news
