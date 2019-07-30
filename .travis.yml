@@ -1,0 +1,9 @@
+language: bash
+services: docker
+
+build:
+  - docker build -t lnintegration .
+
+after_success:
+  # Log that the build worked, because we all need some good news
+  - echo "Success running lightning-integration"
