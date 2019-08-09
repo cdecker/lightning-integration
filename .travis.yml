@@ -29,4 +29,4 @@ jobs:
 
     - name: 'Build rust-lightning-bitcoinrpc'
       script:
-        - docker run lnintegration bash -c "make update-rust-lightning bin/rust-lightning-bitcoinrpc"
+        - docker run lnintegration bash -c "make update-rust-lightning bin/rust-lightning-bitcoinrpc && py.test -v test.py -k RustLightningBitcoinrpcNode"
