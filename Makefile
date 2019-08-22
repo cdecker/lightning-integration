@@ -3,6 +3,13 @@ ifneq ($(PYTEST_PAR),)
 PYTEST_OPTS += -n=$(PYTEST_PAR)
 endif
 
+NPROC = 4
+OS=$(shell uname -s)
+
+ifeq ($(OS),Linux)
+  NPROC=$(shell grep -c ^processor /proc/cpuinfo)
+endif
+
 PWD = $(shell pwd)
 GO111MODULE = on
 
@@ -38,12 +45,12 @@ update: update-eclair update-clightning update-lnd update-ptarmigan
 
 bin/eclair.jar: src/eclair
 	(cd src/eclair; git rev-parse HEAD) > src/eclair/version
-	(cd src/eclair/; mvn package -Dmaven.test.skip=true || true)
+	(cd src/eclair/; mvn -T ${NPROC} package -Dmaven.test.skip=true || true)
 	cp src/eclair/eclair-node/target/eclair-node-*-$(shell git --git-dir=src/eclair/.git rev-parse HEAD | cut -b 1-7).jar bin/eclair.jar
 
 bin/lightningd: src/lightning
 	(cd src/lightning; git rev-parse HEAD) > src/lightning/version
-	cd src/lightning; ./configure --enable-developer --disable-valgrind && make CC=clang
+	cd src/lightning; ./configure --enable-developer --disable-valgrind && make CC=clang -j${NPROC}
 	cp src/lightning/lightningd/lightningd src/lightning/lightningd/lightning_* bin
 
 bin/ptarmd: src/ptarmigan
