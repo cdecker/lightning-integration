@@ -32,7 +32,7 @@ RUN apt-get update \
     libzmq3-dev \
     miniupnpc \
     net-tools \
-    openjdk-8-jdk \
+    openjdk-11-jdk \
     pkg-config \
     python \
     python3 \
@@ -59,6 +59,7 @@ RUN cd /tmp \
     && cp bitcoin-$BITCOIN_VERSION/bin/bitcoin* /usr/bin/ \
     && rm -rf $BITCOIN_TARBALL bitcoin-$BITCOIN_VERSION
 
+# maven for java builds (eclair)
 RUN cd /tmp \
     && wget -qO mvn.tar.gz https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz \
     && tar -xzf mvn.tar.gz \
@@ -74,9 +75,6 @@ RUN cd /tmp \
     && ln -s /usr/local/go/bin/go /usr/bin/
 
 ENV GOROOT=/usr/local/go
-
-# eclair
-RUN update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
 
 VOLUME /root/lightning-integration/reports
 VOLUME /root/lightning-integration/output
