@@ -26,7 +26,6 @@ class LightningD(TailableProc):
             '--bitcoin-datadir={}'.format(self.bitcoind.bitcoin_dir),
             '--lightning-dir={}'.format(lightning_dir),
             '--addr=127.0.0.1:{}'.format(port),
-            '--dev-broadcast-interval=500',
             '--dev-bitcoind-poll=1',
             '--plugin-dir=src/lightning/plugins',
 
