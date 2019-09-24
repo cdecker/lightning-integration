@@ -61,10 +61,10 @@ RUN cd /tmp \
 
 # maven for java builds (eclair)
 RUN cd /tmp \
-    && wget -qO mvn.tar.gz https://www-us.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz \
+    && wget -qO mvn.tar.gz https://www-us.apache.org/dist/maven/maven-3/3.6.2/binaries/apache-maven-3.6.2-bin.tar.gz \
     && tar -xzf mvn.tar.gz \
     && rm mvn.tar.gz \
-    && mv apache-maven-3.6.0 /usr/local/maven \
+    && mv apache-maven-3.6.2 /usr/local/maven \
     && ln -s /usr/local/maven/bin/mvn /usr/local/bin
 
 RUN cd /tmp \
