@@ -13,6 +13,7 @@ RUN apt-get update \
     build-essential \
     clang \
     curl \
+    gettext \
     git \
     jq \
     libboost-all-dev \
