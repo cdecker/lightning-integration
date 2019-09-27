@@ -11,6 +11,8 @@ jobs:
       script: >-
         set -ex;
 
+        find /tmp/cache/ -name "lnintegration-*.tar" -type f -mtime +7 -print0 | xargs -r0 rm --;
+
         export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
         export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
 
@@ -18,6 +20,8 @@ jobs:
           docker build -t lnintegration:$(sha256sum Dockerfile | cut -b 1-12) .;
           docker save lnintegration:$(sha256sum Dockerfile | cut -b 1-12) > ${IMAGE_FILE};
         fi
+        touch ${IMAGE_FILE};
+
     - stage: "Build clients"
       name: 'Build eclair'
       script: >-
