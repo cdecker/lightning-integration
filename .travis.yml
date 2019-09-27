@@ -1,29 +1,36 @@
 language: bash
 services: docker
 
-install:
-  - make docker-build
+install: >-
+  DOCKERFILE_HASH=$(sha256sum Dockerfile | cut -b 1-12)
+  IMAGE_FILE=/tmp/cache/lnintegration:${DOCKERFILE_HASH}
+  echo $IMAGE_FILE > /tmp/cache/docker-image
 
 cache:
-    directories:
-     - /tmp/cache
-
-after_success:
-  # Log that the build worked, because we all need some good news
-  - echo "Success running lightning-integration"
+  directories:
+    - /tmp/cache
 
 jobs:
   include:
     - stage: "Build docker image"
-      script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t lnintegration .
-      - docker images
-      - docker push $DOCKER_USERNAME/lnintegration
+      script: >-
+        set -ex;
+
+        if [ ! -f "${IMAGE_FILE}" ]; then
+          docker build -t lnintegration:$(sha256sum Dockerfile | cut -b 1-12) .
+          docker save lnintegration:$(sha256sum Dockerfile | cut -b 1-12) > /tmp/cache/lnintegration-${DOCKERFILE_HASH}.tar
+        fi
     - stage: "Build clients"
     - name: 'Build eclair'
-      script:
-        - docker run -v /tmp/cache/m2:/root/.m2 $DOCKER_USERNAME/lnintegration bash -c "make update-eclair bin/eclair.jar && py.test -v test.py -k EclairNode"
+      script: >-
+        set -ex;
+
+        export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12)
+        export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar
+        export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 -rm"
+        docker load --input ${IMAGE_FILE}
+        docker run ${DOCK_OPTS} ${IMAGE} bash -c "make update-eclair bin/eclair.jar && py.test -v test.py -k EclairNode"
+
     - name: 'Build clightning'
       script:
         - docker run $DOCKER_USERNAME/lnintegration bash -c "make update-clightning bin/lightningd && py.test -v test.py -k LightningNode"
