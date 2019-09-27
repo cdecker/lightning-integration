@@ -1,9 +1,6 @@
 FROM ubuntu:bionic
 
 RUN apt-get update \
-  && apt-get install -q --no-install-recommends -y software-properties-common \
-  && add-apt-repository ppa:bitcoin/bitcoin \
-  && apt-get update \
   && apt-get install -q --no-install-recommends -y \
 	autoconf \
 	automake \
