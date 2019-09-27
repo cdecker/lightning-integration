@@ -1,11 +1,6 @@
 language: bash
 services: docker
 
-install: >-
-  DOCKERFILE_HASH=$(sha256sum Dockerfile | cut -b 1-12)
-  IMAGE_FILE=/tmp/cache/lnintegration:${DOCKERFILE_HASH}
-  echo $IMAGE_FILE > /tmp/cache/docker-image
-
 cache:
   directories:
     - /tmp/cache
@@ -21,7 +16,7 @@ jobs:
           docker save lnintegration:$(sha256sum Dockerfile | cut -b 1-12) > /tmp/cache/lnintegration-${DOCKERFILE_HASH}.tar
         fi
     - stage: "Build clients"
-    - name: 'Build eclair'
+      name: 'Build eclair'
       script: >-
         set -ex;
 
