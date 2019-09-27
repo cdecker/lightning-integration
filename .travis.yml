@@ -4,29 +4,32 @@ services: docker
 install:
   - make docker-build
 
+cache:
+    directories:
+     - /tmp/cache
+
 after_success:
   # Log that the build worked, because we all need some good news
   - echo "Success running lightning-integration"
 
 jobs:
   include:
-
+    - stage: "Build docker image"
+      script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t lnintegration .
+      - docker images
+      - docker push $DOCKER_USERNAME/lnintegration
+    - stage: "Build clients"
     - name: 'Build eclair'
       script:
-        - docker run lnintegration bash -c "make update-eclair bin/eclair.jar && py.test -v test.py -k EclairNode"
-
+        - docker run -v /tmp/cache/m2:/root/.m2 $DOCKER_USERNAME/lnintegration bash -c "make update-eclair bin/eclair.jar && py.test -v test.py -k EclairNode"
     - name: 'Build clightning'
       script:
-        - docker run lnintegration bash -c "make update-clightning bin/lightningd && py.test -v test.py -k LightningNode"
-
+        - docker run $DOCKER_USERNAME/lnintegration bash -c "make update-clightning bin/lightningd && py.test -v test.py -k LightningNode"
     - name: 'Build lnd'
       script:
-        - docker run lnintegration bash -c "make update-lnd bin/lnd && py.test -v test.py -k LndNode"
-
+        - docker run $DOCKER_USERNAME/lnintegration bash -c "make update-lnd bin/lnd && py.test -v test.py -k LndNode"
     - name: 'Build ptarmigan'
       script:
-        - docker run lnintegration bash -c "make update-ptarmigan bin/ptarmd && py.test -v test.py -k PtarmNode"
-
-    - name: 'Build all clients'
-      script:
-        - docker run lnintegration bash -c "make update clients"
+        - docker run $DOCKER_USERNAME/lnintegration bash -c "make update-ptarmigan bin/ptarmd && py.test -v test.py -k PtarmNode"
