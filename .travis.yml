@@ -11,9 +11,12 @@ jobs:
       script: >-
         set -ex;
 
+        export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
+        export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
+
         if [ ! -f "${IMAGE_FILE}" ]; then
-          docker build -t lnintegration:$(sha256sum Dockerfile | cut -b 1-12) .
-          docker save lnintegration:$(sha256sum Dockerfile | cut -b 1-12) > /tmp/cache/lnintegration-${DOCKERFILE_HASH}.tar
+          docker build -t lnintegration:$(sha256sum Dockerfile | cut -b 1-12) .;
+          docker save lnintegration:$(sha256sum Dockerfile | cut -b 1-12) > ${IMAGE_FILE};
         fi
     - stage: "Build clients"
       name: 'Build eclair'
@@ -23,6 +26,7 @@ jobs:
         export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
         export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
         export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 -rm";
+
         docker load --input ${IMAGE_FILE};
         docker run ${DOCK_OPTS} ${IMAGE} bash -c "make update-eclair bin/eclair.jar && py.test -v test.py -k EclairNode";
 
