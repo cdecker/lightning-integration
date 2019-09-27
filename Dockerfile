@@ -77,6 +77,12 @@ RUN cd /tmp \
 
 ENV GOROOT=/usr/local/go
 
+# Install cargo for rust builds
+RUN cd /root \
+    && curl -s -L -O https://static.rust-lang.org/rustup.sh \
+    && bash ./rustup.sh -y --verbose
+ENV PATH="/root/.cargo/bin:${PATH}"
+
 VOLUME /root/lightning-integration/reports
 VOLUME /root/lightning-integration/output
 
