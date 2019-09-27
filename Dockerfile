@@ -1,46 +1,48 @@
 FROM ubuntu:bionic
 
 RUN apt-get update \
-  && apt-get install -y software-properties-common \
+  && apt-get install -q --no-install-recommends -y software-properties-common \
   && add-apt-repository ppa:bitcoin/bitcoin \
   && apt-get update \
-  && apt-get install -y \
-    autoconf \
-    automake \
-    autotools-dev \
-    bc \
-    bsdmainutils \
-    build-essential \
-    clang \
-    curl \
-    gettext \
-    git \
-    jq \
-    libboost-all-dev \
-    wget \
-    libcurl4-openssl-dev \
-    libdb4.8++-dev \
-    libdb4.8-dev \
-    libev-dev \
-    libevent-dev \
-    libgmp-dev \
-    libjansson-dev \
-    libsecp256k1-dev \
-    libsodium-dev \
-    libsqlite3-dev \
-    libssl-dev \
-    libtool \
-    libzmq3-dev \
-    miniupnpc \
-    net-tools \
-    openjdk-11-jdk \
-    pkg-config \
-    python \
-    python3 \
-    python3-mako \
-    python3-pip \
-    zlib1g-dev \
-  && rm -rf /var/lib/apt/lists/*
+  && apt-get install -q --no-install-recommends -y \
+	autoconf \
+	automake \
+	autotools-dev \
+	bc \
+	bsdmainutils \
+	build-essential \
+	clang \
+	curl \
+	dirmngr \
+	gettext \
+	git \
+	gpg \
+	gpg-agent \
+	jq \
+	libboost-all-dev \
+	wget \
+	libcurl4-openssl-dev \
+	libev-dev \
+	libevent-dev \
+	libgmp-dev \
+	libjansson-dev \
+	libsecp256k1-dev \
+	libsodium-dev \
+	libsqlite3-dev \
+	libssl-dev \
+	libtool \
+	libzmq3-dev \
+	miniupnpc \
+	net-tools \
+	openjdk-11-jdk \
+	pkg-config \
+	python \
+	python3 \
+	python3-mako \
+	python3-pip \
+	python3-setuptools \
+	zlib1g-dev \
+	&& rm -rf /var/lib/apt/lists/*
 
 ARG BITCOIN_VERSION=0.17.1
 ENV BITCOIN_TARBALL=bitcoin-$BITCOIN_VERSION-x86_64-linux-gnu.tar.gz
