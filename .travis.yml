@@ -23,7 +23,7 @@ jobs:
         if [ ! -f "${IMAGE_FILE}" ]; then
           docker build -t lnintegration:$(sha256sum Dockerfile | cut -b 1-12) .;
           docker save lnintegration:$(sha256sum Dockerfile | cut -b 1-12) | pv > ${IMAGE_FILE};
-        fi
+        fi;
         touch ${IMAGE_FILE};
 
     - stage: "Build clients"
@@ -39,11 +39,32 @@ jobs:
         docker run ${DOCK_OPTS} ${IMAGE} bash -c "make update-eclair bin/eclair.jar && py.test -v test.py -k EclairNode";
 
     - name: 'Build clightning'
-      script:
-        - docker run $DOCKER_USERNAME/lnintegration bash -c "make update-clightning bin/lightningd && py.test -v test.py -k LightningNode"
+      script: >-
+        set -ex;
+
+        export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
+        export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
+        export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 --rm";
+
+        pv ${IMAGE_FILE} | docker load;
+        docker run $DOCKER_USERNAME/lnintegration bash -c "make update-clightning bin/lightningd && py.test -v test.py -k LightningNode"
     - name: 'Build lnd'
-      script:
-        - docker run $DOCKER_USERNAME/lnintegration bash -c "make update-lnd bin/lnd && py.test -v test.py -k LndNode"
+      script: >-
+        set -ex;
+
+        export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
+        export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
+        export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 --rm";
+
+        pv ${IMAGE_FILE} | docker load;
+        docker run $DOCKER_USERNAME/lnintegration bash -c "make update-lnd bin/lnd && py.test -v test.py -k LndNode"
     - name: 'Build ptarmigan'
-      script:
-        - docker run $DOCKER_USERNAME/lnintegration bash -c "make update-ptarmigan bin/ptarmd && py.test -v test.py -k PtarmNode"
+      script: >-
+        set -ex;
+
+        export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
+        export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
+        export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 --rm";
+
+        pv ${IMAGE_FILE} | docker load;
+        docker run $DOCKER_USERNAME/lnintegration bash -c "make update-ptarmigan bin/ptarmd && py.test -v test.py -k PtarmNode"
