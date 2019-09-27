@@ -13,7 +13,7 @@ jobs:
   include:
     - stage: "Build docker image"
       script: >-
-        set -ex;
+        set -e;
 
         find /tmp/cache/ -name "lnintegration-*.tar" -type f -mtime +7 -print0 | xargs -r0 rm --;
 
@@ -29,7 +29,7 @@ jobs:
     - stage: "Build clients"
       name: 'Build eclair'
       script: >-
-        set -ex;
+        set -e;
 
         export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
         export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
@@ -40,31 +40,31 @@ jobs:
 
     - name: 'Build clightning'
       script: >-
-        set -ex;
+        set -e;
 
         export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
         export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
         export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 --rm";
 
         pv ${IMAGE_FILE} | docker load;
-        docker run $DOCKER_USERNAME/lnintegration bash -c "make update-clightning bin/lightningd && py.test -v test.py -k LightningNode"
+        docker run ${DOCK_OPTS} ${IMAGE} bash -c "make update-clightning bin/lightningd && py.test -v test.py -k LightningNode"
     - name: 'Build lnd'
       script: >-
-        set -ex;
+        set -e;
 
         export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
         export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
         export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 --rm";
 
         pv ${IMAGE_FILE} | docker load;
-        docker run $DOCKER_USERNAME/lnintegration bash -c "make update-lnd bin/lnd && py.test -v test.py -k LndNode"
+        docker run ${DOCK_OPTS} ${IMAGE} bash -c "make update-lnd bin/lnd && py.test -v test.py -k LndNode"
     - name: 'Build ptarmigan'
       script: >-
-        set -ex;
+        set -e;
 
         export IMAGE=lnintegration:$(sha256sum Dockerfile | cut -b 1-12);
         export IMAGE_FILE=/tmp/cache/lnintegration-$(sha256sum Dockerfile | cut -b 1-12).tar;
         export DOCK_OPTS="-v /tmp/cache/m2:/root/.m2 --rm";
 
         pv ${IMAGE_FILE} | docker load;
-        docker run $DOCKER_USERNAME/lnintegration bash -c "make update-ptarmigan bin/ptarmd && py.test -v test.py -k PtarmNode"
+        docker run ${DOCK_OPTS} ${IMAGE} bash -c "make update-ptarmigan bin/ptarmd && py.test -v test.py -k PtarmNode"
