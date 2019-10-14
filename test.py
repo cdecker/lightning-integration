@@ -11,6 +11,7 @@ from ptarmd import PtarmNode
 from concurrent import futures
 from utils import BitcoinD, BtcD
 from bech32 import bech32_decode
+from electrumutils import ElectrumX, ElectrumNode
 
 from fixtures import *
 
@@ -21,7 +22,7 @@ import sys
 import tempfile
 import time
 
-impls = [EclairNode, LightningNode, LndNode, PtarmNode]
+impls = [EclairNode, LightningNode, LndNode, PtarmNode, ElectrumNode]
 
 if TEST_DEBUG:
     logging.basicConfig(level=logging.DEBUG, stream=sys.stdout)
